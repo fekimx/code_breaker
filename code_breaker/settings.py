@@ -38,6 +38,8 @@ DEBUG = False
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'code-breaker.io', 'code-breaker-proj.herokuapp.com']
 
 
+SECURE_SSL_REDIRECT = True
+
 # Application definition
 
 INSTALLED_APPS = [
