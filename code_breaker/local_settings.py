@@ -7,3 +7,7 @@ CSRF_COOKIE_SECURE = False
 SECURE_SSL_REDIRECT = False
 
 SECRET_KEY = 'foo'
+
+CORS_ORIGIN_WHITELIST = [
+     'http://localhost:3000'
+]
