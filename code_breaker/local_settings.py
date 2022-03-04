@@ -1,5 +1,7 @@
 from code_breaker.settings import *
 
+# This file is for local development
+
 print('Setting local settings ...')
 
 SESSION_COOKIE_SECURE = False
