@@ -13,3 +13,5 @@ SECRET_KEY = 'foo'
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000'
 ]
+
+DEBUG = True

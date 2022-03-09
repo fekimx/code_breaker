@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.db import IntegrityError
+from django.views import View
 from .models import *
 
 # Create your views here.
@@ -57,4 +58,3 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "coding/register.html")
-

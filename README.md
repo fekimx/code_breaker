@@ -1,12 +1,26 @@
 # Code Breaker
 
-## Local Development
+## Prerequisites 
+
+Python 3.10
+Node JS
+pip install django-webpack-loader==0.7.0
+
+## Django Local Development
 
 pip install pipenv  
 pipenv shell  
 pipenv install django  
 
-python manage.py runserver --settings=code_breaker.local_settings  
+python manage.py runserver --settings=code_breaker.local_settings
+
+## React Local Development
+
+npm run dev
+
+### Windows Notes
+
+For Windows, you may need to preface the python commands with "python -m"
 
 ### Frontend Local Development
 
