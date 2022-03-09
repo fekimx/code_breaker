@@ -116,4 +116,15 @@ class CodeQuestion(models.Model):
             "version": self.version
         }
 
+class Assignment(models.Model):
+    name = models.CharField(max_length=100)
+    author = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    questions = models.ManyToManyField(CodeQuestion)
+
+    def serialize(self):
+        return {
+            "name": self.name,
+            "author": self.author
+        }
+
 
