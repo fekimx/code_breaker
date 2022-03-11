@@ -102,11 +102,11 @@ class Solution(models.Model):
 class CodeQuestion(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
-    author = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    author = models.ForeignKey(Teacher, on_delete=models.CASCADE, null=True)
     practice = models.BooleanField(default=False)
     version = models.IntegerField(default=1)
-    solutions = models.ForeignKey(Solution, on_delete=models.CASCADE)
-    unitTests = models.ForeignKey(UnitTest, on_delete=models.CASCADE)
+    solutions = models.ForeignKey(Solution, on_delete=models.CASCADE, null=True)
+    unitTests = models.ForeignKey(UnitTest, on_delete=models.CASCADE, null=True)
     
     def serialize(self):
         return {
@@ -127,4 +127,30 @@ class Assignment(models.Model):
             "author": self.author
         }
 
+# we need a way to individually determine "done" from a learner to a question
+# and we need a way to individually determine percentage completion from a learner to an assignment
+# thus, we have status.  Status can be applied to a question and represents the learner's progress.
+class Status(models.Model):
+    learner = models.ManyToManyField(Learner)
+    question = models.ManyToManyField(CodeQuestion)
+    complete = models.BooleanField(default=False)
 
+    def serialize(self):
+        return {
+            "learner": self.learner.name,
+            "question": self.question.name,
+            "complete": self.complete
+        }
+
+# Progress is the same thing but for an assignment
+class Progress(models.Model):
+    learner = models.ManyToManyField(Learner)
+    assignment = models.ManyToManyField(Assignment)
+    percent = models.IntegerField(default=0)
+
+    def serialize(self):
+        return {
+            "learner": self.learner.name,
+            "assignment": self.assignment.name,
+            "percent": self.percent
+        }
