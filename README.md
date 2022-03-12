@@ -5,13 +5,12 @@
 Python 3.10
 Node JS
 pip install django-webpack-loader==0.7.0
+pip install pipenv  
+pipenv install django  
 
 ## Django Local Development
 
-pip install pipenv  
-pipenv shell  
-pipenv install django  
-
+pipenv shell
 python manage.py runserver --settings=code_breaker.local_settings
 
 ## React Local Development
