@@ -13,6 +13,9 @@ psycopg2-binary = "*"
 python-decouple = "*"
 gunicorn = "*"
 python-dotenv = "*"
+djangorestframework = "*"
+django-cors-headers = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
