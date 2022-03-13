@@ -1,11 +1,13 @@
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from . import views
 
 urlpatterns = [
-    path("", views.index, name="index"),
     path('admin/', admin.site.urls),
     path('api/', include(('coding.routers', 'coding'), namespace='coding-api')),
+    re_path(r'^$', views.index, name="index"),
+    # match all other pages
+    re_path(r'^(?:.*)/?$', views.index, name="index"),
 ]
 
 # path('auth/', include('rest_auth.urls')),    
