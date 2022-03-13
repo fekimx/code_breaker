@@ -40,6 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(db_index=True, max_length=255, unique=True)
     email = models.EmailField(db_index=True, unique=True, null=True, blank=True)
     is_active = models.BooleanField(default=True)
+    is_student = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
@@ -50,59 +51,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return f"{self.email}"
 
-# User related models, teacher, learner, admin.
-# We could in theory also use a boolean or enum to differentiate but I'm using models here
-# For better clarity
-
-# Admin - Superuser who can authorize/create Teachers
-class Admin(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    def serialize(self):
-        return {
-            "username": self.username,
-            "name": self.get_full_name,
-            "email": self.email,
-            "active": self.is_active,
-            "type": "Admin"
-        }
-
-# Teacher - extends user
-class Teacher(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    authorized = models.BooleanField(default=False)
-
-    def serialize(self):
-        return {
-            "username": self.username,
-            "name": self.get_full_name,
-            "email": self.email,
-            "authorized": self.authorized,
-            "active": self.is_active,
-            "type": "Teacher"
-        }
-
-# Learner - extends user
-class Learner(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    def serialize(self):
-        return {
-            "username": self.username,
-            "name": self.get_full_name,
-            "email": self.email,
-            "active": self.is_active,
-            "type": "Learner"
-        }
-
 # Class - data object to organize students
 class Class(models.Model):
     name = models.CharField(max_length=100)
     secretKey = models.CharField(max_length=25)
     active = models.BooleanField(default=True)
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    TAs = models.ManyToManyField(Teacher, related_name="TAs")
-    students = models.ManyToManyField(Learner)
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
+    TAs = models.ManyToManyField(User, related_name="TAs")
+    students = models.ManyToManyField(User, related_name="students")
 
     def serialize(self):
         return {
@@ -147,7 +103,7 @@ class Solution(models.Model):
 class CodeQuestion(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
-    author = models.ForeignKey(Teacher, on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     practice = models.BooleanField(default=False)
     version = models.IntegerField(default=1)
     solutions = models.ForeignKey(Solution, on_delete=models.CASCADE, null=True)
@@ -163,7 +119,7 @@ class CodeQuestion(models.Model):
 
 class Assignment(models.Model):
     name = models.CharField(max_length=100)
-    author = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     questions = models.ManyToManyField(CodeQuestion)
 
     def serialize(self):
@@ -176,7 +132,7 @@ class Assignment(models.Model):
 # and we need a way to individually determine percentage completion from a learner to an assignment
 # thus, we have status.  Status can be applied to a question and represents the learner's progress.
 class Status(models.Model):
-    learner = models.ManyToManyField(Learner)
+    learner = models.ManyToManyField(User)
     question = models.ManyToManyField(CodeQuestion)
     complete = models.BooleanField(default=False)
 
@@ -189,7 +145,7 @@ class Status(models.Model):
 
 # Progress is the same thing but for an assignment
 class Progress(models.Model):
-    learner = models.ManyToManyField(Learner)
+    learner = models.ManyToManyField(User)
     assignment = models.ManyToManyField(Assignment)
     percent = models.IntegerField(default=0)
 

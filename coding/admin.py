@@ -3,9 +3,6 @@ from .models import *
 
 # Register your models here.
 admin.site.register(User)
-admin.site.register(Admin)
-admin.site.register(Teacher)
-admin.site.register(Learner)
 admin.site.register(Class)
 admin.site.register(UnitTest)
 admin.site.register(Solution)
