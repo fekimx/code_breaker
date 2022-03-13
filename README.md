@@ -2,7 +2,7 @@
 
 ## Prerequisites 
 
-Python 3.10
+Python 3.10.2
 Node JS
 pip install django-webpack-loader==0.7.0
 pip install pipenv  
