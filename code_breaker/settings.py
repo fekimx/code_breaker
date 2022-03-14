@@ -26,7 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-
 dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
@@ -99,19 +98,20 @@ WSGI_APPLICATION = 'code_breaker.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dbff7mlggqhkfc',
-        'USER': 'najcrtnftudybo',
-        'PASSWORD': '8c66b42f8b58bc6ef852c00b7950813b6d3e9052a0742763fab0da647ef78245',
-        'HOST': 'ec2-35-153-35-94.compute-1.amazonaws.com',
-        'PORT': '5432',
-     }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ['DATABASE_NAME'],
+        'USER': os.environ['DATABASE_USER'],
+        'PASSWORD' : os.environ['DATABASE_PASSWORD'],
+        'HOST': os.environ['DATABASE_HOST'],
+        'PORT': os.environ['DATABASE_PORT'],
+    }
 }
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
 AUTH_USER_MODEL = "coding.User"
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
