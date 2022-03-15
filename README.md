@@ -53,3 +53,17 @@ git add . (Adds all unstaged files to commit)
 git commit -m "A helpful descriptive message" (LOCALLY commits your changes)
 
 
+#### Process for seeding data/removing seeded data 
+
+(non windows only so far) - migrate and seed all data
+
+./migrate_and_seed.sh 
+
+remove seeded data
+
+python manage.py shell < revert_seed.py
+
+Seeding data 1 file at a time
+
+python manage.py loaddata seed/0001_User.json
+
