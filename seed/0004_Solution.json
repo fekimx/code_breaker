@@ -1,0 +1,16 @@
+[
+{
+    "model": "coding.solution",
+    "pk": 1,
+    "fields": {
+        "code": "x=x^2"
+    }
+},
+{
+    "model": "coding.solution",
+    "pk": 2,
+    "fields": {
+        "code": "true"
+    }
+}
+]
