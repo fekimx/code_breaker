@@ -13,7 +13,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import ProtectedRoute from "./routes/ProtectedRoute";
-
+import Question from "./pages/Question";
 
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
@@ -27,6 +27,7 @@ const App = () => {
             <Routes>
               <Route exact path="/login" element={ <Login/> } />
               <Route exact path="/register" element={ <Register/> } />
+              <Route exact path="/question" element={ <Question/> } />
               <Route exact path='/' element={<ProtectedRoute/>}>
                 <Route exact path='/' element={<Dashboard/>}/>
               </Route>
