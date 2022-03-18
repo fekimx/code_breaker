@@ -1,0 +1,15 @@
+[
+{
+    "model": "coding.codequestion",
+    "pk": 1,
+    "fields": {
+        "name": "Test Question 1",
+        "description": "First Test Question",
+        "author": 3,
+        "practice": false,
+        "version": 1,
+        "solutions": 1,
+        "unitTests": 1
+    }
+}
+]

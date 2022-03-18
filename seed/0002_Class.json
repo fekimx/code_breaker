@@ -1,0 +1,26 @@
+[
+{
+    "model": "coding.class",
+    "pk": 1,
+    "fields": {
+        "name": "TestClass1",
+        "secretKey": "001",
+        "active": true,
+        "teacher": 4,
+        "TAs": [],
+        "students": []
+    }
+},
+{
+    "model": "coding.class",
+    "pk": 2,
+    "fields": {
+        "name": "TestClass2",
+        "secretKey": "002",
+        "active": true,
+        "teacher": 5,
+        "TAs": [],
+        "students": []
+    }
+}
+]
