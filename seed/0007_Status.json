@@ -1,0 +1,20 @@
+[
+{
+    "model": "coding.status",
+    "pk": 1,
+    "fields": {
+        "learner": 1,
+        "question": 1,
+        "complete": false
+    }
+},
+{
+    "model": "coding.status",
+    "pk": 2,
+    "fields": {
+        "learner": 2,
+        "question": 1,
+        "complete": true
+    }
+}
+]
