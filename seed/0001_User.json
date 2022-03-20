@@ -1,0 +1,98 @@
+[
+{
+    "model": "coding.user",
+    "pk": 1,
+    "fields": {
+        "password": "testpassword",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "student1",
+        "email": "student1@test.com",
+        "is_active": true,
+        "is_student": true,
+        "is_staff": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "coding.user",
+    "pk": 2,
+    "fields": {
+        "password": "testpassword",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "student2",
+        "email": "student2@test.com",
+        "is_active": true,
+        "is_student": true,
+        "is_staff": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "coding.user",
+    "pk": 3,
+    "fields": {
+        "password": "testpassword",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "student3",
+        "email": "student3@test.com",
+        "is_active": true,
+        "is_student": true,
+        "is_staff": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "coding.user",
+    "pk": 4,
+    "fields": {
+        "password": "testpassword",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "teacher1",
+        "email": "teacher1@test.com",
+        "is_active": true,
+        "is_student": false,
+        "is_staff": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "coding.user",
+    "pk": 5,
+    "fields": {
+        "password": "testpassword",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "teacher2",
+        "email": "teacher2@test.com",
+        "is_active": true,
+        "is_student": false,
+        "is_staff": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "coding.user",
+    "pk": 6,
+    "fields": {
+        "password": "testpassword",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "admin1",
+        "email": "admin1@test.com",
+        "is_active": true,
+        "is_student": false,
+        "is_staff": true,
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
