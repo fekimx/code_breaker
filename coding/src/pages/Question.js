@@ -25,7 +25,8 @@ class Question extends React.Component {
     this.state = {
       code: "def divisbleByTwo(n):\n",
       unit_test_1_background: "none",
-      unit_test_2_background: "none"
+      unit_test_2_background: "none",
+      stderr: ""
     }
   }
 
@@ -34,6 +35,12 @@ class Question extends React.Component {
     axios.post(`/api/run/`, { code: this.state.code })
     .then((res) => {
       console.log("Run code result", res['data']['unit_test_results']);
+      this.setState({stderr: ""});
+
+      if (res['data']['stderr']) {
+        this.setState({stderr: res['data']['stderr']});
+      }
+
       if (res['data']['unit_test_results'][0]) {
         console.log("setting green");
         this.setState({unit_test_1_background: "#adff2f"})
@@ -68,6 +75,9 @@ class Question extends React.Component {
       <div style={{backgroundColor: this.state.unit_test_1_background}}>Unit test #1: divisbleByTwo(4)</div>
       <div style={{backgroundColor: this.state.unit_test_2_background}}>Unit test #2: divisbleByTwo(9)</div>
       <button onClick={ () => this.runCode() }>Run</button>
+      <div style={{backgroundColor: "red"}}>
+        {this.state.stderr}
+      </div>
     </div>
     )
   }
