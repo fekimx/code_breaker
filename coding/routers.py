@@ -1,6 +1,6 @@
 # core/routers.py
 from rest_framework.routers import SimpleRouter
-from coding.viewsets import UserViewSet
+from coding.viewsets import RunViewSet, UserViewSet
 from coding.viewsets import LoginViewSet, RegistrationViewSet, RefreshViewSet
 
 # From https://dev.to/koladev/django-rest-authentication-cmh
@@ -15,6 +15,7 @@ routes.register(r'auth/refresh', RefreshViewSet, basename='auth-refresh')
 # USER
 routes.register(r'user', UserViewSet, basename='user')
 
+routes.register(r'run', RunViewSet, basename='run')
 
 urlpatterns = [
     *routes.urls
