@@ -19,11 +19,17 @@ import Assignment from "./pages/Assignment";
 import Class from "./pages/Class";
 import Solution from "./pages/Solution";
 import UnitTest from "./pages/UnitTest";
+import Tabs from './pages/Tabs';
+import ClassCodeForm from './pages/ClassCodeForm';
+import JsonClassDataDisplay from './pages/ClassTable';
 
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 const App = () => {
+  const data = {
+    classCode: ""
+  };
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
@@ -39,7 +45,22 @@ const App = () => {
               <Route exact path="/solution" element={ <Solution/> } />
               <Route exact path="/unittest" element={ <UnitTest/> } />
               <Route exact path='/' element={<ProtectedRoute/>}>
-                <Route exact path='/' element={<Dashboard/>}/>
+              <Route exact path='/' element={
+                  <div>
+                  <Dashboard/>
+                  <h1>My Dashboard</h1>
+                  <ClassCodeForm data={data} />
+                  <Tabs>
+                    <div label="Classes">
+                      <JsonClassDataDisplay/>
+                    </div>
+                    <div label="Assignments">
+                      List of assignments here!
+                    </div>
+                  </Tabs>
+                </div>
+                }
+                />
               </Route>
             </Routes>
           </div>
