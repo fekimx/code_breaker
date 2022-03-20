@@ -71,10 +71,10 @@ class Class(models.Model):
 # should we add a model for unit test?
 # sure.  Unit test - has dynamically created id, input, expected output and visible field
 class UnitTest(models.Model):
-    id = models.IntegerField
-    input = models.CharField(max_length=100)
+    id = models.IntegerField(primary_key=True)
+    input = models.CharField(max_length=100, null=True)
     expectedOutput = models.CharField(max_length=250)
-    visible = models.BooleanField
+    visible = models.BooleanField(default=True)
 
     def serialize(self):
         return {
@@ -86,8 +86,8 @@ class UnitTest(models.Model):
 
 # should we add a model for solution?
 class Solution(models.Model):
-    id = models.IntegerField
-    code = models.TextField
+    id = models.IntegerField(primary_key=True)
+    code = models.TextField(null=True)
 
     def serialize(self):
         return {
@@ -101,6 +101,7 @@ class Solution(models.Model):
 # maybe just a seperate model?
 
 class CodeQuestion(models.Model):
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -118,8 +119,9 @@ class CodeQuestion(models.Model):
         }
 
 class Assignment(models.Model):
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     questions = models.ManyToManyField(CodeQuestion)
 
     def serialize(self):
@@ -132,8 +134,9 @@ class Assignment(models.Model):
 # and we need a way to individually determine percentage completion from a learner to an assignment
 # thus, we have status.  Status can be applied to a question and represents the learner's progress.
 class Status(models.Model):
-    learner = models.ManyToManyField(User)
-    question = models.ManyToManyField(CodeQuestion)
+    id = models.IntegerField(primary_key=True)
+    learner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    question = models.ForeignKey(CodeQuestion, on_delete=models.CASCADE, null=True)
     complete = models.BooleanField(default=False)
 
     def serialize(self):
@@ -145,8 +148,9 @@ class Status(models.Model):
 
 # Progress is the same thing but for an assignment
 class Progress(models.Model):
-    learner = models.ManyToManyField(User)
-    assignment = models.ManyToManyField(Assignment)
+    id = models.IntegerField(primary_key=True)
+    learner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE, null=True)
     percent = models.IntegerField(default=0)
 
     def serialize(self):
