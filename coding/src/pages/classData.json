@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Intro to Web Development using HTML and CSS",
+        "code": "qwerty",
+        "assignments": ["HTML semantic elements", "HTML head elements", "CSS inline styling"]
+    },
+    {
+        "name": "Advance Programming using Python",
+        "code": "asdf",
+        "assignments": ["Programming Basics", "If Statements 1", "For Loop 1", "While Loop 1"]
+    },
+    {
+        "name": "CS Club",
+        "code": "ghjkl",
+        "assignments": ["TicTacToe Game", "Battleship Game", "Pacman"]
+    }
+]
