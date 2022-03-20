@@ -57,6 +57,13 @@ class RunViewSet(viewsets.ViewSet):
                 break
 
         stdout = evaluation.json()['stdout']
+        stderr = evaluation.json()['stderr']
+
+        if stderr:
+            return Response({
+                "stderr": stderr
+            }, status=status.HTTP_201_CREATED)
+
         unit_test_output = stdout.split('\n')
 
         unit_test_results = []
