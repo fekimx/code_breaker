@@ -1,4 +1,4 @@
-from .models import User
+
 from rest_framework import serializers
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -6,9 +6,16 @@ from rest_framework_simplejwt.settings import api_settings
 from django.contrib.auth.models import update_last_login
 from django.core.exceptions import ObjectDoesNotExist
 
-from coding.models import User
+from coding.models import User, Class
 
 # From https://dev.to/koladev/django-rest-authentication-cmh
+
+class ClassSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Class
+        fields = '__all__'
+
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -48,3 +55,4 @@ class RegisterSerializer(UserSerializer):
         except ObjectDoesNotExist:
             user = User.objects.create_user(**validated_data)
         return user
+
