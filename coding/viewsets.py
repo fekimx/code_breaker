@@ -1,5 +1,5 @@
 from coding.serializers import UserSerializer
-from coding.models import User
+from coding.models import User, Class
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets
@@ -9,11 +9,13 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.shortcuts import get_object_or_404
 import logging
 import requests
 import time
 
-from coding.serializers import LoginSerializer, RegisterSerializer
+
+from coding.serializers import LoginSerializer, RegisterSerializer, ClassSerializer
 
 # From https://dev.to/koladev/django-rest-authentication-cmh
 logger = logging.getLogger(__name__)
@@ -103,6 +105,7 @@ class UserViewSet(viewsets.ModelViewSet):
         return obj
 
 class LoginViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+
     serializer_class = LoginSerializer
     permission_classes = (AllowAny,)
     http_method_names = ['post']
@@ -154,3 +157,32 @@ class RefreshViewSet(viewsets.ViewSet, TokenRefreshView):
             raise InvalidToken(e.args[0])
 
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
+
+
+
+class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+
+    queryset = Class.objects.all()
+    serializer_class = ClassSerializer
+    permission_classes = (AllowAny,)
+    http_method_names = ['get', 'post']
+
+    def create(self, request, *args, **kwargs):
+        logger.warn("Create from Classviewset")
+        serializer = self.get_serializer(data=request.data)
+
+        try:
+            serializer.is_valid(raise_exception=True)
+            logger.warn("Valid Serializer")
+            
+        except TokenError as e:
+            logger.warn("Token Error")
+            raise InvalidToken(e.args[0])
+        
+        return Response(serializer.validated_data, status=status.HTTP_200_OK)
+    
+    def list(self, request):
+        logger.warn("list from Classviewset")
+        serializer = self.get_serializer(self.queryset, many=True)
+        
+        return Response(serializer.data)

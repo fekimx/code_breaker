@@ -53,19 +53,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 # Class - data object to organize students
 class Class(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100 )
     secretKey = models.CharField(max_length=25)
-    active = models.BooleanField(default=True)
-    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
-    TAs = models.ManyToManyField(User, related_name="TAs")
-    students = models.ManyToManyField(User, related_name="students")
-
-    def serialize(self):
-        return {
-            "name": self.name,
-            "key": self.secretKey,
-            "teacher": self.teacher,
-        }
+    active = models.BooleanField(default=True, blank=True, null=True)
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    TAs = models.ManyToManyField(User, related_name="TAs", blank=True, null=True)
+    students = models.ManyToManyField(User, related_name="students", blank=True, null=True)
 
 # open questions
 # should we add a model for unit test?
