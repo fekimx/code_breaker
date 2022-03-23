@@ -165,7 +165,7 @@ class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
     queryset = Class.objects.all()
     serializer_class = ClassSerializer
     permission_classes = (AllowAny,)
-    http_method_names = ['get', 'post']
+    http_method_names = ['get', 'post', 'delete']
 
     def create(self, request, *args, **kwargs):
         logger.warn("Create from Classviewset")
@@ -179,7 +179,7 @@ class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
             logger.warn("Token Error")
             raise InvalidToken(e.args[0])
         
-        return Response(serializer.validated_data, status=status.HTTP_200_OK)
+        return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
     
     def list(self, request):
         logger.warn("list from Classviewset")
@@ -189,7 +189,13 @@ class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
     
     def retrieve(self, request, pk=None):
 
-        post = get_object_or_404(self.queryset, pk=pk)
-        print(post)
-        serializer = self.get_serializer(post)
+        classObj = get_object_or_404(self.queryset, pk=pk)
+        print(classObj)
+        serializer = self.get_serializer(classObj)
         return Response(serializer.data)
+
+    def destroy(self, request, pk=None):
+        item = self.get_object()
+        print(item)
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
