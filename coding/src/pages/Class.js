@@ -53,7 +53,7 @@ class Class extends React.Component {
 
   tryGet() {
     console.log("Get request: ");
-    axios.get(`/api/class/`,    {
+    axios.get(`/api/class/1/`,    {
     //ClassViewset currently just gets all the classes
   })
   .then(function (response) {
@@ -68,7 +68,7 @@ class Class extends React.Component {
   render() {
     return (
     <div>
-      <div style={{backgroundColor: this.state.unit_test_1_background}}>Look in Class.js for examples to use the api // look in viewsets.py > ClassViewSet for more info</div>
+      <div style={{backgroundColor: this.state.unit_test_1_background}}>Look in Class.js for examples to use the api // look in viewsets.py ClassViewSet for more info</div>
       <button onClick={ () => this.tryPost() }>Post</button>
       <button onClick={ () => this.tryGet() }>Get</button>
       <div style={{backgroundColor: this.state.unit_test_1_background}}>Here's buttons that make requests</div>
