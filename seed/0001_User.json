@@ -3,7 +3,7 @@
     "model": "coding.user",
     "pk": 1,
     "fields": {
-        "password": "testpassword",
+        "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
         "last_login": null,
         "is_superuser": false,
         "username": "student1",
@@ -19,7 +19,7 @@
     "model": "coding.user",
     "pk": 2,
     "fields": {
-        "password": "testpassword",
+        "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
         "last_login": null,
         "is_superuser": false,
         "username": "student2",
@@ -35,7 +35,7 @@
     "model": "coding.user",
     "pk": 3,
     "fields": {
-        "password": "testpassword",
+        "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
         "last_login": null,
         "is_superuser": false,
         "username": "student3",
@@ -51,7 +51,7 @@
     "model": "coding.user",
     "pk": 4,
     "fields": {
-        "password": "testpassword",
+        "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
         "last_login": null,
         "is_superuser": false,
         "username": "teacher1",
@@ -67,7 +67,7 @@
     "model": "coding.user",
     "pk": 5,
     "fields": {
-        "password": "testpassword",
+        "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
         "last_login": null,
         "is_superuser": false,
         "username": "teacher2",
@@ -83,7 +83,7 @@
     "model": "coding.user",
     "pk": 6,
     "fields": {
-        "password": "testpassword",
+        "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
         "last_login": null,
         "is_superuser": true,
         "username": "admin1",
