@@ -35,7 +35,7 @@ class Class extends React.Component {
     axios.post(`/api/class/`,    {
 
       //This is just an example
-      id: 3,
+      id: 1,
       name: "TestClass1",
       secretKey: "001",
       active: true,
@@ -51,7 +51,7 @@ class Class extends React.Component {
   });
   }
 
-  tryGet() {
+  tryGetAll() {
     console.log("Get request: ");
     axios.get(`/api/class/`,    {
     //ClassViewset currently just gets all the classes
@@ -63,14 +63,44 @@ class Class extends React.Component {
     console.log(error);
   });
   }
+
+  tryGet() {
+    console.log("Get request: ");
+    axios.get(`/api/class/1/`,    {
+    //ClassViewset gets a specific class classes
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  }
+
+  tryDelete() {
+    console.log("Get request: ");
+    axios.delete(`/api/class/1/`,    {
+    //ClassViewset gets a specific class classes
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  }
+
   
   
   render() {
     return (
     <div>
-      <div style={{backgroundColor: this.state.unit_test_1_background}}>Look in Class.js for examples to use the api // look in viewsets.py > ClassViewSet for more info</div>
+      <div style={{backgroundColor: this.state.unit_test_1_background}}>Look in Class.js for examples to use the api // look in viewsets.py ClassViewSet for more info</div>
       <button onClick={ () => this.tryPost() }>Post</button>
-      <button onClick={ () => this.tryGet() }>Get</button>
+      <button onClick={ () => this.tryGetAll() }>Get All</button>
+      <button onClick={ () => this.tryGet() }>Retrieve specific</button>
+      <button onClick={ () => this.tryDelete() }>Delete specific</button>
+      
       <div style={{backgroundColor: this.state.unit_test_1_background}}>Here's buttons that make requests</div>
       <div style={{backgroundColor: "red"}}>
         {this.state.stderr}
