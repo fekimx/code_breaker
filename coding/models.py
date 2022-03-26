@@ -97,6 +97,7 @@ class CodeQuestion(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
+    code = models.TextField(null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     practice = models.BooleanField(default=False)
     version = models.IntegerField(default=1)
