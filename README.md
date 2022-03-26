@@ -1,5 +1,5 @@
 # Code Breaker
-
+ 
 ## Prerequisites 
 
 Python 3.10.2
@@ -7,7 +7,9 @@ Node JS
 pip install django-webpack-loader==0.7.0
 pip install pipenv  
 pipenv install django  
-
+    python -m pip install django
+    python install -r requirements.txt
+    
 ## Django Local Development
 
 pipenv shell
