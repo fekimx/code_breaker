@@ -5,6 +5,9 @@ import { useNavigate } from "react-router";
 import authSlice from "../store/slices/auth";
 import useSWR from 'swr';
 import {fetcher} from "../utils/axios";
+import Tabs from './Tabs';
+import ClassCodeForm from './ClassCodeForm';
+import JsonClassDataDisplay from './ClassTable';
 
 const Dashboard = () => {
   const account = useSelector((state) => state.auth.account);
@@ -19,6 +22,12 @@ const Dashboard = () => {
     dispatch(authSlice.actions.logout());
     history("/login");
   };
+
+  const data = {
+    classCode: "",
+    userId: userId
+  };
+
   return (
     <div className="w-full h-screen">
       <div className="w-full p-6">
@@ -44,6 +53,16 @@ const Dashboard = () => {
                 :
                 <p className="text-center items-center">Loading ...</p>
         }
+    <h1>My Dashboard</h1>
+    <ClassCodeForm data={data} />
+    <Tabs>
+      <div label="Classes">
+        <JsonClassDataDisplay/>
+      </div>
+      <div label="Assignments">
+        List of assignments here!
+      </div>
+    </Tabs>
     </div>
   );
 };

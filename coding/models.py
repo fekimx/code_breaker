@@ -53,8 +53,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 # Class - data object to organize students
 class Class(models.Model):
-    name = models.CharField(max_length=100 )
-    secretKey = models.CharField(max_length=25)
+    name = models.CharField(max_length=100)
+    secretKey = models.CharField(max_length=25, unique=True)
     active = models.BooleanField(default=True, blank=True, null=True)
     teacher = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     TAs = models.ManyToManyField(User, related_name="TAs", blank=True, null=True)

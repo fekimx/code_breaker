@@ -23,13 +23,6 @@ npm run dev
 
 For Windows, you may need to preface the python commands with "python -m"
 
-### Frontend Local Development
-
-You need to install Node JS.  
-
-cd frontend/  
-npm start  
-
 ### Help Git Commands
 
 git status (Shows local modifications)

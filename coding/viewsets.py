@@ -158,7 +158,20 @@ class RefreshViewSet(viewsets.ViewSet, TokenRefreshView):
 
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
+class JoinClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
+    http_method_names = ['post']
+    permission_classes = (AllowAny,)
+
+    def create(self, request, *args, **kwargs):
+        user = User.objects.get(id=request.data['userId'])
+        studentClass = Class.objects.get(secretKey=request.data['secretKey'])
+        logger.warn(user)
+        logger.warn(studentClass)
+        studentClass.students.add(user)
+        
+        return Response({}, status=status.HTTP_201_CREATED) 
+   
 
 class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
@@ -173,6 +186,7 @@ class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
         try:
             serializer.is_valid(raise_exception=True)
+            serializer.save()
             logger.warn("Valid Serializer")
             
         except TokenError as e:
