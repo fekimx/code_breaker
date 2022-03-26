@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 class ClassCodeForm extends Component {
-    static propTypes = {
-        data: PropTypes.object.isRequired,
-        classCode: PropTypes.string,
-    }
+  static propTypes = {
+      data: PropTypes.object.isRequired,
+      classCode: PropTypes.string,
+  }
+
   constructor(props) {
     super(props);
-    
+
     const { data } = this.props;
     const { classCode: code } = data;
 
     this.state = {
       classCode: code,
+      userId: props.data.userId,
       showData: false,
       showButton: false,
       showButtonName: "Add Class"
@@ -21,8 +24,7 @@ class ClassCodeForm extends Component {
 
     this.handleOnchage = this.handleOnchage.bind(this);
     this.handleSave = this.handleSave.bind(this);
-    
-}
+  }
 
   handleOnchage(e) {
     const key = e.target.name;
@@ -54,14 +56,20 @@ class ClassCodeForm extends Component {
       showButton: !prevState.showButton,
       showButtonName: "SAVING..."
     }));
-
-    /** Mocking we updating the API and using the response to update the state */
-    setTimeout(() => {
+    axios.post(`/api/joinClass/`,    {
+      userId: this.state.userId,
+      secretKey: this.state.classCode
+    })
+    .then((response) => {
+      console.log(response);
       this.setState(prevState => ({
         showData: !prevState.showData,
         showButtonName: "SAVE"
       }));
-    }, 3000);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   render() {
@@ -102,7 +110,6 @@ class ClassCodeForm extends Component {
           />
           {renderButton}
         </form>
-        {showData ? alert("Class Saved!") : null}
       </div>
     );
   }
