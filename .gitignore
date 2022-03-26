@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+webpack-stats.json
+db.sqlite3
+
 # dependencies
 /node_modules
 /.pnp

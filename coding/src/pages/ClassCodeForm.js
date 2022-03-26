@@ -110,7 +110,6 @@ class ClassCodeForm extends Component {
           />
           {renderButton}
         </form>
-        {showData ? alert("Class Saved!") : null}
       </div>
     );
   }
