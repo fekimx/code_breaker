@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from "react-router";
   
-const About = () => {
+const ContactUs = () => {
   const history = useNavigate();
   
   return (
@@ -17,12 +17,18 @@ const About = () => {
      <button onClick={()=>history("/about")}>About</button>
      <button onClick={()=>history("/question")}>Peep some questions!</button>
      <!-- end of nav bar -->
-     <h1 style={{color:"green"}}>What is code-breaker?</h1>
-     <p><b>code-breaker</b> is the easiest way for high school computer science teachers to assign asynchronous after-school assignments.  By leveraging the existing content, teachers can quickly spin up lesson plans to augment in-class instruction... but the system is also flexible enough to allow changes to the questions or auto-grading unit-tests.</p>
-     
+     <h1 style={{color:"green"}}>Contact Us</h1>
+<script type="text/javascript">
+(function(d, t){
+   var g = d.createElement(t),
+       s = d.getElementsByTagName(t)[0];
+   g.src = "http://www.foxyform.com/js.php?id=977499&sec_hash=2850f2fd18d&width=350px";
+   s.parentNode.insertBefore(g, s);
+}(document, "script"));
+</script>
 
   </>
   )
 };
   
-export default About;
+export default ContactUs;
