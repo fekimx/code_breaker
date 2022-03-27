@@ -11,15 +11,7 @@ import axios from "axios";
 
 class Question extends React.Component {
   constructor(props) {
-      super(props);
-
-    //   this.account = useSelector((state) => state.auth.account);
-    //   const dispatch = useDispatch();
-    //   const history = useNavigate();
-    
-    //   const userId = account?.id;
-    
-    //   const user = useSWR(`/api/user/${userId}/`, fetcher)
+    super(props);
     
     this.divRef = React.createRef();
     this.state = {

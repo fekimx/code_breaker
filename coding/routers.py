@@ -1,7 +1,7 @@
 # core/routers.py
 from rest_framework.routers import SimpleRouter
 from coding.viewsets import RunViewSet, UserViewSet
-from coding.viewsets import LoginViewSet, RegistrationViewSet, RefreshViewSet, ClassViewSet, JoinClassViewSet
+from coding.viewsets import QuestionViewSet, LoginViewSet, RegistrationViewSet, RefreshViewSet, ClassViewSet, JoinClassViewSet
 
 # From https://dev.to/koladev/django-rest-authentication-cmh
 
@@ -21,6 +21,10 @@ routes.register(r'run', RunViewSet, basename='run')
 
 routes.register(r'class', ClassViewSet, basename='class')
 routes.register(r'joinClass', JoinClassViewSet, basename='joinClass')
+
+# QUESTION
+
+routes.register(r'question', QuestionViewSet, basename='question')
 
 urlpatterns = [
     *routes.urls

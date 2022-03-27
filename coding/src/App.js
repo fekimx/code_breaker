@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Question from "./pages/Question";
+import CreateQuestion from "./pages/CreateQuestion";
 import About from "./pages/About";
 import Assignment from "./pages/Assignment";
 import Class from "./pages/Class";
@@ -33,6 +34,7 @@ const App = () => {
               <Route exact path="/login" element={ <Login/> } />
               <Route exact path="/register" element={ <Register/> } />
               <Route exact path="/question" element={ <Question/> } />
+              <Route exact path="/teacherCreateQuestion" element={ <CreateQuestion/> } />
               <Route exact path="/about" element={ <About/> } />
               <Route exact path="/assignment" element={ <Assignment/> } />
               <Route exact path="/class" element={ <Class/> } />
