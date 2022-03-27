@@ -13,6 +13,7 @@ from django.shortcuts import get_object_or_404
 import logging
 import requests
 import time
+import random, string
 
 
 from coding.serializers import LoginSerializer, RegisterSerializer, ClassSerializer
@@ -104,6 +105,16 @@ class UserViewSet(viewsets.ModelViewSet):
 
         return obj
 
+class AssignmentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+
+    http_method_names = ['post']
+    permission_classes = (AllowAny,)
+
+    def create(self, request, *args, **kwargs):
+        logger.warn("Inside AssignmentViewSet create")
+        logger.warn(request.data)
+        return Response({}, status=status.HTTP_201_CREATED)  
+
 class LoginViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
     serializer_class = LoginSerializer
@@ -191,6 +202,7 @@ class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
     def create(self, request, *args, **kwargs):
         logger.warn("Create from Classviewset")
+        request.data['secretKey'] = ''.join(random.choices(string.ascii_letters + string.digits, k=5))
         serializer = self.get_serializer(data=request.data)
 
         try:
