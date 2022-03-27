@@ -1,10 +1,5 @@
 
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import { useNavigate } from "react-router";
-import authSlice from "../store/slices/auth";
-import useSWR from 'swr';
-import {fetcher} from "../utils/axios";
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
 import axios from "axios";
