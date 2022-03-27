@@ -20,6 +20,8 @@ import Assignment from "./pages/Assignment";
 import Class from "./pages/Class";
 import Solution from "./pages/Solution";
 import UnitTest from "./pages/UnitTest";
+import CreateClass from './pages/CreateClass';
+import CreateAssignment from './pages/CreateAssignment';
 
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
@@ -35,6 +37,8 @@ const App = () => {
               <Route exact path="/register" element={ <Register/> } />
               <Route exact path="/question" element={ <Question/> } />
               <Route exact path="/teacherCreateQuestion" element={ <CreateQuestion/> } />
+              <Route exact path="/teacherCreateClass" element={ <CreateClass/> } />
+              <Route exact path="/teacherCreateAssignment" element={ <CreateAssignment/> } />
               <Route exact path="/about" element={ <About/> } />
               <Route exact path="/assignment" element={ <Assignment/> } />
               <Route exact path="/class" element={ <Class/> } />
