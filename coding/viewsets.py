@@ -171,7 +171,16 @@ class JoinClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         studentClass.students.add(user)
         
         return Response({}, status=status.HTTP_201_CREATED) 
-   
+
+class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+
+    http_method_names = ['post']
+    permission_classes = (AllowAny,)
+
+    def create(self, request, *args, **kwargs):
+        logger.warn("Inside QuestionViewSet create")
+        logger.warn(request.data)
+        return Response({}, status=status.HTTP_201_CREATED)   
 
 class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
