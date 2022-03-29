@@ -48,12 +48,12 @@ const Dashboard = () => {
       {
             user.data ?
                 <div className="w-full h-full text-center items-center">
-                    <p className="self-center my-auto">Welcome, {user.data?.username}</p>
+                    <p className="self-center my-auto">Welconme, j{user.data?.username}</p>
                 </div>
                 :
                 <p className="text-center items-center">Loading ...</p>
         }
-    <h1>My Dashboard</h1>
+    <h1>My Dashbomjjjjjard</h1>
     <ClassCodeForm data={data} />
     <Tabs>
       <div label="Classes">
