@@ -39,6 +39,7 @@ const Dashboard = () => {
         </button>
         <button onClick={()=>history("/")}>Return to Dashboard</button>
         <button onClick={()=>history("/about")}>About</button>
+        <button onClick={()=>history("/admin")}>Admin</button>
         <button onClick={()=>history("/class")}>Class</button>
         <button onClick={()=>history("/solution")}>Solution</button>
         <button onClick={()=>history("/unittest")}>UnitTest</button>
