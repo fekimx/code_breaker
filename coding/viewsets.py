@@ -1,4 +1,4 @@
-from coding.serializers import UserSerializer
+from coding.serializers import *
 from coding.models import User, Class
 from rest_framework.response import Response
 from rest_framework import status
@@ -13,9 +13,10 @@ from django.shortcuts import get_object_or_404
 import logging
 import requests
 import time
+import random, string
 
 
-from coding.serializers import LoginSerializer, RegisterSerializer, ClassSerializer
+from coding.serializers import LoginSerializer, RegisterSerializer, ClassSerializer, UserSerializer, AssignmentSerializer, QuestionSerializer, SolutionSerializer, UnitTestSerializer
 
 # From https://dev.to/koladev/django-rest-authentication-cmh
 logger = logging.getLogger(__name__)
@@ -104,6 +105,36 @@ class UserViewSet(viewsets.ModelViewSet):
 
         return obj
 
+class AssignmentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+
+    queryset = Assignment.objects.all()
+    serializer_class = AssignmentSerializer
+    http_method_names = ['get', 'post']
+    permission_classes = (AllowAny,)
+
+    def create(self, request, *args, **kwargs):
+        logger.warn("Inside AssignmentViewSet create")
+        logger.warn(request.data)
+
+        serializer = self.get_serializer(data=request.data)
+        print(serializer)
+        try:
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            logger.warn("Valid Serializer")
+            
+        except TokenError as e:
+            logger.warn("Token Error")
+            raise InvalidToken(e.args[0])
+        
+        return Response({}, status=status.HTTP_201_CREATED)  
+
+    def list(self, request):
+        logger.warn("list from Assignment")
+        serializer = self.get_serializer(self.queryset, many=True)
+        return Response(serializer.data)
+
+
 class LoginViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
     serializer_class = LoginSerializer
@@ -171,7 +202,82 @@ class JoinClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         studentClass.students.add(user)
         
         return Response({}, status=status.HTTP_201_CREATED) 
-   
+
+class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+
+    queryset = CodeQuestion.objects.all()
+    serializer_class = QuestionSerializer
+    http_method_names = ['get', 'post']
+    permission_classes = (AllowAny,)
+
+    def create(self, request, *args, **kwargs):
+            logger.warn("Create from QuestionViewSet")
+            solution_fks = []
+            unittest_fks = []
+            #print("R1", request.data)
+            for solution in request.data['solutions']:
+                data = {}
+                data['code']= solution
+                #codequestion.solution.add()
+                solution_serializer = SolutionSerializer(data = data)
+                
+                try:
+                    solution_serializer.is_valid()
+                    solution_serializer.save()
+                    solution_fks.append(solution_serializer['id'].value)
+                    logger.warn("Valid Serializer- Solution")
+                
+                except TokenError as e:
+                    raise InvalidToken(e.args[0])
+
+            for unitTest in request.data['unitTests']:
+                data = {}
+                data['input'] = unitTest['input']
+                data['expectedOutput'] = unitTest['output']
+                data['visible'] = unitTest['visible']
+                #print(data)
+                unittest_serializer = UnitTestSerializer(data = data)
+                try:
+                    unittest_serializer.is_valid()
+                    unittest_serializer.save()
+                    unittest_fks.append(unittest_serializer['id'].value)
+                    logger.warn("Valid Serializer-Unit Test")
+                
+                except TokenError as e:
+                    raise InvalidToken(e.args[0])
+
+            request.data['author'] = 7
+            request.data['solutions'] = solution_fks
+            request.data['unitTests'] = unittest_fks
+
+            questionData = {}
+            questionData['name'] = request.data['name']
+            questionData['solutions'] = request.data['solutions']
+            questionData['unitTests'] = request.data['unitTests']
+            questionData['code'] = request.data['code']
+            questionData['description'] = request.data['description']
+
+            print(questionData)
+            serializer = self.get_serializer(data=questionData)
+
+            # #print("REQ", request.data)
+            try:
+                 serializer.is_valid(raise_exception=True)
+                 print(serializer.validated_data)
+                 serializer.save()
+                 logger.warn("Valid Serializer- Question")
+                
+            except TokenError as e:
+                 #logger.warn("Token Error")
+                 raise InvalidToken(e.args[0])
+            #return Response({}, status=status.HTTP_201_CREATED)
+
+            return Response(questionData, status=status.HTTP_201_CREATED)
+
+    def list(self, request):
+        logger.warn("list from QuestionViewSet")
+        serializer = self.get_serializer(self.queryset, many=True)
+        return Response(serializer.data)
 
 class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
@@ -182,6 +288,7 @@ class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
     def create(self, request, *args, **kwargs):
         logger.warn("Create from Classviewset")
+        request.data['secretKey'] = ''.join(random.choices(string.ascii_letters + string.digits, k=5))
         serializer = self.get_serializer(data=request.data)
 
         try:
@@ -204,12 +311,24 @@ class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
     def retrieve(self, request, pk=None):
 
         classObj = get_object_or_404(self.queryset, pk=pk)
-        print(classObj)
         serializer = self.get_serializer(classObj)
         return Response(serializer.data)
 
     def destroy(self, request, pk=None):
         item = self.get_object()
-        print(item)
+
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class SolutionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+
+    queryset = Solution.objects.all()
+    serializer_class = SolutionSerializer
+    permission_classes = (AllowAny,)
+    http_method_names = ['get', 'post', 'delete']
+
+    def list(self, request):
+        logger.warn("list from SolutionViewset")
+        serializer = self.get_serializer(self.queryset, many=True)
+        
+        return Response(serializer.data)

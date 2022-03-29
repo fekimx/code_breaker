@@ -6,9 +6,37 @@ from rest_framework_simplejwt.settings import api_settings
 from django.contrib.auth.models import update_last_login
 from django.core.exceptions import ObjectDoesNotExist
 
-from coding.models import User, Class
+from coding.models import User, Class, Assignment, CodeQuestion, Solution, UnitTest
 
 # From https://dev.to/koladev/django-rest-authentication-cmh
+
+class UnitTestSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UnitTest
+        fields = '__all__'
+
+
+class SolutionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Solution
+        fields = '__all__'
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CodeQuestion
+        fields = '__all__'
+
+
+class AssignmentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Assignment
+        fields = '__all__'
+
 
 class ClassSerializer(serializers.ModelSerializer):
 
