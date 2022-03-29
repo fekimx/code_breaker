@@ -18,11 +18,13 @@ class Question extends React.Component {
     super(props);
 
     this.state = {
+      questionId: this.props.questionId,
+      name: "",
+      description: "",
       code: "def divisbleByTwo(n):\n",
-      unit_test_1_background: "none",
-      unit_test_2_background: "none",
       stderr: "",
       unitTests: [],
+      unitTestData: [],
       solutions: [],
       showSolutions: false
     }
@@ -32,10 +34,13 @@ class Question extends React.Component {
     })
     .then((res) => {
       this.setState({ 
+        name: res.data['name'],
+        description: res.data['description'],
         code: res.data['code'],
+        unitTestData: res.data['unitTests'],
         unitTests: res.data['unitTests'].map((unitTest, index) => {
           if (unitTest.visible) {
-            return <div key={index}>Input: {unitTest.input} Expected Output: {unitTest.expectedOutput}</div>
+            return <div key={index}><strong>Input:</strong> {unitTest.input} <strong>Expected Output:</strong> {unitTest.expectedOutput}</div>
           } else {
             return <div key={index}>Hidden Unit Test #{index}</div>
           }
@@ -58,27 +63,37 @@ class Question extends React.Component {
 
   runCode() {
     console.log("Running codes: ", this.state.code);
-    axios.post(`/api/run/`, { code: this.state.code })
+    axios.post(`/api/run/`, { questionId: this.state.questionId, code: this.state.code })
     .then((res) => {
-      console.log("Run code result", res['data']['unit_test_results']);
       this.setState({stderr: ""});
 
       if (res['data']['stderr']) {
         this.setState({stderr: res['data']['stderr']});
       }
 
-      if (res['data']['unit_test_results'][0]) {
-        console.log("setting green");
-        this.setState({unit_test_1_background: "#adff2f"})
-      } else {
-        this.setState({unit_test_1_background: "red"})
-      }
+      let unitTests = [];
 
-      if (res['data']['unit_test_results'][1]) {
-        this.setState({unit_test_2_background: "#adff2f"})
-      } else {
-        this.setState({unit_test_2_background: "red"})
+      for (let i = 0; i < res['data']['unit_test_results'].length; i++) {
+        let result = res['data']['unit_test_results'][i];
+        let unitTest = this.state.unitTestData[i];
+        if (result) {
+          if (unitTest.visible) {
+            unitTests.push(<div style={{backgroundColor: "#adff2f"}} key={i}><strong>Input:</strong> {unitTest.input} <strong>Expected Output:</strong> {unitTest.expectedOutput}</div>);
+          } else {
+            unitTests.push(<div style={{backgroundColor: "#adff2f"}} key={i}>Hidden Unit Test #{i}</div>);
+          }
+        } else {
+          if (unitTest.visible) {
+            unitTests.push(<div style={{backgroundColor: "red"}} key={i}><strong>Input:</strong> {unitTest.input} <strong>Expected Output:</strong> {unitTest.expectedOutput}</div>);
+          } else {
+            unitTests.push(<div style={{backgroundColor: "red"}} key={i}>Hidden Unit Test #{i}</div>);
+          }
+        }
       }
+      console.log("Setting state", unitTests);
+      this.setState({
+        unitTests
+      });
     })
     .catch((err) => {
       console.log("Received an error while running the code", err);
@@ -88,7 +103,8 @@ class Question extends React.Component {
   render() {
     return (
     <div>
-      <div>Write a function that returns true if a number is evenly divisible by 2, otherwise return false:</div>
+      <h3>{this.state.name}</h3>
+      <div>{this.state.description}</div>
       <CodeMirror
         value={this.state.code}
         height="200px"
