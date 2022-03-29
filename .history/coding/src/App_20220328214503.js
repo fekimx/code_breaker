@@ -23,6 +23,7 @@ import Solution from "./pages/Solution";
 import UnitTest from "./pages/UnitTest";
 import CreateClass from './pages/CreateClass';
 import CreateAssignment from './pages/CreateAssignment';
+import Navbar from "./components/Navbar/Navbar";
 
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'

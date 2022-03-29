@@ -11,7 +11,7 @@ const ProtectedRoute = (props) => {
     }
     return <Outlet {...props} />;
   } else if (!auth.account) {
-    return <Navigate to={"/Homepage"} />;
+    return <Navigate to={"/login"} />;
   } else {
     return <div>Not found</div>;
   }
