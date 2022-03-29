@@ -62,3 +62,9 @@ Seeding data 1 file at a time
 
 python manage.py loaddata seed/0001_User.json
 
+#### Running Linters locally
+
+pylint coding/
+
+npx eslint . --ext .js,.jsx,.ts,.tsx
+
