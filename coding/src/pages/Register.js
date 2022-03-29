@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import authSlice from "../store/slices/auth";
-import Navbar from "../components/Navbar/Navbar";
+import Navbar from "../components/navbar/Navbar";
 
 function Register() {
   const [message, setMessage] = useState("");
