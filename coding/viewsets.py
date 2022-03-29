@@ -234,7 +234,7 @@ class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
                 data = {}
                 data['input'] = unitTest['input']
                 data['expectedOutput'] = unitTest['output']
-                data['visible'] = unitTest['visible']
+                data['visible'] = unitTest.get('visible', False)
                 #print(data)
                 unittest_serializer = UnitTestSerializer(data = data)
                 try:
