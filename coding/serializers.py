@@ -49,8 +49,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'is_active']
-        read_only_field = ['is_active']
+        fields = ['id', 'username', 'email', 'is_active', 'is_staff', 'is_superuser', 'is_student']
+        read_only_field = ['is_active', 'is_staff', 'is_superuser', 'is_student']
 
 class LoginSerializer(TokenObtainPairSerializer):
 
@@ -75,7 +75,7 @@ class RegisterSerializer(UserSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'password', 'is_active']
+        fields = ['id', 'username', 'email', 'password', 'is_active', 'is_staff', 'is_superuser', 'is_student']
 
     def create(self, validated_data):
         try:
