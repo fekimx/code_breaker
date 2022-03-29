@@ -202,6 +202,33 @@ class JoinClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         studentClass.students.add(user)
         
         return Response({}, status=status.HTTP_201_CREATED) 
+        
+class StudentClassViewset(viewsets.ModelViewSet, TokenObtainPairView):
+
+    queryset = Class.objects.all()
+    serializer_class = ClassSerializer
+    permission_classes = (AllowAny,)
+    http_method_names = ['get', 'post', 'delete']
+
+    
+    def list(self, request):
+        logger.warn("list from Classviewset")
+        serializer = self.get_serializer(self.queryset, many=True)
+        
+        return Response(serializer.data)
+    
+    def retrieve(self, request, pk=None):
+
+        classObj = Class.objects.filter(students = pk)
+        serializer = self.get_serializer(classObj, many=True)
+        return Response(serializer.data)
+
+    def destroy(self, request, pk=None):
+        item = self.get_object()
+
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
