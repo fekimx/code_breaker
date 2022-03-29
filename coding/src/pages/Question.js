@@ -3,18 +3,57 @@ import React from "react";
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
 import axios from "axios";
+import { useSearchParams } from "react-router-dom";
+
+function withMyHook(Component) {
+  return function WrappedComponent(props) {
+    let [searchParams, setSearchParams] = useSearchParams();
+    let questionId = searchParams.get("id");
+    return <Question {...props} questionId={questionId} />;
+  }
+}
 
 class Question extends React.Component {
   constructor(props) {
     super(props);
-    
-    this.divRef = React.createRef();
+
     this.state = {
       code: "def divisbleByTwo(n):\n",
       unit_test_1_background: "none",
       unit_test_2_background: "none",
-      stderr: ""
+      stderr: "",
+      unitTests: [],
+      solutions: [],
+      showSolutions: false
     }
+
+    axios.get(`/api/question/${this.props.questionId}/`,    {
+      //ClassViewset gets a specific class classes
+    })
+    .then((res) => {
+      this.setState({ 
+        code: res.data['code'],
+        unitTests: res.data['unitTests'].map((unitTest, index) => {
+          if (unitTest.visible) {
+            return <div key={index}>Input: {unitTest.input} Expected Output: {unitTest.expectedOutput}</div>
+          } else {
+            return <div key={index}>Hidden Unit Test #{index}</div>
+          }
+        }),
+        solutions: res.data['solutions'].map((solution, index) => {
+          return <CodeMirror
+          key={index}
+          value={solution.code}
+          height="200px"
+          extensions={[python({})]}
+          readOnly={true}
+        />
+        })
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   runCode() {
@@ -59,8 +98,9 @@ class Question extends React.Component {
           this.state.code = value;
         }}
       />
-      <div style={{backgroundColor: this.state.unit_test_1_background}}>Unit test #1: divisbleByTwo(4)</div>
-      <div style={{backgroundColor: this.state.unit_test_2_background}}>Unit test #2: divisbleByTwo(9)</div>
+      {this.state.unitTests}
+      {this.state.showSolutions ? this.state.solutions : null }
+      <div><a href="#" onClick={ () => this.setState({showSolutions: !this.state.showSolutions}) }>{this.state.showSolutions ? "Hide Solutions" : "Show Solutions"}</a></div>
       <button onClick={ () => this.runCode() }>Run</button>
       <div style={{backgroundColor: "red"}}>
         {this.state.stderr}
@@ -70,4 +110,4 @@ class Question extends React.Component {
   }
 };
 
-export default Question;
+export default withMyHook(Question);

@@ -279,6 +279,20 @@ class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         serializer = self.get_serializer(self.queryset, many=True)
         return Response(serializer.data)
 
+    def retrieve(self, request, pk=None):
+        logger.warn("retrieve from QuestionViewSet")
+        classObj = get_object_or_404(self.queryset, pk=pk)
+        unitTests = classObj.unitTests.all()
+        solutions = classObj.solutions.all()
+        serializer = self.get_serializer(classObj)
+        unitTestSerializer = UnitTestSerializer(unitTests, many=True)
+        solutionSerializer = SolutionSerializer(solutions, many=True)
+        response_obj = serializer.data
+        response_obj["unitTests"] = unitTestSerializer.data
+        response_obj["solutions"] = solutionSerializer.data
+        return Response(response_obj)
+
+
 class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
     queryset = Class.objects.all()
@@ -309,7 +323,7 @@ class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         return Response(serializer.data)
     
     def retrieve(self, request, pk=None):
-
+        logger.warn("Inside retrieve for Class")
         classObj = get_object_or_404(self.queryset, pk=pk)
         serializer = self.get_serializer(classObj)
         return Response(serializer.data)
