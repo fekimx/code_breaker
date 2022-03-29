@@ -49,7 +49,7 @@ const Dashboard = () => {
       {
             user.data ?
                 <div className="w-full h-full text-center items-center">
-                    <p className="self-center my-auto">Welcome, {user.data?.username}</p>
+                    <p className="self-center my-auto">Welconme, {user.data?.username}</p>
                 </div>
                 :
                 <p className="text-center items-center">Loading ...</p>

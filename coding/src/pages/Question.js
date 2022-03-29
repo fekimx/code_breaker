@@ -1,25 +1,12 @@
 
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import { useNavigate } from "react-router";
-import authSlice from "../store/slices/auth";
-import useSWR from 'swr';
-import {fetcher} from "../utils/axios";
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
 import axios from "axios";
 
 class Question extends React.Component {
   constructor(props) {
-      super(props);
-
-    //   this.account = useSelector((state) => state.auth.account);
-    //   const dispatch = useDispatch();
-    //   const history = useNavigate();
-    
-    //   const userId = account?.id;
-    
-    //   const user = useSWR(`/api/user/${userId}/`, fetcher)
+    super(props);
     
     this.divRef = React.createRef();
     this.state = {

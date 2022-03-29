@@ -8,8 +8,8 @@
         "author": 3,
         "practice": false,
         "version": 1,
-        "solutions": 1,
-        "unitTests": 1
+        "solutions": [1],
+        "unitTests": [1]
     }
 }
 ]
