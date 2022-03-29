@@ -1,16 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {useSelector} from "react-redux";
 import axios from "axios";
-import { Field, Form, Formik, useFormik } from "formik";
-import * as Yup from "yup";
+import { Field, Form, Formik } from "formik";
 
 function CreateAssignment() {
   const account = useSelector((state) => state.auth.account);
   const userId = account?.id;
 
   const [message] = useState("");
+  const [questions, updateQuestions] = useState([])
+  const [classes, updateClasses] = useState([])
 
+  const initialValues = {
+    name: "",
+    questions: questions,
+    classes: classes,
+    class: 0
+  };
+
+  useEffect(() => {
+    axios.get(`/api/class/`, {})
+    .then((res) => {
+      const classOptions = []
+      for (let classFromApi of res.data) {
+        classOptions.push(
+          <option key={classFromApi.id} value={classFromApi.id}>
+            {classFromApi.name}
+          </option>
+        );
+      }
+      updateClasses(classOptions);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+    axios.get(`/api/question/`, {})
+    .then((res) => {
+      const questionOptions = []
+      for (let questionFromApi of res.data) {
+        questionOptions.push(
+          <option key={questionFromApi.id} value={questionFromApi.id}>
+            {questionFromApi.name}
+          </option>
+        );
+      }
+      updateQuestions(questionOptions);
+    })
+    .catch((err) => {
+      console.log("Received an error while listing questions", err);
+    });
+  }, []);
+  
   const handleCreateAssignment = (values) => {
+    console.log(values);
     axios.post(`/api/assignment/`, { author: userId, name: values.name, questions: values.questions, class: values.class })
     .then((res) => {
       console.log(res);
@@ -28,7 +71,7 @@ function CreateAssignment() {
           Create an Assignment
         </h1>
         <Formik 
-          initialValues={{ name: '', class: 1, questions: []}}
+          initialValues={initialValues}
           onSubmit={(values) => { handleCreateAssignment(values); }}>
           <Form>
             <div className="space-y-4">
@@ -45,20 +88,14 @@ function CreateAssignment() {
                   name="questions"
                   multiple
               >
-                <option value="1">Question 1</option>
-                <option value="2">Question 2</option>
-                <option value="3">Question 3</option>
-                <option value="4">Question 4</option>
+                {questions}
               </Field>
               <h3>Class</h3>
               <Field
                   as="select"
                   name="class"
               >
-                <option value="1">Class 1</option>
-                <option value="2">Class 2</option>
-                <option value="3">Class 3</option>
-                <option value="4">Class 4</option>
+                {classes}
               </Field>
             <div className="text-danger text-center my-2" hidden={false}>
               {message}
