@@ -94,5 +94,21 @@
         "groups": [],
         "user_permissions": []
     }
+},
+{
+    "model": "coding.user",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "TestTeacher",
+        "email": "teacher@test.com",
+        "is_active": true,
+        "is_student": false,
+        "is_staff": true,
+        "groups": [],
+        "user_permissions": []
+    }
 }
 ]

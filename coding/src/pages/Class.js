@@ -35,7 +35,7 @@ class Class extends React.Component {
     axios.post(`/api/class/`,    {
 
       //This is just an example
-      id: 1,
+      id: 5,
       name: "TestClass1",
       secretKey: "001",
       active: true,
@@ -66,7 +66,7 @@ class Class extends React.Component {
 
   tryGet() {
     console.log("Get request: ");
-    axios.get(`/api/class/1/`,    {
+    axios.get(`/api/class/5/`,    {
     //ClassViewset gets a specific class classes
   })
   .then(function (response) {
@@ -79,7 +79,7 @@ class Class extends React.Component {
 
   tryDelete() {
     console.log("Get request: ");
-    axios.delete(`/api/class/1/`,    {
+    axios.delete(`/api/class/5/`,    {
     //ClassViewset gets a specific class classes
   })
   .then(function (response) {
