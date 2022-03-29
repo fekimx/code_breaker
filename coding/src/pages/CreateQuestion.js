@@ -10,34 +10,118 @@ function CreateQuestion() {
   const account = useSelector((state) => state.auth.account);
   const userId = account?.id;
 
+  const removeSolution = () => {
+    setSolutions(solutions => {
+      solutions.pop();
+      return [...solutions];
+    });
+    setSolutionsData(solutionsData => {
+      solutionsData.pop();
+      return [...solutionsData];
+    })
+  }
+
+  const removeUnitTest = () => {
+    setUnitTests(unitTests => {
+      unitTests.pop();
+      return [...unitTests];
+    });
+    setUnitTestsData(unitTestsData => {
+      unitTestsData.pop();
+      return [...unitTestsData];
+    })
+  }
+
+  const setSolutionN = (num, value) => {
+    setSolutionsData(solutionsData => {
+      solutionsData[num] = value;
+      return [...solutionsData];
+    })
+  }
+
+  const setUnitTestFieldN = (num, field, value) => {
+    setUnitTestsData(unitTestsData => {
+      if (unitTestsData[num] == undefined) {
+        unitTestsData[num] = {};
+      }
+      unitTestsData[num][field] = value;
+      return [...unitTestsData];
+    })
+  }
+
+  const solutionHTMLByNum = (num) => {
+    return <div key={num.toString()}>
+      <h3>Solution #{num.toString()}</h3>
+      <CodeMirror
+        height="100px"
+        extensions={[python({})]}
+        onChange={(value, viewUpdate) => {
+          setSolutionN(num - 1, value);
+        }}
+      />      
+    </div>;
+  }
+
+  const unitTestHTMLByNum = (num) => {
+    return <div key={num.toString()}> 
+      <h3>Unit Test #{num.toString()}</h3>
+      <input
+        className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
+        type="text"
+        onChange={(value, viewUpdate) => {
+          setUnitTestFieldN(num - 1, 'input', event.target.value);
+        }}
+      />
+      <input
+        className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
+        type="text"
+        onChange={(value, viewUpdate) => {
+          setUnitTestFieldN(num - 1, 'output', event.target.value);
+        }}
+      />
+      Visible
+      <input
+        className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
+        type="checkbox"
+        onChange={(value, viewUpdate) => {
+          setUnitTestFieldN(num - 1, 'visible', event.target.checked);
+        }}
+      />
+    </div>
+  }
+
+  const addSolution = () => {
+    setSolutions(solutions => {
+      const numSolutions = solutions.length + 1;
+      return [...solutions, solutionHTMLByNum(numSolutions)];
+    });
+  };
+
+  const addUnitTest = () => {
+    setUnitTests(unitTests => {
+      const numUnitTests = unitTests.length + 1;
+      return [...unitTests, unitTestHTMLByNum(numUnitTests)];
+    });
+  };
+
   const [message] = useState("");
   const [code, setCode] = useState("");
-  const [solution1, setSolution1] = useState("");
-  const [solution2, setSolution2] = useState("");
+  const [solutions, setSolutions] = useState([solutionHTMLByNum(1)]);
+  const [solutionsData, setSolutionsData] = useState([]);
+  const [unitTests, setUnitTests] = useState([unitTestHTMLByNum(1)]);
+  const [unitTestsData, setUnitTestsData] = useState([]);
 
   const formik = useFormik({
     initialValues: {
       name: "",
       description: "",
-      code: "",
-      solution1: "",
-      solution2: "",
-      unittest1input: "",
-      unittest1output: "",
-      unittest1visible: true,
-      unittest2input: "",
-      unittest2output: "",
-      unittest2visible: true,
+      code: ""
     },
     onSubmit: (values) => {
       handleCreateQuestion(
         values.name, 
         values.description, 
-        code, 
-        solution1, 
-        solution2, 
-        {input: values.unittest1input, output: values.unittest1output, visible: values.unittest1visible}, 
-        {input: values.unittest2input, output: values.unittest2output, visible: values.unittest2visible}
+        code
       );
     },
     validationSchema: Yup.object({
@@ -46,9 +130,9 @@ function CreateQuestion() {
     }),
   });
 
-  const handleCreateQuestion = (name, description, code, solution1, solution2, unitTest1, unitTest2) => {
-    console.log(unitTest1);
-    axios.post(`/api/question/`, { userId, name, description, code, solutions: [solution1, solution2], unitTests: [unitTest1, unitTest2] })
+  const handleCreateQuestion = (name, description, code) => {
+    console.log(unitTestsData);
+    axios.post(`/api/question/`, { userId, name, description, code, solutions: solutionsData, unitTests: unitTestsData })
     .then((res) => {
       console.log(res);
     })
@@ -101,94 +185,12 @@ function CreateQuestion() {
             {formik.errors.code ? (
               <div>{formik.errors.code} </div>
             ) : null}
-            <h3>Solution #1</h3>
-            <CodeMirror
-              height="100px"
-              value={solution1}
-              extensions={[python({})]}
-              onChange={(value, viewUpdate) => {
-                setSolution1(value);
-              }}
-            />
-            <h3>Solution #2</h3>
-            <CodeMirror
-              height="100px"
-              value={solution2}
-              extensions={[python({})]}
-              onChange={(value, viewUpdate) => {
-                setSolution2(value);
-              }}
-            />
-            <h3>Unit Test #1</h3>
-            <input
-              className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
-              id="unittest1input"
-              type="text"
-              placeholder="Unit Test #1 Input"
-              name="unittest1input"
-              value={formik.values.unittest1input}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.errors.unittest1input ? <div>{formik.errors.unittest1input} </div> : null}
-            <input
-              className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
-              id="unittest1output"
-              type="text"
-              placeholder="Unit Test #1 Output"
-              name="unittest1output"
-              value={formik.values.unittest1output}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.errors.unittest1output ? <div>{formik.errors.unittest1output} </div> : null}
-            Visible
-            <input
-              className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
-              id="unittest1visible"
-              type="checkbox"
-              placeholder="Unit Test #1 Visible"
-              name="unittest1visible"
-              checked={formik.values.unittest1visible}
-              value={formik.values.unittest1visible}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            <h3>Unit Test #2</h3>
-            <input
-              className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
-              id="unittest2input"
-              type="text"
-              placeholder="Unit Test #2 Input"
-              name="unittest2input"
-              value={formik.values.unittest2input}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.errors.unittest2input ? <div>{formik.errors.unittest2input} </div> : null}
-            <input
-              className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
-              id="unittest2output"
-              type="text"
-              placeholder="Unit Test #2 Output"
-              name="unittest2output"
-              value={formik.values.unittest2output}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.errors.unittest2output ? <div>{formik.errors.unittest2output} </div> : null}
-            Visible
-            <input
-              className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
-              id="unittest2visible"
-              type="checkbox"
-              placeholder="Unit Test #2 Visible"
-              name="unittest2visible"
-              checked={formik.values.unittest2visible}
-              value={formik.values.unittest2visible}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
+            {solutions}
+            <div><a href="#" onClick={removeSolution}>Remove Solution</a></div>
+            <div><a href="#" onClick={addSolution}>Add Solution</a></div>
+            {unitTests}
+            <div><a href="#" onClick={removeUnitTest}>Remove Unit Test</a></div>
+            <div><a href="#" onClick={addUnitTest}>Add Unit Test</a></div>
           </div>
           <div className="text-danger text-center my-2" hidden={false}>
             {message}
