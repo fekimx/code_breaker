@@ -28,11 +28,16 @@ class RunViewSet(viewsets.ViewSet):
     def create(self, request):
         logger.warn("Create from RunViewSet")
 
-        unit_test_1 = "print(divisbleByTwo(4))\n"
-        unit_test_2 = "print(divisbleByTwo(9))\n"
+        question = CodeQuestion(id=request.data['questionId'])
+        unitTests = question.unitTests.all()
+        logger.warn(question)
+        
+        unit_tests = []
+        for unit_test in unitTests:
+          unit_tests.append("print(" + unit_test.input + ")\n")
 
-        unit_tests = [unit_test_1, unit_test_2]
-
+        logger.warn(unit_tests)
+        
         source_code = request.data['code']
 
         for unit_test in unit_tests:
@@ -67,18 +72,18 @@ class RunViewSet(viewsets.ViewSet):
                 "stderr": stderr
             }, status=status.HTTP_201_CREATED)
 
+        logger.warn(stdout)
         unit_test_output = stdout.split('\n')
-
+        del unit_test_output[-1]
+        logger.warn(unit_test_output)
         unit_test_results = []
 
-        if unit_test_output[0] == "True":
+        for idx, result in enumerate(unit_test_output):
+          logger.warn(idx)
+          logger.warn(unitTests)
+          if (result == unitTests[idx].expectedOutput):
             unit_test_results.append(True)
-        else:
-            unit_test_results.append(False)
-
-        if unit_test_output[1] == "False":
-            unit_test_results.append(True)
-        else:
+          else:
             unit_test_results.append(False)
 
         return Response({
@@ -217,7 +222,7 @@ class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
             #print("R1", request.data)
             for solution in request.data['solutions']:
                 data = {}
-                data['code']= solution
+                data['code'] = solution
                 #codequestion.solution.add()
                 solution_serializer = SolutionSerializer(data = data)
                 
