@@ -64,29 +64,13 @@ class Class(models.Model):
 # should we add a model for unit test?
 # sure.  Unit test - has dynamically created id, input, expected output and visible field
 class UnitTest(models.Model):
-    id = models.IntegerField(primary_key=True)
     input = models.CharField(max_length=100, null=True)
     expectedOutput = models.CharField(max_length=250)
     visible = models.BooleanField(default=True)
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "input": self.input,
-            "expectedOutput": self.expectedOutput,
-            "visible": self.visible,
-        }
-
 # should we add a model for solution?
 class Solution(models.Model):
-    id = models.IntegerField(primary_key=True)
     code = models.TextField(null=True)
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "code": self.code
-        }
 
 # Question - starting with just codeQuestion.  
 # Cosider adding base question type if/when we get to multiple choice and long form 
@@ -94,26 +78,17 @@ class Solution(models.Model):
 # maybe just a seperate model?
 
 class CodeQuestion(models.Model):
-    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     code = models.TextField(null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     practice = models.BooleanField(default=False)
     version = models.IntegerField(default=1)
-    solutions = models.ForeignKey(Solution, on_delete=models.CASCADE, null=True)
-    unitTests = models.ForeignKey(UnitTest, on_delete=models.CASCADE, null=True)
+    solutions = models.ManyToManyField(Solution)
+    unitTests = models.ManyToManyField(UnitTest)
     
-    def serialize(self):
-        return {
-            "name": self.name,
-            "author": self.author,
-            "practice": self.practice,
-            "version": self.version
-        }
 
 class Assignment(models.Model):
-    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     questions = models.ManyToManyField(CodeQuestion)
@@ -128,7 +103,6 @@ class Assignment(models.Model):
 # and we need a way to individually determine percentage completion from a learner to an assignment
 # thus, we have status.  Status can be applied to a question and represents the learner's progress.
 class Status(models.Model):
-    id = models.IntegerField(primary_key=True)
     learner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     question = models.ForeignKey(CodeQuestion, on_delete=models.CASCADE, null=True)
     complete = models.BooleanField(default=False)
@@ -142,7 +116,6 @@ class Status(models.Model):
 
 # Progress is the same thing but for an assignment
 class Progress(models.Model):
-    id = models.IntegerField(primary_key=True)
     learner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE, null=True)
     percent = models.IntegerField(default=0)
