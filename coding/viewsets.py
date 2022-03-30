@@ -28,11 +28,16 @@ class RunViewSet(viewsets.ViewSet):
     def create(self, request):
         logger.warn("Create from RunViewSet")
 
-        unit_test_1 = "print(divisbleByTwo(4))\n"
-        unit_test_2 = "print(divisbleByTwo(9))\n"
+        question = CodeQuestion(id=request.data['questionId'])
+        unitTests = question.unitTests.all()
+        logger.warn(question)
+        
+        unit_tests = []
+        for unit_test in unitTests:
+          unit_tests.append("print(" + unit_test.input + ")\n")
 
-        unit_tests = [unit_test_1, unit_test_2]
-
+        logger.warn(unit_tests)
+        
         source_code = request.data['code']
 
         for unit_test in unit_tests:
@@ -67,18 +72,18 @@ class RunViewSet(viewsets.ViewSet):
                 "stderr": stderr
             }, status=status.HTTP_201_CREATED)
 
+        logger.warn(stdout)
         unit_test_output = stdout.split('\n')
-
+        del unit_test_output[-1]
+        logger.warn(unit_test_output)
         unit_test_results = []
 
-        if unit_test_output[0] == "True":
+        for idx, result in enumerate(unit_test_output):
+          logger.warn(idx)
+          logger.warn(unitTests)
+          if (result == unitTests[idx].expectedOutput):
             unit_test_results.append(True)
-        else:
-            unit_test_results.append(False)
-
-        if unit_test_output[1] == "False":
-            unit_test_results.append(True)
-        else:
+          else:
             unit_test_results.append(False)
 
         return Response({
@@ -217,7 +222,7 @@ class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
             #print("R1", request.data)
             for solution in request.data['solutions']:
                 data = {}
-                data['code']= solution
+                data['code'] = solution
                 #codequestion.solution.add()
                 solution_serializer = SolutionSerializer(data = data)
                 
@@ -279,6 +284,20 @@ class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         serializer = self.get_serializer(self.queryset, many=True)
         return Response(serializer.data)
 
+    def retrieve(self, request, pk=None):
+        logger.warn("retrieve from QuestionViewSet")
+        classObj = get_object_or_404(self.queryset, pk=pk)
+        unitTests = classObj.unitTests.all()
+        solutions = classObj.solutions.all()
+        serializer = self.get_serializer(classObj)
+        unitTestSerializer = UnitTestSerializer(unitTests, many=True)
+        solutionSerializer = SolutionSerializer(solutions, many=True)
+        response_obj = serializer.data
+        response_obj["unitTests"] = unitTestSerializer.data
+        response_obj["solutions"] = solutionSerializer.data
+        return Response(response_obj)
+
+
 class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
     queryset = Class.objects.all()
@@ -309,7 +328,7 @@ class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         return Response(serializer.data)
     
     def retrieve(self, request, pk=None):
-
+        logger.warn("Inside retrieve for Class")
         classObj = get_object_or_404(self.queryset, pk=pk)
         serializer = self.get_serializer(classObj)
         return Response(serializer.data)
