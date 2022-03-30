@@ -1,7 +1,11 @@
-import React from 'react'
-import JsonData from './classData.json'
+import React from 'react';
+import JsonData from './classData.json';
+import TeacherClassAddForm from './TeacherClassAddForm';
 
-function StudentClassDataDisplay(){
+ function TeacherClassTable(){
+    const data = {
+        classCode: ""
+      };
     const DisplayData=JsonData.map(
         (info)=>
         {
@@ -13,7 +17,7 @@ function StudentClassDataDisplay(){
             return(
                 <tr key={info.code}>
                     <td>{info.name}</td>
-                    <td>{info.code}</td>
+                    <td>Class code: {info.code} <br/> {info.numberOfStudents} students</td>
                     <td>
                         <ul>{a}</ul>
                     </td>
@@ -24,11 +28,12 @@ function StudentClassDataDisplay(){
  
     return(
         <div>
+            <TeacherClassAddForm data={data} />
             <table className="table-striped">
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Code</th>
+                        <th>Class Info</th>
                         <th>Assignments</th>
                     </tr>
                 </thead>
@@ -40,4 +45,4 @@ function StudentClassDataDisplay(){
     )
  }
  
-export default StudentClassDataDisplay;
+ export default TeacherClassTable;
