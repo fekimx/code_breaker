@@ -46,6 +46,10 @@ git checkout -b <branch-name> (Creates a new branch - typically you want to be i
 git add . (Adds all unstaged files to commit)
 
 git commit -m "A helpful descriptive message" (LOCALLY commits your changes)
+ 
+git push origin <new-branch-name> (This pushes your local branch)
+ 
+Then, Ctrl+Click on the link to make a merge request. 
 
 
 #### Process for seeding data/removing seeded data 
