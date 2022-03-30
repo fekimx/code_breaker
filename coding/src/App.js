@@ -11,7 +11,7 @@ import {
 import React from "react";
 import Login from "./pages/Login";
 import Homepage from "./pages/Homepage";
-import Dashboard from "./pages/Dashboard";
+import StudentDashboard from "./pages/StudentDashboard";
 import Register from "./pages/Register";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Question from "./pages/Question";
@@ -25,6 +25,7 @@ import Admin from "./pages/Admin";
 import CreateClass from './pages/CreateClass';
 import CreateAssignment from './pages/CreateAssignment';
 import StudentClasses from './pages/StudentClasses';
+import TeacherDashboard from './pages/TeacherDashboard';
 
 
 axios.defaults.xsrfCookieName = 'csrftoken'
@@ -56,8 +57,10 @@ const App = () => {
                 <Route exact path='/unittest' element={ <UnitTest /> } />
               </Route>
               <Route exact path='/' element={<ProtectedRoute/>}>
-                <Route exact path='/' element={<Dashboard/>}/>
+                <Route exact path='/' element={<StudentDashboard/>}/>
               </Route>
+              <Route exact path='/studentdashboard' element={<StudentDashboard/>}/>
+              <Route exact path='/teacherdashboard' element={<TeacherDashboard/>}/>
             </Routes>
           </div>
         </BrowserRouter>

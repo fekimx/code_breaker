@@ -1,0 +1,27 @@
+[
+    {
+        "name": "John Smith",
+        "email": "jsmith@example.com",
+        "class": ["Intro to Web Development using HTML and CSS", "CS Club"]
+    },
+    {
+        "name": "Alice Garcia",
+        "email": "agarcia@example.com",
+        "class": ["Advance Programming using Python"]
+    },
+    {
+        "name": "Jacob O'Neill",
+        "email": "joneill@example.com",
+        "class": ["Advance Programming using Python"]
+    },
+    {
+        "name": "Mark Hancock",
+        "email": "mhancock@example.com",
+        "class": ["Advance Programming using Python"]
+    },
+    {
+        "name": "Haylie Gomez",
+        "email": "hgomez@example.com",
+        "class": ["Intro to Web Development using HTML and CSS"]
+    }
+]
