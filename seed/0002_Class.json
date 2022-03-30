@@ -8,7 +8,7 @@
         "active": true,
         "teacher": 4,
         "TAs": [],
-        "students": []
+        "students": [1, 2, 3]
     }
 },
 {
@@ -20,7 +20,7 @@
         "active": true,
         "teacher": 5,
         "TAs": [],
-        "students": []
+        "students": [1, 2]
     }
 }
 ]
