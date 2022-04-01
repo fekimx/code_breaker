@@ -60,7 +60,6 @@ class LoginSerializer(TokenObtainPairSerializer):
         refresh = self.get_token(self.user)
 
         data['user'] = UserSerializer(self.user).data
-        data['is_staff'] = UserSerializer(self.user).data
         data['refresh'] = str(refresh)
         data['access'] = str(refresh.access_token)
 

@@ -29,6 +29,10 @@ const StudentDashboard = () => {
     userId: userId
   };
 
+  if (user.data?.is_staff == true) {
+    return <Navigate to={"/TeacherDashboard"} />;
+  }
+
   return (
     <div className="w-full h-screen">
       <div className="w-full p-6">
