@@ -51,15 +51,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return f"{self.email}"
 
-# Class - data object to organize students
-class Class(models.Model):
-    name = models.CharField(max_length=100)
-    secretKey = models.CharField(max_length=25, unique=True)
-    active = models.BooleanField(default=True, blank=True, null=True)
-    teacher = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    TAs = models.ManyToManyField(User, related_name="TAs", blank=True, null=True)
-    students = models.ManyToManyField(User, related_name="students", blank=True, null=True)
-
 # open questions
 # should we add a model for unit test?
 # sure.  Unit test - has dynamically created id, input, expected output and visible field
@@ -98,6 +89,16 @@ class Assignment(models.Model):
             "name": self.name,
             "author": self.author
         }
+
+# Class - data object to organize students
+class Class(models.Model):
+    name = models.CharField(max_length=100)
+    secretKey = models.CharField(max_length=25, unique=True)
+    active = models.BooleanField(default=True, blank=True, null=True)
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    TAs = models.ManyToManyField(User, related_name="TAs", blank=True)
+    students = models.ManyToManyField(User, related_name="students", blank=True)
+    assignments = models.ManyToManyField(Assignment, blank=True)
 
 # we need a way to individually determine "done" from a learner to a question
 # and we need a way to individually determine percentage completion from a learner to an assignment
