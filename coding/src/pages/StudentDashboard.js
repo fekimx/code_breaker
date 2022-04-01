@@ -30,8 +30,8 @@ const StudentDashboard = () => {
   };
 
   if (user.data?.is_staff == true) {
-    return <Navigate to={"/TeacherDashboard"} />;
-  }
+    history("/TeacherDashboard");
+  };
 
   return (
     <div className="w-full h-screen">
