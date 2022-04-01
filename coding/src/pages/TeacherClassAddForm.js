@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from "axios";
 
 class TeacherClassAddForm extends Component {
-    static propTypes = {
-        data: PropTypes.object.isRequired,
-        classCode: PropTypes.string,
-    }
+  static propTypes = {
+      data: PropTypes.object.isRequired,
+      className: PropTypes.string,
+  }
   constructor(props) {
     super(props);
     
     const { data } = this.props;
-    const { classCode: code } = data;
+    const { teacherId: teacherId, fetchLatestClasses: fetchLatestClasses } = data;
 
     this.state = {
-      classCode: code,
+      teacherId: teacherId,
+      fetchLatestClasses: fetchLatestClasses,
+      className: "",
       showData: false,
       showButton: false,
       showButtonName: "Add Class"
@@ -42,31 +45,29 @@ class TeacherClassAddForm extends Component {
   }
 
   checkSaveButton() {
-    const { classCode: code } = this.props.data;
-    const { classCode } = this.state;
-    const changed = classCode !== code;
+    const { className: code } = this.props.data;
+    const { className } = this.state;
+    const changed = className !== code;
     return changed ? false : true;
   }
 
   handleSave(e) {
     e.preventDefault();
-    this.setState(prevState => ({
-      showButton: !prevState.showButton,
-      showButtonName: "SAVING..."
-    }));
-
-    /** Mocking we updating the API and using the response to update the state */
-    setTimeout(() => {
-      this.setState(prevState => ({
-        showData: !prevState.showData,
-        showButtonName: "SAVE"
-      }));
-    }, 3000);
+    axios.post(`/api/class/`, { teacher: this.state.teacherId, name: this.state.className, assignments: [], active: true, TAs: [], students: [] })
+    .then((res) => {
+      this.state.fetchLatestClasses();
+      this.setState({
+        className: ""
+      })
+    })
+    .catch((err) => {
+      console.log("Received an error while creating question", err);
+    });
   }
 
   render() {
     const {
-      classCode,
+      className,
       showData,
       showButton,
       showButtonName
@@ -96,8 +97,8 @@ class TeacherClassAddForm extends Component {
           <label> Add new class: </label>
           <input
             type="text"
-            name="classCode"
-            value={classCode}
+            name="className"
+            value={className}
             onChange={this.handleOnchage}
           />
           {renderButton}

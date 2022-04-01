@@ -346,10 +346,14 @@ class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
             logger.warn("Token Error")
             raise InvalidToken(e.args[0])
         
-        return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
+        return Response({}, status=status.HTTP_201_CREATED)
     
     def list(self, request):
         logger.warn("list from Classviewset")
+        teacherId = self.request.query_params.get('teacherId')
+        logger.warn(teacherId)
+        teacher = User(id=teacherId)
+        self.queryset = Class.objects.filter(teacher=teacher)
         serializer = self.get_serializer(self.queryset, many=True)
         
         return Response(serializer.data)

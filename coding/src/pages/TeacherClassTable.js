@@ -1,31 +1,47 @@
 import React from 'react';
-import JsonData from './classData.json';
 import TeacherClassAddForm from './TeacherClassAddForm';
+import axios from "axios";
+import { useState, useEffect } from "react";
+import useSWR from 'swr';
+import {useSelector} from "react-redux";
+import {fetcher} from "../utils/axios";
 
- function TeacherClassTable(){
-    const data = {
-        classCode: ""
-      };
-    const DisplayData=JsonData.map(
-        (info)=>
-        {
-            const a = [];
-            const list = info.assignments;
-            for(let i=0; i<list.length; i++){
-                a.push(<li key={list[i]}>{list[i]}</li>)
-            }
-            return(
-                <tr key={info.code}>
-                    <td>{info.name}</td>
-                    <td>Class code: {info.code} <br/> {info.numberOfStudents} students</td>
-                    <td>
-                        <ul>{a}</ul>
-                    </td>
-                </tr>
-            )
-        }
-    )
- 
+function TeacherClassTable(){
+
+    const [displayData, updateDisplayData] = useState([]);
+
+    const account = useSelector((state) => state.auth.account);
+    const userId = account?.id;
+
+    const user = useSWR(`/api/user/${userId}/`, fetcher);
+
+    const fetchLatestClasses = () => {
+        axios.get(`/api/class/?teacherId=` + account?.id, {})
+        .then((response) => {
+            const newDisplayData = response.data.map((teacherClass) => {
+                return(
+                    <tr key={teacherClass.secretKey}>
+                        <td>{teacherClass.name}</td>
+                        <td>Class code: {teacherClass.secretKey} <br/> {teacherClass.students.length} students</td>
+                        <td>
+                            {teacherClass.assignments.length} assignments
+                        </td>
+                    </tr>
+                )
+            });
+            updateDisplayData(newDisplayData);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
+    const data = { classCode: "", teacherId: account?.id, fetchLatestClasses: fetchLatestClasses};
+
+    useEffect(() => {
+        fetchLatestClasses();
+    }, []);
+
     return(
         <div>
             <TeacherClassAddForm data={data} />
@@ -38,11 +54,11 @@ import TeacherClassAddForm from './TeacherClassAddForm';
                     </tr>
                 </thead>
                 <tbody>
-                    { DisplayData }
+                    { displayData }
                 </tbody>
             </table>
         </div>
     )
- }
+}
  
  export default TeacherClassTable;
