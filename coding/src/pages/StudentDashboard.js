@@ -32,6 +32,7 @@ const StudentDashboard = () => {
   if (user.data?.is_staff == true) {
     history("/TeacherDashboard");
   };
+  
 
   return (
     <div className="w-full h-screen">
