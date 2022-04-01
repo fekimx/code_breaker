@@ -8,6 +8,7 @@ import Tabs from './Tabs';
 import ClassCodeForm from './ClassCodeForm';
 import StudentClassDataDisplay from './ClassTable';
 import Navbar from "../components/navbar/Navbar";
+import { Navigate } from "react-router";
 
 const StudentDashboard = () => {
   const account = useSelector((state) => state.auth.account);
