@@ -16,6 +16,11 @@ class UnitTestSerializer(serializers.ModelSerializer):
         model = UnitTest
         fields = '__all__'
 
+class StudentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = '__all__'
 
 class SolutionSerializer(serializers.ModelSerializer):
 
