@@ -278,7 +278,6 @@ class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
                 except TokenError as e:
                     raise InvalidToken(e.args[0])
 
-            request.data['author'] = 7
             request.data['solutions'] = solution_fks
             request.data['unitTests'] = unittest_fks
 
@@ -288,6 +287,7 @@ class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
             questionData['unitTests'] = request.data['unitTests']
             questionData['code'] = request.data['code']
             questionData['description'] = request.data['description']
+            questionData['author'] = request.data['userId']
 
             print(questionData)
             serializer = self.get_serializer(data=questionData)
@@ -307,8 +307,10 @@ class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
             return Response(questionData, status=status.HTTP_201_CREATED)
 
     def list(self, request):
+        queryset = CodeQuestion.objects.all()
+
         logger.warn("list from QuestionViewSet")
-        serializer = self.get_serializer(self.queryset, many=True)
+        serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
@@ -379,6 +381,19 @@ class SolutionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
     def list(self, request):
         logger.warn("list from SolutionViewset")
+        serializer = self.get_serializer(self.queryset, many=True)
+        
+        return Response(serializer.data)
+
+class StudentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+
+    queryset = User.objects.filter(is_student=True)
+    serializer_class = StudentSerializer
+    permission_classes = (AllowAny,)
+    http_method_names = ['get', 'post', 'delete']
+
+    def list(self, request):
+        logger.warn("list from StudentViewSet")
         serializer = self.get_serializer(self.queryset, many=True)
         
         return Response(serializer.data)
