@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
+import Navbar from "../components/navbar/Navbar";
 
 function CreateQuestion() {
   const account = useSelector((state) => state.auth.account);
@@ -143,6 +144,7 @@ function CreateQuestion() {
   
   return (
   <div>
+    <Navbar/>
     <div className="h-screen flex bg-gray-bg1">
       <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
