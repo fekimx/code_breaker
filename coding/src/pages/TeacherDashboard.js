@@ -9,7 +9,7 @@ function TeacherDashboard() {
   return (
     <div>
       <Navbar/>
-      <h1>My Dashboard</h1>
+      <h1>Teacher Dashboard</h1>
       <Tabs>
         <div label="Classes">
           <TeacherClassTable/>
