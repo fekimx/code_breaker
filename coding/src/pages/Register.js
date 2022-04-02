@@ -57,57 +57,70 @@ function Register() {
           Register an account
         </h1>
         <form onSubmit={formik.handleSubmit}>
-          <div className="space-y-4">
-            <input
-              className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
-              id="email"
-              type="email"
-              placeholder="Email"
-              name="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
+        <div className="form-group">
+                    <label>First name</label>
+                    <input type="text" className="form-control" placeholder="First name" />
+                </div>
+                <div className="form-group">
+                    <label>Last name</label>
+                    <input type="text" className="form-control" placeholder="Last name" />
+                </div>
+          <div className="form-group">
+                    <label>Email address</label>
+                    <input
+                         className="form-control"
+                        id="email"
+                        type="email"
+                        placeholder="Enter Email"
+                        name="email"
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        /></div>
             {formik.errors.email ? <div>{formik.errors.email} </div> : null}
-            <div className="space-y-4">
-            <input
-              className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
-              id="username"
-              type="username"
-              placeholder="Username"
-              name="username"
-              value={formik.values.username}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
+            <div className="form-group">
+                 <label>Username</label>
+                    <input
+                         className="form-control"
+                         id="username"
+                         type="username"
+                         placeholder="Enter Username"
+                         name="username"
+                         value={formik.values.username}
+                         onChange={formik.handleChange}
+                         onBlur={formik.handleBlur}
+            /></div>
             {formik.errors.username ? <div>{formik.errors.username} </div> : null}
+            <div className="form-group">
+            <label>Password</label>
             <input
-              className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
+              className="form-control"
               id="password"
               type="password"
-              placeholder="Password"
+              placeholder="Enter Password"
               name="password"
               value={formik.values.password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-            />
+            /></div>
             {formik.errors.password ? (
               <div>{formik.errors.password} </div>
             ) : null}
-          </div>
-          <div className="text-danger text-center my-2" hidden={false}>
+          <div className="form-group" hidden={false}>
             {message}
           </div>
-        </div>
           <div className="flex justify-center items-center mt-6">
             <button
               type="submit"
               disabled={loading}
-              className=""
+              className="btn btn-primary btn-block"
             >
               Register
             </button>
           </div>
+          <p className="forgot-password text-right">
+                    Already registered <a href="/login">sign in?</a>
+                </p>
         </form>
       </div>
     </div>
