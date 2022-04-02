@@ -52,64 +52,57 @@ function Login() {
     }),
   });
 
-  return (
-    <div className="h-screen flex bg-gray-bg1"> <Navbar/>
-      <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
-        <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
-          Log in to your account
-        </h1>
-        <form onSubmit={formik.handleSubmit}>
-          <div className="space-y-4">
-            <input
-              className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
-              id="email"
-              type="email"
-              placeholder="Email"
-              name="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.errors.email ? <div>{formik.errors.email} </div> : null}
-            <input
-              className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
-              id="password"
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.errors.password ? (
-              <div>{formik.errors.password} </div>
-            ) : null}
-          </div>
-          <div className="text-danger text-center my-2" hidden={false}>
-            {message}
-          </div>
-
-          <div className="flex justify-center items-center mt-6">
-            <button
-              type="submit"
-              disabled={loading}
-              className=""
-            >
-              Login
-            </button>
-          </div>
-        </form>
+  return (<div className="h-screen flex bg-gray-bg1"> <Navbar/>
+  <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
+    <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
+      Log in to your account
+    </h1>
+    <form onSubmit={formik.handleSubmit}>
+    <div className="form-group">
+                <label>Email address</label>
+                <input type="email"  id="email" className="form-control" placeholder="Enter email"name="email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur} />
+            </div>
+      <div className="form_group">
+        
+        {formik.errors.email ? <div>{formik.errors.email} </div> : null}
+        <label>Password</label>
+        <input
+          className="form-control"
+          id="password"
+          type="password"
+          placeholder="Enter Password"
+          name="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.errors.password ? (
+          <div>{formik.errors.password} </div>
+        ) : null}
+      </div>
+      <div className="text-danger text-center my-2" hidden={false}>
+        {message}
+      </div>
+      <div className="form-group">
+                <div className="custom-control custom-checkbox">
+                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                    <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                </div>
+            </div>
+      <div className="flex justify-center items-center mt-6">
       </div>
       <div className="flex justify-center items-center mt-6">
-            <button
-              onClick={register}
-              disabled={loading}
-              className=""
-            >
-              Register
-            </button>
-          </div>
-    </div>
+     <button type="submit" className="btn btn-primary btn-block">Submit</button>
+     <p className="forgot-password text-right">
+                Forgot <a href="#">password?</a>
+            </p>
+      </div>
+    </form>
+  </div>
+</div>
   );
 }
 
