@@ -66,6 +66,20 @@ Seeding data 1 file at a time
 
 python manage.py loaddata seed/0001_User.json
 
+Note: on Brian's machine (Windows), we had to run pip install python-dotenv in git bash to setup the local environment
+   Commands that can solve build errors in pip: 
+                pip install python-dotenv
+                npm install -g webpack-dev-server
+                npm install webpack 
+                npm install -g webpack
+                pipenv shell
+                ./migrate_and_seed_local.sh
+                pip install django
+                pip install --upgrade setuptools
+                pip install ez_setup
+                pip install python-dotenv
+                pip install -r requirements.txt
+
 #### Running Linters locally
 
 pylint coding/
