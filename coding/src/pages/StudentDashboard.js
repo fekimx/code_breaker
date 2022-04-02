@@ -9,6 +9,8 @@ import ClassCodeForm from './ClassCodeForm';
 import StudentClassDataDisplay from './ClassTable';
 import Navbar from "../components/navbar/Navbar";
 import { Navigate } from "react-router";
+import StudentClasses from "./StudentClasses";
+import StudentClassTable from "./StudentClassTable";
 
 const StudentDashboard = () => {
   const account = useSelector((state) => state.auth.account);
@@ -56,6 +58,9 @@ const StudentDashboard = () => {
       </div>
       <div label="Assignments">
         List of assignments here!
+      </div>
+      <div label="Classes2">
+        <StudentClassTable/>
       </div>
     </Tabs>
     </div>
