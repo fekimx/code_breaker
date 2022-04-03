@@ -21,10 +21,8 @@ function StudentAssignmentTable(){
         .then((response) => {
             const newDisplayData = response.data.map((assignment) => {
                                
-                // change the href to inclde the value of assignment.questions[0] to link to the first one
-                const url = 1;
-                const link = `questions?=${url}`;
-                //"http://127.0.0.1:8000/questions/?=" + assignment.questions[0];
+                // Right now this just grabs the ID of the first question and puts that in a link
+                const link = `questions?=${assignment.questions[0]}`;
                 console.log(assignment.questions);
                 return(
                     <tr key={assignment.name}>
