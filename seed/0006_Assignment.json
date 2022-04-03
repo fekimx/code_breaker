@@ -5,7 +5,7 @@
     "fields": {
         "name": "Test Assignment 1",
         "author": 3,
-        "questions": []
+        "questions": [1]
     }
 },
 {
@@ -14,7 +14,7 @@
     "fields": {
         "name": "Test Assignment 2",
         "author": 4,
-        "questions": []
+        "questions": [1]
     }
 }
 ]

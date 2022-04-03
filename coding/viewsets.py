@@ -139,6 +139,10 @@ class AssignmentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         serializer = self.get_serializer(self.queryset, many=True)
         return Response(serializer.data)
 
+    def retrieve(self, request, pk=None):
+        assignmentObj = get_object_or_404(self.queryset, pk=pk)
+        serializer = self.get_serializer(assignmentObj)
+        return Response(serializer.data)
 
 class LoginViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 

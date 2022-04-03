@@ -11,6 +11,8 @@ import Navbar from "../components/navbar/Navbar";
 import { Navigate } from "react-router";
 import StudentClasses from "./StudentClasses";
 import StudentClassTable from "./StudentClassTable";
+import StudentAssignmentTable from "./StudentAssignmentTable";
+
 
 const StudentDashboard = () => {
   const account = useSelector((state) => state.auth.account);
@@ -54,13 +56,10 @@ const StudentDashboard = () => {
     <ClassCodeForm data={data} />
     <Tabs>
       <div label="Classes">
-        <StudentClassDataDisplay/>
+        <StudentClassTable/>
       </div>
       <div label="Assignments">
-        List of assignments here!
-      </div>
-      <div label="Classes2">
-        <StudentClassTable/>
+        <StudentAssignmentTable/>
       </div>
     </Tabs>
     </div>
