@@ -139,6 +139,10 @@ class AssignmentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         serializer = self.get_serializer(self.queryset, many=True)
         return Response(serializer.data)
 
+    def retrieve(self, request, pk=None):
+        assignmentObj = get_object_or_404(self.queryset, pk=pk)
+        serializer = self.get_serializer(assignmentObj)
+        return Response(serializer.data)
 
 class LoginViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
@@ -217,13 +221,17 @@ class StudentClassViewset(viewsets.ModelViewSet, TokenObtainPairView):
 
     
     def list(self, request):
-        logger.warn("list from Classviewset")
+        logger.warn("list from StudentClassviewset")
+        studentId = self.request.query_params.get('studentId')
+        logger.warn(studentId)
+        student = User(id=studentId)
+        self.queryset = Class.objects.filter(students=student)
         serializer = self.get_serializer(self.queryset, many=True)
         
         return Response(serializer.data)
     
     def retrieve(self, request, pk=None):
-
+        #note from BW2: this isn't in use, may need update
         classObj = Class.objects.filter(students = pk)
         serializer = self.get_serializer(classObj, many=True)
         return Response(serializer.data)

@@ -8,7 +8,8 @@
         "active": true,
         "teacher": 4,
         "TAs": [],
-        "students": [1, 2, 3]
+        "students": [1, 2, 3],
+        "assignments": []
     }
 },
 {
@@ -20,7 +21,8 @@
         "active": true,
         "teacher": 5,
         "TAs": [],
-        "students": [1, 2]
+        "students": [1, 2],
+        "assignments": [1]
     }
 }
 ]
