@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import useSWR from 'swr';
 import {useSelector} from "react-redux";
 import {fetcher} from "../utils/axios";
+import { useNavigate } from "react-router";
 
 function TeacherClassTable(){
 
@@ -12,6 +13,7 @@ function TeacherClassTable(){
 
     const account = useSelector((state) => state.auth.account);
     const userId = account?.id;
+    const history = useNavigate();
 
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
@@ -57,6 +59,7 @@ function TeacherClassTable(){
                     { displayData }
                 </tbody>
             </table>
+            <button onClick={()=>history("/teacherCreateAssignment")}>Create an Assignment</button>
         </div>
     )
 }
