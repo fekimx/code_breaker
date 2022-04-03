@@ -72,6 +72,16 @@ pylint coding/
 
 npx eslint . --ext .js,.jsx,.ts,.tsx
 
+#### Heroku Deployment
+
+You need access to Heroku in order to deploy our application: https://dashboard.heroku.com/apps/code-breaker-proj
+
+Dyno formation is set in the Procfile
+
+This app requires the Heroku Postgres add-on.
+
+This app requires the heroku/nodejs and heroku/python buildpacks. 
+
 #### Additional Notes
 
 Note: Roman needed to make sure pg_config was on his PATH. This site contains instructions on how to work with this dependency if problems are encountered: https://www.psycopg.org/docs/install.html
