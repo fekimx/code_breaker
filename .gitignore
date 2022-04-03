@@ -2,13 +2,19 @@
 
 webpack-stats.json
 coding/static/
+#this should maybe not be in there
+coding/staticfiles/
+##########
+
 db.sqlite3
 
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
-
+.selenium-server-standalone-3.13.0.jar
+.selenium-server-standalone-3.13.0.jar.1
+.testing-6.8.7.jar
 # testing
 /coverage
 

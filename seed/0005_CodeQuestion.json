@@ -3,13 +3,56 @@
     "model": "coding.codequestion",
     "pk": 1,
     "fields": {
-        "name": "Test Question 1",
-        "description": "First Test Question",
-        "author": 3,
+        "name": "Question 1",
+        "description": "Determine if a number is divisible by 2",
+        "code": "def divisbleByTwo(n):\n",
+        "author": 16,
         "practice": false,
         "version": 1,
         "solutions": [1],
         "unitTests": [1]
+    }
+},
+{
+    "model": "coding.codequestion",
+    "pk": 2,
+    "fields": {
+        "name": "Question 2",
+        "description": "Calculate the sum of two numbers",
+        "code": "def Sum(a, b):\n",
+        "author": 16,
+        "practice": false,
+        "version": 1,
+        "solutions": [2],
+        "unitTests": [2]
+    }
+},
+{
+    "model": "coding.codequestion",
+    "pk": 3,
+    "fields": {
+        "name": "Question 3",
+        "description": "Remove the last 3 letters from the string",
+        "code": "def truncate(word):\n",
+        "author": 17,
+        "practice": false,
+        "version": 1,
+        "solutions": [3],
+        "unitTests": [3]
+    }
+},
+{
+    "model": "coding.codequestion",
+    "pk": 4,
+    "fields": {
+        "name": "Question 4",
+        "description": "Find the even number in this list:",
+        "code": "def removeEvens(numList):\n",
+        "author": 17,
+        "practice": false,
+        "version": 1,
+        "solutions": [4],
+        "unitTests": [4]
     }
 }
 ]

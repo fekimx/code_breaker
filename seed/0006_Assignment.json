@@ -4,8 +4,8 @@
     "pk": 1,
     "fields": {
         "name": "Test Assignment 1",
-        "author": 3,
-        "questions": []
+        "author": 16,
+        "questions": [1, 2, 3]
     }
 },
 {
@@ -13,8 +13,8 @@
     "pk": 2,
     "fields": {
         "name": "Test Assignment 2",
-        "author": 4,
-        "questions": []
+        "author": 17,
+        "questions": [2, 3, 4]
     }
 }
 ]
