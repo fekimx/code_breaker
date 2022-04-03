@@ -72,6 +72,9 @@ pylint coding/
 
 npx eslint . --ext .js,.jsx,.ts,.tsx
 
+#### Additional Notes
+
+Note: Roman needed to make sure pg_config was on his PATH. This site contains instructions on how to work with this dependency if problems are encountered: https://www.psycopg.org/docs/install.html
 
 Note: on Brian's machine (Windows), we had to run pip install python-dotenv in git bash to setup the local environment
    Commands that can solve build errors in pip: 
