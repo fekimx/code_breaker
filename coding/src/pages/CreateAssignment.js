@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {useSelector} from "react-redux";
 import axios from "axios";
 import { Field, Form, Formik } from "formik";
-import useSWR from 'swr';
+import Navbar from "../components/navbar/Navbar";
 
 function CreateAssignment() {
   const account = useSelector((state) => state.auth.account);
@@ -11,6 +11,8 @@ function CreateAssignment() {
   const [message] = useState("");
   const [questions, updateQuestions] = useState([])
   const [classes, updateClasses] = useState([])
+  const [successText, setSuccessText] = useState("");
+  const [dangerText, setDangerText] = useState("");
 
   const initialValues = {
     name: "",
@@ -20,7 +22,7 @@ function CreateAssignment() {
   };
 
   useEffect(() => {
-    axios.get(`/api/class/`, {})
+    axios.get(`/api/class/?teacherId=` + userId, {})
     .then((res) => {
       const classOptions = []
       for (let classFromApi of res.data) {
@@ -55,17 +57,21 @@ function CreateAssignment() {
   
   const handleCreateAssignment = (values) => {
     console.log(values);
+    clearTexts();
     axios.post(`/api/assignment/`, { author: userId, name: values.name, questions: values.questions, class: values.class })
     .then((res) => {
       console.log(res);
+      setSuccessText("Your question was created successfully!");
     })
     .catch((err) => {
       console.log("Received an error while creating question", err);
+      setDangerText("There was an error while creating your question!");
     });
   };
   
   return (
   <div>
+    <Navbar/>
     <div className="h-screen flex bg-gray-bg1">
       <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
@@ -109,6 +115,8 @@ function CreateAssignment() {
             >
               Create
             </button>
+            <div className="text-success">{successText}</div>
+            <div className="text-danger">{dangerText}</div>
           </div>
           </Form>
         </Formik>
