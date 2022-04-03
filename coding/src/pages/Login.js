@@ -98,11 +98,12 @@ function Login() {
       <div className="flex justify-center items-center mt-6">
      <button type="submit" className="btn btn-primary btn-block">Submit</button>
      <p className="forgot-password text-right">
-                Forgot <a href="#">password?</a>
+                Forgot your <a href="#">password?</a>
             </p>
       </div>
     </form>
-  </div></div>
+  </div>
+  </div>
 </div>
   );
 }

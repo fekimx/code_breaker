@@ -16,7 +16,7 @@ pipenv shell
 python manage.py runserver --settings=code_breaker.local_settings
 
 ## React Local Development
-
+npm install styled-components (styles and formatting for the homepage)
 npm run dev
 
 ### Windows Notes
