@@ -110,6 +110,12 @@ function Register() {
           <div className="form-group" hidden={false}>
             {message}
           </div>
+      <div className="form-group">
+                <div className="custom-control custom-checkbox">
+                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                    <label className="custom-control-label" htmlFor="customCheck1">I accept all terms & conditions</label>
+                </div>
+            </div>
           <div className="flex justify-center items-center mt-6">
             <button
               type="submit"
@@ -120,7 +126,7 @@ function Register() {
             </button>
           </div>
           <p className="forgot-password text-right">
-                    Already registered <a href="/login">sign in?</a>
+                    Already registered? <a href="/login">Sign In</a>
                 </p>
         </form>
       </div>
