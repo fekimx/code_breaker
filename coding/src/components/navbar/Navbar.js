@@ -1,9 +1,27 @@
 import React, { Component } from 'react';
 import { MenuItems } from "./MenuItems";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 import '../../App.css';
 
+const NavbarContainer = styled.div`
+  width: 100%;
+  height: 80px;
+  z-index: 20;
+  background: linear-gradient(90deg, rgb(61, 83, 207) 0%, rgb(46, 81, 238) 100%);
+`;
 
+const NavbarWrap = styled.div`
+  width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  z-index: 20;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+`;
 class Navbar extends Component {
     state = { clicked: false}
 
@@ -13,10 +31,10 @@ class Navbar extends Component {
 
     render() {
         return(
-            <nav className="NavbarItems">
-                <h1 className="navbar-logo">Code-Breaker<i className="fab fa-react"></i></h1>
+            <NavbarContainer>
+                <NavbarWrap>
+                <h1 className="navbar-logo">Code-Breaker</h1>
                 <div className="menu-icon" onClick={this.handleClick}>
-                <i className={this.state.clicked ? 'fas fa-times' : 'fa-solid fa-bars'}></i>
                 </div>
                <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'} >
                     {MenuItems.map((item, index) => {
@@ -30,9 +48,10 @@ class Navbar extends Component {
                     })}
 
                 </ul>
-            </nav>
+                </NavbarWrap>
+            </NavbarContainer>
         )
-    }
-}
+    };
+};
 
 export default Navbar
