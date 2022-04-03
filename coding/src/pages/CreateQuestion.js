@@ -111,6 +111,13 @@ function CreateQuestion() {
   const [solutionsData, setSolutionsData] = useState([]);
   const [unitTests, setUnitTests] = useState([unitTestHTMLByNum(1)]);
   const [unitTestsData, setUnitTestsData] = useState([]);
+  const [successText, setSuccessText] = useState("");
+  const [dangerText, setDangerText] = useState("");
+
+  const clearTexts = () => {
+    setSuccessText("");
+    setDangerText("");
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -132,12 +139,15 @@ function CreateQuestion() {
   });
 
   const handleCreateQuestion = (name, description, code) => {
+    clearTexts();
     console.log(unitTestsData);
     axios.post(`/api/question/`, { userId, name, description, code, solutions: solutionsData, unitTests: unitTestsData })
     .then((res) => {
       console.log(res);
+      setSuccessText("Your question was created successfully!");
     })
     .catch((err) => {
+      setDangerText("There was an error while creating your question!");
       console.log("Received an error while creating question", err);
     });
   };
@@ -205,6 +215,8 @@ function CreateQuestion() {
             >
               Create
             </button>
+            <div className="text-success">{successText}</div>
+            <div className="text-danger">{dangerText}</div>
           </div>
         </form>
       </div>
