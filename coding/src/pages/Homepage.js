@@ -1,12 +1,14 @@
 import React from "react";
 import Navbar from "../components/navbar/Navbar";
 import "../App.css"
+import Hero from "../components/Hero";
+
 function Homepage() {
 
   return (
       <div>
           <Navbar/>
-          <h2>Ready to learn & practice coding?</h2>
+          <Hero/>
       </div>
   );
 }
