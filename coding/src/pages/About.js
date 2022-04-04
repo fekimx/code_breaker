@@ -7,13 +7,23 @@ const About = () => {
   const history = useNavigate();
   
   return (
-    <div>
-      <Navbar/>
-      <h1>About code-breaker</h1>
-      <p>code-breaker is the easiest way for high school computer science teachers to assign asynchronous after-school assignments.</p>
-      <p>By leveraging the existing content, teachers can quickly spin up lesson plans to augment in-class instruction...</p>
-      <p>but the system is also flexible enough to allow changes to the questions or auto-grading unit-tests.</p>
+  <div className="h-screen flex bg-gray-bg1">
+    <Navbar/>
+    <div className="page-body">
+      <h1>About code-breaker.io</h1>
+      <h2>Origin</h2>
+      <p>Code-breaker.io began as a capstone project for a group of graduating students pursuing their Software Engineering MS in 2022.  Seeing a need for a turnkey educational aid to teach high school students the basics in computer programming, these six members valiantly charged forward in the creation of code-breaker to fill this need.</p>
+      <p>As soon as a teacher signs up, they have access to all existing questions on the platform.  They are able to pull those groups of questions and turn them into lessons immediately, or they can modify them to better fit their vision.  For example, if there’s an existing set of questions revolving around recursion, but the teacher wants to break it into two lessons.  Coupled with the goal of a one-minute signup process for students, the ease of getting started on the platform is an attractive alternative to existing solutions.</p>
+      <p>In addition to keeping the process easy for the teacher, a goal was to make it exciting for students.  Our competitive mode lets the teacher start a group-wide multiple-choice challenge for their entire class.  Each student will face the same questions and battle their peers for the highest ranking on the leaderboard.  Teachers derive value from this addition through content reinforcement of the quiz and the ability to monitor progress.</p>
+      <h2>Roadmap</h2>
+      <p>The goal of code-breaker is to set the standard for teacher usability and student engagement, targeting high school computer science classrooms.</p>
+      <p>As of April 2022, code-breaker supports instruction in the <a href="https://www.python.org">python</a> programming language.  Code execution and testing is done via remote fetch, so an active web connection is required.</p>
+      <p>Future updates include adding more lessons/questions, additional programming language support, and enhancing the usability of the competition mode.</p>
+      <h2>Contact</h2>
+      <p>We would love to hear from you!  Please send all comments/questions to <a href="mailto:project.codebreaker@gmail.com">project.codebreaker@gmail.com</a>.</p>
+      
     </div>
+  </div>
   );
 };
   
