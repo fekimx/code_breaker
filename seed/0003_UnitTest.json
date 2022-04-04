@@ -1,20 +1,363 @@
 [
-{
-    "model": "coding.unittest",
-    "pk": 1,
-    "fields": {
-        "input": "2",
-        "expectedOutput": "4",
-        "visible": true
+    {
+        "model": "coding.unittest",
+        "pk": 1,
+        "fields": {
+            "input": "isDivisibleByTwo(4)",
+            "expectedOutput": "True",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 2,
+        "fields": {
+            "input": "isDivisibleByTwo(3)",
+            "expectedOutput": "False",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 3,
+        "fields": {
+            "input": "sum(2, 4)",
+            "expectedOutput": "6",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 4,
+        "fields": {
+            "input": "sum(3, 1)",
+            "expectedOutput": "4",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 5,
+        "fields": {
+            "input": "printHelloWorld()",
+            "expectedOutput": "Hello World",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 6,
+        "fields": {
+            "input": "printHelloWorld()",
+            "expectedOutput": "Hello World",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 7,
+        "fields": {
+            "input": "def setVariable(3)",
+            "expectedOutput": "3",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 8,
+        "fields": {
+            "input": "def setVariable(4)",
+            "expectedOutput": "4",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 9,
+        "fields": {
+            "input": "product(3, 2)",
+            "expectedOutput": "6",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 10,
+        "fields": {
+            "input": "product(4, 3)",
+            "expectedOutput": "12",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 11,
+        "fields": {
+            "input": "isThree(2)",
+            "expectedOutput": "False",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 12,
+        "fields": {
+            "input": "isThree(3)",
+            "expectedOutput": "True",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 13,
+        "fields": {
+            "input": "oddOrEven(2)",
+            "expectedOutput": "True",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 14,
+        "fields": {
+            "input": "oddOrEven(1)",
+            "expectedOutput": "False",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 15,
+        "fields": {
+            "input": "greaterThan(2, 3)",
+            "expectedOutput": "False",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 16,
+        "fields": {
+            "input": "greaterThan(5, 2)",
+            "expectedOutput": "True",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 17,
+        "fields": {
+            "input": "evenOrLess(11)",
+            "expectedOutput": "False",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 18,
+        "fields": {
+            "input": "evenOrLess(3)",
+            "expectedOutput": "True",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 19,
+        "fields": {
+            "input": "oddAndMore(7)",
+            "expectedOutput": "True",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 20,
+        "fields": {
+            "input": "oddAndMore(8)",
+            "expectedOutput": "False",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 21,
+        "fields": {
+            "input": "findEven([1, 3, 5, 8])",
+            "expectedOutput": "8",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 22,
+        "fields": {
+            "input": "findEven([1, 3, 5, 4])",
+            "expectedOutput": "4",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 23,
+        "fields": {
+            "input": "findOdd([2, 4, 7, 6])",
+            "expectedOutput": "7",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 24,
+        "fields": {
+            "input": "findEven([2, 3, 4, 6])",
+            "expectedOutput": "3",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 25,
+        "fields": {
+            "input": "evenSum([2, 3, 4, 6])",
+            "expectedOutput": "12",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 26,
+        "fields": {
+            "input": "evenSum([2, 3, 4, 5])",
+            "expectedOutput": "6",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 27,
+        "fields": {
+            "input": "oddSum([1, 3, 4, 5])",
+            "expectedOutput": "9",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 28,
+        "fields": {
+            "input": "oddSum([2, 3, 4, 5])",
+            "expectedOutput": "8",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 29,
+        "fields": {
+            "input": "lessFiveSum([2, 3, 4, 5])",
+            "expectedOutput": "9",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 30,
+        "fields": {
+            "input": "lessFiveSum([2, 3, 5])",
+            "expectedOutput": "5",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 31,
+        "fields": {
+            "input": "truncate('test')",
+            "expectedOutput": "t",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 32,
+        "fields": {
+            "input": "truncate('unit')",
+            "expectedOutput": "u",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 33,
+        "fields": {
+            "input": "lenString('unittest')",
+            "expectedOutput": "8",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 34,
+        "fields": {
+            "input": "lenString('test')",
+            "expectedOutput": "4",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 35,
+        "fields": {
+            "input": "addStrings('un', 'it')",
+            "expectedOutput": "unit",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 36,
+        "fields": {
+            "input": "addStrings('te', 'st')",
+            "expectedOutput": "test",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 37,
+        "fields": {
+            "input": "firstLetter('unit')",
+            "expectedOutput": "u",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 38,
+        "fields": {
+            "input": "firstLetter('test')",
+            "expectedOutput": "t",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 39,
+        "fields": {
+            "input": "containsE('unittest)",
+            "expectedOutput": "False",
+            "visible": true
+        }
+    },
+    {
+        "model": "coding.unittest",
+        "pk": 40,
+        "fields": {
+            "input": "containsE('check)",
+            "expectedOutput": "True",
+            "visible": true
+        }
     }
-},
-{
-    "model": "coding.unittest",
-    "pk": 2,
-    "fields": {
-        "input": "3",
-        "expectedOutput": "9",
-        "visible": true
-    }
-}
-]
+    ]
+    
