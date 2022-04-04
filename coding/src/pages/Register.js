@@ -48,12 +48,21 @@ function Register() {
       password: Yup.string().trim().required("Password is required"),
       username: Yup.string().trim().required("Username is required")
     }),
-  });
+  })
+  const [agree, setAgree] = useState(false);
+
+  const checkboxHandler = () => {
+    // if agree === true, it will be set to false
+    // if agree === false, it will be set to true
+    setAgree(!agree);
+    // Don't miss the exclamation mark
+  }
+  ;
 
   return (
     <div className="h-screen flex bg-gray-bg1"> <Navbar/>
+    <div className="pad">
     <div class="container">
-      <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
           Register an account
         </h1>
@@ -112,14 +121,14 @@ function Register() {
           </div>
       <div className="form-group">
                 <div className="custom-control custom-checkbox">
-                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                    <label className="custom-control-label" htmlFor="customCheck1">I accept all terms & conditions</label>
+                    <input type="checkbox" className="custom-control-input" id="agree" onChange={checkboxHandler}/>
+                    <label className="custom-control-label" htmlFor="agree">I accept all</label><a href="/terms"> terms and conditions</a>
                 </div>
             </div>
           <div className="flex justify-center items-center mt-6">
-            <button
+            <button 
               type="submit"
-              disabled={loading}
+              disabled={!agree}
               className="btn btn-primary btn-block"
             >
               Register
