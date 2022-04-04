@@ -354,7 +354,7 @@
         "model": "coding.unittest",
         "pk": 40,
         "fields": {
-            "input": "containsE('check)",
+            "input": "containsE('check')",
             "expectedOutput": "True",
             "visible": true
         }
