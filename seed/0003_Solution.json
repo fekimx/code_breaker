@@ -20,7 +20,13 @@
             "code": "def printHelloWorld():\n    print('Hello World')"
         }
     },
-    
+    {
+        "model": "coding.solution",
+        "pk": 4,
+        "fields": {
+            "code": "def setVariable(n):\n    var = n    return var"
+        }
+    },
     {
         "model": "coding.solution",
         "pk": 5,
