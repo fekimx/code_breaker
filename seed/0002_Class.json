@@ -1,28 +1,28 @@
 [
-{
-    "model": "coding.class",
-    "pk": 1,
-    "fields": {
-        "name": "TestClass1",
-        "secretKey": "001",
-        "active": true,
-        "teacher": 4,
-        "TAs": [],
-        "students": [1, 2, 3],
-        "assignments": []
-    }
-},
-{
-    "model": "coding.class",
-    "pk": 2,
-    "fields": {
-        "name": "TestClass2",
-        "secretKey": "002",
-        "active": true,
-        "teacher": 5,
-        "TAs": [],
-        "students": [1, 2],
-        "assignments": [1]
-    }
-}
-]
+    {
+        "model": "coding.class",
+        "pk": 1,
+        "fields": {
+            "name": "Intro to Python",
+            "secretKey": "001",
+            "active": true,
+            "teacher": 16,
+            "TAs": [21, 22],
+            "students": [1, 3, 5, 7, 9, 11, 13, 14, 15], 
+            "assignments": [1, 4]
+        }
+    },
+    {
+        "model": "coding.class",
+        "pk": 2,
+        "fields": {
+            "name": "Advanced Python",
+            "secretKey": "002",
+            "active": true,
+            "teacher": 16,
+            "TAs": [23, 25],
+            "students": [2, 4, 6, 8, 10, 12],
+            "assignments": [2, 3]
+        }
+    } 
+    ]
