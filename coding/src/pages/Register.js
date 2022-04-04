@@ -52,6 +52,7 @@ function Register() {
 
   return (
     <div className="h-screen flex bg-gray-bg1"> <Navbar/>
+    <div class="container">
       <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
           Register an account
@@ -109,6 +110,12 @@ function Register() {
           <div className="form-group" hidden={false}>
             {message}
           </div>
+      <div className="form-group">
+                <div className="custom-control custom-checkbox">
+                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                    <label className="custom-control-label" htmlFor="customCheck1">I accept all terms & conditions</label>
+                </div>
+            </div>
           <div className="flex justify-center items-center mt-6">
             <button
               type="submit"
@@ -119,10 +126,11 @@ function Register() {
             </button>
           </div>
           <p className="forgot-password text-right">
-                    Already registered <a href="/login">sign in?</a>
+                    Already registered? <a href="/login">Sign In</a>
                 </p>
         </form>
       </div>
+    </div>
     </div>
   );
 }

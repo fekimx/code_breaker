@@ -53,6 +53,7 @@ function Login() {
   });
 
   return (<div className="h-screen flex bg-gray-bg1"> <Navbar/>
+  <div class="container">
   <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
     <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
       Log in to your account
@@ -97,10 +98,11 @@ function Login() {
       <div className="flex justify-center items-center mt-6">
      <button type="submit" className="btn btn-primary btn-block">Submit</button>
      <p className="forgot-password text-right">
-                Forgot <a href="#">password?</a>
+                Forgot your <a href="#">password?</a>
             </p>
       </div>
     </form>
+  </div>
   </div>
 </div>
   );

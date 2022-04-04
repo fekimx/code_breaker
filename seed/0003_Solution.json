@@ -1,0 +1,136 @@
+[
+    {
+        "model": "coding.solution",
+        "pk": 1,
+        "fields": {
+            "code": "def divisbleByTwo(n):\n    if n%2 == 0:\n return(True)\n else:\n    return(False)"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 2,
+        "fields": {
+            "code": "def sum(a, b):\n    sum = a + b\n    return(sum)"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 3,
+        "fields": {
+            "code": "def printHelloWorld():\n    print('Hello World')"
+        }
+    },
+    
+    {
+        "model": "coding.solution",
+        "pk": 5,
+        "fields": {
+            "code": "def product(a, b):\n    product = a * b\n    return(product)"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 6,
+        "fields": {
+            "code": "def isThree(n):\n    if n == 3:\n        return(True)\n    else:        return(False)"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 7,
+        "fields": {
+            "code": "def oddOrEven(n):\n    if n%2 == 0:\n        return('Even')\n    else:\n        return('Odd')"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 8,
+        "fields": {
+            "code": "def greaterThan(x, y):\n    if x>y == 0:\n        return(True)\n    else:\n        return(False)"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 9,
+        "fields": {
+            "code": "def evenOrLess(n):\n    if n%2 == 0 or n<10:\n        return(True)\n    else:\n        return(False)"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 10,
+        "fields": {
+            "code": "def oddAndMore(n):\n    if n%2 != 0 and n>5:\n        return(True)\n    else:\n        return(False)"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 11,
+        "fields": {
+            "code": "def findEven(numList):\n   for n in numList:\n        if n % 2 == 0:\n            return(n)"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 12,
+        "fields": {
+            "code": "def findOdd(numList):\n   for n in numList:\n        if n % 2 != 0:\n            return(n)"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 13,
+        "fields": {
+            "code": "def evenSum(numList):\n    sum = 0\n    for n in numList:\n        if n % 2 == 0:\n        sum = n + sum\n        return(sum)"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 14,
+        "fields": {
+            "code": "def oddSum(numList):\n    sum = 0\n    for n in numList:\n        if n % 2 != 0:\n        sum = n + sum\n        return(sum)"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 15,
+        "fields": {
+            "code": "def lessFiveSum(numlist):\n    sum = 0\n    for n in numList:\n        if n < 5:\n        sum = n + sum\n        return(sum)"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 16,
+        "fields": {
+            "code": "def truncate(word):\n    newWord = word[:-3]\n    return(newWord)"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 17,
+        "fields": {
+            "code": "def lenString(word):\n    return(len(word))"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 18,
+        "fields": {
+            "code": "def addStrings(word1, word2):\n    return(word1+word2)"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 19,
+        "fields": {
+            "code": "def firstLetter(word):\n   return(word[0])"
+        }
+    },
+    {
+        "model": "coding.solution",
+        "pk": 20,
+        "fields": {
+            "code": "def containsE(word):\n   if 'e' in word:\n        return(True)\n    else:\n        return(False)"
+        }
+    }
+    ]

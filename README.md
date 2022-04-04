@@ -16,7 +16,7 @@ pipenv shell
 python manage.py runserver --settings=code_breaker.local_settings
 
 ## React Local Development
-
+npm install styled-components (styles and formatting for the homepage)
 npm run dev
 
 ### Windows Notes
@@ -72,6 +72,19 @@ pylint coding/
 
 npx eslint . --ext .js,.jsx,.ts,.tsx
 
+#### Heroku Deployment
+
+You need access to Heroku in order to deploy our application: https://dashboard.heroku.com/apps/code-breaker-proj
+
+Dyno formation is set in the Procfile
+
+This app requires the Heroku Postgres add-on.
+
+This app requires the heroku/nodejs and heroku/python buildpacks. 
+
+#### Additional Notes
+
+Note: Roman needed to make sure pg_config was on his PATH. This site contains instructions on how to work with this dependency if problems are encountered: https://www.psycopg.org/docs/install.html
 
 Note: on Brian's machine (Windows), we had to run pip install python-dotenv in git bash to setup the local environment
    Commands that can solve build errors in pip: 

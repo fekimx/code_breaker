@@ -1,0 +1,39 @@
+[
+    {
+        "model": "coding.assignment",
+        "pk": 1,
+        "fields": {
+            "name": "Basic Operators",
+            "author": 16,
+            "questions": [1, 2, 3, 4, 5]
+        }
+    },
+    {
+        "model": "coding.assignment",
+        "pk": 2,
+        "fields": {
+            "name": "Conditions",
+            "author": 16,
+            "questions": [6, 7, 8, 9, 10]
+        }
+    },
+    {
+        "model": "coding.assignment",
+        "pk": 3,
+        "fields": {
+            "name": "For Loops",
+            "author": 16,
+            "questions": [11, 12, 13, 14, 15]
+        }
+    },
+    {
+        "model": "coding.assignment",
+        "pk": 4,
+        "fields": {
+            "name": "Strings",
+            "author": 16,
+            "questions": [16, 17, 18, 19, 20]
+        }
+    }
+    ]
+    

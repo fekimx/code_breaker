@@ -1,0 +1,283 @@
+[
+    {
+        "model": "coding.codequestion",
+        "pk": 1,
+        "fields": {
+            "name": "Question 1",
+            "description": "Determine if a number is divisible by 2",
+            "code": "def divisbleByTwo(n):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [1],
+            "unitTests": [1, 2]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 2,
+        "fields": {
+            "name": "Question 2",
+            "description": "Calculate the sum of two numbers",
+            "code": "def sum(a, b):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [2],
+            "unitTests": [3, 4]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 3,
+        "fields": {
+            "name": "Question 3",
+            "description": "Print Hello World",
+            "code": "def printHelloWorld():\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [3],
+            "unitTests": [5, 6]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 4,
+        "fields": {
+            "name": "Question 4",
+            "description": "set the Variable var equal to n and return it",
+            "code": "def setVariable(n):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [4],
+            "unitTests": [7, 8]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 5,
+        "fields": {
+            "name": "Question 5",
+            "description": "Find the product of these two numbers",
+            "code": "def product(n):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [5],
+            "unitTests": [9, 10]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 6,
+        "fields": {
+            "name": "Question 6",
+            "description": "Return true if the variable is equal to 3",
+            "code": "def isThree(n):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [6],
+            "unitTests": [11, 12]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 7,
+        "fields": {
+            "name": "Question 7",
+            "description": "Return whether a number is even or odd",
+            "code": "def oddOrEven(n):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [7],
+            "unitTests": [13, 14]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 8,
+        "fields": {
+            "name": "Question 8",
+            "description": "Return true if x is greater than y",
+            "code": "def greaterThan(x, y):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [8],
+            "unitTests": [15, 16]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 9,
+        "fields": {
+            "name": "Question 9",
+            "description": "Return true if n is even or less than 10",
+            "code": "def evenOrLess(n):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [9],
+            "unitTests": [17, 18]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 10,
+        "fields": {
+            "name": "Question 10",
+            "description": "Return true if n is odd and greater than 5",
+            "code": "def oddAndMore(n):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [10],
+            "unitTests": [19, 20]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 11,
+        "fields": {
+            "name": "Question 11",
+            "description": "Return the even number in this list:",
+            "code": "def findEven(numList):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [11],
+            "unitTests": [21, 22]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 12,
+        "fields": {
+            "name": "Question 12",
+            "description": "Return the odd number in this list:",
+            "code": "def findOdd(numList):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [12],
+            "unitTests": [23, 24]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 13,
+        "fields": {
+            "name": "Question 13",
+            "description": "Add all the even numbers in the list:",
+            "code": "def evenSum(numList):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [13],
+            "unitTests": [25, 26]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 14,
+        "fields": {
+            "name": "Question 14",
+            "description": "Add all the odd numbers in the list:",
+            "code": "def oddSum(numList):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [14],
+            "unitTests": [27, 28]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 15,
+        "fields": {
+            "name": "Question 15",
+            "description": "Add up all the numbers that are less than five",
+            "code": "def lessFiveSum(numlist):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [15],
+            "unitTests": [29, 30]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 16,
+        "fields": {
+            "name": "Question 16",
+            "description": "Remove the last 3 letters from the string",
+            "code": "def truncate(word):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [16],
+            "unitTests": [31, 32]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 17,
+        "fields": {
+            "name": "Question 17",
+            "description": "Return the length of the string",
+            "code": "def lenString(word):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [17],
+            "unitTests": [33, 34]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 18,
+        "fields": {
+            "name": "Question 18",
+            "description": "Add these two strings together",
+            "code": "def addStrings(word1, word2):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [18],
+            "unitTests": [35, 36]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 19,
+        "fields": {
+            "name": "Question 19",
+            "description": "Get the first letter of this string",
+            "code": "def firstLetter(word):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [19],
+            "unitTests": [37, 38]
+        }
+    },
+    {
+        "model": "coding.codequestion",
+        "pk": 20,
+        "fields": {
+            "name": "Question 20",
+            "description": "Check to see if the string contains the letter 'e' ",
+            "code": "def containsE(word):\n",
+            "author": 16,
+            "practice": false,
+            "version": 1,
+            "solutions": [20],
+            "unitTests": [39, 40]
+        }
+    }
+    ]
+    
