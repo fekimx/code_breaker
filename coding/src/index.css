@@ -25,6 +25,10 @@ code {
     monospace;
 }
 
+.pad {
+  position: relative;
+  padding: 13px;
+}
 .container{
   position: relative;
   padding: 50px;
