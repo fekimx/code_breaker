@@ -125,13 +125,16 @@ class AssignmentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         print(serializer)
         try:
             serializer.is_valid(raise_exception=True)
-            serializer.save()
+            assignment = serializer.save()
             logger.warn("Valid Serializer")
             
         except TokenError as e:
             logger.warn("Token Error")
             raise InvalidToken(e.args[0])
-        
+
+        assignmentForClass = Class.objects.get(id=request.data['class'])
+        assignmentForClass.assignments.add(assignment)
+
         return Response({}, status=status.HTTP_201_CREATED)  
 
     def list(self, request):

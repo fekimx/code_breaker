@@ -155,8 +155,10 @@ function CreateQuestion() {
   return (
   <div>
     <Navbar/>
+    <div className="pad">
+    <div class="container">
     <div className="h-screen flex bg-gray-bg1">
-      <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
+      <div>
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
           Create a Question
         </h1>
@@ -220,6 +222,8 @@ function CreateQuestion() {
           </div>
         </form>
       </div>
+    </div>
+    </div>
     </div>
   </div>
   )
