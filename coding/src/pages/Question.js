@@ -105,6 +105,8 @@ class Question extends React.Component {
     return (
     <div>
       <Navbar/>
+      <div className="pad">
+      <div class="container">
       <h3>{this.state.name}</h3>
       <div>{this.state.description}</div>
       <CodeMirror
@@ -122,6 +124,8 @@ class Question extends React.Component {
       <button onClick={ () => this.runCode() }>Run</button>
       <div style={{backgroundColor: "red"}}>
         {this.state.stderr}
+      </div>
+      </div>
       </div>
     </div>
     )

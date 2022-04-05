@@ -5,7 +5,6 @@ import authSlice from "../store/slices/auth";
 import useSWR from 'swr';
 import {fetcher} from "../utils/axios";
 import Tabs from './Tabs';
-import ClassCodeForm from './ClassCodeForm';
 import StudentClassDataDisplay from './ClassTable';
 import Navbar from "../components/navbar/Navbar";
 import { Navigate } from "react-router";
@@ -40,20 +39,10 @@ const StudentDashboard = () => {
 
   return (
     <div className="w-full h-screen">
-      <div className="w-full p-6">
-        <button onClick={handleLogout} className="">Logout</button>
-      </div>
       <Navbar/>
-      {
-            user.data ?
-                <div className="w-full h-full text-center items-center">
-                    <p className="self-center my-auto">Welcome, {user.data?.username}</p>
-                </div>
-                :
-                <p className="text-center items-center">Loading ...</p>
-        }
-    <h1>My Dashboard</h1>
-    <ClassCodeForm data={data} />
+      <div className="pad">
+      <div class="container">
+    <h1>Welcome, {user.data?.username}</h1>
     <Tabs>
       <div label="Classes">
         <StudentClassTable/>
@@ -62,6 +51,8 @@ const StudentDashboard = () => {
         <StudentAssignmentTable/>
       </div>
     </Tabs>
+    </div>
+    </div>
     </div>
   );
 };

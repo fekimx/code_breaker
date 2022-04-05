@@ -12,14 +12,15 @@ class ClassCodeForm extends Component {
     super(props);
 
     const { data } = this.props;
-    const { classCode: code } = data;
+    const { classCode: code, fetchLatestClasses: fetchLatestClasses } = data;
 
     this.state = {
       classCode: code,
       userId: props.data.userId,
       showData: false,
       showButton: false,
-      showButtonName: "Add Class"
+      showButtonName: "Add Class",
+      fetchLatestClasses: fetchLatestClasses
     };
 
     this.handleOnchage = this.handleOnchage.bind(this);
@@ -66,6 +67,7 @@ class ClassCodeForm extends Component {
         showData: !prevState.showData,
         showButtonName: "SAVE"
       }));
+      this.state.fetchLatestClasses();
     })
     .catch(function (error) {
       console.log(error);
