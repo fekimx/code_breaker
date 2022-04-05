@@ -33,7 +33,7 @@ class Navbar extends Component {
         return(
             <NavbarContainer>
                 <NavbarWrap>
-                <h1 className="navbar-logo">Code-Breaker</h1>
+                <h1 className="navbar-logo" data-testid="navbar-header">Code-Breaker</h1>
                 <div className="menu-icon" onClick={this.handleClick}>
                 </div>
                <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'} >
