@@ -64,7 +64,7 @@ class NewNav extends Component {
         return(
             <NavbarContainer>
                 <NavbarWrap>
-                <h1 className="navbar-logo">Code-Breaker</h1><NavMenu>
+                <h1 className="fa-react">Code -Breaker</h1><NavMenu>
                 <div className="menu-icon" onClick={this.handleClick}>
                 </div>
                <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'} >

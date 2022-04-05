@@ -15,13 +15,13 @@ padding-left: 220px;
 padding-top: 143px;`
 ;
 const Title = styled.p`
-font-size: 55px;
+font-size: 65px;
 color: #04050a;
 font-weight: 400;
 `;
 const Desc = styled.p`
 width: 472px;
-font-size: 20px;
+font-size: 30px;
 color: #9ea0ac;
 line-height: 30px;
 margin-top: 58px;
