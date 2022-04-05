@@ -21,7 +21,7 @@ font-weight: 400;
 `;
 const Desc = styled.p`
 width: 472px;
-font-size: 30px;
+font-size: 25px;
 color: #9ea0ac;
 line-height: 30px;
 margin-top: 58px;
