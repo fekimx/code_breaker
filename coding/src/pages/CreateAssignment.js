@@ -18,12 +18,14 @@ function CreateAssignment() {
     name: "",
     questions: questions,
     classes: classes,
-    class: 0
+    class: 1
   };
 
   useEffect(() => {
     axios.get(`/api/class/?teacherId=` + userId, {})
     .then((res) => {
+      console.log("Got classes");
+      console.log(res);
       const classOptions = []
       for (let classFromApi of res.data) {
         classOptions.push(
@@ -54,6 +56,11 @@ function CreateAssignment() {
       console.log("Received an error while listing questions", err);
     });
   }, []);
+
+  const clearTexts = () => {
+    setSuccessText("");
+    setDangerText("");
+  }
   
   const handleCreateAssignment = (values) => {
     console.log(values);
@@ -61,19 +68,21 @@ function CreateAssignment() {
     axios.post(`/api/assignment/`, { author: userId, name: values.name, questions: values.questions, class: values.class })
     .then((res) => {
       console.log(res);
-      setSuccessText("Your question was created successfully!");
+      setSuccessText("Your assignment was created successfully!");
     })
     .catch((err) => {
       console.log("Received an error while creating question", err);
-      setDangerText("There was an error while creating your question!");
+      setDangerText("There was an error while creating your assignment!");
     });
   };
   
   return (
   <div>
     <Navbar/>
+    <div className="pad">
+    <div class="container">
     <div className="h-screen flex bg-gray-bg1">
-      <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
+      <div>
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
           Create an Assignment
         </h1>
@@ -121,6 +130,8 @@ function CreateAssignment() {
           </Form>
         </Formik>
       </div>
+    </div>
+    </div>
     </div>
   </div>
   )

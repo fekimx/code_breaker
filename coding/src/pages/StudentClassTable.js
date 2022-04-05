@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import useSWR from 'swr';
 import {useSelector} from "react-redux";
 import {fetcher} from "../utils/axios";
+import ClassCodeForm from './ClassCodeForm';
 
 
 function StudentClassTable(){
@@ -37,7 +38,7 @@ function StudentClassTable(){
         });
     }
 
-    const data = { classCode: "", teacherId: account?.id, fetchLatestClasses: fetchLatestClasses};
+    const data = { classCode: "", userId: account?.id, fetchLatestClasses: fetchLatestClasses};
 
     useEffect(() => {
         fetchLatestClasses();
@@ -45,6 +46,7 @@ function StudentClassTable(){
 
     return(
         <div>
+            <ClassCodeForm data={data} />
             <table className="table-striped">
                 <thead>
                     <tr>

@@ -9,6 +9,8 @@ function TeacherDashboard() {
   return (
     <div>
       <Navbar/>
+      <div className="pad">
+      <div class="container">
       <h1>Teacher Dashboard</h1>
       <Tabs>
         <div label="Classes">
@@ -21,6 +23,8 @@ function TeacherDashboard() {
           <TeacherQuestionTable/>
         </div>
       </Tabs>
+      </div>
+      </div>
     </div>
   );
 }
