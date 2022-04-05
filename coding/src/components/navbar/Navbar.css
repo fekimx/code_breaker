@@ -10,13 +10,17 @@
 .navbar-logo {
     color:rgb(241, 241, 247);
     justify-self: start;
-    margin-left: 1px;
     cursor: pointer;
+    
 }
 
 .fa-react {
     margin-left: 0.5rem;
-    font-size: 1.6rem;
+    height: 75px;
+    color:rgb(241, 241, 247);
+    font-size: 2rem;
+    margin-left: -15rem;
+    text-align: left;
 }
 
 .nav-menu {
@@ -27,7 +31,7 @@
     text-align: center;
     width: 70vw;
     justify-content: end;
-    margin-right: 2rem;
+    margin-left: 20rem;
 }
 
 .nav-links {
