@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {useSelector} from "react-redux";
 import axios from "axios";
 import { Field, Form, Formik } from "formik";
-import Navbar from "../components/navbar/Navbar";
+import NewNav from "../components/navbar/NewNav";
 
 function CreateAssignment() {
   const account = useSelector((state) => state.auth.account);
@@ -78,7 +78,7 @@ function CreateAssignment() {
   
   return (
   <div>
-    <Navbar/>
+    <NewNav/>
     <div className="pad">
     <div class="container">
     <div className="h-screen flex bg-gray-bg1">
