@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MenuItems } from "./MenuItems";
+import { NewMenu } from "./NewMenu";
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
@@ -53,7 +53,7 @@ const NavBtnLink = styled(Link)`
     color: #010606;
   }
 `;
-class Navbar extends Component {
+class NewNav extends Component {
     state = { clicked: false}
 
     handleClick = () => {
@@ -68,7 +68,7 @@ class Navbar extends Component {
                 <div className="menu-icon" onClick={this.handleClick}>
                 </div>
                <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'} >
-                    {MenuItems.map((item, index) => {
+                    {NewMenu.map((item, index) => {
                         return (
                             <li key={index}>
                                 <a className={item.cName} href={item.url}>
@@ -77,7 +77,7 @@ class Navbar extends Component {
                                 </li> 
                         )
                     })}
-                    <NavBtnLink to='/login'>Log In</NavBtnLink>
+                    <NavBtnLink to='/homepage'>Log Out</NavBtnLink>
                 </ul></NavMenu>
                 </NavbarWrap>
             </NavbarContainer>
@@ -85,4 +85,4 @@ class Navbar extends Component {
     };
 };
 
-export default Navbar
+export default NewNav

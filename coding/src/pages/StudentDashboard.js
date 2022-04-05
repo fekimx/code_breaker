@@ -7,7 +7,7 @@ import {fetcher} from "../utils/axios";
 import Tabs from './Tabs';
 import ClassCodeForm from './ClassCodeForm';
 import StudentClassDataDisplay from './ClassTable';
-import Navbar from "../components/navbar/Navbar";
+import NewNav from "../components/navbar/NewNav";
 import { Navigate } from "react-router";
 import StudentClasses from "./StudentClasses";
 import StudentClassTable from "./StudentClassTable";
@@ -40,10 +40,10 @@ const StudentDashboard = () => {
 
   return (
     <div className="w-full h-screen">
+      <NewNav/>
       <div className="w-full p-6">
         <button onClick={handleLogout} className="">Logout</button>
       </div>
-      <Navbar/>
       {
             user.data ?
                 <div className="w-full h-full text-center items-center">

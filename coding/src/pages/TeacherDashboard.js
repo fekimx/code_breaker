@@ -3,12 +3,12 @@ import Tabs from './Tabs';
 import TeacherClassTable from './TeacherClassTable';
 import TeacherStudentTable from './TeacherStudentTable';
 import TeacherQuestionTable from './TeacherQuestionTable';
-import Navbar from "../components/navbar/Navbar";
+import NewNav from "../components/navbar/NewNav";
 
 function TeacherDashboard() {
   return (
     <div>
-      <Navbar/>
+      <NewNav/>
       <h1>Teacher Dashboard</h1>
       <Tabs>
         <div label="Classes">

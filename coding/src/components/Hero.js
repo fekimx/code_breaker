@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 
 const Section = styled.section`
 background: white;
@@ -57,6 +58,7 @@ const Hero = () => {
           </Desc>
           <Button a href='/register'>
             Sign Up Today!
+                        <MdKeyboardArrowRight />
           </Button>
         </Left>
       </Content>

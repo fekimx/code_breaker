@@ -19,9 +19,6 @@ const About = () => {
       <p>The goal of code-breaker is to set the standard for teacher usability and student engagement, targeting high school computer science classrooms.</p>
       <p>As of April 2022, code-breaker supports instruction in the <a href="https://www.python.org">python</a> programming language.  Code execution and testing is done via remote fetch, so an active web connection is required.</p>
       <p>Future updates include adding more lessons/questions, additional programming language support, and enhancing the usability of the competition mode.</p>
-      <h2>Contact</h2>
-      <p>We would love to hear from you!  Please send all comments/questions to <a href="mailto:project.codebreaker@gmail.com">project.codebreaker@gmail.com</a>.</p>
-      
     </div>
   </div>
   );
