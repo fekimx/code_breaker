@@ -21,7 +21,7 @@ const Contact = () => {
       <h1>Contact Us</h1>
 
     </div><div className="page-body">
-      <h2>About code-breaker.io</h2>
+      <h2>Contact code-breaker.io</h2>
       <p>We would love to hear from you!  Please send all comments/questions to <a href="mailto:project.codebreaker@gmail.com">project.codebreaker@gmail.com</a>.</p>
 
     </div>
