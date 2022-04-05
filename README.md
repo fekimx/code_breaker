@@ -82,6 +82,9 @@ This app requires the Heroku Postgres add-on.
 
 This app requires the heroku/nodejs and heroku/python buildpacks. 
 
+#### Unit Tests
+npm run test-jest
+
 #### Additional Notes
 
 Note: Roman needed to make sure pg_config was on his PATH. This site contains instructions on how to work with this dependency if problems are encountered: https://www.psycopg.org/docs/install.html
