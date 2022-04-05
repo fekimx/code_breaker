@@ -4,7 +4,7 @@ import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
-import Navbar from "../components/navbar/Navbar";
+import Navbar from "../components/navbar/NewNav";
 
 function withMyHook(Component) {
   return function WrappedComponent(props) {
@@ -104,7 +104,7 @@ class Question extends React.Component {
   render() {
     return (
     <div>
-      <Navbar/>
+      <NewNav/>
       <div className="pad">
       <div class="container">
       <h3>{this.state.name}</h3>
