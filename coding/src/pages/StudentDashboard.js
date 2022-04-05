@@ -6,7 +6,7 @@ import useSWR from 'swr';
 import {fetcher} from "../utils/axios";
 import Tabs from './Tabs';
 import StudentClassDataDisplay from './ClassTable';
-import Navbar from "../components/navbar/Navbar";
+import NewNav from "../components/navbar/NewNav";
 import { Navigate } from "react-router";
 import StudentClasses from "./StudentClasses";
 import StudentClassTable from "./StudentClassTable";
@@ -39,7 +39,7 @@ const StudentDashboard = () => {
 
   return (
     <div className="w-full h-screen">
-      <Navbar/>
+      <NewNav/>
       <div className="pad">
       <div class="container">
     <h1>Welcome, {user.data?.username}</h1>
