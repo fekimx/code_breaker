@@ -23,6 +23,14 @@ npm install --save styled-components
 make sure to run npm install
 npm run dev
 
+## Judge 0 Deployment
+
+The Judge 0 server executes the student's code and unit tests.
+
+The Judge 0 deployment procedure is documented here: https://github.com/judge0/judge0/blob/master/CHANGELOG.md#deployment-procedure
+
+We host our production Judge 0 server in Digital Ocean. The URL to the server is in the viewsets.py under the RunViewSet create method.
+
 ### Windows Notes
 
 For Windows, you may need to preface the python commands with "python -m"
