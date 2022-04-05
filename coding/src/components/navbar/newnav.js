@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { MenuItems } from "./MenuItems";
+import { NewMenu } from "./NewMenu";
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import '../../App.css';
 
-const NavbarContainer = styled.div`
+const NavbarContainer = styled.nav`
   width: 100%;
   height: 80px;
   z-index: 20;
@@ -22,12 +22,14 @@ const NavbarWrap = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+
 const NavMenu = styled.div`
   display: flex;
   align-items: center;
   margin-right: -24px;
     width: 100vw;
   white-space: nowrap;
+
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -44,13 +46,14 @@ const NavBtnLink = styled(Link)`
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   margin-left: 24px;
+
   &:hover {
     transition: all 0.2s ease-in-out;
     background: #fff;
     color: #010606;
   }
 `;
-class Navbar extends Component {
+class NewNav extends Component {
     state = { clicked: false}
 
     handleClick = () => {
@@ -65,7 +68,7 @@ class Navbar extends Component {
                 <div className="menu-icon" onClick={this.handleClick}>
                 </div>
                <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'} >
-                    {MenuItems.map((item, index) => {
+                    {NewMenu.map((item, index) => {
                         return (
                             <li key={index}>
                                 <a className={item.cName} href={item.url}>
@@ -74,7 +77,7 @@ class Navbar extends Component {
                                 </li> 
                         )
                     })}
-                    <NavBtnLink to='/login'>Log In</NavBtnLink>
+                    <NavBtnLink to='/homepage'>Log Out</NavBtnLink>
                 </ul></NavMenu>
                 </NavbarWrap>
             </NavbarContainer>
@@ -82,4 +85,4 @@ class Navbar extends Component {
     };
 };
 
-export default Navbar
+export default NewNav

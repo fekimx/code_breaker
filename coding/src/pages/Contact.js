@@ -1,32 +1,33 @@
-
+import '../App.css';
 import React from 'react';
 import { useNavigate } from "react-router";
-  
-const ContactUs = () => {
-  const history = useNavigate();
-  
-  return (
-  <>
-     <button onClick={()=>history("/")}>Return to Dashboard</button>
-     <button onClick={()=>history("/about")}>About</button>
-     <button onClick={()=>history("/contact")}>Contact Us</button>
-     <button onClick={()=>history("/class")}>Class</button>
-     <button onClick={()=>history("/solution")}>Solution</button>
-     <button onClick={()=>history("/unittest")}>UnitTest</button>
-     <button onClick={()=>history("/about")}>About</button>
-     <button onClick={()=>history("/question")}>Peep some questions!</button>
-     <h1 style={{color:"green"}}>Contact Us</h1>
-<script type="text/javascript">
-(function(d, t){
-   var g = d.createElement(t),
-       s = d.getElementsByTagName(t)[0];
-   g.src = "http://www.foxyform.com/js.php?id=977499&sec_hash=2850f2fd18d&width=350px";
-   s.parentNode.insertBefore(g, s);
-}(document, "script"));
-</script>
+import Navbar from "../components/navbar/Navbar";
 
-  </>
-  )
+const Contact = () => {
+  const history = useNavigate();
+
+  return (
+
+  <div className="h-screen flex bg-gray-bg1">
+    <Navbar/>
+<div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '10vh'
+      }}
+    >
+      <h1>Contact Us</h1>
+
+    </div><div className="page-body">
+      <h2>About code-breaker.io</h2>
+      <p>We would love to hear from you!  Please send all comments/questions to <a href="mailto:project.codebreaker@gmail.com">project.codebreaker@gmail.com</a>.</p>
+
+    </div>
+    </div>
+  );
 };
-  
-export default ContactUs;
+
+
+export default Contact; 

@@ -17,6 +17,10 @@ python manage.py runserver --settings=code_breaker.local_settings
 
 ## React Local Development
 npm install styled-components (styles and formatting for the homepage)
+npm add react-icons
+npm install style-loader --save-dev
+npm install --save styled-components
+make sure to run npm install
 npm run dev
 
 ### Windows Notes
