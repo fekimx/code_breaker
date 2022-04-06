@@ -1,14 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MdKeyboardArrowRight } from 'react-icons/md';
-import HeroImg from '../assets/HeroImg.png';
 
 const Section = styled.section`
-  background-image: url(${HeroImg});
-  height: 785px;
-  display: block;
-  background-repeat: no-repeat;
-  background-size: contain;
+background: white;
+height: 1000px;
 `;
 const Content = styled.div`  
 width: 100%;
