@@ -93,11 +93,11 @@ class Hosttest(unittest.TestCase):
                 print(ex)
                 
             #print(driver.find_element_by_class_name('text-2xl').text)
-            
+            self.driver.quit()
             
 
-    def tearDown(self):
-        self.driver.quit()
+    # def tearDown(self):
+    #     self.driver.quit()
 
 if __name__=="__main__":
     unittest.main()
