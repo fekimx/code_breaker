@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from "react-router";
   
-const About = () => {
+const Admin = () => {
   const history = useNavigate();
   
   return (
@@ -23,4 +23,4 @@ const About = () => {
   )
 };
   
-export default About;
+export default Admin;
