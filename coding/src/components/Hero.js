@@ -56,7 +56,7 @@ const Hero = () => {
             Improve your programming skills with various challenges like <span> Assignments, Problems, Competitions</span>{' '}
             and more!
           </Desc>
-          <Button a href='/register'>
+          <Button a href='/register'  data-testid="signup-btn">
             Sign Up Today!<MdKeyboardArrowRight />
           </Button>
         </Left>
