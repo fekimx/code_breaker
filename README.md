@@ -111,3 +111,18 @@ Note: on Brian's machine (Windows), we had to run pip install python-dotenv in g
                 pip install ez_setup
                 pip install python-dotenv
                 pip install -r requirements.txt
+
+#### endtoend testing
+
+Make sure chromedriver is install on your machine
+
+In one terminal:
+
+pipenv shell
+python manage.py runserver --settings=code_breaker.local_settings
+
+another terminal:
+npm run dev
+
+third terminal:
+python manage.py test --settings=code_breaker.local_settings
