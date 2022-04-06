@@ -4,7 +4,7 @@ import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
-import Navbar from "../components/navbar/NewNav";
+import NewNav from "../components/navbar/NewNav";
 
 function withMyHook(Component) {
   return function WrappedComponent(props) {

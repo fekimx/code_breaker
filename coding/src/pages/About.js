@@ -2,7 +2,7 @@ import '../App.css';
 import React from 'react';
 import { useNavigate } from "react-router";
 import Navbar from "../components/navbar/Navbar";
-  
+import Footer from "../components/Footer";
 const About = () => {
   const history = useNavigate();
   
@@ -20,6 +20,7 @@ const About = () => {
       <p>As of April 2022, code-breaker supports instruction in the <a href="https://www.python.org">python</a> programming language.  Code execution and testing is done via remote fetch, so an active web connection is required.</p>
       <p>Future updates include adding more lessons/questions, additional programming language support, and enhancing the usability of the competition mode.</p>
     </div>
+    <Footer/>  
   </div>
   );
 };
