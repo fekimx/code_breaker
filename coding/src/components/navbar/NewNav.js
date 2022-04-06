@@ -13,14 +13,14 @@ const NavbarContainer = styled.nav`
 `;
 
 const NavbarWrap = styled.div`
-  width: 1200px;
-  height: 100%;
-  margin: 0 auto;
-  z-index: 20;
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: space-between;
+width: 1200px;
+height: 100%;
+z-index: 20;
+display: flex;
+position: relative;
+justify-content: center;
+align-items: center;
+flex-direction: column;
 `;
 
 const NavMenu = styled.div`
