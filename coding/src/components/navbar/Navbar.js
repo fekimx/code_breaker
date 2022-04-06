@@ -16,7 +16,6 @@ const NavbarContainer = styled.div`
 const NavbarWrap = styled.div`
   width: 1200px;
   height: 100%;
-  margin: 0 auto;
   z-index: 20;
   display: flex;
   position: relative;
@@ -24,11 +23,10 @@ const NavbarWrap = styled.div`
   align-items: center;
   flex-direction: column;
 `;
+
 const NavMenu = styled.div`
   display: flex;
-  align-items: center;
-  margin-left: 800px;
-    width: 100vw;
+  margin-right: -800px;
   white-space: nowrap;
 
   @media screen and (max-width: 768px) {
@@ -64,7 +62,7 @@ class Navbar extends Component {
         return(
             <NavbarContainer>
                 <NavbarWrap>
-                <h1 className="fa-react">Code -Breaker</h1><NavMenu>
+                <h1 className="fa-react">Code-Breaker</h1><NavMenu>
                 <div className="menu-icon" onClick={this.handleClick}>
                 </div>
                <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'} >

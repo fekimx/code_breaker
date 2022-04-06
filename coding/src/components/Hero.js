@@ -4,8 +4,12 @@ import { MdKeyboardArrowRight } from 'react-icons/md';
 import MyImage from './assets/HeroImg.png';
 
 const Section = styled.section`
-background: white;
-height: 1000px;
+background-image: url(${MyImage});
+height: 900px;
+width: 100%;
+display: block;
+background-repeat: no-repeat;
+background-size: contain;
 `;
 const Content = styled.div`  
 width: 100%;
@@ -51,16 +55,15 @@ const Hero = () => {
 <Section>
       <Content>
         <Left>
-          <Title>Are you ready to <br /> practice coding and compete?
+          <Title>Built for Students, <br /> learn code today!
           </Title>
           <Desc>
-            Improve your programming skills with various challenges like <span> Assignments, Problems, Competitions</span>{' '}
+            Sharpen your programming skills with various challenges in <span> Assignments, Classes, Competitions</span>{' '}
             and more!
           </Desc>
           <Button a href='/register'  data-testid="signup-btn">
             Sign Up Today!<MdKeyboardArrowRight />
           </Button>
-          <img src={MyImage} alt="torchlight in the sky" />
         </Left>
       </Content>
     </Section>
