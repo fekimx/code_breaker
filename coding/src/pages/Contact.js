@@ -2,7 +2,7 @@ import '../App.css';
 import React from 'react';
 import { useNavigate } from "react-router";
 import Navbar from "../components/navbar/Navbar";
-
+import Footer from "../components/Footer";
 const Contact = () => {
   const history = useNavigate();
 
@@ -25,6 +25,7 @@ const Contact = () => {
       <p>We would love to hear from you!  Please send all comments/questions to <a href="mailto:project.codebreaker@gmail.com">project.codebreaker@gmail.com</a>.</p>
 
     </div>
+    <Footer/>  
     </div>
   );
 };

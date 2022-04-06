@@ -77,7 +77,6 @@ class NewNav extends Component {
                                 </li> 
                         )
                     })}
-                    <NavBtnLink to='/homepage'>Log Out</NavBtnLink>
                 </ul></NavMenu>
                 </NavbarWrap>
             </NavbarContainer>

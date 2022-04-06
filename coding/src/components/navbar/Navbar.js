@@ -10,6 +10,7 @@ const NavbarContainer = styled.div`
   height: 80px;
   z-index: 20;
   background: linear-gradient(90deg, rgb(61, 83, 207) 0%, rgb(46, 81, 238) 100%);
+  
 `;
 
 const NavbarWrap = styled.div`
@@ -19,15 +20,17 @@ const NavbarWrap = styled.div`
   z-index: 20;
   display: flex;
   position: relative;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
 `;
 const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right: -24px;
+  margin-left: 800px;
     width: 100vw;
   white-space: nowrap;
+
   @media screen and (max-width: 768px) {
     display: none;
   }

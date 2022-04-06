@@ -11,10 +11,13 @@ import {
 
 const FooterContainer = styled.footer`
   background-color: #0d0909;
+  bottom: 0;
+  width: 100%;
+  position: fixed;
 `;
 
 const FooterWrap = styled.div`
-  padding: 16px 24px;
+  padding: 8px 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,8 +50,8 @@ const SocialLogo = styled(Link)`
   font-size: 1.5rem;
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
-  font-weight: bold;
+  margin-bottom: 8px;
+  padding-right: 2px;
 `;
 
 const SocialIcons = styled.div`
