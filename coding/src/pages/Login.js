@@ -6,6 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import authSlice from "../store/slices/auth";
 import Navbar from "../components/navbar/Navbar";
+import Footer from "../components/Footer";
 
 function Login() {
   const [message, setMessage] = useState("");
@@ -103,7 +104,7 @@ function Login() {
       </div>
     </form>
   </div>
-  </div>
+  </div><Footer/>  
   </div>
   );
 }

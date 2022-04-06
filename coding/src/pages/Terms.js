@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/navbar/Navbar";
-
+import Footer from "../components/Footer";
 
 function Terms() {
   
@@ -28,7 +28,7 @@ return (
                                     </p>
                                     </h2>
       </div>
-    </div>
+    </div><Footer/>  
     </div>
   );
 }

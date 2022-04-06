@@ -11,7 +11,7 @@ import { Navigate } from "react-router";
 import StudentClasses from "./StudentClasses";
 import StudentClassTable from "./StudentClassTable";
 import StudentAssignmentTable from "./StudentAssignmentTable";
-
+import Footer from "../components/Footer";
 
 const StudentDashboard = () => {
   const account = useSelector((state) => state.auth.account);
@@ -40,6 +40,9 @@ const StudentDashboard = () => {
   return (
     <div className="w-full h-screen">
       <NewNav/>
+      <div  class="col-sm-12" align="right">
+        <button onClick={handleLogout} className="">Logout</button>
+      </div>
       <div className="pad">
       <div class="container">
     <h1>Welcome, {user.data?.username}</h1>
@@ -53,6 +56,7 @@ const StudentDashboard = () => {
     </Tabs>
     </div>
     </div>
+    <Footer/>  
     </div>
   );
 };
