@@ -24,15 +24,13 @@ flex-direction: column;
 `;
 
 const NavMenu = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: -24px;
-    width: 100vw;
-  white-space: nowrap;
+display: flex;
+margin-right: -800px;
+white-space: nowrap;
 
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+@media screen and (max-width: 768px) {
+  display: none;
+}
 `;
 
 const NavBtnLink = styled(Link)`
@@ -64,7 +62,7 @@ class NewNav extends Component {
         return(
             <NavbarContainer>
                 <NavbarWrap>
-                <h1 className="fa-react">Code -Breaker</h1><NavMenu>
+                <h1 className="fa-react">Code-Breaker</h1><NavMenu>
                 <div className="menu-icon" onClick={this.handleClick}>
                 </div>
                <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'} >

@@ -17,13 +17,13 @@ const FooterContainer = styled.footer`
 `;
 
 const FooterWrap = styled.div`
-  padding: 8px 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   max-width: 1300px;
   margin: 0 auto;
+  padding: 2px 14px;
 `;
 
 const SocialMedia = styled.section`
@@ -36,7 +36,7 @@ const SocialMediaWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: 1100px;
-  margin: 16px auto 0 auto;
+  margin: 6px auto 0 auto;
   @media screen and (max-width: 820px) {
     flex-direction: column;
   }
