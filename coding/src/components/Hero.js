@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MdKeyboardArrowRight } from 'react-icons/md';
+import MyImage from './assets/HeroImg.png';
 
 const Section = styled.section`
 background: white;
@@ -59,6 +60,7 @@ const Hero = () => {
           <Button a href='/register'>
             Sign Up Today!<MdKeyboardArrowRight />
           </Button>
+          <img src={MyImage} alt="torchlight in the sky" />
         </Left>
       </Content>
     </Section>
