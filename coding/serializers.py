@@ -5,6 +5,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.settings import api_settings
 from django.contrib.auth.models import update_last_login
 from django.core.exceptions import ObjectDoesNotExist
+from code_breaker.coding.models import Competition
 
 from coding.models import User, Class, Assignment, CodeQuestion, Solution, UnitTest
 
@@ -42,6 +43,11 @@ class AssignmentSerializer(serializers.ModelSerializer):
         model = Assignment
         fields = '__all__'
 
+class CompetitionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Competition
+        fields = '__all__'
 
 class ClassSerializer(serializers.ModelSerializer):
 
