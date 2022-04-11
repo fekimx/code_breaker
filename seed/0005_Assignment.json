@@ -5,7 +5,8 @@
             "fields": {
                 "name": "Basic Operators",
                 "author": 16,
-                "questions": [1, 2, 3, 4, 5]
+                "questions": [1, 2, 3, 4, 5],
+                "active": true
             }
         },
         {
@@ -14,7 +15,8 @@
             "fields": {
                 "name": "Conditions",
                 "author": 16,
-                "questions": [6, 7, 8, 9, 10]
+                "questions": [6, 7, 8, 9, 10],
+                "active": true
             }
         },
         {
@@ -23,7 +25,8 @@
             "fields": {
                 "name": "For Loops",
                 "author": 16,
-                "questions": [11, 12, 13, 14, 15]
+                "questions": [11, 12, 13, 14, 15],
+                "active": true
             }
         },
         {
@@ -32,7 +35,18 @@
             "fields": {
                 "name": "Strings",
                 "author": 16,
-                "questions": [16, 17, 18, 19, 20]
+                "questions": [16, 17, 18, 19, 20],
+                "active": true
+            }
+        },
+        {
+            "model": "coding.assignment",
+            "pk": 5,
+            "fields": {
+                "name": "COBOL",
+                "author": 16,
+                "questions": [20],
+                "active": false
             }
         }
         ]
