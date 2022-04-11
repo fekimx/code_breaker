@@ -79,11 +79,16 @@ class CodeQuestion(models.Model):
     unitTests = models.ManyToManyField(UnitTest)
     
 
-class Assignment(models.Model):
+class CommonAssignmentCompetitionInfo(models.Model):
     name = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     questions = models.ManyToManyField(CodeQuestion)
     active = models.BooleanField(default=False)
+
+    class Meta:
+        abstract = True
+
+class Assignment(CommonAssignmentCompetitionInfo):
 
     def serialize(self):
         return {
@@ -92,7 +97,7 @@ class Assignment(models.Model):
             "active": self.active
         }
 
-class Competition(Assignment):
+class Competition(CommonAssignmentCompetitionInfo):
     COMPETITION_TYPE = (
         ('R', 'Race'),
     )
