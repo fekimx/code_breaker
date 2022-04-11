@@ -9,7 +9,14 @@ pip install pipenv
 pipenv install django  
     python -m pip install django
     python install -r requirements.txt
-    
+
+Docker and Docker Compose Installed (if you want to use Docker)
+
+## Docker
+
+docker-compose up
+http://localhost:8000/login
+
 ## Django Local Development
 
 pipenv shell
