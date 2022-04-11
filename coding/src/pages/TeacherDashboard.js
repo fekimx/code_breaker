@@ -5,6 +5,7 @@ import TeacherStudentTable from './TeacherStudentTable';
 import TeacherQuestionTable from './TeacherQuestionTable';
 import NewNav from "../components/navbar/NewNav";
 import Footer from "../components/Footer";
+
 function TeacherDashboard() {
   return (
     <div>
