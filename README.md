@@ -4,11 +4,14 @@
 
 Python 3.10.2
 Node JS
-pip install django-webpack-loader==0.7.0
+On Mac OS X: brew install postgresql
+
 pip install pipenv  
-pipenv install django  
-    python -m pip install django
-    python install -r requirements.txt
+pipenv shell
+pip install -r requirements.txt
+./migrate_and_seed.sh 
+
+npm install
 
 Docker and Docker Compose Installed (if you want to use Docker)
 
@@ -23,11 +26,7 @@ pipenv shell
 python manage.py runserver --settings=code_breaker.local_settings
 
 ## React Local Development
-npm install styled-components (styles and formatting for the homepage)
-npm add react-icons
-npm install style-loader --save-dev
-npm install --save styled-components
-make sure to run npm install
+
 npm run dev
 
 ## Judge 0 Deployment
@@ -38,11 +37,11 @@ The Judge 0 deployment procedure is documented here: https://github.com/judge0/j
 
 We host our production Judge 0 server in Digital Ocean. The URL to the server is in the viewsets.py under the RunViewSet create method.
 
-### Windows Notes
+## Windows Notes
 
 For Windows, you may need to preface the python commands with "python -m"
 
-### Help Git Commands
+## Help Git Commands
 
 git status (Shows local modifications)
 
@@ -54,7 +53,7 @@ git checkout <branch-name> (Checks out the branch)
 
 git log
 
-#### Process for making a pull request
+## Process for making a pull request
 
 git checkout main (Switch to the main branch)
 
@@ -70,8 +69,7 @@ git push origin <new-branch-name> (This pushes your local branch)
  
 Then, Ctrl+Click on the link to make a merge request. 
 
-
-#### Process for seeding data/removing seeded data 
+## Process for seeding data/removing seeded data 
 
 (non windows only so far) - migrate and seed all data
 
@@ -85,13 +83,13 @@ Seeding data 1 file at a time
 
 python manage.py loaddata seed/0001_User.json
 
-#### Running Linters locally
+## Running Linters locally
 
 pylint coding/
 
 npx eslint . --ext .js,.jsx,.ts,.tsx
 
-#### Heroku Deployment
+## Heroku Deployment
 
 You need access to Heroku in order to deploy our application: https://dashboard.heroku.com/apps/code-breaker-proj
 
@@ -101,7 +99,7 @@ This app requires the Heroku Postgres add-on.
 
 This app requires the heroku/nodejs and heroku/python buildpacks. 
 
-#### Additional Notes
+## Additional Notes
 
 Note: Roman needed to make sure pg_config was on his PATH. This site contains instructions on how to work with this dependency if problems are encountered: https://www.psycopg.org/docs/install.html
 
@@ -119,7 +117,7 @@ Note: on Brian's machine (Windows), we had to run pip install python-dotenv in g
                 pip install python-dotenv
                 pip install -r requirements.txt
 
-#### endtoend testing
+## EndToEnd Testing
 
 Make sure chromedriver is install on your machine
 
