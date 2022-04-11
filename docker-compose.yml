@@ -1,0 +1,20 @@
+version: "3.9"
+   
+services:
+  django:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000 --settings=code_breaker.local_settings
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+  seed:
+    build: .
+    command: ["/bin/bash", "./migrate_and_seed_local.sh"]
+    volumes:
+      - .:/code
+  webpack:
+    build: .
+    command: npm run dev
+    volumes:
+      - .:/code
