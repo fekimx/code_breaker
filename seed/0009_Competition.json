@@ -1,52 +1,57 @@
 [
         {
-            "model": "coding.assignment",
+            "model": "coding.competition",
             "pk": 1,
             "fields": {
-                "name": "Basic Operators",
+                "name": "Basic Operators Competition",
                 "author": 16,
                 "questions": [1, 2, 3, 4, 5],
-                "active": true
+                "active": true,
+                "type": "R"
             }
         },
         {
-            "model": "coding.assignment",
+            "model": "coding.competition",
             "pk": 2,
             "fields": {
-                "name": "Conditions",
+                "name": "Conditions Competition",
                 "author": 16,
                 "questions": [6, 7, 8, 9, 10],
-                "active": true
+                "active": true,
+                "type": "R"
             }
         },
         {
-            "model": "coding.assignment",
+            "model": "coding.competition",
             "pk": 3,
             "fields": {
-                "name": "For Loops",
+                "name": "For Loops Competition",
                 "author": 16,
                 "questions": [11, 12, 13, 14, 15],
-                "active": true
+                "active": true,
+                "type": "R"
             }
         },
         {
-            "model": "coding.assignment",
+            "model": "coding.competition",
             "pk": 4,
             "fields": {
-                "name": "Strings",
+                "name": "Strings Competition",
                 "author": 16,
                 "questions": [16, 17, 18, 19, 20],
-                "active": true
+                "active": true,
+                "type": "R"
             }
         },
         {
-            "model": "coding.assignment",
+            "model": "coding.competition",
             "pk": 5,
             "fields": {
-                "name": "COBOL",
+                "name": "COBOL Competition",
                 "author": 16,
                 "questions": [20],
-                "active": false
+                "active": false,
+                "type": "R"
             }
         }
         ]
