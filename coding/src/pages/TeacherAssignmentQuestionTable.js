@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { Link } from 'react-router-dom';
 
 var count = 0;
 function TeacherAssignmentQuestionTable(){
@@ -14,10 +15,11 @@ function TeacherAssignmentQuestionTable(){
         .then((response) => {
             const newDisplayData = response.data.map((question) => {
                 count++;
+                const link = `/questions?id=${count}`;
                 return(
                     <tr key={question.id}>
                         <td>{question.id}</td>
-                        <td>{question.name}</td>
+                        <td><Link to={{pathname: link }} replace>{question.name}</Link></td>
                         <td>{question.description} </td>
                     </tr>
                 )
