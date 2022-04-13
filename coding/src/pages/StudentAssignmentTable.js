@@ -19,11 +19,12 @@ function StudentAssignmentTable(){
     const fetchLatestClasses = () => {
         axios.get(`/api/assignment/`, {})
         .then((response) => {
+            count=0
             const newDisplayData = response.data.map((assignment) => {
                 count++
                 // Right now this just grabs the ID of the first question and puts that in a link
                 const link = `assignment?id=${count}`;
-                console.log(assignment.questions);
+                console.log(count);
                 return(
                     <tr key={assignment.name}>
                         <td><Link to={link}>{assignment.name}</Link></td>
