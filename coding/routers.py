@@ -1,8 +1,6 @@
 # core/routers.py
 from rest_framework.routers import SimpleRouter
-from coding.viewsets import AssignmentViewSet, RunViewSet, UserViewSet, CompetitionViewSet, CompetitionProgressViewSet
-from coding.viewsets import StudentViewSet, QuestionViewSet, LoginViewSet, RegistrationViewSet, RefreshViewSet, ClassViewSet, JoinClassViewSet, AssignmentQuestionViewSet, AssignmentStudentViewSet, SolutionViewSet, StudentClassViewset
-
+from coding.viewsets import *
 # From https://dev.to/koladev/django-rest-authentication-cmh
 
 routes = SimpleRouter()
@@ -41,6 +39,8 @@ routes.register(r'competitionProgress', CompetitionProgressViewSet, basename='co
 # SOLUTION
 
 routes.register(r'solution', SolutionViewSet, basename='solution')
+routes.register(r'teacher/assignment', TeacherAssignmentViewSet, basename='teacherAssignment')
+routes.register(r'student/assignment', StudentAssignmentViewSet, basename='studentAssignment')
 
 # STUDENTS
 

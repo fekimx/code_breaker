@@ -2,7 +2,7 @@
 import React from "react";
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { useSearchParams } from "react-router-dom";
 import NewNav from "../components/navbar/NewNav";
 
@@ -30,7 +30,7 @@ class Question extends React.Component {
       showSolutions: false
     }
 
-    axios.get(`/api/question/${this.props.questionId}/`,    {
+    axiosService.get(`/api/question/${this.props.questionId}/`,    {
       //ClassViewset gets a specific class classes
     })
     .then((res) => {
@@ -64,7 +64,7 @@ class Question extends React.Component {
 
   runCode() {
     console.log("Running codes: ", this.state.code);
-    axios.post(`/api/run/`, { questionId: this.state.questionId, code: this.state.code })
+    axiosService.post(`/api/run/`, { questionId: this.state.questionId, code: this.state.code })
     .then((res) => {
       this.setState({stderr: ""});
 
@@ -106,7 +106,7 @@ class Question extends React.Component {
     <div>
       <NewNav/>
       <div className="pad">
-      <div class="container">
+      <div className="container">
       <h3>{this.state.name}</h3>
       <div>{this.state.description}</div>
       <CodeMirror

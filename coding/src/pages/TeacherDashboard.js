@@ -12,7 +12,7 @@ function TeacherDashboard() {
     <div>
       <NewNav/>
       <div className="pad">
-      <div class="container">
+      <div className="container">
       <h1>Teacher Dashboard</h1>
       <Tabs>
         <div label="Classes">
