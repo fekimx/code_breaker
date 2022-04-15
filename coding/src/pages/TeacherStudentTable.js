@@ -1,13 +1,13 @@
 import React, {useRef} from 'react';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axiosService from "../utils/axios";
 
 function TeacherStudentTable() {
     const [displayData, updateDisplayData] = useState([]);
 
     const fetchLatestStudents = () => {
-        axios.get(`/api/students/`, {})
+        axiosService.get(`/api/students/`, {})
         .then((response) => {
             const newDisplayData = response.data.map((student) => {
                 return(

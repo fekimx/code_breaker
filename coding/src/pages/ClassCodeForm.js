@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import axiosService from "../utils/axios";
 
 class ClassCodeForm extends Component {
   static propTypes = {
@@ -57,7 +57,7 @@ class ClassCodeForm extends Component {
       showButton: !prevState.showButton,
       showButtonName: "SAVING..."
     }));
-    axios.post(`/api/joinClass/`,    {
+    axiosService.post(`/api/joinClass/`,    {
       userId: this.state.userId,
       secretKey: this.state.classCode
     })

@@ -161,7 +161,7 @@ function CreateQuestion() {
   <div>
     <NewNav/>
     <div className="pad">
-    <div class="container">
+    <div className="container">
     <div className="h-screen flex bg-gray-bg1">
       <div>
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">

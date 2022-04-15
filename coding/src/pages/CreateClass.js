@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import {useSelector} from "react-redux";
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import CodeMirror from '@uiw/react-codemirror';
-import { python } from '@codemirror/lang-python';
 
 function CreateClass() {
   const account = useSelector((state) => state.auth.account);
@@ -29,7 +27,7 @@ function CreateClass() {
   });
 
   const handleCreateClass = (name, active) => {
-    axios.post(`/api/class/`, { userId, name, active, TAs: [], students: [] })
+    axiosService.post(`/api/class/`, { userId, name, active, TAs: [], students: [] })
     .then((res) => {
       console.log(res);
     })

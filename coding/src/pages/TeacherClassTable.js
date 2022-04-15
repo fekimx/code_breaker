@@ -1,6 +1,6 @@
 import React from 'react';
 import TeacherClassAddForm from './TeacherClassAddForm';
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { useState, useEffect } from "react";
 import useSWR from 'swr';
 import {useSelector} from "react-redux";
@@ -18,7 +18,7 @@ function TeacherClassTable(){
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
     const fetchLatestClasses = () => {
-        axios.get(`/api/class/?teacherId=` + account?.id, {})
+        axiosService.get(`/api/class/?teacherId=` + account?.id, {})
         .then((response) => {
             const newDisplayData = response.data.map((teacherClass) => {
                 return(

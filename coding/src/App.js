@@ -66,7 +66,9 @@ const App = () => {
                 <Route exact path='/' element={<StudentDashboard/>}/>
               </Route>
               <Route exact path='/studentdashboard' element={<StudentDashboard/>}/>
-              <Route exact path='/teacherdashboard' element={<TeacherDashboard/>}/>
+              <Route exact path='/teacherdashboard' element={<ProtectedRoute teacher/>}>
+                <Route exact path='/teacherdashboard' element={ <TeacherDashboard /> } />
+              </Route>
             </Routes>
           </div>
         </BrowserRouter>

@@ -3,12 +3,14 @@ from coding.models import User, Class
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, BasePermission, IsAdminUser
 from rest_framework import filters
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 import logging
 import requests
@@ -21,10 +23,30 @@ from coding.serializers import LoginSerializer, RegisterSerializer, ClassSeriali
 # From https://dev.to/koladev/django-rest-authentication-cmh
 logger = logging.getLogger(__name__)
 
+class IsTeacherUser(BasePermission):
+    """
+    Allows access only to teacher users.
+    """
+
+    def has_permission(self, request, view):
+        logger.warn("permissions")
+        logger.warn(request.user)
+        logger.warn(request.user.is_staff)
+        return bool(request.user and request.user.is_staff)
+
+class IsStudentUser(BasePermission):
+    """
+    Allows access only to student users.
+    """
+
+    def has_permission(self, request, view):
+        return bool(request.user and request.user.is_student)
+
 class RunViewSet(viewsets.ViewSet):
     http_method_names = ['post']
-    permission_classes = (AllowAny,)
+    permission_classes = (IsStudentUser,)
 
+    # Executes code against the Judge0 server - student's only
     def create(self, request):
         logger.warn("Create from RunViewSet")
 
@@ -98,31 +120,35 @@ class UserViewSet(viewsets.ModelViewSet):
     ordering_fields = ['updated']
     ordering = ['-updated']
 
+    # An Admin can list all users
     def get_queryset(self):
         if self.request.user.is_superuser:
             return User.objects.all()
 
+    # You can only query user information about yourself
     def get_object(self):
         lookup_field_value = self.kwargs[self.lookup_field]
+        if str(self.request.user.id) == lookup_field_value:
+            logger.warn("check")
+            obj = User.objects.get(id=lookup_field_value)
+            self.check_object_permissions(self.request, obj)
 
-        obj = User.objects.get(id=lookup_field_value)
-        self.check_object_permissions(self.request, obj)
+            return obj
+        else:
+            raise PermissionDenied()
 
-        return obj
-
-class AssignmentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+class TeacherAssignmentViewSet(viewsets.ModelViewSet):
 
     queryset = Assignment.objects.all()
     serializer_class = AssignmentSerializer
     http_method_names = ['get', 'post']
-    permission_classes = (AllowAny,)
+    permission_classes = (IsTeacherUser,)
 
+    # Teachers can create assignments
     def create(self, request, *args, **kwargs):
-        logger.warn("Inside AssignmentViewSet create")
-        logger.warn(request.data)
+        request.data['author'] = request.user.id
 
         serializer = self.get_serializer(data=request.data)
-        print(serializer)
         try:
             serializer.is_valid(raise_exception=True)
             assignment = serializer.save()
@@ -136,6 +162,26 @@ class AssignmentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         assignmentForClass.assignments.add(assignment)
 
         return Response({}, status=status.HTTP_201_CREATED)  
+
+    # Teachers can list assignments they created
+    def list(self, request):
+        logger.warn("list from Assignment")
+        serializer = self.get_serializer(Assignment.objects.filter(author=request.user.id), many=True)
+        return Response(serializer.data)
+
+    # Teachers can retrieve an assignment they created
+    def retrieve(self, request, pk=None):
+        qs = Assignment.objects.filter(author=request.user.id)
+        assignmentObj = get_object_or_404(qs, pk=pk)
+        serializer = self.get_serializer(assignmentObj)
+        return Response(serializer.data)
+# TODO
+class StudentAssignmentViewSet(viewsets.ModelViewSet):
+
+    queryset = Assignment.objects.all()
+    serializer_class = AssignmentSerializer
+    http_method_names = ['get', 'post']
+    permission_classes = (IsStudentUser,)
 
     def list(self, request):
         logger.warn("list from Assignment")
@@ -259,11 +305,12 @@ class RefreshViewSet(viewsets.ViewSet, TokenRefreshView):
 
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
-class JoinClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+class JoinClassViewSet(viewsets.ModelViewSet):
 
     http_method_names = ['post']
-    permission_classes = (AllowAny,)
+    permission_classes = (IsStudentUser,)
 
+    # A student can join a class
     def create(self, request, *args, **kwargs):
         user = User.objects.get(id=request.data['userId'])
         studentClass = Class.objects.get(secretKey=request.data['secretKey'])
@@ -273,17 +320,19 @@ class JoinClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         
         return Response({}, status=status.HTTP_201_CREATED) 
         
-class StudentClassViewset(viewsets.ModelViewSet, TokenObtainPairView):
+class StudentClassViewset(viewsets.ModelViewSet):
 
     queryset = Class.objects.all()
     serializer_class = ClassSerializer
-    permission_classes = (AllowAny,)
+    permission_classes = (IsStudentUser,)
     http_method_names = ['get', 'post', 'delete']
 
-    
+    # A student can list their classes
     def list(self, request):
         logger.warn("list from StudentClassviewset")
         studentId = self.request.query_params.get('studentId')
+        if studentId != str(request.user.id):
+            raise PermissionDenied()
         logger.warn(studentId)
         student = User(id=studentId)
         self.queryset = Class.objects.filter(students=student)
@@ -293,18 +342,13 @@ class StudentClassViewset(viewsets.ModelViewSet, TokenObtainPairView):
     
     def retrieve(self, request, pk=None):
         #note from BW2: this isn't in use, may need update
+        if str(pk) != str(request.user.id):
+            raise PermissionDenied()
         classObj = Class.objects.filter(students = pk)
         serializer = self.get_serializer(classObj, many=True)
         return Response(serializer.data)
 
-    def destroy(self, request, pk=None):
-        item = self.get_object()
-
-        item.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-#get students associated with an assignment
-class AssignmentStudentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+class AssignmentStudentViewSet(viewsets.ModelViewSet):
 
     queryset = Assignment.objects.all()
     serializer_class = UserSerializer
@@ -336,7 +380,6 @@ class AssignmentQuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
     permission_classes = (AllowAny,)
     http_method_names = ['get', 'post', 'delete']
 
-    
     def list(self, request):
         logger.warn("list from AssignmentStudentViewset")
         assignmentId = self.request.query_params.get('assignmentId')
@@ -346,7 +389,7 @@ class AssignmentQuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         assignmentStudentData = serializer.data
         return Response(serializer.data)
 
-class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+class QuestionViewSet(viewsets.ModelViewSet):
 
     queryset = CodeQuestion.objects.all()
     serializer_class = QuestionSerializer
@@ -437,16 +480,19 @@ class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         response_obj["solutions"] = solutionSerializer.data
         return Response(response_obj)
 
-
-class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+class ClassViewSet(viewsets.ModelViewSet):
 
     queryset = Class.objects.all()
     serializer_class = ClassSerializer
-    permission_classes = (AllowAny,)
+    permission_classes = (IsTeacherUser|IsStudentUser)
     http_method_names = ['get', 'post', 'delete']
 
     def create(self, request, *args, **kwargs):
         logger.warn("Create from Classviewset")
+
+        if not request.user.is_staff:
+            raise PermissionDenied()
+
         request.data['secretKey'] = ''.join(random.choices(string.ascii_letters + string.digits, k=5))
         serializer = self.get_serializer(data=request.data)
 
@@ -477,34 +523,23 @@ class ClassViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         serializer = self.get_serializer(classObj)
         return Response(serializer.data)
 
-    def destroy(self, request, pk=None):
-        item = self.get_object()
+class StudentViewSet(viewsets.ModelViewSet):
 
-        item.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-class SolutionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
-
-    queryset = Solution.objects.all()
-    serializer_class = SolutionSerializer
-    permission_classes = (AllowAny,)
-    http_method_names = ['get', 'post', 'delete']
-
-    def list(self, request):
-        logger.warn("list from SolutionViewset")
-        serializer = self.get_serializer(self.queryset, many=True)
-        
-        return Response(serializer.data)
-
-class StudentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
-
-    queryset = User.objects.filter(is_student=True)
     serializer_class = StudentSerializer
-    permission_classes = (AllowAny,)
+    permission_classes = (IsTeacherUser,)
     http_method_names = ['get', 'post', 'delete']
 
+    # A teacher can list all the students in their classes
     def list(self, request):
         logger.warn("list from StudentViewSet")
-        serializer = self.get_serializer(self.queryset, many=True)
+
+        classes = Class.objects.filter(teacher=request.user.id)
+        logger.warn(classes)
+        studentSet = set()
+        for clazz in classes:
+            for student in clazz.students.all():
+                studentSet.add(student.id)
+        
+        serializer = self.get_serializer(User.objects.filter(pk__in=studentSet, is_student=True), many=True)
         
         return Response(serializer.data)
