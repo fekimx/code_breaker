@@ -183,11 +183,13 @@ class StudentAssignmentViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post']
     permission_classes = (IsStudentUser,)
 
+    # TODO - Only assignments in students classes
     def list(self, request):
         logger.warn("list from Assignment")
         serializer = self.get_serializer(self.queryset, many=True)
         return Response(serializer.data)
 
+    # TODO - Only assignments in students classes
     def retrieve(self, request, pk=None):
         assignmentObj = get_object_or_404(self.queryset, pk=pk)
         serializer = self.get_serializer(assignmentObj)
@@ -394,9 +396,13 @@ class QuestionViewSet(viewsets.ModelViewSet):
     queryset = CodeQuestion.objects.all()
     serializer_class = QuestionSerializer
     http_method_names = ['get', 'post']
-    permission_classes = (AllowAny,)
+    permission_classes = [IsStudentUser|IsTeacherUser]
 
+    # A teacher can create a question
     def create(self, request, *args, **kwargs):
+            if not request.user.is_staff:
+                raise PermissionDenied()
+
             logger.warn("Create from QuestionViewSet")
             solution_fks = []
             unittest_fks = []
@@ -460,13 +466,16 @@ class QuestionViewSet(viewsets.ModelViewSet):
 
             return Response(questionData, status=status.HTTP_201_CREATED)
 
+    # TODO - Students need a different list to check if its in their assignment
     def list(self, request):
-        queryset = CodeQuestion.objects.all()
+        queryset = CodeQuestion.objects.filter(author_id=request.user.id)
 
         logger.warn("list from QuestionViewSet")
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
+    # TODO - Only a teacher who created it
+    # TODO - Student restricted to viewing whats in their assignment
     def retrieve(self, request, pk=None):
         logger.warn("retrieve from QuestionViewSet")
         classObj = get_object_or_404(self.queryset, pk=pk)
@@ -484,7 +493,7 @@ class ClassViewSet(viewsets.ModelViewSet):
 
     queryset = Class.objects.all()
     serializer_class = ClassSerializer
-    permission_classes = (IsTeacherUser|IsStudentUser)
+    permission_classes = [IsTeacherUser|IsStudentUser]
     http_method_names = ['get', 'post', 'delete']
 
     def create(self, request, *args, **kwargs):
