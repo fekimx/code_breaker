@@ -27,7 +27,10 @@ function StudentAssignmentTable(){
                 return(
                     <tr key={assignment.name}>
                         <td>{assignment.name}</td>
-                        <td><Link to={link}>Start</Link></td>  
+                        <td>{assignment.active 
+                        ? <Link to={link}><b>Start</b></Link>
+                        : <i class="inactive">Inactive</i>}
+                        </td>  
                     </tr>
                 )
             });
