@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import {
-    FaFacebook,
     FaInstagram,
     FaYoutube,
     FaTwitter,
-    FaLinkedin
+    FaLinkedin,
+    FaGithub
   } from 'react-icons/fa';
 
 const FooterContainer = styled.footer`
@@ -73,24 +73,23 @@ const Footer = () => {
           <SocialMediaWrap>
             <SocialLogo to='/'>Code-Breaker.io</SocialLogo>
             <SocialIcons>
-              <SocialIconLink href='/' target='_blank' aria-label='Facebook'>
-                <FaFacebook />
-              </SocialIconLink>
-              <SocialIconLink href='/' target='_blank' aria-label='Instagram'>
+              <SocialIconLink href='https://www.instagram.com/codebreakerinsta/' target='_blank' aria-label='Instagram'>
                 <FaInstagram />
               </SocialIconLink>
-              <SocialIconLink href='/' target='_blank' aria-label='Youtube'>
+              <SocialIconLink href='https://www.youtube.com/channel/UCW4QF4gHubx6VVROuacuZRw' target='_blank' aria-label='Youtube'>
                 <FaYoutube />
               </SocialIconLink>
               <SocialIconLink
-                href='/' 
+                href='https://twitter.com/code_breaker_io' 
                 target='_blank' 
-                aria-label='Twitter'
-              >
+                aria-label='Twitter'>
                 <FaTwitter />
               </SocialIconLink>
-              <SocialIconLink href='/' target='_blank' aria-label='Linkedin'>
+              <SocialIconLink href='https://www.linkedin.com/in/code-breaker-655014238/' target='_blank' aria-label='Linkedin'>
                 <FaLinkedin />
+              </SocialIconLink>
+              <SocialIconLink href='https://github.com/fekimx/code_breaker' target='_blank' aria-label='Github'>
+                <FaGithub />
               </SocialIconLink>
             </SocialIcons>
           </SocialMediaWrap>
