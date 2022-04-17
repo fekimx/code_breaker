@@ -107,3 +107,8 @@ p.showdata {
   border: 1px solid #00f;
   color: #00f;
 }
+
+i.inactive {
+  font-size: 80%;
+  color: #888;
+}

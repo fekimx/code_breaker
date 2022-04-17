@@ -147,6 +147,64 @@ class AssignmentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         serializer = self.get_serializer(assignmentObj)
         return Response(serializer.data)
 
+class CompetitionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+
+    queryset = Competition.objects.all()
+    serializer_class = CompetitionSerializer
+    http_method_names = ['get', 'post']
+    permission_classes = (AllowAny,)
+
+    def create(self, request, *args, **kwargs):
+        logger.warn("Inside CompetitionViewSet create")
+        logger.warn(request.data)
+
+        serializer = self.get_serializer(data=request.data)
+        print(serializer)
+        try:
+            serializer.is_valid(raise_exception=True)
+            competition = serializer.save()
+            logger.warn("Valid Serializer")
+            
+        except TokenError as e:
+            logger.warn("Token Error")
+            raise InvalidToken(e.args[0])
+
+        competitionForClass = Class.objects.get(id=request.data['class'])
+        competitionForClass.competitions.add(competition)
+
+        return Response({}, status=status.HTTP_201_CREATED)  
+
+    def list(self, request):
+        logger.warn("list from Competition")
+        serializer = self.get_serializer(self.queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        competitionObj = get_object_or_404(self.queryset, pk=pk)
+        serializer = self.get_serializer(competitionObj)
+        return Response(serializer.data)
+
+class CompetitionProgressViewSet(viewsets.ModelViewSet):
+    # remove the token obtain pair view
+
+    queryset = Competition.objects.all()
+    serializer_class = CompetitionProgressSerializer
+    http_method_names = ['get']
+    permission_classes = (AllowAny,)
+
+    #does list make sense in this context
+    def list(self, request):
+        logger.warn("list from Competition")
+        serializer = self.get_serializer(self.queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        competitionObj = get_object_or_404(self.queryset, pk=pk)
+        progressObjects = competitionObj.competitionprogress.all().order_by("grade").reverse()[:3]
+
+        serializer = self.get_serializer(progressObjects, many=True)
+        return Response(serializer.data)
+
 class LoginViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
     serializer_class = LoginSerializer
