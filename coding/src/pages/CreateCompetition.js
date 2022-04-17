@@ -3,10 +3,11 @@ import {useSelector} from "react-redux";
 import axios from "axios";
 import { Field, Form, Formik } from "formik";
 import NewNav from "../components/navbar/NewNav";
-
+import Tabs from "./Tabs";
 import { useNavigate } from "react-router";
 
 function CreateCompetition(type = "race") {
+  let navigate = useNavigate();
   const account = useSelector((state) => state.auth.account);
   const userId = account?.id;
 
@@ -74,6 +75,8 @@ function CreateCompetition(type = "race") {
     .then((res) => {
       console.log(res);
       setSuccessText("Your competition was created successfully!");
+      Tabs.changeTabNumber(3);
+      navigate('/teacherdashboard');
     })
     .catch((err) => {
       console.log("Received an error while creating competition.", err);
