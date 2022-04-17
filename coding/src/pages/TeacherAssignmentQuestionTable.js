@@ -11,11 +11,10 @@ function TeacherAssignmentQuestionTable(){
     const history = useNavigate();
 
     const fetchLatestQuestions = () => {
-        axios.get(`/api/question/`, {})
+        axios.get(`/api/assignmentQuestions/?assignmentId=${window.location.href.charAt( window.location.href.length - 1 )}`, {})
         .then((response) => {
             const newDisplayData = response.data.map((question) => {
-                count++;
-                const link = `/questions?id=${count}`;
+                const link = `/questions?id=${question.id}`;
                 return(
                     <tr key={question.id}>
                         <td>{question.id}</td>
