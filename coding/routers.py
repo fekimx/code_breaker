@@ -27,20 +27,16 @@ routes.register(r'question', QuestionViewSet, basename='question')
 
 # ASSIGNMENT
 
-routes.register(r'assignment', AssignmentViewSet, basename='assignment')
 routes.register(r'assignmentStudents', AssignmentStudentViewSet, basename='assignmentStudents')
 routes.register(r'assignmentQuestions', AssignmentQuestionViewSet, basename='assignmentQuestions')
+
+routes.register(r'teacher/assignment', TeacherAssignmentViewSet, basename='teacherAssignment')
+routes.register(r'student/assignment', StudentAssignmentViewSet, basename='studentAssignment')
 
 # Competition
 
 routes.register(r'competition', CompetitionViewSet, basename='competition')
 routes.register(r'competitionProgress', CompetitionProgressViewSet, basename='competitionProgress')
-
-# SOLUTION
-
-routes.register(r'solution', SolutionViewSet, basename='solution')
-routes.register(r'teacher/assignment', TeacherAssignmentViewSet, basename='teacherAssignment')
-routes.register(r'student/assignment', StudentAssignmentViewSet, basename='studentAssignment')
 
 # STUDENTS
 
