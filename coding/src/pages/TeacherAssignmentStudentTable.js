@@ -11,11 +11,12 @@ function TeacherAssignmentStudentTable() {
         axios.get(`/api/assignmentStudents/?assignmentId=${window.location.href.charAt( window.location.href.length - 1 )}`, {})
         .then((response) => {
             const newDisplayData = response.data.map((assignmentStudents) => {
+                console.log('response')
                 return(
                     <tr key={assignmentStudents.id}>
                         <td>{assignmentStudents.id}</td>
                         <td>{assignmentStudents.username}</td>
-                        <td>{assignmentStudents.email}</td>
+                        <td>{assignmentStudents.progress}%</td>
                     </tr>
                 )
             });
