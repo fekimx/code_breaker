@@ -6,10 +6,13 @@ import * as Yup from "yup";
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
 import NewNav from "../components/navbar/NewNav";
+import { useNavigate } from "react-router-dom";
+import Tabs from "./Tabs";
 
 function CreateQuestion() {
   const account = useSelector((state) => state.auth.account);
   const userId = account?.id;
+  let navigate = useNavigate();
 
   const removeSolution = () => {
     setSolutions(solutions => {
@@ -145,6 +148,8 @@ function CreateQuestion() {
     .then((res) => {
       console.log(res);
       setSuccessText("Your question was created successfully!");
+      Tabs.changeTabNumber(2);  
+      navigate('/teacherdashboard');
     })
     .catch((err) => {
       setDangerText("There was an error while creating your question!");
