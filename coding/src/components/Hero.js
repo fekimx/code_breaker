@@ -55,7 +55,7 @@ const Hero = () => {
 <Section>
       <Content>
         <Left>
-          <Title>Built for Students, <br /> learn code today!
+          <Title>Built for Students, <br /> Learn Code Today!
           </Title>
           <Desc>
             Sharpen your programming skills with various challenges in <span> Assignments, Classes, Competitions</span>{' '}
