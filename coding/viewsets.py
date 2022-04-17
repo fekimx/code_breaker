@@ -183,14 +183,29 @@ class StudentAssignmentViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post']
     permission_classes = (IsStudentUser,)
 
-    # TODO - Only assignments in students classes
     def list(self, request):
         logger.warn("list from Assignment")
-        serializer = self.get_serializer(self.queryset, many=True)
+        student = User(id=request.user.id)
+        classes = Class.objects.filter(students=student)
+        assignmentSet = set()
+        for clazz in classes:
+            for assignment in clazz.assignments.all():
+                assignmentSet.add(assignment.id)
+
+        serializer = self.get_serializer(Assignment.objects.filter(pk__in=assignmentSet), many=True)
         return Response(serializer.data)
 
-    # TODO - Only assignments in students classes
     def retrieve(self, request, pk=None):
+        student = User(id=request.user.id)
+        classes = Class.objects.filter(students=student)
+        assignmentSet = set()
+        for clazz in classes:
+            for assignment in clazz.assignments.all():
+                assignmentSet.add(assignment.id)
+
+        if pk not in assignmentSet:
+            raise PermissionDenied()
+
         assignmentObj = get_object_or_404(self.queryset, pk=pk)
         serializer = self.get_serializer(assignmentObj)
         return Response(serializer.data)
@@ -343,7 +358,6 @@ class StudentClassViewset(viewsets.ModelViewSet):
         return Response(serializer.data)
     
     def retrieve(self, request, pk=None):
-        #note from BW2: this isn't in use, may need update
         if str(pk) != str(request.user.id):
             raise PermissionDenied()
         classObj = Class.objects.filter(students = pk)
