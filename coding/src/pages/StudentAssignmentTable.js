@@ -27,7 +27,11 @@ function StudentAssignmentTable(){
                 console.log(count);
                 return(
                     <tr key={assignment.name}>
-                        <td><Link to={link}>{assignment.name}</Link></td>
+                        <td>{assignment.name}</td>
+                        <td>{assignment.active 
+                        ? <Link to={link}><b>Start</b></Link>
+                        : <i class="inactive">Inactive</i>}
+                        </td>  
                         <td>Progress</td>  
                     </tr>
                 )

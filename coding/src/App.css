@@ -101,3 +101,8 @@ p.showdata {
   font-size: 120%;
   padding: 20px 0 0 0;
 }
+
+i.inactive {
+  font-size: 80%;
+  color: #888;
+}
