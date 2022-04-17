@@ -144,7 +144,7 @@ function CreateQuestion() {
   const handleCreateQuestion = (name, description, code) => {
     clearTexts();
     console.log(unitTestsData);
-    axios.post(`/api/question/`, { userId, name, description, code, solutions: solutionsData, unitTests: unitTestsData })
+    axios.post(`/api/teacher/question/`, { userId, name, description, code, solutions: solutionsData, unitTests: unitTestsData })
     .then((res) => {
       console.log(res);
       setSuccessText("Your question was created successfully!");

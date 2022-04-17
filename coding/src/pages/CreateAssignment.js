@@ -46,7 +46,7 @@ function CreateAssignment(type = "assignment") {
       console.log(error);
     });
 
-    axiosService.get(`/api/question/`, {})
+    axiosService.get(`/api/teacher/question/`, {})
     .then((res) => {
       const questionOptions = []
       for (let questionFromApi of res.data) {

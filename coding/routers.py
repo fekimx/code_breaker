@@ -23,7 +23,8 @@ routes.register(r'studentClass', StudentClassViewset, basename='studentClass')
 
 # QUESTION
 
-routes.register(r'question', QuestionViewSet, basename='question')
+routes.register(r'teacher/question', TeacherQuestionViewSet, basename='teacherQuestion')
+routes.register(r'student/question', StudentQuestionViewSet, basename='studentQuestion')
 
 # ASSIGNMENT
 

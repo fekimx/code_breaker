@@ -30,7 +30,7 @@ class Question extends React.Component {
       showSolutions: false
     }
 
-    axiosService.get(`/api/question/${this.props.questionId}/`,    {
+    axiosService.get(`/api/student/question/${this.props.questionId}/`,    {
       //ClassViewset gets a specific class classes
     })
     .then((res) => {
