@@ -120,6 +120,7 @@ class Class(models.Model):
     TAs = models.ManyToManyField(User, related_name="TAs", blank=True)
     students = models.ManyToManyField(User, related_name="students", blank=True)
     assignments = models.ManyToManyField(Assignment, blank=True)
+    competitions = models.ManyToManyField(Competition, blank=True)
 
 # we need a way to individually determine "done" from a learner to a question
 # and we need a way to individually determine percentage completion from a learner to an assignment
