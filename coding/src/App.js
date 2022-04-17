@@ -48,7 +48,8 @@ const App = () => {
               <Route path="/questions" element={ <Question/> } />
               <Route exact path="/teacherCreateQuestion" element={ <CreateQuestion/> } />
               <Route exact path="/teacherCreateClass" element={ <CreateClass/> } />
-              <Route exact path="/teacherCreateAssignment" element={ <CreateAssignment/> } />
+              <Route exact path="/teacherCreateAssignment" element={ <CreateAssignment assignmentType="ASSIGNMENT"/> } />
+              <Route exact path="/teacherStartRace" element={ <CreateAssignment assignmentType="RACE" /> } />
               <Route exact path="/studentClasses" element={ <StudentClasses/> } />
               <Route exact path="/about" element={ <About/> } />
               <Route exact path='/admin' element={<ProtectedRoute admin/>}>
