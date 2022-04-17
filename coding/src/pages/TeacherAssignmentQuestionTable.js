@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { useNavigate } from "react-router";
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ function TeacherAssignmentQuestionTable(){
     const history = useNavigate();
 
     const fetchLatestQuestions = () => {
-        axios.get(`/api/assignmentQuestions/?assignmentId=${window.location.href.charAt( window.location.href.length - 1 )}`, {})
+        axiosService.get(`/api/assignmentQuestions/?assignmentId=${window.location.href.charAt( window.location.href.length - 1 )}`, {})
         .then((response) => {
             const newDisplayData = response.data.map((question) => {
                 const link = `/questions?id=${question.id}`;
