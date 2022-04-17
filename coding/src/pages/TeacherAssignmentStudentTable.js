@@ -9,6 +9,7 @@ function TeacherAssignmentStudentTable() {
     const fetchLatestStudents = () => {
         axios.get(`/api/students/`, {})
         .then((response) => {
+            count=0
             const newDisplayData = response.data.map((student) => {
                 return(
                     <tr key={student.id}>
