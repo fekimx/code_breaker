@@ -316,12 +316,35 @@ class AssignmentStudentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         logger.warn("list from AssignmentStudentViewset")
         assignmentId = self.request.query_params.get('assignmentId')
         logger.warn(assignmentId)
-        assignment = Assignment(id=assignmentId)
         clazz = Class.objects.get(assignments=assignmentId)
         serializer = self.get_serializer(clazz.students.all(), many=True)
+        assignmentStudentData = serializer.data
+        for item in assignmentStudentData:
 
+            try:
+                progress = Progress.objects.get(learner=item['id'])
+
+                item["progress"]=progress.percent
+            except:
+                item["progress"]= 0
+        return Response(assignmentStudentData)
+
+class AssignmentQuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+
+    queryset = Assignment.objects.all()
+    serializer_class = QuestionSerializer
+    permission_classes = (AllowAny,)
+    http_method_names = ['get', 'post', 'delete']
+
+    
+    def list(self, request):
+        logger.warn("list from AssignmentStudentViewset")
+        assignmentId = self.request.query_params.get('assignmentId')
+        logger.warn(assignmentId)
+        assignment = Assignment(id=assignmentId)
+        serializer = self.get_serializer(assignment.questions.all(), many=True)
+        assignmentStudentData = serializer.data
         return Response(serializer.data)
-
 
 class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
