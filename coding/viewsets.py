@@ -321,18 +321,6 @@ class AssignmentStudentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         serializer = self.get_serializer(clazz.students.all(), many=True)
 
         return Response(serializer.data)
-    
-    def retrieve(self, request, pk=None):
-        #note from BW2: this isn't in use, may need update
-        studentObj = User.objects.filter(assignments = pk)
-        serializer = self.get_serializer(studentObj, many=True)
-        return Response(serializer.data)
-
-    def destroy(self, request, pk=None):
-        item = self.get_object()
-
-        item.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
