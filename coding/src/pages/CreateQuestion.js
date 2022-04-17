@@ -7,7 +7,7 @@ import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
 import NewNav from "../components/navbar/NewNav";
 import { useNavigate } from "react-router-dom";
-import Tabs from "./Tabs"
+import Tabs from "./Tabs";
 
 function CreateQuestion() {
   const account = useSelector((state) => state.auth.account);
