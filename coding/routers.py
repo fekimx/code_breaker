@@ -1,8 +1,6 @@
 # core/routers.py
 from rest_framework.routers import SimpleRouter
-from coding.viewsets import AssignmentViewSet, RunViewSet, UserViewSet, CompetitionViewSet, CompetitionProgressViewSet
-from coding.viewsets import StudentViewSet, QuestionViewSet, LoginViewSet, RegistrationViewSet, RefreshViewSet, ClassViewSet, JoinClassViewSet, AssignmentQuestionViewSet, AssignmentStudentViewSet, SolutionViewSet, StudentClassViewset
-
+from coding.viewsets import *
 # From https://dev.to/koladev/django-rest-authentication-cmh
 
 routes = SimpleRouter()
@@ -25,22 +23,21 @@ routes.register(r'studentClass', StudentClassViewset, basename='studentClass')
 
 # QUESTION
 
-routes.register(r'question', QuestionViewSet, basename='question')
+routes.register(r'teacher/question', TeacherQuestionViewSet, basename='teacherQuestion')
+routes.register(r'student/question', StudentQuestionViewSet, basename='studentQuestion')
 
 # ASSIGNMENT
 
-routes.register(r'assignment', AssignmentViewSet, basename='assignment')
 routes.register(r'assignmentStudents', AssignmentStudentViewSet, basename='assignmentStudents')
 routes.register(r'assignmentQuestions', AssignmentQuestionViewSet, basename='assignmentQuestions')
+
+routes.register(r'teacher/assignment', TeacherAssignmentViewSet, basename='teacherAssignment')
+routes.register(r'student/assignment', StudentAssignmentViewSet, basename='studentAssignment')
 
 # Competition
 
 routes.register(r'competition', CompetitionViewSet, basename='competition')
 routes.register(r'competitionProgress', CompetitionProgressViewSet, basename='competitionProgress')
-
-# SOLUTION
-
-routes.register(r'solution', SolutionViewSet, basename='solution')
 
 # STUDENTS
 

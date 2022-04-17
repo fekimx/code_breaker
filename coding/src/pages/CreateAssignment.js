@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {useSelector} from "react-redux";
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { Field, Form, Formik } from "formik";
 import NewNav from "../components/navbar/NewNav";
 import { useNavigate } from "react-router";
@@ -28,7 +28,7 @@ function CreateAssignment(type = "assignment") {
   };
 
   useEffect(() => {
-    axios.get(`/api/class/?teacherId=` + userId, {})
+    axiosService.get(`/api/class/?teacherId=` + userId, {})
     .then((res) => {
       console.log("Got classes");
       console.log(res);
@@ -46,7 +46,7 @@ function CreateAssignment(type = "assignment") {
       console.log(error);
     });
 
-    axios.get(`/api/question/`, {})
+    axiosService.get(`/api/teacher/question/`, {})
     .then((res) => {
       const questionOptions = []
       for (let questionFromApi of res.data) {
@@ -71,7 +71,7 @@ function CreateAssignment(type = "assignment") {
   const handleCreateAssignment = (values) => {
     console.log(values);
     clearTexts();
-    axios.post(`/api/assignment/`, { author: userId, name: values.name, questions: values.questions, class: values.class })
+    axiosService.post(`/api/teacher/assignment/`, { name: values.name, questions: values.questions, class: values.class })
     .then((res) => {
       console.log(res);
       setSuccessText("Your assignment was created successfully!");

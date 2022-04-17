@@ -144,7 +144,7 @@ function CreateQuestion() {
   const handleCreateQuestion = (name, description, code) => {
     clearTexts();
     console.log(unitTestsData);
-    axios.post(`/api/question/`, { userId, name, description, code, solutions: solutionsData, unitTests: unitTestsData })
+    axios.post(`/api/teacher/question/`, { userId, name, description, code, solutions: solutionsData, unitTests: unitTestsData })
     .then((res) => {
       console.log(res);
       setSuccessText("Your question was created successfully!");
@@ -161,7 +161,7 @@ function CreateQuestion() {
   <div>
     <NewNav/>
     <div className="pad">
-    <div class="container">
+    <div className="container">
     <div className="h-screen flex bg-gray-bg1">
       <div>
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">

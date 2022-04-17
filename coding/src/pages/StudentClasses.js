@@ -6,7 +6,7 @@ import useSWR from 'swr';
 import {fetcher} from "../utils/axios";
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
-import axios from "axios";
+import axiosService from "../utils/axios";
 
 class StudentClasses extends React.Component {
 
