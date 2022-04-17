@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 import {fetcher} from "../utils/axios";
 import { Link } from 'react-router-dom';
 
-
+var count = 0;
 function StudentAssignmentTable(){
 
     const [displayData, updateDisplayData] = useState([]);
@@ -19,11 +19,12 @@ function StudentAssignmentTable(){
     const fetchLatestClasses = () => {
         axios.get(`/api/assignment/`, {})
         .then((response) => {
+            count=0
             const newDisplayData = response.data.map((assignment) => {
-                               
+                count++
                 // Right now this just grabs the ID of the first question and puts that in a link
-                const link = `questions?id=${assignment.questions[0]}`;
-                console.log(assignment.questions);
+                const link = `assignment?id=${count}`;
+                console.log(count);
                 return(
                     <tr key={assignment.name}>
                         <td>{assignment.name}</td>
@@ -31,6 +32,7 @@ function StudentAssignmentTable(){
                         ? <Link to={link}><b>Start</b></Link>
                         : <i class="inactive">Inactive</i>}
                         </td>  
+                        <td>Progress</td>  
                     </tr>
                 )
             });
@@ -53,7 +55,7 @@ function StudentAssignmentTable(){
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Start Assignment</th>
+                        <th>Progress</th>
                     </tr>
                 </thead>
                 <tbody>
