@@ -10,7 +10,7 @@ function TeacherQuestionTable(){
     const history = useNavigate();
 
     const fetchLatestQuestions = () => {
-        axiosService.get(`/api/question/`, {})
+        axiosService.get(`/api/teacher/question/`, {})
         .then((response) => {
             const newDisplayData = response.data.map((question) => {
                 count++;

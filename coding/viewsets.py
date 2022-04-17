@@ -175,7 +175,7 @@ class TeacherAssignmentViewSet(viewsets.ModelViewSet):
         assignmentObj = get_object_or_404(qs, pk=pk)
         serializer = self.get_serializer(assignmentObj)
         return Response(serializer.data)
-# TODO
+
 class StudentAssignmentViewSet(viewsets.ModelViewSet):
 
     queryset = Assignment.objects.all()
@@ -248,8 +248,6 @@ class CompetitionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         return Response(serializer.data)
 
 class CompetitionProgressViewSet(viewsets.ModelViewSet):
-    # remove the token obtain pair view
-
     queryset = Competition.objects.all()
     serializer_class = CompetitionProgressSerializer
     http_method_names = ['get']
@@ -405,12 +403,12 @@ class AssignmentQuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         assignmentStudentData = serializer.data
         return Response(serializer.data)
 
-class QuestionViewSet(viewsets.ModelViewSet):
+class TeacherQuestionViewSet(viewsets.ModelViewSet):
 
     queryset = CodeQuestion.objects.all()
     serializer_class = QuestionSerializer
     http_method_names = ['get', 'post']
-    permission_classes = [IsStudentUser|IsTeacherUser]
+    permission_classes = [IsTeacherUser]
 
     # A teacher can create a question
     def create(self, request, *args, **kwargs):
@@ -480,7 +478,6 @@ class QuestionViewSet(viewsets.ModelViewSet):
 
             return Response(questionData, status=status.HTTP_201_CREATED)
 
-    # TODO - Students need a different list to check if its in their assignment
     def list(self, request):
         queryset = CodeQuestion.objects.filter(author_id=request.user.id)
 
@@ -488,10 +485,67 @@ class QuestionViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
-    # TODO - Only a teacher who created it
-    # TODO - Student restricted to viewing whats in their assignment
     def retrieve(self, request, pk=None):
         logger.warn("retrieve from QuestionViewSet")
+        classObj = get_object_or_404(self.queryset, pk=pk, author_id=request.user.id)
+        unitTests = classObj.unitTests.all()
+        solutions = classObj.solutions.all()
+        serializer = self.get_serializer(classObj)
+        unitTestSerializer = UnitTestSerializer(unitTests, many=True)
+        solutionSerializer = SolutionSerializer(solutions, many=True)
+        response_obj = serializer.data
+        response_obj["unitTests"] = unitTestSerializer.data
+        response_obj["solutions"] = solutionSerializer.data
+        return Response(response_obj)
+
+class StudentQuestionViewSet(viewsets.ModelViewSet):
+
+    queryset = CodeQuestion.objects.all()
+    serializer_class = QuestionSerializer
+    http_method_names = ['get', 'post']
+    permission_classes = [IsStudentUser]
+
+    def create(self, request, *args, **kwargs):
+        raise PermissionDenied()
+
+    def list(self, request):
+        student = User(id=request.user.id)
+        classes = Class.objects.filter(students=student)
+        assignmentSet = set()
+        for clazz in classes:
+            for assignment in clazz.assignments.all():
+                assignmentSet.add(assignment.id)
+
+        questionSet = set()
+        assignments = Assignment.objects.filter(pk__in=assignmentSet)
+        for assign in assignments:
+            for question in assign.questions.all():
+                questionSet.add(question.id)
+
+        queryset = CodeQuestion.objects.filter(pk__in=questionSet)
+
+        logger.warn("list from QuestionViewSet")
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        logger.warn("retrieve from QuestionViewSet")
+        student = User(id=request.user.id)
+        classes = Class.objects.filter(students=student)
+        assignmentSet = set()
+        for clazz in classes:
+            for assignment in clazz.assignments.all():
+                assignmentSet.add(assignment.id)
+
+        questionSet = set()
+        assignments = Assignment.objects.filter(pk__in=assignmentSet)
+        for assign in assignments:
+            for question in assign.questions.all():
+                questionSet.add(question.id)
+
+        if pk not in questionSet:
+            raise PermissionDenied()
+            
         classObj = get_object_or_404(self.queryset, pk=pk)
         unitTests = classObj.unitTests.all()
         solutions = classObj.solutions.all()
