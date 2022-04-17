@@ -19,6 +19,7 @@ function StudentClassTable(){
     const fetchLatestClasses = () => {
         axios.get(`/api/studentClass/?studentId=` + account?.id, {})
         .then((response) => {
+            console.log("listing student classes")
             const newDisplayData = response.data.map((studentClass) => {
                                
                 return(
