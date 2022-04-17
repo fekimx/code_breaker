@@ -3,8 +3,11 @@ import {useSelector} from "react-redux";
 import axios from "axios";
 import { Field, Form, Formik } from "formik";
 import NewNav from "../components/navbar/NewNav";
+import { useNavigate } from "react-router-dom";
+
 
 function CreateAssignment() {
+  let navigate = useNavigate();
   const account = useSelector((state) => state.auth.account);
   const userId = account?.id;
 
@@ -69,6 +72,7 @@ function CreateAssignment() {
     .then((res) => {
       console.log(res);
       setSuccessText("Your assignment was created successfully!");
+      navigate('/teacherdashboard');
     })
     .catch((err) => {
       console.log("Received an error while creating question", err);
