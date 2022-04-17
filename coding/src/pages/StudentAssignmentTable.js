@@ -31,8 +31,7 @@ function StudentAssignmentTable(){
                         <td>{assignment.active 
                         ? <Link to={link}><b>Start</b></Link>
                         : <i class="inactive">Inactive</i>}
-                        </td>  
-                        <td>Progress</td>  
+                        </td>   
                     </tr>
                 )
             });
