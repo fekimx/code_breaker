@@ -3,33 +3,35 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Tab from './Tab';
-
+var tabNumber = 0;
 //keep track of state and display the active tab below the imports in Tabs.js
 class Tabs extends Component {
   static propTypes = {
     children: PropTypes.instanceOf(Array).isRequired,
   }
-
   constructor(props) {
     super(props);
 
     //initial tab is the first one by default
     this.state = {
-      activeTab: this.props.children[0].props.label,
+      activeTab: this.props.children[tabNumber].props.label,
     };
   }
     //will update the app state to the current tab that is clicked by the user
     onClickTabItem = (tab) => {
         this.setState({ activeTab: tab });
     }
+    static changeTabNumber = (tN) => {
+        tabNumber = tN;
+    }
     render() {
         const {
         onClickTabItem,
         props: {
-            children,
+            children
         },
         state: {
-            activeTab,
+            activeTab
         }
         } = this;
 
