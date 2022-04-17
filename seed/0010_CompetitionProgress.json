@@ -1,0 +1,42 @@
+[
+{
+    "model": "coding.competitionprogress",
+    "pk": 1,
+    "fields": {
+        "learner": 1,
+        "competition": 1,
+        "percent": 90,
+        "grade": 85.1
+    }
+},
+{
+    "model": "coding.competitionprogress",
+    "pk": 2,
+    "fields": {
+        "learner": 2,
+        "competition": 1,
+        "percent": 70,
+        "grade": 70.0
+    }
+},
+{
+    "model": "coding.competitionprogress",
+    "pk": 3,
+    "fields": {
+        "learner": 3,
+        "competition": 1,
+        "percent": 50,
+        "grade": 49.2
+    }
+},
+{
+    "model": "coding.competitionprogress",
+    "pk": 4,
+    "fields": {
+        "learner": 4,
+        "competition": 1,
+        "percent": 51,
+        "grade": 42.3
+    }
+}
+]
