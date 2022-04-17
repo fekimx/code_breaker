@@ -303,6 +303,25 @@ class StudentClassViewset(viewsets.ModelViewSet, TokenObtainPairView):
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+#get students associated with an assignment
+class AssignmentStudentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+
+    queryset = Assignment.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (AllowAny,)
+    http_method_names = ['get', 'post', 'delete']
+
+    
+    def list(self, request):
+        logger.warn("list from AssignmentStudentViewset")
+        assignmentId = self.request.query_params.get('assignmentId')
+        logger.warn(assignmentId)
+        assignment = Assignment(id=assignmentId)
+        clazz = Class.objects.get(assignments=assignmentId)
+        serializer = self.get_serializer(clazz.students.all(), many=True)
+
+        return Response(serializer.data)
+
 
 class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
