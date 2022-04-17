@@ -60,6 +60,7 @@ function TeacherClassTable(){
                 </tbody>
             </table>
             <button onClick={()=>history("/teacherCreateAssignment")}>Create an Assignment</button>
+            <button onClick={()=>history("/teacherStartRace")}>Start a Competition</button>
         </div>
     )
 }
