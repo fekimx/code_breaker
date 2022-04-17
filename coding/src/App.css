@@ -101,3 +101,14 @@ p.showdata {
   font-size: 120%;
   padding: 20px 0 0 0;
 }
+
+.cancelbutton {
+  background-color: #f7f7f7;
+  border: 1px solid #00f;
+  color: #00f;
+}
+
+i.inactive {
+  font-size: 80%;
+  color: #888;
+}

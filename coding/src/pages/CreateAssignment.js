@@ -4,12 +4,16 @@ import axios from "axios";
 import { Field, Form, Formik } from "formik";
 import NewNav from "../components/navbar/NewNav";
 import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 
-function CreateAssignment() {
+function CreateAssignment(type = "assignment") {
   let navigate = useNavigate();
   const account = useSelector((state) => state.auth.account);
   const userId = account?.id;
+
+  console.log("Starting assignment type: " + type.assignmentType);
+  const history = useNavigate();
 
   const [message] = useState("");
   const [questions, updateQuestions] = useState([])
@@ -80,6 +84,8 @@ function CreateAssignment() {
     });
   };
   
+  const cancelLink = `/TeacherDashboard`;
+
   return (
   <div>
     <NewNav/>
@@ -88,7 +94,7 @@ function CreateAssignment() {
     <div className="h-screen flex bg-gray-bg1">
       <div>
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
-          Create an Assignment
+          {type.assignmentType == "RACE" ? "Start a Competition" : "Create an Assignment"}
         </h1>
         <Formik 
           initialValues={initialValues}
@@ -128,6 +134,7 @@ function CreateAssignment() {
             >
               Create
             </button>
+            <button type="button" class="cancelbutton" onClick={()=>history("/TeacherDashboard")}>Cancel</button>
             <div className="text-success">{successText}</div>
             <div className="text-danger">{dangerText}</div>
           </div>

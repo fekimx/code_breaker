@@ -5,7 +5,8 @@
     "fields": {
         "learner": 1,
         "assignment": 1,
-        "percent": 2
+        "percent": 2,
+        "grade": 1
     }
 },
 {
@@ -14,7 +15,8 @@
     "fields": {
         "learner": 2,
         "assignment": 1,
-        "percent": 50
+        "percent": 50,
+        "grade": 40
     }
 }
 ]
