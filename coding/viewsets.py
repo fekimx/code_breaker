@@ -318,8 +318,16 @@ class AssignmentStudentViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         logger.warn(assignmentId)
         clazz = Class.objects.get(assignments=assignmentId)
         serializer = self.get_serializer(clazz.students.all(), many=True)
+        assignmentStudentData = serializer.data
+        for item in assignmentStudentData:
 
-        return Response(serializer.data)
+            try:
+                progress = Progress.objects.get(learner=item['id'])
+
+                item["progress"]=progress.percent
+            except:
+                item["progress"]= 0
+        return Response(assignmentStudentData)
 
 class AssignmentQuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
@@ -335,7 +343,7 @@ class AssignmentQuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         logger.warn(assignmentId)
         assignment = Assignment(id=assignmentId)
         serializer = self.get_serializer(assignment.questions.all(), many=True)
-
+        assignmentStudentData = serializer.data
         return Response(serializer.data)
 
 class QuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
