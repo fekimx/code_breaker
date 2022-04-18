@@ -83,12 +83,12 @@ class CommonAssignmentCompetitionInfo(models.Model):
     name = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     questions = models.ManyToManyField(CodeQuestion)
-    active = models.BooleanField(default=False)
 
     class Meta:
         abstract = True
 
 class Assignment(CommonAssignmentCompetitionInfo):
+    active = models.BooleanField(default=False)
 
     def serialize(self):
         return {
@@ -101,14 +101,17 @@ class Competition(CommonAssignmentCompetitionInfo):
     COMPETITION_TYPE = (
         ('R', 'Race'),
     )
+    active = models.BooleanField(default=True)
     type = models.CharField(max_length=1, choices=COMPETITION_TYPE)
+    created = models.DateTimeField(auto_now_add=True, blank=True)
 
     def serialize(self):
         return {
             "name": self.name,
             "author": self.author,
             "active": self.active,
-            "type": self.type
+            "type": self.type,
+            "created": self.created
         }
 
 # Class - data object to organize students

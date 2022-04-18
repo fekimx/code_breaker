@@ -7,7 +7,7 @@ import {fetcher} from "../utils/axios";
 import { Link } from 'react-router-dom';
 
 var count = 0;
-function StudentAssignmentTable(){
+function StudentCompetitionsTable(){
 
     const [displayData, updateDisplayData] = useState([]);
 
@@ -17,19 +17,26 @@ function StudentAssignmentTable(){
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
     const fetchLatestClasses = () => {
-        axiosService.get(`/api/student/assignment/`, {})
+        console.log("--> START");
+        axiosService.get(`/api/student/competition/`, {})
         .then((response) => {
             count=0
-            const newDisplayData = response.data.map((assignment) => {
+            console.log("--> START2");
+
+            if (response.data.length === 0) {
+                console.log("EMPTY !");
+            }
+            const newDisplayData = response.data.map((competition) => {
+                console.log("--> MAP "+count);
                 count++
                 // Right now this just grabs the ID of the first question and puts that in a link
                 const link = `assignment?id=${count}`;
                 console.log(count);
                 return(
-                    <tr key={assignment.name}>
-                        <td>{assignment.name}</td>
+                    <tr key={competition.name}>
+                        <td>{competition.name}</td>
                         <td>3 of 11 questions</td>
-                        <td>{assignment.active 
+                        <td>{competition.active 
                         ? <Link to={link}><b>Start</b></Link>
                         : <i class="inactive">Inactive</i>}
                         </td>   
@@ -54,17 +61,24 @@ function StudentAssignmentTable(){
             <table className="table-striped">
                 <thead>
                     <tr>
-                        <th>Assignment Title</th>
+                        <th>Competition Title</th>
                         <th>Progress</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     { displayData }
+                    { displayData == "" &&
+                        <tr>
+                            <td colspan="3">
+                                <center><i class="inactive">No Competitions Yet :-(</i></center>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
     )
 }
  
- export default StudentAssignmentTable;
+ export default StudentCompetitionsTable;

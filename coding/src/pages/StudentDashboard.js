@@ -8,6 +8,7 @@ import Tabs from './Tabs';
 import NewNav from "../components/navbar/NewNav";
 import StudentClassTable from "./StudentClassTable";
 import StudentAssignmentTable from "./StudentAssignmentTable";
+import StudentCompetitionsTable from "./StudentCompetitionsTable";
 import Footer from "../components/Footer";
 
 const StudentDashboard = () => {
@@ -49,6 +50,9 @@ const StudentDashboard = () => {
       </div>
       <div label="Assignments">
         <StudentAssignmentTable/>
+      </div>
+      <div label="Competitions">
+        <StudentCompetitionsTable/>
       </div>
     </Tabs>
     </div>

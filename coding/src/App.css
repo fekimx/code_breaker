@@ -112,3 +112,7 @@ i.inactive {
   font-size: 80%;
   color: #888;
 }
+
+a.small-link {
+  font-size: 80%;
+}

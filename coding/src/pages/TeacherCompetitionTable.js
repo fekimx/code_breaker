@@ -5,60 +5,108 @@ import useSWR from 'swr';
 import {useSelector} from "react-redux";
 import {fetcher} from "../utils/axios";
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router";
 
 var count = 0;
 function TeacherCompetitionTable(){
 
-    const [displayData, updateDisplayData] = useState([]);
+    const navigate = useNavigate();
+    const [activeData, updateActiveDisplayData] = useState([]);
+    const [inactiveData, updateInactiveDisplayData] = useState([]);
 
     const account = useSelector((state) => state.auth.account);
     const userId = account?.id;
 
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
-    const fetchLatestCompetitions = () => {
+    const fetchLatestActiveCompetitions = () => {
         axiosService.get(`/api/teacher/competition/`, {})
         .then((response) => {
-            count=0
             const newDisplayData = response.data.map((competition) => {
-                count++
-                // Right now this just grabs the ID of the first question and puts that in a link
-                const link = `competition?id=${count}`;
                 console.log(count);
-                return(
-                    <tr key={competition.name}>
-                        <td>{competition.name}</td>
-                        <td>{competition.active 
-                        ? <Link to={link}><b>Start</b></Link>
-                        : <i class="inactive">Inactive</i>}
-                        </td>    
-                    </tr>
-                )
+                count = 1
+                const link = `competition?id=${count}`;
+                if (competition.active) {
+                    return(
+                        <tr key={competition.name}>
+                            <td>{competition.name}
+                            <br />
+                            <Link class="small-link" to={link}><b>End Competition</b></Link>
+                            </td>
+                            <td>
+                            <b>8</b> <i class="inactive">total students</i><br />
+                            <b>3</b> <i class="inactive">finished</i><br />
+                            </td>
+                        </tr>
+                    )
+                } else {
+                    return
+                }
             });
-            updateDisplayData(newDisplayData);
+            updateActiveDisplayData(newDisplayData);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+    const fetchLatestInactiveCompetitions = () => {
+        axiosService.get(`/api/teacher/competition/`, {})
+        .then((response) => {
+            const newDisplayData = response.data.map((competition) => {
+                console.log(count);
+                count = 1
+                const link = `competition?id=${count}`;
+                if (!competition.active) {
+                    return(
+                        <tr key={competition.name}>
+                            <td>{competition.name}</td>
+                            <td><Link to={link}><b>View</b></Link>
+                            </td>    
+                        </tr>
+                    )
+                } else {
+                    return
+                }
+            });
+            updateInactiveDisplayData(newDisplayData);
         })
         .catch(function (error) {
             console.log(error);
         });
     }
 
-    const data = { classCode: "", teacherId: account?.id, fetchLatestCompetitions: fetchLatestCompetitions};
+    const data = { classCode: "", teacherId: account?.id, fetchLatestCompetitions: fetchLatestActiveCompetitions};
 
     useEffect(() => {
-        fetchLatestCompetitions();
+        fetchLatestActiveCompetitions();
+        fetchLatestInactiveCompetitions();
     }, []);
 
     return(
         <div>
+            <button onClick={()=>navigate("/teacherStartCompetition")}>Start a Competition</button>
+            <br /><br />
             <table className="table-striped">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Progress</th>
+                        <th>Active Competitions</th>
+                        <th>Student Progress</th>
                     </tr>
                 </thead>
                 <tbody>
-                    { displayData }
+                    { activeData }
+                </tbody>
+            </table>
+            <br />
+            <table className="table-striped">
+                <thead>
+                    <tr>
+                        <th>Past Competitions</th>
+                        <th>Results</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { inactiveData }
                 </tbody>
             </table>
         </div>
