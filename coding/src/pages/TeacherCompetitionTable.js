@@ -17,7 +17,7 @@ function TeacherCompetitionTable(){
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
     const fetchLatestCompetitions = () => {
-        axiosService.get(`/api/competition/`, {})
+        axiosService.get(`/api/teacher/competition/`, {})
         .then((response) => {
             count=0
             const newDisplayData = response.data.map((competition) => {
