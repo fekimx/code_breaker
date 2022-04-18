@@ -145,7 +145,7 @@ class Status(models.Model):
             "grade": self.grade
         }
 
-# Progress is the same thing but for an assignment
+# Progress is the same thing but for an assignment -
 class Progress(models.Model):
     learner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE, null=True, related_name="progress")

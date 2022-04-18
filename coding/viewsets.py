@@ -147,9 +147,6 @@ class TeacherAssignmentViewSet(viewsets.ModelViewSet):
     # Teachers can create assignments
     def create(self, request, *args, **kwargs):
         request.data['author'] = request.user.id
-
-
-        
         questionweightpair_fks = []
 
         for question in request.data['questions']:
@@ -157,7 +154,6 @@ class TeacherAssignmentViewSet(viewsets.ModelViewSet):
             data['question'] = question
             # v1 - everything has weight of 1
             data['weight'] = 1.0
-            #codequestion.solution.add()
             questionweightpair_serializer = QuestionWeightPairSerializer(data = data)
                 
             try:
@@ -177,9 +173,9 @@ class TeacherAssignmentViewSet(viewsets.ModelViewSet):
         assignmentData['name'] = request.data['name']
         assignmentData['author'] = request.data['author']
         assignmentData['questions'] = request.data['questions']
-        print(assignmentData)
 
         serializer = self.get_serializer(data=request.data)
+        
         try:
             serializer.is_valid(raise_exception=True)
             assignment = serializer.save()
@@ -249,11 +245,35 @@ class CompetitionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
     permission_classes = (AllowAny,)
 
     def create(self, request, *args, **kwargs):
-        logger.warn("Inside CompetitionViewSet create")
-        logger.warn(request.data)
+        request.data['author'] = request.user.id
+        questionweightpair_fks = []
+
+        for question in request.data['questions']:
+            data = {}
+            data['question'] = question
+            # v1 - everything has weight of 1
+            data['weight'] = 1.0
+            questionweightpair_serializer = QuestionWeightPairSerializer(data = data)
+                
+            try:
+                questionweightpair_serializer.is_valid()
+                questionweightpair_serializer.save()
+                questionweightpair_fks.append(questionweightpair_serializer['id'].value)
+                
+            except TokenError as e:
+                raise InvalidToken(e.args[0]) 
+
+        # done making question weight pairs    
+        request.data['questions'] = questionweightpair_fks
+
+        competitionData = {}
+        competitionData['name'] = request.data['name']
+        competitionData['author'] = request.data['author']
+        competitionData['questions'] = request.data['questions']
+        #serializer = self.get_serializer(data=request.data)
 
         serializer = self.get_serializer(data=request.data)
-        print(serializer)
+
         try:
             serializer.is_valid(raise_exception=True)
             competition = serializer.save()
