@@ -46,7 +46,7 @@ function CreateCompetition(type = "race") {
       console.log(error);
     });
 
-    axiosService.get(`/api/question/`, {})
+    axiosService.get(`/api/teacher/question/`, {})
     .then((res) => {
       const questionOptions = []
       for (let questionFromApi of res.data) {
@@ -71,7 +71,7 @@ function CreateCompetition(type = "race") {
   const handleCreateCompetition = (values) => {
     console.log(values);
     clearTexts();
-    axiosService.post(`/api/competition/`, { author: userId, name: values.name, questions: values.questions, class: values.class, type: 'R' })
+    axiosService.post(`/api/teacher/competition/`, { author: userId, name: values.name, questions: values.questions, class: values.class, type: 'R' })
     .then((res) => {
       console.log(res);
       setSuccessText("Your competition was created successfully!");
