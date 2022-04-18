@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "question": 1,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -12,7 +12,7 @@
         "pk": 2,
         "fields": {
             "question": 2,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -20,7 +20,7 @@
         "pk": 3,
         "fields": {
             "question": 3,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -28,7 +28,7 @@
         "pk": 4,
         "fields": {
             "question": 4,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -36,7 +36,7 @@
         "pk": 5,
         "fields": {
             "question": 5,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -44,7 +44,7 @@
         "pk": 6,
         "fields": {
             "question": 6,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -52,7 +52,7 @@
         "pk": 7,
         "fields": {
             "question": 7,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -68,7 +68,7 @@
         "pk": 9,
         "fields": {
             "question": 9,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -76,7 +76,7 @@
         "pk": 10,
         "fields": {
             "question": 10,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -84,7 +84,7 @@
         "pk": 11,
         "fields": {
             "question": 11,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -92,7 +92,7 @@
         "pk": 12,
         "fields": {
             "question": 12,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -100,7 +100,7 @@
         "pk": 13,
         "fields": {
             "question": 13,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -108,7 +108,7 @@
         "pk": 14,
         "fields": {
             "question": 14,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -116,7 +116,7 @@
         "pk": 15,
         "fields": {
             "question": 15,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -124,7 +124,7 @@
         "pk": 16,
         "fields": {
             "question": 16,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -132,7 +132,7 @@
         "pk": 17,
         "fields": {
             "question": 17,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -140,15 +140,7 @@
         "pk": 18,
         "fields": {
             "question": 18,
-            "weight": 1.0
-        }
-    },
-    {
-        "model": "coding.questionweightpair",
-        "pk": 1,
-        "fields": {
-            "question": 1,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -156,7 +148,7 @@
         "pk": 19,
         "fields": {
             "question": 19,
-            "weight": 1.0
+            "weight": 1
         }
     },
     {
@@ -164,7 +156,7 @@
         "pk": 20,
         "fields": {
             "question": 20,
-            "weight": 1.0
+            "weight": 1
         }
     }
     ]

@@ -153,7 +153,7 @@ class TeacherAssignmentViewSet(viewsets.ModelViewSet):
             data = {}
             data['question'] = question
             # v1 - everything has weight of 1
-            data['weight'] = 1.0
+            data['weight'] = 1
             questionweightpair_serializer = QuestionWeightPairSerializer(data = data)
                 
             try:
@@ -252,7 +252,7 @@ class CompetitionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
             data = {}
             data['question'] = question
             # v1 - everything has weight of 1
-            data['weight'] = 1.0
+            data['weight'] = 1
             questionweightpair_serializer = QuestionWeightPairSerializer(data = data)
                 
             try:
