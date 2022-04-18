@@ -210,12 +210,12 @@ class StudentAssignmentViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(assignmentObj)
         return Response(serializer.data)
 
-class CompetitionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+class TeacherCompetitionViewSet(viewsets.ModelViewSet):
 
     queryset = Competition.objects.all()
     serializer_class = CompetitionSerializer
     http_method_names = ['get', 'post']
-    permission_classes = (AllowAny,)
+    permission_classes = (IsTeacherUser,)
 
     def create(self, request, *args, **kwargs):
         logger.warn("Inside CompetitionViewSet create")
@@ -239,10 +239,44 @@ class CompetitionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
     def list(self, request):
         logger.warn("list from Competition")
-        serializer = self.get_serializer(self.queryset, many=True)
+        serializer = self.get_serializer(Competition.objects.filter(author=request.user.id), many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
+        competitionObj = get_object_or_404(self.queryset, pk=pk)
+        serializer = self.get_serializer(competitionObj)
+        return Response(serializer.data)
+
+class StudentCompetitionViewSet(viewsets.ModelViewSet):
+
+    queryset = Competition.objects.all()
+    serializer_class = CompetitionSerializer
+    http_method_names = ['get', 'post']
+    permission_classes = (IsStudentUser,)
+
+    def list(self, request):
+        logger.warn("list from Competition")
+        student = User(id=request.user.id)
+        classes = Class.objects.filter(students=student)
+        competitionSet = set()
+        for clazz in classes:
+            for competition in clazz.competition.all():
+                competitionSet.add(competition.id)
+
+        serializer = self.get_serializer(Competition.objects.filter(pk__in=competitionSet), many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        student = User(id=request.user.id)
+        classes = Class.objects.filter(students=student)
+        competitionSet = set()
+        for clazz in classes:
+            for competition in clazz.competition.all():
+                competitionSet.add(competition.id)
+
+        if pk not in competitionSet:
+            raise PermissionDenied()
+
         competitionObj = get_object_or_404(self.queryset, pk=pk)
         serializer = self.get_serializer(competitionObj)
         return Response(serializer.data)
