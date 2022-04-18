@@ -112,3 +112,11 @@ i.inactive {
   font-size: 80%;
   color: #888;
 }
+
+a.small-link {
+  font-size: 80%;
+} 
+
+.vertical-padding {
+  padding: 30px 0 30px 0;
+}
