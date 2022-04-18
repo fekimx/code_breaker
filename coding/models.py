@@ -78,11 +78,15 @@ class CodeQuestion(models.Model):
     solutions = models.ManyToManyField(Solution)
     unitTests = models.ManyToManyField(UnitTest)
     
+# This is how we're going to add weights to a given question
+class QuestionWeightPair(models.Model):
+    question = models.ForeignKey(CodeQuestion, on_delete=models.CASCADE)
+    weight = models.IntegerField(default=1)
 
 class CommonAssignmentCompetitionInfo(models.Model):
     name = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    questions = models.ManyToManyField(CodeQuestion)
+    questions = models.ManyToManyField(QuestionWeightPair)
     active = models.BooleanField(default=False)
 
     class Meta:
