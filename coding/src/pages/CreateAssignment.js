@@ -6,13 +6,10 @@ import NewNav from "../components/navbar/NewNav";
 import { useNavigate } from "react-router";
 import Tabs from "./Tabs";
 
-function CreateAssignment(type = "assignment") {
+function CreateAssignment() {
   let navigate = useNavigate();
   const account = useSelector((state) => state.auth.account);
   const userId = account?.id;
-
-  console.log("Starting assignment type: " + type.assignmentType);
-  const history = useNavigate();
 
   const [message] = useState("");
   const [questions, updateQuestions] = useState([])
@@ -84,8 +81,6 @@ function CreateAssignment(type = "assignment") {
     });
   };
   
-  const cancelLink = `/TeacherDashboard`;
-
   return (
   <div>
     <NewNav/>
@@ -94,7 +89,7 @@ function CreateAssignment(type = "assignment") {
     <div className="h-screen flex bg-gray-bg1">
       <div>
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
-          {type.assignmentType == "RACE" ? "Start a Competition" : "Create an Assignment"}
+          Create an Assignment
         </h1>
         <Formik 
           initialValues={initialValues}

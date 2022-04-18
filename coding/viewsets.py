@@ -311,7 +311,7 @@ class StudentCompetitionViewSet(viewsets.ModelViewSet):
         classes = Class.objects.filter(students=student)
         competitionSet = set()
         for clazz in classes:
-            for competition in clazz.competition.all():
+            for competition in clazz.competitions.all():
                 competitionSet.add(competition.id)
 
         serializer = self.get_serializer(Competition.objects.filter(pk__in=competitionSet), many=True)
@@ -322,7 +322,7 @@ class StudentCompetitionViewSet(viewsets.ModelViewSet):
         classes = Class.objects.filter(students=student)
         competitionSet = set()
         for clazz in classes:
-            for competition in clazz.competition.all():
+            for competition in clazz.competitions.all():
                 competitionSet.add(competition.id)
 
         if pk not in competitionSet:
