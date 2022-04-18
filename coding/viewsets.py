@@ -18,7 +18,7 @@ import time
 import random, string
 
 
-from coding.serializers import LoginSerializer, RegisterSerializer, ClassSerializer, UserSerializer, AssignmentSerializer, QuestionSerializer, SolutionSerializer, UnitTestSerializer
+from coding.serializers import LoginSerializer, RegisterSerializer, ClassSerializer, UserSerializer, AssignmentSerializer, QuestionSerializer, SolutionSerializer, UnitTestSerializer, QuestionWeightPairSerializer
 
 # From https://dev.to/koladev/django-rest-authentication-cmh
 logger = logging.getLogger(__name__)
@@ -147,8 +147,35 @@ class TeacherAssignmentViewSet(viewsets.ModelViewSet):
     # Teachers can create assignments
     def create(self, request, *args, **kwargs):
         request.data['author'] = request.user.id
+        questionweightpair_fks = []
+
+        for question in request.data['questions']:
+            data = {}
+            data['question'] = question
+            # v1 - everything has weight of 1
+            data['weight'] = 1
+            questionweightpair_serializer = QuestionWeightPairSerializer(data = data)
+                
+            try:
+                questionweightpair_serializer.is_valid()
+                questionweightpair_serializer.save()
+                questionweightpair_fks.append(questionweightpair_serializer['id'].value)
+                logger.warn("Valid Serializer- Question Weight Pair")
+                
+            except TokenError as e:
+                raise InvalidToken(e.args[0]) 
+            
+        
+        # done making question weight pairs    
+        request.data['questions'] = questionweightpair_fks
+
+        assignmentData = {}
+        assignmentData['name'] = request.data['name']
+        assignmentData['author'] = request.data['author']
+        assignmentData['questions'] = request.data['questions']
 
         serializer = self.get_serializer(data=request.data)
+        
         try:
             serializer.is_valid(raise_exception=True)
             assignment = serializer.save()
@@ -218,11 +245,35 @@ class TeacherCompetitionViewSet(viewsets.ModelViewSet):
     permission_classes = (IsTeacherUser,)
 
     def create(self, request, *args, **kwargs):
-        logger.warn("Inside CompetitionViewSet create")
-        logger.warn(request.data)
+        request.data['author'] = request.user.id
+        questionweightpair_fks = []
+
+        for question in request.data['questions']:
+            data = {}
+            data['question'] = question
+            # v1 - everything has weight of 1
+            data['weight'] = 1
+            questionweightpair_serializer = QuestionWeightPairSerializer(data = data)
+                
+            try:
+                questionweightpair_serializer.is_valid()
+                questionweightpair_serializer.save()
+                questionweightpair_fks.append(questionweightpair_serializer['id'].value)
+                
+            except TokenError as e:
+                raise InvalidToken(e.args[0]) 
+
+        # done making question weight pairs    
+        request.data['questions'] = questionweightpair_fks
+
+        competitionData = {}
+        competitionData['name'] = request.data['name']
+        competitionData['author'] = request.data['author']
+        competitionData['questions'] = request.data['questions']
+        #serializer = self.get_serializer(data=request.data)
 
         serializer = self.get_serializer(data=request.data)
-        print(serializer)
+
         try:
             serializer.is_valid(raise_exception=True)
             competition = serializer.save()
