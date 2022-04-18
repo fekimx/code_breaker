@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {useSelector} from "react-redux";
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import CodeMirror from '@uiw/react-codemirror';
@@ -144,7 +144,7 @@ function CreateQuestion() {
   const handleCreateQuestion = (name, description, code) => {
     clearTexts();
     console.log(unitTestsData);
-    axios.post(`/api/teacher/question/`, { userId, name, description, code, solutions: solutionsData, unitTests: unitTestsData })
+    axiosService.post(`/api/teacher/question/`, { userId, name, description, code, solutions: solutionsData, unitTests: unitTestsData })
     .then((res) => {
       console.log(res);
       setSuccessText("Your question was created successfully!");
