@@ -28,6 +28,7 @@ function StudentAssignmentTable(){
                 return(
                     <tr key={assignment.name}>
                         <td>{assignment.name}</td>
+                        <td>3 of 11 questions</td>
                         <td>{assignment.active 
                         ? <Link to={link}><b>Start</b></Link>
                         : <i class="inactive">Inactive</i>}
@@ -53,8 +54,9 @@ function StudentAssignmentTable(){
             <table className="table-striped">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Assignment Title</th>
                         <th>Progress</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
