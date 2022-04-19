@@ -81,11 +81,12 @@ function CreateAssignment() {
     });
   };
   
+
   return (
   <div>
     <NewNav/>
     <div className="pad">
-    <div class="container">
+    <div className="container">
     <div className="h-screen flex bg-gray-bg1">
       <div>
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
@@ -129,7 +130,7 @@ function CreateAssignment() {
             >
               Create
             </button>
-            <button type="button" class="cancelbutton" onClick={()=>history("/TeacherDashboard")}>Cancel</button>
+            <button type="button" className="cancelbutton" onClick={()=>navigate("/TeacherDashboard")}>Cancel</button>
             <div className="text-success">{successText}</div>
             <div className="text-danger">{dangerText}</div>
           </div>

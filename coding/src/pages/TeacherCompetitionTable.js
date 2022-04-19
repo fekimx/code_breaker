@@ -29,11 +29,11 @@ function TeacherCompetitionTable(){
                         <tr key={competition.name}>
                             <td>{competition.name}
                             <br />
-                            <Link class="small-link" to={link}><b>End Competition</b></Link>
+                            <Link className="small-link" to={link}><b>End Competition</b></Link>
                             </td>
                             <td>
-                            <b>8</b> <i class="inactive">total students</i><br />
-                            <b>3</b> <i class="inactive">finished</i><br />
+                            <b>8</b> <i className="inactive">total students</i><br />
+                            <b>3</b> <i className="inactive">finished</i><br />
                             </td>
                         </tr>
                     )
