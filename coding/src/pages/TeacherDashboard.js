@@ -8,6 +8,7 @@ import NewNav from "../components/navbar/NewNav";
 import Footer from "../components/Footer";
 
 function TeacherDashboard() {
+  
   return (
     <div>
       <NewNav/>
