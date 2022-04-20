@@ -6,6 +6,7 @@ import useSWR from 'swr';
 import {useSelector} from "react-redux";
 import {fetcher} from "../utils/axios";
 import { useNavigate } from "react-router";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 function TeacherClassTable(){
 
@@ -23,7 +24,7 @@ function TeacherClassTable(){
             const newDisplayData = response.data.map((teacherClass) => {
                 return(
                     <tr key={teacherClass.secretKey}>
-                        <td>{teacherClass.name}</td>
+                        <td><Link to={`class/:${teacherClass.secretKey}`}>{teacherClass.name}</Link></td>
                         <td>Class code: {teacherClass.secretKey} <br/> {teacherClass.students.length} students</td>
                         <td>
                             {teacherClass.assignments.length} assignments
