@@ -38,7 +38,7 @@ import { Link } from 'react-router-dom';
                          <td>3 of 11 questions</td>
                          <td>{competition.active 
                          ? <Link to={link}><b>Start</b></Link>
-                         : <i class="inactive">Inactive</i>}
+                         : <i className="inactive">Inactive</i>}
                          </td>   
                      </tr>
                  )
@@ -70,9 +70,9 @@ import { Link } from 'react-router-dom';
                      { displayData }
                      { displayData == "" &&
                          <tr>
-                             <td colspan="3">
-                                 <div class="vertical-padding">
-                                 <center><i class="inactive">No Competitions Yet :-(</i></center>
+                             <td colSpan="3">
+                                 <div className="vertical-padding">
+                                 <center><i className="inactive">No Competitions Yet :-(</i></center>
                                  </div>
                              </td>
                          </tr>
