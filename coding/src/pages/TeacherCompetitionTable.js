@@ -120,7 +120,7 @@ function TeacherCompetitionTable(){
             <table className="table-striped">
                 <thead>
                     <tr>
-                    <th>Inactive Competitions</th>
+                    <th>Past Competitions</th>
                     </tr>
                 </thead>
                 <tbody>
