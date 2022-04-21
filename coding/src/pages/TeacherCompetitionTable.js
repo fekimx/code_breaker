@@ -19,21 +19,41 @@ function TeacherCompetitionTable(){
 
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
+    const updateStatus = (tmpPK, tmpActive) => {
+        console.log("HOOOOOOOOO -----")
+        console.log(tmpPK)
+        axiosService.post(`/api/teacher/competitionStatus/`, {
+            id: tmpPK,
+            active: tmpActive
+        })
+        .then(function (response) {
+            fetchLatestActiveCompetitions()
+            fetchLatestInactiveCompetitions()
+          console.log(response);
+        })
+        .catch(function (error) {
+            fetchLatestActiveCompetitions()
+            fetchLatestInactiveCompetitions()
+          console.log(error);
+        });
+    }
+
     const fetchLatestActiveCompetitions = () => {
+        console.log("==========")
+        console.log(activeData)
         axiosService.get(`/api/teacher/competition/`, {})
         .then((response) => {
             const newDisplayData = response.data.map((competition) => {
-                const link = `competition?id=${count}`;
                 if (competition.active) {
                     return(
                         <tr key={competition.name}>
                             <td>{competition.name}
                             <br />
-                            <Link className="small-link" to={link}><b>End Competition</b></Link>
+                            <button class="text-button" onClick={()=>updateStatus(competition.id, 'False')}>End Competition</button>
                             </td>
                             <td>
-                            <b>8</b> <i className="inactive">total students</i><br />
-                            <b>3</b> <i className="inactive">finished</i><br />
+                            <b>8</b> <i class="inactive">total students</i><br />
+                            <b>3</b> <i class="inactive">finished</i><br />
                             </td>
                         </tr>
                     )
@@ -57,9 +77,10 @@ function TeacherCompetitionTable(){
                  if (!competition.active) {
                      return(
                          <tr key={competition.name}>
-                             <td>{competition.name}</td>
-                             <td><Link to={link}><b>View</b></Link>
-                             </td>    
+                             <td>{competition.name}
+                             <br />
+                            <button class="text-button" onClick={()=>updateStatus(competition.id, 'True')}>Re-enable Competition</button>
+                           </td>    
                          </tr>
                      )
                  } else {
@@ -92,21 +113,21 @@ function TeacherCompetitionTable(){
                      </tr>
                  </thead>
                  <tbody>
-                     { activeData }
-                 </tbody>
+                 { activeData }
+                     </tbody>
              </table>
              <br />
             <table className="table-striped">
                 <thead>
                     <tr>
                     <th>Past Competitions</th>
-                         <th>Results</th>
                     </tr>
                 </thead>
                 <tbody>
 
                 { inactiveData }
-                </tbody>
+
+                   </tbody>
             </table>
         </div>
     )
