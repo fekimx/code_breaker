@@ -52,8 +52,8 @@ function TeacherCompetitionTable(){
                             <button class="text-button" onClick={()=>updateStatus(competition.id, 'False')}>End Competition</button>
                             </td>
                             <td>
-                            <b>8</b> <i class="inactive">total students</i><br />
-                            <b>3</b> <i class="inactive">finished</i><br />
+                            <b>8</b> <i className="inactive">total students</i><br />
+                            <b>3</b> <i className="inactive">finished</i><br />
                             </td>
                         </tr>
                     )
