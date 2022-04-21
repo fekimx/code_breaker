@@ -1,3 +1,4 @@
+from cmath import log
 from coding.serializers import *
 from coding.models import User, Class
 from rest_framework.response import Response
@@ -237,6 +238,35 @@ class StudentAssignmentViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(assignmentObj)
         return Response(serializer.data)
 
+class TeacherCompetitionStatusViewSet(viewsets.ModelViewSet):
+    queryset = Competition.objects.all()
+    serializer_class = CompetitionSerializer
+    http_method_names = ['get', 'post']
+    permission_classes = (IsTeacherUser,)
+ 
+    def create(self, request):
+        logger.warn("----- >> UPDATE STATUS")
+        tmpID = request.data['id']
+        newActive = request.data['active']
+        logger.warn(tmpID)
+        logger.warn(newActive)
+
+        oldCompetition = Competition.objects.get(pk=tmpID)
+
+        logger.warn("----- >> OLD PRE-")
+        logger.warn(oldCompetition.name)
+        logger.warn(oldCompetition.active)
+        oldCompetition.active = False
+        if newActive == "True":
+            oldCompetition.active = True
+        oldCompetition.save()
+
+        logger.warn("----- >> OLD POST-")
+        logger.warn(oldCompetition.active)
+
+        return Response({}, status=status.HTTP_201_CREATED)  
+
+    
 class TeacherCompetitionViewSet(viewsets.ModelViewSet):
 
     queryset = Competition.objects.all()
@@ -290,10 +320,15 @@ class TeacherCompetitionViewSet(viewsets.ModelViewSet):
 
     def list(self, request):
         logger.warn("list from Competition")
+        logger.warn("----- >> LIST FROM COMPETITION!")
+        logger.warn(request)
+        logger.warn("-------------------")
+
         serializer = self.get_serializer(Competition.objects.filter(author=request.user.id), many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
+        logger.warn("----- >> RETRIEVE FROM COMPETITION!")
         competitionObj = get_object_or_404(self.queryset, pk=pk)
         serializer = self.get_serializer(competitionObj)
         return Response(serializer.data)
@@ -414,6 +449,8 @@ class JoinClassViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         user = User.objects.get(id=request.data['userId'])
         studentClass = Class.objects.get(secretKey=request.data['secretKey'])
+        logger.warn(" ----- > > > ")
+
         logger.warn(user)
         logger.warn(studentClass)
         studentClass.students.add(user)
