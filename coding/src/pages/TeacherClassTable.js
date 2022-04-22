@@ -24,7 +24,7 @@ function TeacherClassTable(){
             const newDisplayData = response.data.map((teacherClass) => {
                 return(
                     <tr key={teacherClass.secretKey}>
-                        <td><Link to={`class/:${teacherClass.secretKey}`}>{teacherClass.name}</Link></td>
+                        <td>{teacherClass.name}</td>
                         <td>Class code: {teacherClass.secretKey} <br/> {teacherClass.students.length} students</td>
                         <td>
                             {teacherClass.assignments.length} assignments
