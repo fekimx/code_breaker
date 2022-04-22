@@ -29,6 +29,7 @@ import CreateAssignment from './pages/CreateAssignment';
 import StudentClasses from './pages/StudentClasses';
 import TeacherDashboard from './pages/TeacherDashboard';
 import CreateCompetition from './pages/CreateCompetition';
+import Leaderboard from "./pages/Leaderboard";
 
 
 axios.defaults.xsrfCookieName = 'csrftoken'
@@ -42,6 +43,7 @@ const App = () => {
           <div>
             <Routes>
               <Route exact path="/login" element={ <Login/> } />
+              <Route exact path="/Leaderboard" element={ <Leaderboard/> } />
               <Route exact path="/Homepage" element={ <Homepage/> } />
               <Route exact path="/register" element={ <Register/> } />
               <Route exact path="/contact" element={ <Contact/> } />
