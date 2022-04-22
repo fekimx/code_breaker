@@ -31,8 +31,8 @@ function StudentAssignmentTable(){
                         <td>3 of 11 questions</td>
                         <td>{assignment.active 
                         ? <Link to={link}><b>Start</b></Link>
-                        : <i class="inactive">Inactive</i>}
-                        </td>   
+                        : <i className="inactive">Inactive</i>}
+                        </td>
                     </tr>
                 )
             });

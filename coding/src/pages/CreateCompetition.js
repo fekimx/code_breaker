@@ -6,13 +6,14 @@ import NewNav from "../components/navbar/NewNav";
 import Tabs from "./Tabs";
 import { useNavigate } from "react-router";
 
+var compType = "";
 function CreateCompetition(type = "race") {
   let navigate = useNavigate();
   const account = useSelector((state) => state.auth.account);
   const userId = account?.id;
 
-  console.log("Starting competition type: " + type.competitionType);
-
+  console.log("Starting competition type: " + type.assignmentType);
+  compType = type.assignmentType;
   const [message] = useState("");
   const [questions, updateQuestions] = useState([])
   const [classes, updateClasses] = useState([])
@@ -91,8 +92,9 @@ function CreateCompetition(type = "race") {
     <div className="h-screen flex bg-gray-bg1">
       <div>
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
-          {type.competitionType == "RACE" ? "Start a Competition" : "Create a Competition"}
+          {type.assignmentType == "RACE" ? "Start a Competition" : "Create an Assignment"}
         </h1>
+        <h4>Competition Type: { compType }</h4>
         <Formik 
           initialValues={initialValues}
           onSubmit={(values) => { handleCreateCompetition(values); }}>
