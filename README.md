@@ -103,11 +103,12 @@ This app requires the heroku/nodejs and heroku/python buildpacks.
 
 Note: Roman needed to make sure pg_config was on his PATH. This site contains instructions on how to work with this dependency if problems are encountered: https://www.psycopg.org/docs/install.html
 
-Note: on Brian's machine (Windows), we had to run pip install python-dotenv in git bash to setup the local environment
+Note: on Brian's machine (Windows), we had to run pip install python-dotenv in git bash to setup the local environment. He can only run the local dev env in incognito.
    Commands that can solve build errors in pip: 
                 pip install python-dotenv
                 npm install -g webpack-dev-server
                 npm install webpack 
+                npm install url-loader
                 npm install -g webpack
                 pipenv shell
                 ./migrate_and_seed_local.sh
@@ -116,6 +117,7 @@ Note: on Brian's machine (Windows), we had to run pip install python-dotenv in g
                 pip install ez_setup
                 pip install python-dotenv
                 pip install -r requirements.txt
+                remove python(3) from migrate_and_seed_local
 
 ## EndToEnd Testing
 
