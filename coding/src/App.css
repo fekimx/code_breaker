@@ -122,3 +122,13 @@ a.small-link {
 .vertical-padding {
   padding: 30px 0 30px 0;
 }
+
+.text-button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    color: #069;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 70%;
+}
