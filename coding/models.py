@@ -129,40 +129,6 @@ class Class(models.Model):
     assignments = models.ManyToManyField(Assignment, blank=True)
     competitions = models.ManyToManyField(Competition, blank=True)
 
-# we need a way to individually determine "done" from a learner to a question
-# and we need a way to individually determine percentage completion from a learner to an assignment
-# thus, we have status.  Status can be applied to a question and represents the learner's progress.
-class Status(models.Model):
-    learner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    question = models.ForeignKey(CodeQuestion, on_delete=models.CASCADE, null=True)
-    complete = models.BooleanField(default=False)
-    solution = models.TextField(default = "", null=True)
-    grade = models.FloatField(default=0)
-
-    def serialize(self):
-        return {
-            "learner": self.learner.username,
-            "question": self.question.name,
-            "complete": self.complete,
-            "solution": self.solution,
-            "grade": self.grade
-        }
-
-# Progress is the same thing but for an assignment -
-class Progress(models.Model):
-    learner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE, null=True, related_name="progress")
-    percent = models.IntegerField(default=0)
-    grade = models.FloatField(default=0)
-
-    def serialize(self):
-        return {
-            "learner": self.learner,
-            "assignment": self.assignment,
-            "percent": self.percent,
-            "grade": self.grade
-        }
-
 class Submission(models.Model):
     learner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE, null=True, related_name="submissions")
@@ -170,18 +136,3 @@ class Submission(models.Model):
     question = models.ForeignKey(CodeQuestion, on_delete=models.CASCADE, null=True)
     successfulUnitTests = models.ManyToManyField(UnitTest)
     submittedAt = models.DateTimeField(auto_now_add=True, blank=True)
-
-# CompetitionProgress is the same thing but for an assignment
-class CompetitionProgress(models.Model):
-    learner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    competition = models.ForeignKey(Competition, on_delete=models.CASCADE, null=True, related_name="competitionprogress")
-    percent = models.IntegerField(default=0)
-    grade = models.FloatField(default=0)
-
-    def serialize(self):
-        return {
-            "learner": self.learner,
-            "competition": self.competition,
-            "percent": self.percent,
-            "grade": self.grade
-        }
