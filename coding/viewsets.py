@@ -244,6 +244,28 @@ class StudentAssignmentViewSet(viewsets.ModelViewSet):
             submissions = Submission.objects.filter(learner=student, assignment=assignment).values('assignment', 'question').distinct()
             serializer.data[idx]['numSubmissions'] = len(submissions)
 
+            score = 0
+            possibleScore = 0
+            for question in assignment.questions.all():
+                try:
+                    latest_submission = Submission.objects.filter(learner=student, assignment=assignment, question=question.question).latest('submittedAt')
+                    logger.warn("Successful unit tests:")
+                    successfulUnitTests = latest_submission.successfulUnitTests.all()
+                    numSuccessfulUnitTests = len(successfulUnitTests)
+                    numUnitTestsInQuestion = len(question.question.unitTests.all())
+
+                    if numSuccessfulUnitTests == numUnitTestsInQuestion:
+                        score += question.weight
+                except:
+                    logger.warn("Exception encountered")
+                    pass
+                possibleScore += question.weight
+                logger.warn(latest_submission)
+
+            logger.warn(submissions)
+            serializer.data[idx]['score'] = score
+            serializer.data[idx]['possibleScore'] = possibleScore
+        
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
@@ -259,6 +281,7 @@ class StudentAssignmentViewSet(viewsets.ModelViewSet):
 
         assignmentObj = get_object_or_404(self.queryset, pk=pk)
         serializer = self.get_serializer(assignmentObj)
+
         return Response(serializer.data)
 
 class TeacherCompetitionStatusViewSet(viewsets.ModelViewSet):
