@@ -13,6 +13,8 @@ function TeacherAssignmentQuestionTable(){
     const fetchLatestQuestions = () => {
         axiosService.get(`/api/assignmentQuestions/?assignmentId=${window.location.href.charAt( window.location.href.length - 1 )}`, {})
         .then((response) => {
+            console.log("The response:");
+            console.log(response);
             const newDisplayData = response.data.map((question) => {
                 const link = `/questions?id=${question.id}`;
                 return(
