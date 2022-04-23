@@ -37,6 +37,10 @@ The Judge 0 deployment procedure is documented here: https://github.com/judge0/j
 
 We host our production Judge 0 server in Digital Ocean. The URL to the server is in the viewsets.py under the RunViewSet create method.
 
+In settings.py set JUDGE_ZERO_ENDPOINT to your server's IP address and endpoint, like:
+
+JUDGE_ZERO_ENDPOINT = 'http://159.89.85.94:2358/submissions/'
+
 ## Windows Notes
 
 For Windows, you may need to preface the python commands with "python -m"
@@ -103,11 +107,12 @@ This app requires the heroku/nodejs and heroku/python buildpacks.
 
 Note: Roman needed to make sure pg_config was on his PATH. This site contains instructions on how to work with this dependency if problems are encountered: https://www.psycopg.org/docs/install.html
 
-Note: on Brian's machine (Windows), we had to run pip install python-dotenv in git bash to setup the local environment
+Note: on Brian's machine (Windows), we had to run pip install python-dotenv in git bash to setup the local environment. He can only run the local dev env in incognito.
    Commands that can solve build errors in pip: 
                 pip install python-dotenv
                 npm install -g webpack-dev-server
                 npm install webpack 
+                npm install url-loader
                 npm install -g webpack
                 pipenv shell
                 ./migrate_and_seed_local.sh
@@ -116,6 +121,7 @@ Note: on Brian's machine (Windows), we had to run pip install python-dotenv in g
                 pip install ez_setup
                 pip install python-dotenv
                 pip install -r requirements.txt
+                remove python(3) from migrate_and_seed_local
 
 ## EndToEnd Testing
 

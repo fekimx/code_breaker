@@ -5,7 +5,8 @@ import { useSelector } from "react-redux";
 const ProtectedRoute = (props) => {
   const auth = useSelector((state) => state.auth);
 
-
+  console.log("auth");
+  console.log(auth);
   if (auth.account) {
     if (props && props["teacher"]) {
       if (auth.account.is_staff) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from "axios";
+import axiosService from "../utils/axios";
 
 class TeacherClassAddForm extends Component {
   static propTypes = {
@@ -53,7 +53,7 @@ class TeacherClassAddForm extends Component {
 
   handleSave(e) {
     e.preventDefault();
-    axios.post(`/api/class/`, { teacher: this.state.teacherId, name: this.state.className, assignments: [], active: true, TAs: [], students: [] })
+    axiosService.post(`/api/class/`, { teacher: this.state.teacherId, name: this.state.className, assignments: [], active: true, TAs: [], students: [] })
     .then((res) => {
       this.state.fetchLatestClasses();
       this.setState({

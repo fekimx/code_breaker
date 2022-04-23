@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import {useSelector} from "react-redux";
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
 import NewNav from "../components/navbar/NewNav";
+import { useNavigate } from "react-router-dom";
+import Tabs from "./Tabs";
 
 function CreateQuestion() {
   const account = useSelector((state) => state.auth.account);
   const userId = account?.id;
+  let navigate = useNavigate();
 
   const removeSolution = () => {
     setSolutions(solutions => {
@@ -141,10 +144,12 @@ function CreateQuestion() {
   const handleCreateQuestion = (name, description, code) => {
     clearTexts();
     console.log(unitTestsData);
-    axios.post(`/api/question/`, { userId, name, description, code, solutions: solutionsData, unitTests: unitTestsData })
+    axiosService.post(`/api/teacher/question/`, { userId, name, description, code, solutions: solutionsData, unitTests: unitTestsData })
     .then((res) => {
       console.log(res);
       setSuccessText("Your question was created successfully!");
+      Tabs.changeTabNumber(2);  
+      navigate('/teacherdashboard');
     })
     .catch((err) => {
       setDangerText("There was an error while creating your question!");
@@ -156,7 +161,7 @@ function CreateQuestion() {
   <div>
     <NewNav/>
     <div className="pad">
-    <div class="container">
+    <div className="container">
     <div className="h-screen flex bg-gray-bg1">
       <div>
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">

@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { useState, useEffect } from "react";
 import useSWR from 'swr';
 import {useSelector} from "react-redux";
@@ -17,8 +17,9 @@ function StudentClassTable(){
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
     const fetchLatestClasses = () => {
-        axios.get(`/api/studentClass/?studentId=` + account?.id, {})
+        axiosService.get(`/api/studentClass/?studentId=` + account?.id, {})
         .then((response) => {
+            console.log("listing student classes")
             const newDisplayData = response.data.map((studentClass) => {
                                
                 return(

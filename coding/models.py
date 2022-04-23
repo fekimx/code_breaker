@@ -78,18 +78,22 @@ class CodeQuestion(models.Model):
     solutions = models.ManyToManyField(Solution)
     unitTests = models.ManyToManyField(UnitTest)
     
+# This is how we're going to add weights to a given question
+class QuestionWeightPair(models.Model):
+    question = models.ForeignKey(CodeQuestion, on_delete=models.CASCADE)
+    weight = models.IntegerField(default=1)
 
 class CommonAssignmentCompetitionInfo(models.Model):
     name = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    questions = models.ManyToManyField(CodeQuestion)
-    active = models.BooleanField(default=False)
+    questions = models.ManyToManyField(QuestionWeightPair)
 
     class Meta:
         abstract = True
 
 class Assignment(CommonAssignmentCompetitionInfo):
-
+    active = models.BooleanField(default=False)
+    
     def serialize(self):
         return {
             "name": self.name,
@@ -101,14 +105,17 @@ class Competition(CommonAssignmentCompetitionInfo):
     COMPETITION_TYPE = (
         ('R', 'Race'),
     )
+    active = models.BooleanField(default=True)
     type = models.CharField(max_length=1, choices=COMPETITION_TYPE)
+    created = models.DateTimeField(auto_now_add=True, blank=True)
 
     def serialize(self):
         return {
             "name": self.name,
             "author": self.author,
             "active": self.active,
-            "type": self.type
+            "type": self.type,
+            "created": self.created
         }
 
 # Class - data object to organize students
@@ -120,52 +127,12 @@ class Class(models.Model):
     TAs = models.ManyToManyField(User, related_name="TAs", blank=True)
     students = models.ManyToManyField(User, related_name="students", blank=True)
     assignments = models.ManyToManyField(Assignment, blank=True)
+    competitions = models.ManyToManyField(Competition, blank=True)
 
-# we need a way to individually determine "done" from a learner to a question
-# and we need a way to individually determine percentage completion from a learner to an assignment
-# thus, we have status.  Status can be applied to a question and represents the learner's progress.
-class Status(models.Model):
+class Submission(models.Model):
     learner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE, null=True, related_name="submissions")
+    competition = models.ForeignKey(Competition, on_delete=models.CASCADE, null=True, related_name="submissions")
     question = models.ForeignKey(CodeQuestion, on_delete=models.CASCADE, null=True)
-    complete = models.BooleanField(default=False)
-    solution = models.TextField(default = "", null=True)
-    grade = models.FloatField(default=0)
-
-    def serialize(self):
-        return {
-            "learner": self.learner.username,
-            "question": self.question.name,
-            "complete": self.complete,
-            "solution": self.solution,
-            "grade": self.grade
-        }
-
-# Progress is the same thing but for an assignment
-class Progress(models.Model):
-    learner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE, null=True, related_name="progress")
-    percent = models.IntegerField(default=0)
-    grade = models.FloatField(default=0)
-
-    def serialize(self):
-        return {
-            "learner": self.learner,
-            "assignment": self.assignment,
-            "percent": self.percent,
-            "grade": self.grade
-        }
-
-# CompetitionProgress is the same thing but for an assignment
-class CompetitionProgress(models.Model):
-    learner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    competition = models.ForeignKey(Competition, on_delete=models.CASCADE, null=True, related_name="competitionprogress")
-    percent = models.IntegerField(default=0)
-    grade = models.FloatField(default=0)
-
-    def serialize(self):
-        return {
-            "learner": self.learner,
-            "competition": self.competition,
-            "percent": self.percent,
-            "grade": self.grade
-        }
+    successfulUnitTests = models.ManyToManyField(UnitTest)
+    submittedAt = models.DateTimeField(auto_now_add=True, blank=True)

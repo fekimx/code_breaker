@@ -3,14 +3,15 @@ import {useSelector} from "react-redux";
 import axiosService from "../utils/axios";
 import { Field, Form, Formik } from "formik";
 import NewNav from "../components/navbar/NewNav";
-import { useNavigate } from "react-router";
 import Tabs from "./Tabs";
+import { useNavigate } from "react-router";
 
-function CreateAssignment() {
+function CreateCompetition(type = "race") {
   let navigate = useNavigate();
   const account = useSelector((state) => state.auth.account);
   const userId = account?.id;
 
+  console.log("Starting competition type: " + type.assignmentType);
   const [message] = useState("");
   const [questions, updateQuestions] = useState([])
   const [classes, updateClasses] = useState([])
@@ -65,22 +66,21 @@ function CreateAssignment() {
     setDangerText("");
   }
   
-  const handleCreateAssignment = (values) => {
+  const handleCreateCompetition = (values) => {
     console.log(values);
     clearTexts();
-    axiosService.post(`/api/teacher/assignment/`, { name: values.name, questions: values.questions, class: values.class })
+    axiosService.post(`/api/teacher/competition/`, { author: userId, name: values.name, questions: values.questions, class: values.class, type: 'R' })
     .then((res) => {
       console.log(res);
-      setSuccessText("Your assignment was created successfully!");
-      Tabs.changeTabNumber(0);
+      setSuccessText("Your competition was created successfully!");
+      Tabs.changeTabNumber(3);
       navigate('/teacherdashboard');
     })
     .catch((err) => {
-      console.log("Received an error while creating question", err);
-      setDangerText("There was an error while creating your assignment!");
+      console.log("Received an error while creating competition.", err);
+      setDangerText("There was an error while creating your competition!");
     });
   };
-  
 
   return (
   <div>
@@ -90,11 +90,12 @@ function CreateAssignment() {
     <div className="h-screen flex bg-gray-bg1">
       <div>
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
-          Create an Assignment
+          {type.assignmentType == "RACE" ? "Start a Competition" : "Create an Assignment"}
         </h1>
+        <h4>Competition Type: { type.assignmentType }</h4>
         <Formik 
           initialValues={initialValues}
-          onSubmit={(values) => { handleCreateAssignment(values); }}>
+          onSubmit={(values) => { handleCreateCompetition(values); }}>
           <Form>
             <div className="space-y-4">
               <Field
@@ -144,4 +145,4 @@ function CreateAssignment() {
   )
 };
 
-export default CreateAssignment;
+export default CreateCompetition;

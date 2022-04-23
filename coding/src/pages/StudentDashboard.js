@@ -5,12 +5,10 @@ import authSlice from "../store/slices/auth";
 import useSWR from 'swr';
 import {fetcher} from "../utils/axios";
 import Tabs from './Tabs';
-import StudentClassDataDisplay from './ClassTable';
 import NewNav from "../components/navbar/NewNav";
-import { Navigate } from "react-router";
-import StudentClasses from "./StudentClasses";
 import StudentClassTable from "./StudentClassTable";
 import StudentAssignmentTable from "./StudentAssignmentTable";
+import StudentCompetitionsTable from "./StudentCompetitionsTable";
 import Footer from "../components/Footer";
 
 const StudentDashboard = () => {
@@ -40,11 +38,11 @@ const StudentDashboard = () => {
   return (
     <div className="w-full h-screen">
       <NewNav/>
-      <div  class="col-sm-12" align="right">
+      <div className="col-sm-12" align="right">
         <button onClick={handleLogout} className="">Logout</button>
       </div>
       <div className="pad">
-      <div class="container">
+      <div className="container">
     <h1>Welcome, {user.data?.username}</h1>
     <Tabs>
       <div label="Classes">
@@ -53,6 +51,9 @@ const StudentDashboard = () => {
       <div label="Assignments">
         <StudentAssignmentTable/>
       </div>
+      <div label="Competitions">
+         <StudentCompetitionsTable/>
+       </div>
     </Tabs>
     </div>
     </div>

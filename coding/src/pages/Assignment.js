@@ -1,13 +1,9 @@
-
 import React from "react";
-import CodeMirror from '@uiw/react-codemirror';
-import { python } from '@codemirror/lang-python';
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { useSearchParams } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import '../App.css';
 import Tabs from './Tabs';
-import TeacherClassTable from './TeacherClassTable';
 import TeacherAssignmentStudentTable from './TeacherAssignmentStudentTable';
 import TeacherAssignmentQuestionTable from './TeacherAssignmentQuestionTable';
 import NewNav from "../components/navbar/NewNav";
@@ -36,7 +32,7 @@ class Assignment extends React.Component {
       questions: []
     }
 
-    axios.get(`/api/assignment/${this.props.assignmentId}/`,    {
+    axiosService.get(`/api/teacher/assignment/${this.props.assignmentId}/`,    {
 
     })
     .then((res) => {
@@ -53,7 +49,7 @@ class Assignment extends React.Component {
 
   runCode() {
     console.log("Running codes: ", this.state.code);
-    axios.post(`/api/run/`, { assignmentId: this.state.assignmentId, code: this.state.code })
+    axiosService.post(`/api/run/`, { assignmentId: this.state.assignmentId, code: this.state.code })
     .then((res) => {
       this.setState({stderr: ""});
       Question
@@ -94,7 +90,7 @@ class Assignment extends React.Component {
       <div>
         <NewNav/>
         <div className="pad">
-        <div class="container">
+        <div className="container">
         <h1>Assignment: {this.state.name}</h1>
         <Tabs>
           <div label="Questions">
