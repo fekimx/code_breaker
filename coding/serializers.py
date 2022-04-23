@@ -35,7 +35,7 @@ class QuestionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class QuestionWeightPairSerializer(serializers.ModelSerializer):
-    question = QuestionSerializer(many=False)
+    question = QuestionSerializer
 
     class Meta:
         model = QuestionWeightPair
@@ -49,7 +49,7 @@ class AssignmentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CompetitionSerializer(serializers.ModelSerializer):
-    questions = QuestionWeightPairSerializer(many=True)
+    questions = QuestionWeightPairSerializer
 
     class Meta:
         model = Competition

@@ -349,7 +349,7 @@ class TeacherCompetitionViewSet(viewsets.ModelViewSet):
         competitionData['questions'] = request.data['questions']
         #serializer = self.get_serializer(data=request.data)
 
-        serializer = self.get_serializer(data=request.data)
+        serializer = self.get_serializer(data=competitionData)
 
         try:
             serializer.is_valid(raise_exception=True)

@@ -106,7 +106,7 @@ class Competition(CommonAssignmentCompetitionInfo):
         ('R', 'Race'),
     )
     active = models.BooleanField(default=True)
-    type = models.CharField(max_length=1, choices=COMPETITION_TYPE)
+    type = models.CharField(max_length=1, choices=COMPETITION_TYPE, default="R")
     created = models.DateTimeField(auto_now_add=True, blank=True)
 
     def serialize(self):
