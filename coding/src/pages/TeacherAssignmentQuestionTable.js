@@ -3,21 +3,24 @@ import { useState, useEffect } from "react";
 import axiosService from "../utils/axios";
 import { useNavigate } from "react-router";
 import { Link } from 'react-router-dom';
+import { useSearchParams } from "react-router-dom";
 
 var count = 0;
 function TeacherAssignmentQuestionTable(){
     const data = { classCode: "" };
     const [displayData, updateDisplayData] = useState([]);
     const history = useNavigate();
+    let [searchParams, setSearchParams] = useSearchParams();
+    let assignmentId = searchParams.get("id");
 
     const fetchLatestQuestions = () => {
-        axiosService.get(`/api/assignmentQuestions/?assignmentId=${window.location.href.charAt( window.location.href.length - 1 )}`, {})
+        axiosService.get(`/api/assignmentQuestions/?assignmentId=${assignmentId}`, {})
         .then((response) => {
             console.log("The response:");
             console.log(response);
             
             const newDisplayData = response.data.map((questionWeightPair) => {
-                const link = `/questions?id=${questionWeightPair.question.id}`;
+                const link = `/questions?id=${questionWeightPair.question.id}&assignmentId=${assignmentId}`;
                 count++;
                 return(
                     <tr key={questionWeightPair.question.id}>
