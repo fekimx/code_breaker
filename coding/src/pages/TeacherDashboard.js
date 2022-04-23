@@ -28,6 +28,7 @@ function TeacherDashboard() {
         </div>
         <div label="Assignments">
           <TeacherAssignmentTable/>
+        </div>
         <div label="Competitions">
           <TeacherCompetitionTable/>
         </div>
