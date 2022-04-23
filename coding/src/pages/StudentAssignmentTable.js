@@ -55,6 +55,7 @@ function StudentAssignmentTable(){
         <div>
             <table className="table-striped">
                 <thead>
+                    <tr>
                         <th>Name</th>
                         <th>Link</th>
                         <th>Assignment Title</th>
