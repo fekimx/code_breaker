@@ -163,6 +163,14 @@ class Progress(models.Model):
             "grade": self.grade
         }
 
+class Submission(models.Model):
+    learner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE, null=True, related_name="submissions")
+    competition = models.ForeignKey(Competition, on_delete=models.CASCADE, null=True, related_name="submissions")
+    question = models.ForeignKey(CodeQuestion, on_delete=models.CASCADE, null=True)
+    successfulUnitTests = models.ManyToManyField(UnitTest)
+    submittedAt = models.DateTimeField(auto_now_add=True, blank=True)
+
 # CompetitionProgress is the same thing but for an assignment
 class CompetitionProgress(models.Model):
     learner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)

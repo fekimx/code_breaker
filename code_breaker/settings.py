@@ -190,3 +190,6 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
 }
+
+# Ends with a /
+JUDGE_ZERO_ENDPOINT = 'http://159.89.85.94:2358/submissions/'
