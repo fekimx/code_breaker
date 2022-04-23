@@ -1,5 +1,5 @@
 import React from 'react';
-import axiosService from "../utils/axios";
+import axios from "axios";
 import { useState, useEffect } from "react";
 import useSWR from 'swr';
 import {useSelector} from "react-redux";
@@ -7,7 +7,7 @@ import {fetcher} from "../utils/axios";
 import { Link } from 'react-router-dom';
 
 var count = 0;
-function StudentAssignmentTable(){
+function TeacherAssignmentTable(){
 
     const [displayData, updateDisplayData] = useState([]);
 
@@ -17,24 +17,22 @@ function StudentAssignmentTable(){
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
     const fetchLatestClasses = () => {
-        axiosService.get(`/api/student/assignment/`, {})
+        axios.get(`/api/assignment/`, {})
         .then((response) => {
-            console.log(response);
             count=0
             const newDisplayData = response.data.map((assignment) => {
                 count++
                 // Right now this just grabs the ID of the first question and puts that in a link
                 //probably need to change that
-                const link = `assignment?id=${assignment.id}`;
-                console.log(count);
+                const link = `/assignment?id=${assignment.id}`;
                 return(
                     <tr key={assignment.name}>
                         <td>{assignment.name}</td>
-                        <td>{assignment.numSubmissions} out of {assignment.questions.length}</td>
                         <td>{assignment.active 
-                        ? <Link to={link}><b>Start</b></Link>
-                        : <i className="inactive">Inactive</i>}
-                        </td>
+                        ? <Link to={{pathname: link }} replace>Start</Link>
+                        : <i class="inactive">Inactive</i>}
+                        </td>  
+                        <td>Progress</td>  
                     </tr>
                 )
             });
@@ -55,11 +53,10 @@ function StudentAssignmentTable(){
         <div>
             <table className="table-striped">
                 <thead>
+                    <tr>
                         <th>Name</th>
                         <th>Link</th>
-                        <th>Assignment Title</th>
                         <th>Progress</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,4 +67,4 @@ function StudentAssignmentTable(){
     )
 }
  
- export default StudentAssignmentTable;
+ export default TeacherAssignmentTable;
