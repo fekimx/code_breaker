@@ -390,25 +390,6 @@ class StudentCompetitionViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(competitionObj)
         return Response(serializer.data)
 
-class CompetitionProgressViewSet(viewsets.ModelViewSet):
-    queryset = Competition.objects.all()
-    serializer_class = CompetitionProgressSerializer
-    http_method_names = ['get']
-    permission_classes = (AllowAny,)
-
-    #does list make sense in this context
-    def list(self, request):
-        logger.warn("list from Competition")
-        serializer = self.get_serializer(self.queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, pk=None):
-        competitionObj = get_object_or_404(self.queryset, pk=pk)
-        progressObjects = competitionObj.competitionprogress.all().order_by("grade").reverse()[:3]
-
-        serializer = self.get_serializer(progressObjects, many=True)
-        return Response(serializer.data)
-
 class LoginViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
     serializer_class = LoginSerializer
@@ -521,16 +502,16 @@ class AssignmentStudentViewSet(viewsets.ModelViewSet):
         logger.warn(assignmentId)
         clazz = Class.objects.get(assignments=assignmentId)
         serializer = self.get_serializer(clazz.students.all(), many=True)
-        assignmentStudentData = serializer.data
-        for item in assignmentStudentData:
-            logger.warn(item)
-            try:
-                progress = Progress.objects.get(learner=item['id'])
+        students = serializer.data
+        assignment = Assignment(id=assignmentId)
+        for student in students:
+            logger.warn(student)
+            submissions = Submission.objects.filter(learner=User(student['id']), assignment=assignment).values('assignment', 'question').distinct()
+            logger.warn(len(submissions))
+            logger.warn(len(assignment.questions.all()))
+            student["progress"] = 100 * len(submissions) / len(assignment.questions.all())
 
-                item["progress"]=progress.percent
-            except:
-                item["progress"]= 0
-        return Response(assignmentStudentData)
+        return Response(students)
 
 class AssignmentQuestionViewSet(viewsets.ModelViewSet):
 
