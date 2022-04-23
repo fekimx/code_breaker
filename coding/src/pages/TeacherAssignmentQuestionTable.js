@@ -15,13 +15,13 @@ function TeacherAssignmentQuestionTable(){
         .then((response) => {
             console.log("The response:");
             console.log(response);
-            const newDisplayData = response.data.map((question) => {
-                const link = `/questions?id=${question.id}`;
+            const newDisplayData = response.data.map((questionWeightPair) => {
+                const link = `/questions?id=${questionWeightPair.question.id}`;
                 return(
-                    <tr key={question.question.id}>
-                        <td>{question.question.id}</td>
-                        <td><Link to={{pathname: link }} replace>{question.question.name}</Link></td>
-                        <td>{question.question.description} </td>
+                    <tr key={questionWeightPair.question.id}>
+                        <td>{questionWeightPair.question.id}</td>
+                        <td><Link to={{pathname: link }} replace>{questionWeightPair.question.name}</Link></td>
+                        <td>{questionWeightPair.question.description} </td>
                     </tr>
                 )
             });
