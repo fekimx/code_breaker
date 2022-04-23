@@ -1,9 +1,8 @@
 import React from 'react';
-import axios from "axios";
 import { useState, useEffect } from "react";
 import useSWR from 'swr';
 import {useSelector} from "react-redux";
-import {fetcher} from "../utils/axios";
+import axiosService, {fetcher} from "../utils/axios";
 import { Link } from 'react-router-dom';
 
 var count = 0;
@@ -17,7 +16,7 @@ function TeacherAssignmentTable(){
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
     const fetchLatestClasses = () => {
-        axios.get(`/api/assignment/`, {})
+        axiosService.get(`/api/teacher/assignment/`, {})
         .then((response) => {
             count=0
             const newDisplayData = response.data.map((assignment) => {
