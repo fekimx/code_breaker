@@ -7,7 +7,7 @@ import {fetcher} from "../utils/axios";
 import { Link } from 'react-router-dom';
 
 var count = 0;
-function StudentAssignmentTable(){
+function TeacherAssignmentTable(){
 
     const [displayData, updateDisplayData] = useState([]);
 
@@ -24,13 +24,12 @@ function StudentAssignmentTable(){
                 count++
                 // Right now this just grabs the ID of the first question and puts that in a link
                 //probably need to change that
-                const link = `assignment?id=${assignment.id}`;
-                console.log(count);
+                const link = `/assignment?id=${assignment.id}`;
                 return(
                     <tr key={assignment.name}>
                         <td>{assignment.name}</td>
                         <td>{assignment.active 
-                        ? <Link to={link}><b>Start</b></Link>
+                        ? <Link to={{pathname: link }} replace>Start</Link>
                         : <i class="inactive">Inactive</i>}
                         </td>  
                         <td>Progress</td>  
@@ -68,4 +67,4 @@ function StudentAssignmentTable(){
     )
 }
  
- export default StudentAssignmentTable;
+ export default TeacherAssignmentTable;
