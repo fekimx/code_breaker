@@ -6,7 +6,8 @@
             "submittedAt": "2020-01-08T18:52:50.637635",
             "learner": 1,
             "question": 1,
-            "assignment": 1
+            "assignment": 1,
+            "successfulUnitTests": [1, 2]
         }
     },
     {
@@ -16,7 +17,8 @@
             "submittedAt": "2020-01-08T19:52:50.637635",
             "learner": 1,
             "question": 2,
-            "assignment": 1
+            "assignment": 1,
+            "successfulUnitTests": [3, 4]
         }
     }
 ]

@@ -31,6 +31,7 @@ function StudentAssignmentTable(){
                     <tr key={assignment.name}>
                         <td>{assignment.name}</td>
                         <td>{assignment.numSubmissions} out of {assignment.questions.length}</td>
+                        <td>{assignment.score} out of {assignment.possibleScore}</td>
                         <td>{assignment.active 
                         ? <Link to={link}><b>Start</b></Link>
                         : <i className="inactive">Inactive</i>}
@@ -58,6 +59,7 @@ function StudentAssignmentTable(){
                     <tr>
                         <th>Assignment Title</th>
                         <th>Progress</th>
+                        <th>Score</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
