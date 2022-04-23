@@ -37,6 +37,10 @@ The Judge 0 deployment procedure is documented here: https://github.com/judge0/j
 
 We host our production Judge 0 server in Digital Ocean. The URL to the server is in the viewsets.py under the RunViewSet create method.
 
+In settings.py set JUDGE_ZERO_ENDPOINT to your server's IP address and endpoint, like:
+
+JUDGE_ZERO_ENDPOINT = 'http://159.89.85.94:2358/submissions/'
+
 ## Windows Notes
 
 For Windows, you may need to preface the python commands with "python -m"

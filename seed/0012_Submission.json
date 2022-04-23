@@ -1,0 +1,23 @@
+[
+    {
+        "model": "coding.submission",
+        "pk": 1,
+        "fields": {
+            "submittedAt": "2020-01-08T18:52:50.637635",
+            "learner": 1,
+            "question": 1,
+            "assignment": 1
+        }
+    },
+    {
+        "model": "coding.submission",
+        "pk": 2,
+        "fields": {
+            "submittedAt": "2020-01-08T19:52:50.637635",
+            "learner": 1,
+            "question": 2,
+            "assignment": 1
+        }
+    }
+]
+    

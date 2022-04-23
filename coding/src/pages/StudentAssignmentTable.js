@@ -19,6 +19,7 @@ function StudentAssignmentTable(){
     const fetchLatestClasses = () => {
         axiosService.get(`/api/student/assignment/`, {})
         .then((response) => {
+            console.log(response);
             count=0
             const newDisplayData = response.data.map((assignment) => {
                 count++
@@ -28,7 +29,7 @@ function StudentAssignmentTable(){
                 return(
                     <tr key={assignment.name}>
                         <td>{assignment.name}</td>
-                        <td>3 of 11 questions</td>
+                        <td>{assignment.numSubmissions} out of {assignment.questions.length}</td>
                         <td>{assignment.active 
                         ? <Link to={link}><b>Start</b></Link>
                         : <i className="inactive">Inactive</i>}

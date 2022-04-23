@@ -10,7 +10,9 @@ function withMyHook(Component) {
   return function WrappedComponent(props) {
     let [searchParams, setSearchParams] = useSearchParams();
     let questionId = searchParams.get("id");
-    return <Question {...props} questionId={questionId} />;
+    let assignmentId = searchParams.get("assignmentId");
+    let competitionId = searchParams.get("competitionId");
+    return <Question {...props} questionId={questionId} assignmentId={assignmentId} competitionId={competitionId} />;
   }
 }
 
@@ -19,6 +21,8 @@ class Question extends React.Component {
     super(props);
 
     this.state = {
+      competitionId: this.props.competitionId,
+      assignmentId: this.props.assignmentId,
       questionId: this.props.questionId,
       name: "",
       description: "",
@@ -64,7 +68,7 @@ class Question extends React.Component {
 
   runCode() {
     console.log("Running codes: ", this.state.code);
-    axiosService.post(`/api/run/`, { questionId: this.state.questionId, code: this.state.code })
+    axiosService.post(`/api/run/`, { competitionId: this.state.competitionId, assignmentId: this.state.assignmentId, questionId: this.state.questionId, code: this.state.code })
     .then((res) => {
       this.setState({stderr: ""});
 
