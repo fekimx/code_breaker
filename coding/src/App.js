@@ -27,6 +27,8 @@ import Admin from "./pages/Admin";
 import CreateClass from './pages/CreateClass';
 import CreateAssignment from './pages/CreateAssignment';
 import StudentClasses from './pages/StudentClasses';
+import StudentAssignment from './pages/StudentAssignment';
+import TeacherAssignment from './pages/TeacherAssignment';
 import TeacherDashboard from './pages/TeacherDashboard';
 import CreateCompetition from './pages/CreateCompetition';
 import Leaderboard from "./pages/Leaderboard";
@@ -70,6 +72,10 @@ const App = () => {
               <Route exact path='/studentdashboard' element={<StudentDashboard/>}/>
               <Route exact path='/teacherdashboard' element={<ProtectedRoute teacher/>}>
                 <Route exact path='/teacherdashboard' element={ <TeacherDashboard /> } />
+              </Route>
+              <Route exact path='/studentAssignment' element={<StudentAssignment/>}/>
+              <Route exact path='/teacherAssignment' element={<ProtectedRoute teacher/>}>
+                <Route exact path='/teacherAssignment' element={ <TeacherAssignment /> } />
               </Route>
             </Routes>
           </div>

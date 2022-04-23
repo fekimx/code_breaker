@@ -211,6 +211,7 @@ class TeacherAssignmentViewSet(viewsets.ModelViewSet):
     # Teachers can list assignments they created
     def list(self, request):
         logger.warn("list from Assignment")
+
         serializer = self.get_serializer(Assignment.objects.filter(author=request.user.id), many=True)
         return Response(serializer.data)
 
