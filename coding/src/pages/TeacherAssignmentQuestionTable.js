@@ -15,7 +15,7 @@ function TeacherAssignmentQuestionTable(){
         .then((response) => {
             const newDisplayData = response.data.map((question) => {
                 count++;
-                const link = `/questions?id=${count}`;
+                const link = `/questions?id=${question.id}`;
                 return(
                     <tr key={question.id}>
                         <td>{question.id}</td>

@@ -1,39 +1,33 @@
 import React from 'react';
+import TeacherClassAddForm from './TeacherClassAddForm';
 import axios from "axios";
 import { useState, useEffect } from "react";
 import useSWR from 'swr';
 import {useSelector} from "react-redux";
 import {fetcher} from "../utils/axios";
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router";
 
-var count = 0;
-function StudentAssignmentTable(){
+function TeacherClassTable(){
 
     const [displayData, updateDisplayData] = useState([]);
 
     const account = useSelector((state) => state.auth.account);
     const userId = account?.id;
+    const history = useNavigate();
 
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
     const fetchLatestClasses = () => {
-        axios.get(`/api/assignment/`, {})
+        axios.get(`/api/class/?teacherId=` + account?.id, {})
         .then((response) => {
-            count=0
-            const newDisplayData = response.data.map((assignment) => {
-                count++
-                // Right now this just grabs the ID of the first question and puts that in a link
-                //probably need to change that
-                const link = `assignment?id=${assignment.id}`;
-                console.log(count);
+            const newDisplayData = response.data.map((teacherClass) => {
                 return(
-                    <tr key={assignment.name}>
-                        <td>{assignment.name}</td>
-                        <td>{assignment.active 
-                        ? <Link to={link}><b>Start</b></Link>
-                        : <i class="inactive">Inactive</i>}
-                        </td>  
-                        <td>Progress</td>  
+                    <tr key={teacherClass.secretKey}>
+                        <td>{teacherClass.name}</td>
+                        <td>Class code: {teacherClass.secretKey} <br/> {teacherClass.students.length} students</td>
+                        <td>
+                            {teacherClass.assignments.length} assignments
+                        </td>
                     </tr>
                 )
             });
@@ -52,20 +46,23 @@ function StudentAssignmentTable(){
 
     return(
         <div>
+            <TeacherClassAddForm data={data} />
             <table className="table-striped">
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Link</th>
-                        <th>Progress</th>
+                        <th>Class Info</th>
+                        <th>Assignments</th>
                     </tr>
                 </thead>
                 <tbody>
                     { displayData }
                 </tbody>
             </table>
+            <button onClick={()=>history("/teacherCreateAssignment")}>Create an Assignment</button>
+            <button onClick={()=>history("/teacherStartRace")}>Start a Competition</button>
         </div>
     )
 }
  
- export default StudentAssignmentTable;
+ export default TeacherClassTable;
