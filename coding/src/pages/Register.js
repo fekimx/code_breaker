@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { useNavigate } from "react-router";
 import authSlice from "../store/slices/auth";
 import Navbar from "../components/navbar/Navbar";
@@ -15,7 +15,7 @@ function Register() {
   const history = useNavigate();
 
   const handleRegister = (email, password, username) => {
-    axios.post(`/api/auth/register/`, { email, password, username })
+    axiosService.post(`/api/auth/register/`, { email, password, username })
     .then((res) => {
       dispatch(
         authSlice.actions.setAuthTokens({

@@ -73,22 +73,23 @@ const Footer = () => {
           <SocialMediaWrap>
             <SocialLogo to='/'>Code-Breaker.io</SocialLogo>
             <SocialIcons>
-              <SocialIconLink href='https://www.instagram.com/codebreakerinsta/' target='_blank' aria-label='Instagram'>
+              <SocialIconLink href='https://www.instagram.com/codebreakerinsta/' target='_blank' rel='noopener' aria-label='Instagram'>
                 <FaInstagram />
               </SocialIconLink>
-              <SocialIconLink href='https://www.youtube.com/channel/UCW4QF4gHubx6VVROuacuZRw' target='_blank' aria-label='Youtube'>
+              <SocialIconLink href='https://www.youtube.com/channel/UCW4QF4gHubx6VVROuacuZRw' target='_blank' rel='noopener' aria-label='Youtube'>
                 <FaYoutube />
               </SocialIconLink>
               <SocialIconLink
                 href='https://twitter.com/code_breaker_io' 
                 target='_blank' 
+                rel='noopener'
                 aria-label='Twitter'>
                 <FaTwitter />
               </SocialIconLink>
-              <SocialIconLink href='https://www.linkedin.com/in/code-breaker-655014238/' target='_blank' aria-label='Linkedin'>
+              <SocialIconLink href='https://www.linkedin.com/in/code-breaker-655014238/' target='_blank' rel='noopener' aria-label='Linkedin'>
                 <FaLinkedin />
               </SocialIconLink>
-              <SocialIconLink href='https://github.com/fekimx/code_breaker' target='_blank' aria-label='Github'>
+              <SocialIconLink href='https://github.com/fekimx/code_breaker' target='_blank' rel='noopener' aria-label='Github'>
                 <FaGithub />
               </SocialIconLink>
             </SocialIcons>

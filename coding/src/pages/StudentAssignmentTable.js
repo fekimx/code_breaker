@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { useState, useEffect } from "react";
 import useSWR from 'swr';
 import {useSelector} from "react-redux";
@@ -17,8 +17,9 @@ function StudentAssignmentTable(){
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
     const fetchLatestClasses = () => {
-        axios.get(`/api/assignment/`, {})
+        axiosService.get(`/api/student/assignment/`, {})
         .then((response) => {
+            console.log(response);
             count=0
             const newDisplayData = response.data.map((assignment) => {
                 count++
@@ -29,11 +30,11 @@ function StudentAssignmentTable(){
                 return(
                     <tr key={assignment.name}>
                         <td>{assignment.name}</td>
+                        <td>{assignment.numSubmissions} out of {assignment.questions.length}</td>
                         <td>{assignment.active 
                         ? <Link to={link}><b>Start</b></Link>
-                        : <i class="inactive">Inactive</i>}
-                        </td>  
-                        <td>Progress</td>  
+                        : <i className="inactive">Inactive</i>}
+                        </td>
                     </tr>
                 )
             });
@@ -54,10 +55,11 @@ function StudentAssignmentTable(){
         <div>
             <table className="table-striped">
                 <thead>
-                    <tr>
                         <th>Name</th>
                         <th>Link</th>
+                        <th>Assignment Title</th>
                         <th>Progress</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>

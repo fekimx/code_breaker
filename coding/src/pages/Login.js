@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { useNavigate } from "react-router";
 import authSlice from "../store/slices/auth";
 import Navbar from "../components/navbar/Navbar";
@@ -19,7 +19,7 @@ function Login() {
   }
 
   const handleLogin = (email, password) => {
-    axios.post(`/api/auth/login/`, { email, password })
+    axiosService.post(`/api/auth/login/`, { email, password })
     .then((res) => {
       dispatch(
         authSlice.actions.setAuthTokens({
@@ -54,8 +54,8 @@ function Login() {
   });
 
   return (<div className="h-screen flex bg-gray-bg1"> <Navbar/>
-  <div class ="pad">
-  <div class="container">
+  <div className ="pad">
+  <div className="container">
     <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
       Log in to your account
     </h1>

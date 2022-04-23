@@ -1,25 +1,10 @@
 
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import { useNavigate } from "react-router";
-import authSlice from "../store/slices/auth";
-import useSWR from 'swr';
-import {fetcher} from "../utils/axios";
-import CodeMirror from '@uiw/react-codemirror';
-import { python } from '@codemirror/lang-python';
-import axios from "axios";
+import axiosService from "../utils/axios";
 
 class Class extends React.Component {
   constructor(props) {
       super(props);
-
-    //   this.account = useSelector((state) => state.auth.account);
-    //   const dispatch = useDispatch();
-    //   const history = useNavigate();
-    
-    //   const userId = account?.id;
-    
-    //   const user = useSWR(`/api/user/${userId}/`, fetcher)
     
     this.divRef = React.createRef();
     this.state = {
@@ -32,7 +17,7 @@ class Class extends React.Component {
 
   tryPost() {
     console.log("Post Request ");
-    axios.post(`/api/class/`,    {
+    axiosService.post(`/api/class/`,    {
 
       //This is just an example
       id: 5,
@@ -53,7 +38,7 @@ class Class extends React.Component {
 
   tryGetAll() {
     console.log("Get request: ");
-    axios.get(`/api/class/`,    {
+    axiosService.get(`/api/class/`,    {
     //ClassViewset currently just gets all the classes
   })
   .then(function (response) {
@@ -66,7 +51,7 @@ class Class extends React.Component {
 
   tryGet() {
     console.log("Get request: ");
-    axios.get(`/api/class/5/`,    {
+    axiosService.get(`/api/class/5/`,    {
     //ClassViewset gets a specific class classes
   })
   .then(function (response) {
@@ -79,7 +64,7 @@ class Class extends React.Component {
 
   tryDelete() {
     console.log("Get request: ");
-    axios.delete(`/api/class/5/`,    {
+    axiosService.delete(`/api/class/5/`,    {
     //ClassViewset gets a specific class classes
   })
   .then(function (response) {

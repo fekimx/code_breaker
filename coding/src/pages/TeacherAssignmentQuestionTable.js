@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { useNavigate } from "react-router";
 import { Link } from 'react-router-dom';
 
@@ -11,19 +11,24 @@ function TeacherAssignmentQuestionTable(){
     const history = useNavigate();
 
     const fetchLatestQuestions = () => {
-        axios.get(`/api/question/`, {})
+        axiosService.get(`/api/assignmentQuestions/?assignmentId=${window.location.href.charAt( window.location.href.length - 1 )}`, {})
         .then((response) => {
-            const newDisplayData = response.data.map((question) => {
+            console.log("The response:");
+            console.log(response);
+            
+            const newDisplayData = response.data.map((questionWeightPair) => {
+                const link = `/questions?id=${questionWeightPair.question.id}`;
                 count++;
-                const link = `/questions?id=${question.id}`;
                 return(
-                    <tr key={question.id}>
-                        <td>{question.id}</td>
-                        <td><Link to={{pathname: link }} replace>{question.name}</Link></td>
-                        <td>{question.description} </td>
+                    <tr key={questionWeightPair.question.id}>
+                        <td>{count}</td>
+                        <td>{questionWeightPair.weight}</td>
+                        <td><Link to={{pathname: link }} replace>{questionWeightPair.question.name}</Link></td>
+                        <td>{questionWeightPair.question.description} </td>
                     </tr>
                 )
             });
+            count=0;
             updateDisplayData(newDisplayData);
         })
         .catch(function (error) {
@@ -41,6 +46,7 @@ function TeacherAssignmentQuestionTable(){
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Weight</th>
                         <th>Name</th>
                         <th>Description</th>
                     </tr>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { useNavigate } from "react-router";
 
 var count = 0;
@@ -10,7 +10,7 @@ function TeacherQuestionTable(){
     const history = useNavigate();
 
     const fetchLatestQuestions = () => {
-        axios.get(`/api/question/`, {})
+        axiosService.get(`/api/teacher/question/`, {})
         .then((response) => {
             const newDisplayData = response.data.map((question) => {
                 count++;

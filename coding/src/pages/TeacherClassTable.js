@@ -1,11 +1,12 @@
 import React from 'react';
 import TeacherClassAddForm from './TeacherClassAddForm';
-import axios from "axios";
+import axiosService from "../utils/axios";
 import { useState, useEffect } from "react";
 import useSWR from 'swr';
 import {useSelector} from "react-redux";
 import {fetcher} from "../utils/axios";
 import { useNavigate } from "react-router";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 function TeacherClassTable(){
 
@@ -18,7 +19,7 @@ function TeacherClassTable(){
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
     const fetchLatestClasses = () => {
-        axios.get(`/api/class/?teacherId=` + account?.id, {})
+        axiosService.get(`/api/class/?teacherId=` + account?.id, {})
         .then((response) => {
             const newDisplayData = response.data.map((teacherClass) => {
                 return(
@@ -60,7 +61,6 @@ function TeacherClassTable(){
                 </tbody>
             </table>
             <button onClick={()=>history("/teacherCreateAssignment")}>Create an Assignment</button>
-            <button onClick={()=>history("/teacherStartRace")}>Start a Competition</button>
         </div>
     )
 }
