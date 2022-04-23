@@ -1,6 +1,7 @@
 from cmath import log
+from code_breaker.settings import JUDGE_ZERO_ENDPOINT
 from coding.serializers import *
-from coding.models import User, Class
+from coding.models import Submission, User, Class
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets
@@ -51,6 +52,8 @@ class RunViewSet(viewsets.ViewSet):
     def create(self, request):
         logger.warn("Create from RunViewSet")
 
+        assignment = request.data['assignmentId']
+        competition = request.data['competitionId']
         question = CodeQuestion(id=request.data['questionId'])
         unitTests = question.unitTests.all()
         logger.warn(question)
@@ -71,7 +74,7 @@ class RunViewSet(viewsets.ViewSet):
             'language_id': 71,
             'stdin': ''
         }
-        response = requests.post("http://159.89.85.94:2358/submissions", data = post_data)
+        response = requests.post(JUDGE_ZERO_ENDPOINT, data = post_data)
         token = response.json()['token']
         logger.warn(token)
 
@@ -79,7 +82,7 @@ class RunViewSet(viewsets.ViewSet):
 
         while True:
             time.sleep(1)
-            evaluation = requests.get("http://159.89.85.94:2358/submissions/" + token)
+            evaluation = requests.get(JUDGE_ZERO_ENDPOINT + token)
             logger.warn("Polling ...")
             logger.warn(evaluation.json())
             if (evaluation.json()['status']['description'] == 'In Queue'):
@@ -108,6 +111,20 @@ class RunViewSet(viewsets.ViewSet):
             unit_test_results.append(True)
           else:
             unit_test_results.append(False)
+
+        submission = Submission()
+        submission.learner = User(request.user.id)
+        if assignment:
+            submission.assignment = Assignment(id=assignment)
+        else:
+            submission.competition = Competition(id=competition)
+        submission.question = question
+
+        submission.save()
+
+        for idx, result in enumerate(unit_test_results):
+            if result:
+                submission.successfulUnitTests.add(question.unitTests.all()[idx])
 
         return Response({
             "unit_test_results": unit_test_results
@@ -212,7 +229,7 @@ class StudentAssignmentViewSet(viewsets.ModelViewSet):
     permission_classes = (IsStudentUser,)
 
     def list(self, request):
-        logger.warn("list from Assignment")
+        logger.warn("list from Student Assignment")
         student = User(id=request.user.id)
         classes = Class.objects.filter(students=student)
         assignmentSet = set()
@@ -220,7 +237,13 @@ class StudentAssignmentViewSet(viewsets.ModelViewSet):
             for assignment in clazz.assignments.all():
                 assignmentSet.add(assignment.id)
 
-        serializer = self.get_serializer(Assignment.objects.filter(pk__in=assignmentSet), many=True)
+        assignments = Assignment.objects.filter(pk__in=assignmentSet)
+        serializer = self.get_serializer(assignments, many=True)
+        
+        for idx, assignment in enumerate(assignments):
+            submissions = Submission.objects.filter(learner=student, assignment=assignment).values('assignment', 'question').distinct()
+            serializer.data[idx]['numSubmissions'] = len(submissions)
+
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
@@ -367,25 +390,6 @@ class StudentCompetitionViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(competitionObj)
         return Response(serializer.data)
 
-class CompetitionProgressViewSet(viewsets.ModelViewSet):
-    queryset = Competition.objects.all()
-    serializer_class = CompetitionProgressSerializer
-    http_method_names = ['get']
-    permission_classes = (AllowAny,)
-
-    #does list make sense in this context
-    def list(self, request):
-        logger.warn("list from Competition")
-        serializer = self.get_serializer(self.queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, pk=None):
-        competitionObj = get_object_or_404(self.queryset, pk=pk)
-        progressObjects = competitionObj.competitionprogress.all().order_by("grade").reverse()[:3]
-
-        serializer = self.get_serializer(progressObjects, many=True)
-        return Response(serializer.data)
-
 class LoginViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
     serializer_class = LoginSerializer
@@ -498,21 +502,21 @@ class AssignmentStudentViewSet(viewsets.ModelViewSet):
         logger.warn(assignmentId)
         clazz = Class.objects.get(assignments=assignmentId)
         serializer = self.get_serializer(clazz.students.all(), many=True)
-        assignmentStudentData = serializer.data
-        for item in assignmentStudentData:
+        students = serializer.data
+        assignment = Assignment(id=assignmentId)
+        for student in students:
+            logger.warn(student)
+            submissions = Submission.objects.filter(learner=User(student['id']), assignment=assignment).values('assignment', 'question').distinct()
+            logger.warn(len(submissions))
+            logger.warn(len(assignment.questions.all()))
+            student["progress"] = 100 * len(submissions) / len(assignment.questions.all())
 
-            try:
-                progress = Progress.objects.get(learner=item['id'])
+        return Response(students)
 
-                item["progress"]=progress.percent
-            except:
-                item["progress"]= 0
-        return Response(assignmentStudentData)
-
-class AssignmentQuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
+class AssignmentQuestionViewSet(viewsets.ModelViewSet):
 
     queryset = Assignment.objects.all()
-    serializer_class = QuestionSerializer
+    serializer_class = QuestionWeightPairSerializer
     permission_classes = (AllowAny,)
     http_method_names = ['get', 'post', 'delete']
 
@@ -522,7 +526,6 @@ class AssignmentQuestionViewSet(viewsets.ModelViewSet, TokenObtainPairView):
         logger.warn(assignmentId)
         assignment = Assignment(id=assignmentId)
         serializer = self.get_serializer(assignment.questions.all(), many=True)
-        assignmentStudentData = serializer.data
         return Response(serializer.data)
 
 class TeacherQuestionViewSet(viewsets.ModelViewSet):
@@ -654,6 +657,7 @@ class StudentQuestionViewSet(viewsets.ModelViewSet):
         logger.warn("retrieve from QuestionViewSet")
         student = User(id=request.user.id)
         classes = Class.objects.filter(students=student)
+        
         assignmentSet = set()
         for clazz in classes:
             for assignment in clazz.assignments.all():
@@ -665,7 +669,8 @@ class StudentQuestionViewSet(viewsets.ModelViewSet):
             for question in assign.questions.all():
                 questionSet.add(question.id)
 
-        if pk not in questionSet:
+        if int(pk) not in questionSet:
+            logger.warn("Got here!")
             raise PermissionDenied()
             
         classObj = get_object_or_404(self.queryset, pk=pk)

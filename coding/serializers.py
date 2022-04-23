@@ -6,7 +6,7 @@ from rest_framework_simplejwt.settings import api_settings
 from django.contrib.auth.models import update_last_login
 from django.core.exceptions import ObjectDoesNotExist
 
-from coding.models import User, Class, Assignment, CodeQuestion, Solution, UnitTest, Competition, Progress, CompetitionProgress, QuestionWeightPair
+from coding.models import User, Class, Assignment, CodeQuestion, Solution, UnitTest, Competition, QuestionWeightPair
 
 # From https://dev.to/koladev/django-rest-authentication-cmh
 
@@ -52,26 +52,6 @@ class CompetitionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Competition
-        fields = '__all__'
-
-class ProgressSerializer(serializers.ModelSerializer):
-    learner = serializers.SlugRelatedField(
-        read_only=True,
-        slug_field='username'
-    )
-
-    class Meta:
-        model = Progress
-        fields = '__all__'
-
-class CompetitionProgressSerializer(serializers.ModelSerializer):
-    learner = serializers.SlugRelatedField(
-        read_only=True,
-        slug_field='username'
-    )
-
-    class Meta:
-        model = CompetitionProgress
         fields = '__all__'
 
 class ClassSerializer(serializers.ModelSerializer):
