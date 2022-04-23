@@ -18,10 +18,10 @@ function TeacherAssignmentQuestionTable(){
             const newDisplayData = response.data.map((question) => {
                 const link = `/questions?id=${question.id}`;
                 return(
-                    <tr key={question.id}>
-                        <td>{question.id}</td>
-                        <td><Link to={{pathname: link }} replace>{question.name}</Link></td>
-                        <td>{question.description} </td>
+                    <tr key={question.question.id}>
+                        <td>{question.question.id}</td>
+                        <td><Link to={{pathname: link }} replace>{question.question.name}</Link></td>
+                        <td>{question.question.description} </td>
                     </tr>
                 )
             });
