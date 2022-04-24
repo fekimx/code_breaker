@@ -289,13 +289,26 @@ class StudentAssignmentViewSet(viewsets.ModelViewSet):
             for assignment in clazz.assignments.all():
                 assignmentSet.add(assignment.id)
 
-        if pk not in assignmentSet:
+        
+        if int(pk) not in assignmentSet:
             raise PermissionDenied()
 
         assignmentObj = get_object_or_404(self.queryset, pk=pk)
         serializer = self.get_serializer(assignmentObj)
 
-        return Response(serializer.data)
+        questionweightpair_fks = []
+
+        for questionWeightPair in assignmentObj.questions.all():
+            localQuestionWeightPair = {}
+            localQuestionWeightPair['name'] = questionWeightPair.question.name
+            localQuestionWeightPair['id'] = questionWeightPair.question.id
+            localQuestionWeightPair['description'] = questionWeightPair.question.description
+            localQuestionWeightPair['weight'] = questionWeightPair.weight
+            questionweightpair_fks.append(localQuestionWeightPair)
+
+        response = serializer.data
+        response["questionWeightPairs"] = questionweightpair_fks
+        return Response(response)
 
 class TeacherCompetitionStatusViewSet(viewsets.ModelViewSet):
     queryset = Competition.objects.all()
