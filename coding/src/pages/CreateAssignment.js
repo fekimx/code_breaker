@@ -215,6 +215,7 @@ function CreateQuestion() {
             >
               Create
             </button>
+            <button type="button" className="cancelbutton" onClick={()=>navigate("/TeacherDashboard")}>Cancel</button>
             <div className="text-success">{successText}</div>
             <div className="text-danger">{dangerText}</div>
           </div>
