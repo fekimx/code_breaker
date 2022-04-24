@@ -4,6 +4,7 @@ import axiosService from "../utils/axios";
 import { useNavigate } from "react-router";
 import { Link } from 'react-router-dom';
 import { useSearchParams } from "react-router-dom";
+import Tabs from "./Tabs";
 
 var count = 0;
 function TeacherAssignmentQuestionTable(){
@@ -61,6 +62,7 @@ function TeacherAssignmentQuestionTable(){
                     { displayData }
                 </tbody>
             </table>
+            <button onClick={()=>{Tabs.changeTabNumber(3); history("/teacherdashboard")}}>Dashboard</button>
         </div>
     )
  }
