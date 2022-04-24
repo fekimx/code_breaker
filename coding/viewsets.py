@@ -167,11 +167,11 @@ class TeacherAssignmentViewSet(viewsets.ModelViewSet):
         request.data['author'] = request.user.id
         questionweightpair_fks = []
 
-        for question in request.data['questions']:
+        for questionWeightPair in request.data['questions']:
             data = {}
-            data['question'] = question
-            # v1 - everything has weight of 1
-            data['weight'] = 1
+            data = {}
+            data['question'] = questionWeightPair['question']
+            data['weight'] = questionWeightPair['weight']
             questionweightpair_serializer = QuestionWeightPairSerializer(data = data)
                 
             try:
