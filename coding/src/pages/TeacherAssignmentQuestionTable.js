@@ -14,20 +14,23 @@ function TeacherAssignmentQuestionTable(){
     let assignmentId = searchParams.get("id");
 
     const fetchLatestQuestions = () => {
-        axiosService.get(`/api/assignmentQuestions/?assignmentId=${assignmentId}`, {})
+        //axiosService.get(`/api/teacher/assignment/${this.props.assignmentId}/`,
+        //axiosService.get(`/api/assignmentQuestions/?assignmentId=${assignmentId}`, {})
+        axiosService.get(`/api/teacher/assignment/${assignmentId}/`)
         .then((response) => {
             console.log("The response:");
             console.log(response);
-            
-            const newDisplayData = response.data.map((questionWeightPair) => {
-                const link = `/questions?id=${questionWeightPair.question.id}&assignmentId=${assignmentId}`;
+            const questionWeightPairs = response.data['questionWeightPairs']
+            console.log(questionWeightPairs);
+            const newDisplayData = questionWeightPairs.map((questionWeightPair) => {
+                const link = `/questions?id=${questionWeightPair.id}&assignmentId=${assignmentId}`;
                 count++;
                 return(
-                    <tr key={questionWeightPair.question.id}>
+                    <tr key={questionWeightPair.id}>
                         <td>{count}</td>
                         <td>{questionWeightPair.weight}</td>
-                        <td><Link to={{pathname: link }} replace>{questionWeightPair.question.name}</Link></td>
-                        <td>{questionWeightPair.question.description} </td>
+                        <td><Link to={{pathname: link }} replace>{questionWeightPair.name}</Link></td>
+                        <td>{questionWeightPair.description} </td>
                     </tr>
                 )
             });
