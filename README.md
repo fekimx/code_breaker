@@ -29,6 +29,15 @@ python manage.py runserver --settings=code_breaker.local_settings
 
 npm run dev
 
+## How to Deploy to Heroku (while automatic deployments are not working)
+
+Heroku had a security issue with GitHub and has turned off GitHub integrations.
+
+Install the Heroku CLI: https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli
+
+heroku git:remote -a code-breaker-proj
+git push heroku main
+
 ## Judge 0 Deployment
 
 The Judge 0 server executes the student's code and unit tests.
