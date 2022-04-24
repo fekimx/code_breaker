@@ -104,19 +104,19 @@ function TeacherCompetitionTable(){
     return(
         <div>
             <button onClick={()=>navigate("/teacherStartRace")}>Start a Competition</button>
-             <br /><br />
-             <table className="table-striped">
-                 <thead>
-                     <tr>
-                         <th>Active Competitions</th>
-                         <th>Student Progress</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                 { activeData }
-                     </tbody>
-             </table>
-             <br />
+            <br /><br />
+            <table className="table-striped">
+                <thead>
+                    <tr>
+                        <th>Active Competitions</th>
+                        <th>Student Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                { activeData }
+                    </tbody>
+            </table>
+            <br />
             <table className="table-striped">
                 <thead>
                     <tr>

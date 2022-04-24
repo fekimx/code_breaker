@@ -142,7 +142,7 @@ function CreateQuestion() {
     .then((res) => {
       console.log(res);
       setSuccessText("Your question was created successfully!");
-      Tabs.changeTabNumber(0);  
+      Tabs.changeTabNumber(3);  
       navigate('/teacherdashboard');
     })
     .catch((err) => {
