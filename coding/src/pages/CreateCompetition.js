@@ -73,7 +73,7 @@ function CreateCompetition(type = "race") {
     .then((res) => {
       console.log(res);
       setSuccessText("Your competition was created successfully!");
-      Tabs.changeTabNumber(3);
+      Tabs.changeTabNumber(4);
       navigate('/teacherdashboard');
     })
     .catch((err) => {
