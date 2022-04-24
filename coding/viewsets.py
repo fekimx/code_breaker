@@ -169,7 +169,6 @@ class TeacherAssignmentViewSet(viewsets.ModelViewSet):
 
         for questionWeightPair in request.data['questions']:
             data = {}
-            data = {}
             data['question'] = questionWeightPair['question']
             data['weight'] = questionWeightPair['weight']
             questionweightpair_serializer = QuestionWeightPairSerializer(data = data)
@@ -220,7 +219,20 @@ class TeacherAssignmentViewSet(viewsets.ModelViewSet):
         qs = Assignment.objects.filter(author=request.user.id)
         assignmentObj = get_object_or_404(qs, pk=pk)
         serializer = self.get_serializer(assignmentObj)
-        return Response(serializer.data)
+
+        questionweightpair_fks = []
+
+        for questionWeightPair in assignmentObj.questions.all():
+            localQuestionWeightPair = {}
+            localQuestionWeightPair['name'] = questionWeightPair.question.name
+            localQuestionWeightPair['id'] = questionWeightPair.question.id
+            localQuestionWeightPair['description'] = questionWeightPair.question.description
+            localQuestionWeightPair['weight'] = questionWeightPair.weight
+            questionweightpair_fks.append(localQuestionWeightPair)
+
+        response = serializer.data
+        response["questionWeightPairs"] = questionweightpair_fks
+        return Response(response)
 
 class StudentAssignmentViewSet(viewsets.ModelViewSet):
 
