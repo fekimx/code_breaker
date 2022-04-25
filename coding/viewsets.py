@@ -350,17 +350,17 @@ class TeacherCompetitionViewSet(viewsets.ModelViewSet):
         request.data['author'] = request.user.id
         questionweightpair_fks = []
 
-        for question in request.data['questions']:
+        for questionWeightPair in request.data['questions']:
             data = {}
-            data['question'] = question
-            # v1 - everything has weight of 1
-            data['weight'] = 1
+            data['question'] = questionWeightPair['question']
+            data['weight'] = questionWeightPair['weight']
             questionweightpair_serializer = QuestionWeightPairSerializer(data = data)
                 
             try:
                 questionweightpair_serializer.is_valid()
                 questionweightpair_serializer.save()
                 questionweightpair_fks.append(questionweightpair_serializer['id'].value)
+                logger.warn("Valid Serializer- Question Weight Pair")
                 
             except TokenError as e:
                 raise InvalidToken(e.args[0]) 
@@ -372,7 +372,6 @@ class TeacherCompetitionViewSet(viewsets.ModelViewSet):
         competitionData['name'] = request.data['name']
         competitionData['author'] = request.data['author']
         competitionData['questions'] = request.data['questions']
-        #serializer = self.get_serializer(data=request.data)
 
         serializer = self.get_serializer(data=request.data)
 
@@ -403,7 +402,20 @@ class TeacherCompetitionViewSet(viewsets.ModelViewSet):
         logger.warn("----- >> RETRIEVE FROM COMPETITION!")
         competitionObj = get_object_or_404(self.queryset, pk=pk)
         serializer = self.get_serializer(competitionObj)
-        return Response(serializer.data)
+
+        questionweightpair_fks = []
+
+        for questionWeightPair in competitionObj.questions.all():
+            localQuestionWeightPair = {}
+            localQuestionWeightPair['name'] = questionWeightPair.question.name
+            localQuestionWeightPair['id'] = questionWeightPair.question.id
+            localQuestionWeightPair['description'] = questionWeightPair.question.description
+            localQuestionWeightPair['weight'] = questionWeightPair.weight
+            questionweightpair_fks.append(localQuestionWeightPair)
+
+        response = serializer.data
+        response["questionWeightPairs"] = questionweightpair_fks
+        return Response(response)
 
 class StudentCompetitionViewSet(viewsets.ModelViewSet):
 
@@ -432,12 +444,25 @@ class StudentCompetitionViewSet(viewsets.ModelViewSet):
             for competition in clazz.competitions.all():
                 competitionSet.add(competition.id)
 
-        if pk not in competitionSet:
+        if int(pk) not in competitionSet:
             raise PermissionDenied()
 
         competitionObj = get_object_or_404(self.queryset, pk=pk)
         serializer = self.get_serializer(competitionObj)
-        return Response(serializer.data)
+
+        questionweightpair_fks = []
+
+        for questionWeightPair in competitionObj.questions.all():
+            localQuestionWeightPair = {}
+            localQuestionWeightPair['name'] = questionWeightPair.question.name
+            localQuestionWeightPair['id'] = questionWeightPair.question.id
+            localQuestionWeightPair['description'] = questionWeightPair.question.description
+            localQuestionWeightPair['weight'] = questionWeightPair.weight
+            questionweightpair_fks.append(localQuestionWeightPair)
+
+        response = serializer.data
+        response["questionWeightPairs"] = questionweightpair_fks
+        return Response(response)
 
 class LoginViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
