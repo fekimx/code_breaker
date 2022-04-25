@@ -7,7 +7,7 @@ import NewNav from "../components/navbar/NewNav";
 import { useNavigate } from "react-router-dom";
 import Tabs from "./Tabs";
 
-function CreateQuestion() {
+function CreateAssignment() {
   const account = useSelector((state) => state.auth.account);
   const userId = account?.id;
   let navigate = useNavigate();
@@ -125,7 +125,7 @@ function CreateQuestion() {
       myclass: 1
     },
     onSubmit: (values) => {
-      handleCreateQuestion(
+      handleCreateAssignment(
         values.name, 
         values.myclass
       );
@@ -136,7 +136,7 @@ function CreateQuestion() {
     }),
   });
 
-  const handleCreateQuestion = (name, myclass) => {
+  const handleCreateAssignment = (name, myclass) => {
     clearTexts();
     axiosService.post(`/api/teacher/assignment/`, { name: name, class: myclass, questions: uiQuestionsData })
     .then((res) => {
@@ -197,10 +197,8 @@ function CreateQuestion() {
             >
               {classes}
               </select>
-            
             {formik.errors.class ? <div>{formik.errors.class} </div> : null}
             {UIQuestions}
-            
             <div><a href="#" onClick={addUIQuestion}>Add Question</a></div>
           </div>
           <div className="text-danger text-center my-2" hidden={false}>
@@ -228,4 +226,4 @@ function CreateQuestion() {
   )
 };
 
-export default CreateQuestion;
+export default CreateAssignment;
