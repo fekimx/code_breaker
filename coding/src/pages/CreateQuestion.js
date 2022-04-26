@@ -55,7 +55,7 @@ function CreateQuestion() {
 
   const solutionHTMLByNum = (num) => {
     return <div key={num.toString()}>
-      <h3>Solution #{num.toString()}</h3>
+      <h4>Solution #{num.toString()}</h4>
       <CodeMirror
         height="100px"
         extensions={[python({})]}
@@ -66,10 +66,30 @@ function CreateQuestion() {
     </div>;
   }
 
+  const styleLeft = {
+    float: "left"
+  }
+  const stylePadding = {
+    paddingLeft: "30px"
+  }
   const unitTestHTMLByNum = (num) => {
-    return <div key={num.toString()}> 
-      <h3>Unit Test #{num.toString()}</h3>
+    return <div key={num.toString()}>
+      <br/> 
+      <h4>Test Case #{num.toString()}</h4>
+      {num.toString() == 1 &&
+      <center>
+        <div style={{...styleLeft, ...stylePadding}}>
+          <label>Input</label>
+          <p><strong>Ex: </strong><code>isEven(4)</code></p>
+        </div>
+        <div>
+          <label>Output</label>
+          <p><strong>Ex: </strong><code>True</code></p>
+        </div>
+      </center>
+      }
       <input
+        style={{marginRight:"35px"}}
         className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
         type="text"
         onChange={(value, viewUpdate) => {
@@ -83,7 +103,7 @@ function CreateQuestion() {
           setUnitTestFieldN(num - 1, 'output', event.target.value);
         }}
       />
-      Visible
+      <label style={{marginLeft:"10px"}}>Visible&nbsp;</label>
       <input
         className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
         type="checkbox"
@@ -137,7 +157,7 @@ function CreateQuestion() {
     },
     validationSchema: Yup.object({
       name: Yup.string().trim().required("Name is required"),
-      description: Yup.string().trim().required("description is required")    
+      description: Yup.string().trim().required("Description is required")    
     }),
   });
 
@@ -169,11 +189,12 @@ function CreateQuestion() {
         </h1>
         <form onSubmit={formik.handleSubmit}>
           <div className="space-y-4">
+            <label for="name">Name</label>
+            <br/>
             <input
               className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
               id="name"
               type="text"
-              placeholder="Name"
               name="name"
               value={formik.values.name}
               onChange={formik.handleChange}
@@ -181,18 +202,22 @@ function CreateQuestion() {
             />
             {formik.errors.name ? <div>{formik.errors.name} </div> : null}
             <div className="space-y-4">
-            <input
-              className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
-              id="description"
-              type="description"
-              placeholder="Description"
-              name="description"
-              value={formik.values.description}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
+              <label for="description">Description</label>
+              <br/>
+              <textarea
+                className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
+                id="description"
+                name="description"
+                value={formik.values.description}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                rows="4" cols="30"
+              />
             {formik.errors.description ? <div>{formik.errors.description} </div> : null}
-            <h3>Code</h3>
+            <br/>
+            <br/>
+            <h4>Function Signature</h4>
+            <p><strong>Ex: </strong><code>def isEven(n):</code></p>
             <CodeMirror
               height="100px"
               value={code}
@@ -201,6 +226,7 @@ function CreateQuestion() {
                 setCode(value);
               }}
             />
+            <br/>
             {formik.errors.code ? (
               <div>{formik.errors.code} </div>
             ) : null}
@@ -208,8 +234,8 @@ function CreateQuestion() {
             <div><a href="#" onClick={removeSolution}>Remove Solution</a></div>
             <div><a href="#" onClick={addSolution}>Add Solution</a></div>
             {unitTests}
-            <div><a href="#" onClick={removeUnitTest}>Remove Unit Test</a></div>
-            <div><a href="#" onClick={addUnitTest}>Add Unit Test</a></div>
+            <div><a href="#" onClick={removeUnitTest}>Remove Test Case</a></div>
+            <div><a href="#" onClick={addUnitTest}>Add Test Case</a></div>
           </div>
           <div className="text-danger text-center my-2" hidden={false}>
             {message}
