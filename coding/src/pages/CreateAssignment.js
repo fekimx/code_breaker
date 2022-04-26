@@ -34,16 +34,31 @@ function CreateAssignment() {
     })
   }
 
+  const styleLeft = {
+    float:"left"
+  }
+  const styleMargin = {
+    marginRight: "30px"
+  }
   const uiQuestionHTMLByNum = (num) => {
-    return <div key={num.toString()}> 
-      <h5>Question #{num.toString()}</h5>
+    return <div key={num.toString()}>
+      <br/>
+      {num.toString() == 1 &&
+        <div>
+          <h4  style={{...styleLeft, ...styleMargin}}>Question #{num.toString()}</h4> 
+          <h4>Weight</h4>
+        </div>
+      }
+      {num.toString() != 1 &&
+        <h4>Question #{num.toString()}</h4> 
+      }
       <select
         className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
         type="select"
         onChange={(value, viewUpdate) => {
           setUIQuestionFieldN(num - 1, 'question', event.target.value);
-        }}
-        
+        }} 
+        style = {{...styleMargin}} 
       >
         {questions}
         </select>
@@ -166,14 +181,11 @@ function CreateAssignment() {
         </h1>
         <form onSubmit={formik.handleSubmit}>
           <div className="space-y-4">
-            <h3>
-              Name
-            </h3>
+            <h4>Name</h4>
             <input
               className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
               id="name"
               type="text"
-              placeholder="Name"
               name="name"
               value={formik.values.name}
               onChange={formik.handleChange}
@@ -181,9 +193,7 @@ function CreateAssignment() {
             />
             {formik.errors.name ? <div>{formik.errors.name} </div> : null}
             <div className="space-y-4">
-            <h3>
-              Class
-            </h3>
+            <h4>Class</h4>
             <select
               className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
               id="myclass"
@@ -192,7 +202,7 @@ function CreateAssignment() {
               multiple={false}
               name="myclass"
               value={formik.values.myclass}
-               onChange={formik.handleChange}
+              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             >
               {classes}
