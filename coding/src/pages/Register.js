@@ -123,7 +123,8 @@ function Register() {
       <div className="form-group">
                 <div className="custom-control custom-checkbox">
                     <input type="checkbox" className="custom-control-input" id="agree" onChange={checkboxHandler}/>
-                    <label className="custom-control-label" htmlFor="agree">I accept all</label><a href="/terms"> terms and conditions</a>
+                    <label className="custom-control-label" htmlFor="agree">By registering, I accept all</label><a href="/terms"> terms and conditions</a>
+                    <p>as well as meet the minimum age requirement of 13 years old.</p>
                 </div>
             </div>
           <div className="flex justify-center items-center mt-6">
