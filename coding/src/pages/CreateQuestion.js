@@ -55,7 +55,7 @@ function CreateQuestion() {
 
   const solutionHTMLByNum = (num) => {
     return <div key={num.toString()}>
-      <h4>Solution #{num.toString()}</h4>
+      <h5>Solution #{num.toString()}</h5>
       <CodeMirror
         height="100px"
         extensions={[python({})]}
@@ -75,7 +75,7 @@ function CreateQuestion() {
   const unitTestHTMLByNum = (num) => {
     return <div key={num.toString()}>
       <br/> 
-      <h4>Test Case #{num.toString()}</h4>
+      <h5>Test Case #{num.toString()}</h5>
       {num.toString() == 1 &&
       <center>
         <div style={{...styleLeft, ...stylePadding}}>
@@ -189,8 +189,7 @@ function CreateQuestion() {
         </h1>
         <form onSubmit={formik.handleSubmit}>
           <div className="space-y-4">
-            <label for="name">Name</label>
-            <br/>
+            <h5>Name</h5>
             <input
               className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
               id="name"
@@ -200,10 +199,11 @@ function CreateQuestion() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
+            
             {formik.errors.name ? <div>{formik.errors.name} </div> : null}
             <div className="space-y-4">
-              <label for="description">Description</label>
               <br/>
+              <h5>Description</h5>
               <textarea
                 className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
                 id="description"
@@ -216,7 +216,7 @@ function CreateQuestion() {
             {formik.errors.description ? <div>{formik.errors.description} </div> : null}
             <br/>
             <br/>
-            <h4>Function Signature</h4>
+            <h5>Function Signature</h5>
             <p><strong>Ex: </strong><code>def isEven(n):</code></p>
             <CodeMirror
               height="100px"
@@ -248,6 +248,7 @@ function CreateQuestion() {
             >
               Create
             </button>
+            <button type="button" className="cancelbutton" onClick={()=>{Tabs.changeTabNumber(2);  navigate("/teacherdashboard")}}>Cancel</button>
             <div className="text-success">{successText}</div>
             <div className="text-danger">{dangerText}</div>
           </div>
