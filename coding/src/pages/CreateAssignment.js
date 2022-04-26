@@ -45,12 +45,12 @@ function CreateAssignment() {
       <br/>
       {num.toString() == 1 &&
         <div>
-          <h4  style={{...styleLeft, ...styleMargin}}>Question #{num.toString()}</h4> 
-          <h4>Weight</h4>
+          <h5  style={{...styleLeft, ...styleMargin}}>Question #{num.toString()}</h5> 
+          <h5>Weight</h5>
         </div>
       }
       {num.toString() != 1 &&
-        <h4>Question #{num.toString()}</h4> 
+        <h5>Question #{num.toString()}</h5> 
       }
       <select
         className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
@@ -181,7 +181,7 @@ function CreateAssignment() {
         </h1>
         <form onSubmit={formik.handleSubmit}>
           <div className="space-y-4">
-            <h4>Name</h4>
+            <h5>Name</h5>
             <input
               className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
               id="name"
@@ -193,7 +193,8 @@ function CreateAssignment() {
             />
             {formik.errors.name ? <div>{formik.errors.name} </div> : null}
             <div className="space-y-4">
-            <h4>Class</h4>
+            <br/>
+            <h5>Class</h5>
             <select
               className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
               id="myclass"
@@ -223,7 +224,7 @@ function CreateAssignment() {
             >
               Create
             </button>
-            <button type="button" className="cancelbutton" onClick={()=>navigate("/TeacherDashboard")}>Cancel</button>
+            <button type="button" className="cancelbutton" onClick={()=>{Tabs.changeTabNumber(3);  navigate("/teacherdashboard")}}>Cancel</button>
             <div className="text-success">{successText}</div>
             <div className="text-danger">{dangerText}</div>
           </div>
