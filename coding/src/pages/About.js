@@ -1,14 +1,17 @@
 import '../App.css';
 import React from 'react';
 import { useNavigate } from "react-router";
-import Navbar from "../components/navbar/Navbar";
+import NavHeader from "../components/navbar/NavHeader";
 import Footer from "../components/Footer";
+
 const About = () => {
   const history = useNavigate();
   
   return (
+    <div className="single-column">
+    <NavHeader user="None" title="About" />
+
   <div className="h-screen flex bg-gray-bg1">
-    <Navbar/>
     <div className="page-body">
       <h1>About code-breaker.io</h1>
       <h2>Origin</h2>
@@ -21,6 +24,7 @@ const About = () => {
       <p>Future updates include adding more lessons/questions, additional programming language support, and enhancing the usability of the competition mode.</p>
     </div>
     <Footer/>  
+  </div>
   </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../components/navbar/Navbar";
+import NavHeader from "../components/navbar/NavHeader";
 import "../App.css"
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
@@ -7,7 +7,7 @@ function Homepage() {
 
   return (
       <div>
-          <Navbar/>
+          <NavHeader user="None" title="Code-Breaker" />
           <Hero/>
           <Footer/>
       </div>
