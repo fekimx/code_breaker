@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import axiosService from "../utils/axios";
 import { useNavigate } from "react-router";
 import authSlice from "../store/slices/auth";
-import Navbar from "../components/navbar/Navbar";
+import NavHeader from "../components/navbar/NavHeader";
 import Footer from "../components/Footer";
 
 function Register() {
@@ -61,7 +61,8 @@ function Register() {
   ;
 
   return (
-    <div className="h-screen flex bg-gray-bg1"> <Navbar/>
+    <div className="h-screen flex bg-gray-bg1">
+      <NavHeader user="None" title="Register" />
     <div className="pad">
     <div class="container">
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
