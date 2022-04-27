@@ -6,8 +6,8 @@ function Terms() {
   
 return (
     <div className="h-screen flex bg-gray-bg1"> <Navbar/>
-    <div className="pad">
-    <div class="container">
+    <div className="termspad">
+    <div class="termscontainer" >
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
           Terms and Conditions
         </h1>
