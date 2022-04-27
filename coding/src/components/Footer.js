@@ -5,8 +5,7 @@ import {
     FaInstagram,
     FaYoutube,
     FaTwitter,
-    FaLinkedin,
-    FaGithub
+    FaLinkedin
   } from 'react-icons/fa';
 
 const FooterContainer = styled.footer`
@@ -88,9 +87,6 @@ const Footer = () => {
               </SocialIconLink>
               <SocialIconLink href='https://www.linkedin.com/in/code-breaker-655014238/' target='_blank' rel='noopener' aria-label='Linkedin'>
                 <FaLinkedin />
-              </SocialIconLink>
-              <SocialIconLink href='https://github.com/fekimx/code_breaker' target='_blank' rel='noopener' aria-label='Github'>
-                <FaGithub />
               </SocialIconLink>
             </SocialIcons>
           </SocialMediaWrap>

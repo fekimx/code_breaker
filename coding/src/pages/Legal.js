@@ -82,10 +82,6 @@ return (
                     Our site will not use pupil records to engage in targeted advertising.
                     In the event of an unauthorized disclosure of a pupil's records, we shall report to an affected parent, legal guardian, or teacher via email. 
                     </p>
-                    <p>California Online Privacy Protection Act <br></br>
-                    According to CalOPPA: users can visit our site anonymously; we link to this Privacy Policy on the home page; and our Privacy Policy link, and can be easily be found on the home page.
-                        Users will be notified of any privacy policy changes on this Privacy Policy Page. Users are able to change their personal information by emailing us.
-                    </p>
                     <p>Fair Information Practices <br></br>
                     The Fair Information Practices Principles form the backbone of privacy law in the United States and the concepts they include have played a significant role in the development of data protection laws around the globe. Understanding the Fair Information Practice Principles and how they should be implemented is critical to comply with the various privacy laws that protect personal information. In order to be in line with Fair Information Practices, should a data breach occur, we will notify the affected users via email within 7 business days (or within 72 hours for certain categories of breach). 
                     We also agree to the individual redress principle, which requires that individuals have a right to pursue legally enforceable rights against data collectors and processors who fail to adhere to the law. This principle requires not only that individuals have enforceable rights against data users, but also that individuals have recourse to courts or a government agency to investigate and/or prosecute non-compliance by data processors.
