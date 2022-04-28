@@ -28,6 +28,14 @@ code {
 .pad {
   position: relative;
   padding: 13px;
+
+}
+
+.termspad {
+  position: relative;
+  padding: 90px;
+  display: flex;
+  justify-content: center;
 }
 .container{
   position: relative;
@@ -41,6 +49,18 @@ code {
   margin: 30 20px;
 }
 
+.termscontainer{
+  position: relative;
+  max-width: 1400px;
+  width: 100%;
+  padding: 50px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 20px;
+  
+}
 .auth-wrapper {
   display: flex;
   justify-content: center;

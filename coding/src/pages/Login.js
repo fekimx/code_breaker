@@ -89,19 +89,10 @@ function Login() {
       <div className="text-danger text-center my-2" hidden={false}>
         {message}
       </div>
-      <div className="form-group">
-                <div className="custom-control custom-checkbox">
-                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                    <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                </div>
-            </div>
       <div className="flex justify-center items-center mt-6">
       </div>
       <div className="flex justify-center items-center mt-6">
      <button type="submit" className="btn btn-primary btn-block">Submit</button>
-     <p className="forgot-password text-right">
-                Forgot your <a href="#">password?</a>
-            </p>
       </div>
     </form>
   </div>
@@ -111,3 +102,17 @@ function Login() {
 }
 
 export default Login;
+
+/* removed remember me / password recovery options for now.
+      <div className="form-group">
+                <div className="custom-control custom-checkbox">
+                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                    <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                </div>
+            </div>
+            -----------------------
+            
+<p className="forgot-password text-right">
+Forgot your <a href="#">password?</a>
+</p>
+*/
