@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import axiosService from "../utils/axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import NewNav from "../components/navbar/NewNav";
+import NavHeader from "../components/navbar/NavHeader";
 import { useNavigate } from "react-router-dom";
 import Tabs from "./Tabs";
 
@@ -171,7 +171,7 @@ function CreateCompetition(type = "race") {
   
   return (
   <div>
-    <NewNav/>
+    <NavHeader user="Teacher" title="" />
     <div className="pad">
     <div className="container">
     <div className="h-screen flex bg-gray-bg1">

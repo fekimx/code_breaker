@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
 import './NavHeader.css';
 import { MenuNoUserOld, MenuNoUser, MenuStudent, MenuTeacher } from "./NavHeaderMenus";
+import authSlice from "../../store/slices/auth";
+import { useNavigate } from "react-router";
 
 const NavHeader = (params) => {
 
@@ -18,6 +21,9 @@ const NavHeader = (params) => {
 
     */
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     var currentMenu = MenuNoUser;
     
     switch (params.user) {
@@ -31,6 +37,10 @@ const NavHeader = (params) => {
             currentMenu = MenuNoUserOld;
     }
 
+    const userLogout = () => {
+        dispatch(authSlice.actions.logout());
+        navigate("/login");
+      }
 
     return (
         <div className="navbar-group">
@@ -38,9 +48,15 @@ const NavHeader = (params) => {
             <div className="navbar-container">
                 {currentMenu.map((item, index) => {
                     var tmpActive = (params.title == item.title) ? item.class+'-active' : item.class;
-                    console.warn(" --> "+params.title+" vs "+item.title);
+                    var tmpLink = '#'
+                    var tmpClick = void(0)
+                    if (item.url == '#LOGOUT#') {
+                        tmpClick = userLogout
+                    } else {
+                        tmpLink = item.url
+                    }
                     return (
-                        <a className={tmpActive} href={item.url}>{item.title}</a>
+                        <a className={tmpActive} href={tmpLink} onClick={tmpClick}>{item.title}</a>
                     )}
                 )}
             </div>

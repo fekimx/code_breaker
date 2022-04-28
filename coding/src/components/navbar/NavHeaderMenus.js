@@ -62,50 +62,20 @@ export const MenuStudent = [
     },
     {
         title: 'Logout',
-        url: '/logout',
-        class: 'link'
-    },
-    {
-        title: 'Grades',
-        url: '/register',
-        class: 'link'
-    },
-    {
-        title: 'Competitions',
-        url: '/login',
-        class: 'link'
-    },
-    {
-        title: 'Assignments',
-        url: '/student-info',
-        class: 'link'
-    },
-    {
-        title: 'Classes',
-        url: '/teacher-info',
+        url: '#LOGOUT#',
         class: 'link'
     }
 ]
 
 export const MenuTeacher = [
     {
-        title: 'TEACHER LINKS HERE',
+        title: 'Code-Breaker',
         url: '/',
-        cName: 'nav-links'
+        class: 'logo'
     },
     {
-        title: 'Sign In',
-        url: '/about',
-        cName: 'nav-links'
-    },
-    {
-        title: 'Students',
-        url: '/contact',
-        cName: 'nav-links'
-    },
-    {
-        title: 'Teachers',
-        url: '/register',
-        cName: 'nav-links'
+        title: 'Logout',
+        url: '#LOGOUT#',
+        class: 'link'
     }
 ]

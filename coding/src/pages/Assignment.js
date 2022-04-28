@@ -6,7 +6,7 @@ import '../App.css';
 import Tabs from './Tabs';
 import TeacherAssignmentStudentTable from './TeacherAssignmentStudentTable';
 import TeacherAssignmentQuestionTable from './TeacherAssignmentQuestionTable';
-import NewNav from "../components/navbar/NewNav";
+import NavHeader from "../components/navbar/NavHeader";
 import Footer from "../components/Footer";
 
 function withMyHook(Component) {
@@ -88,7 +88,7 @@ class Assignment extends React.Component {
     
     return (
       <div>
-        <NewNav/>
+        <NavHeader user="Student" title="" />
         <div className="pad">
         <div className="container">
         <h1>Assignment: {this.state.name}</h1>
