@@ -5,14 +5,14 @@ import TeacherStudentTable from './TeacherStudentTable';
 import TeacherQuestionTable from './TeacherQuestionTable';
 import TeacherAssignmentTable from './TeacherAssignmentTable';
 import TeacherCompetitionTable from './TeacherCompetitionTable';
-import NewNav from "../components/navbar/NewNav";
+import NavHeader from "../components/navbar/NavHeader";
 import Footer from "../components/Footer";
 
 function TeacherDashboard() {
   
   return (
     <div>
-      <NewNav/>
+      <NavHeader user="Teacher" title="" />
       <div className="pad">
       <div className="container">
       <h1>Teacher Dashboard</h1>

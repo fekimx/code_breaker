@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
-import NewNav from "../components/navbar/NewNav";
+import NavHeader from "../components/navbar/NavHeader";
 import { useNavigate } from "react-router-dom";
 import Tabs from "./Tabs";
 
@@ -179,7 +179,7 @@ function CreateQuestion() {
   
   return (
   <div>
-    <NewNav/>
+    <NavHeader user="Teacher" title="" />
     <div className="pad">
     <div className="container">
     <div className="h-screen flex bg-gray-bg1">
