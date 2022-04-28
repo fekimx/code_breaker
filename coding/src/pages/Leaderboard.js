@@ -1,7 +1,7 @@
 import './leaderstyles.css';
 import React from 'react';
 import { useNavigate } from "react-router";
-import Navbar from "../components/navbar/Navbar";
+import NavHeader from "../components/navbar/NavHeader";
 import Footer from "../components/Footer";
 
 const Leaderboard = () => {
@@ -148,7 +148,7 @@ const renderPage = (scores) => {
 
   return (
   <div className="h-screen flex bg-gray-bg1">
-    <Navbar/>
+          <NavHeader user="Student" title="" />
     <div id="canvas"></div>
       <h1 class="page-header">Leaderboard</h1>
       <div class="container2">

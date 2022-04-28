@@ -4,17 +4,28 @@ import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
 import axiosService from "../utils/axios";
 import { useSearchParams } from "react-router-dom";
-import NewNav from "../components/navbar/NewNav";
+import NavHeader from "../components/navbar/NavHeader";
+import { useState } from "react";
+import { useEffect } from "react";
+import Modal from "react-bootstrap/Modal";
 
 function withMyHook(Component) {
+  
+
+
   return function WrappedComponent(props) {
+
+
     let [searchParams, setSearchParams] = useSearchParams();
     let questionId = searchParams.get("id");
     let assignmentId = searchParams.get("assignmentId");
     let competitionId = searchParams.get("competitionId");
+
     return <Question {...props} questionId={questionId} assignmentId={assignmentId} competitionId={competitionId} />;
   }
 }
+
+
 
 class Question extends React.Component {
   constructor(props) {
@@ -31,9 +42,10 @@ class Question extends React.Component {
       unitTests: [],
       unitTestData: [],
       solutions: [],
-      showSolutions: false
+      showSolutions: false,
+      showWinner: false
     }
-
+  
     axiosService.get(`/api/student/question/${this.props.questionId}/`,    {
       //ClassViewset gets a specific class classes
     })
@@ -65,6 +77,7 @@ class Question extends React.Component {
       console.log(err);
     });
   }
+
 
   runCode() {
     console.log("Running codes: ", this.state.code);
@@ -105,10 +118,45 @@ class Question extends React.Component {
     });
   }
   
+
+
   render() {
+
+  
+  
+    
     return (
     <div>
-      <NewNav/>
+    <NavHeader user="Student" title="" />
+
+
+      <button variant="primary" onClick={() => this.setState({ showWinner: true })}>
+        Launch static backdrop modal
+      </button>
+
+
+      <Modal
+        show={this.state.showWinner}
+        onHide={() => this.setState({ showWinner: false })}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Modal title</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          I will not close if you click outside me. Don't even try to press
+          escape key.
+        </Modal.Body>
+        <Modal.Footer>
+          <button variant="secondary" onClick={() => this.setState({ showWinner: false })}>
+            Close
+          </button>
+          <button variant="primary">Understood</button>
+        </Modal.Footer>
+      </Modal>
+
+
       <div className="pad">
       <div className="container">
       <h3>{this.state.name}</h3>
