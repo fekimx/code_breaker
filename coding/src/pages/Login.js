@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import axiosService from "../utils/axios";
 import { useNavigate } from "react-router";
 import authSlice from "../store/slices/auth";
-import Navbar from "../components/navbar/Navbar";
+import NavHeader from "../components/navbar/NavHeader";
 import Footer from "../components/Footer";
 
 function Login() {
@@ -53,7 +53,8 @@ function Login() {
     }),
   });
 
-  return (<div className="h-screen flex bg-gray-bg1"> <Navbar/>
+  return (<div className="h-screen flex bg-gray-bg1">
+    <NavHeader user="None" title="Login" />
   <div className ="pad">
   <div className="container">
     <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">

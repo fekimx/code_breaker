@@ -1,15 +1,17 @@
 import '../App.css';
 import React from 'react';
 import { useNavigate } from "react-router";
-import Navbar from "../components/navbar/Navbar";
+import NavHeader from "../components/navbar/NavHeader";
 import Footer from "../components/Footer";
+
 const Contact = () => {
   const history = useNavigate();
 
   return (
+    <div className="single-column">
+    <NavHeader user="None" title="Contact" />
 
   <div className="h-screen flex bg-gray-bg1">
-    <Navbar/>
 <div
       style={{
         display: 'flex',
@@ -26,6 +28,7 @@ const Contact = () => {
 
     </div>
     <Footer/>  
+    </div>
     </div>
   );
 };
