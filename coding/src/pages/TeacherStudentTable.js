@@ -2,14 +2,29 @@ import React, {useRef} from 'react';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import { useState, useEffect } from "react";
 import axiosService from "../utils/axios";
+import ReactPaginate from 'react-paginate';
+import Pagination from '../components/Pagination';
 
 function TeacherStudentTable() {
     const [displayData, updateDisplayData] = useState([]);
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(5);
+    const [totalPosts, setTotalPosts] = useState([]);
+    const [pageNumber] = useState(1);
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
+    console.log("ok", paginate)
     const fetchLatestStudents = () => {
         axiosService.get(`/api/students/`, {})
         .then((response) => {
-            const newDisplayData = response.data.map((student) => {
+            // Get current items
+            const indexOfLastPost = currentPage * postsPerPage
+            const indexOfFirstPost = indexOfLastPost - postsPerPage
+            //const currentPosts = displayData.slice(indexOfFirstPost, indexOfLastPost)
+            const paginatedDisplayData = response.data.slice(indexOfFirstPost, indexOfLastPost)
+            setTotalPosts(response.data.length)
+            console.log(pageNumber)
+            const newDisplayData = paginatedDisplayData.map((student) => {
                 return(
                     <tr key={student.id}>
                         <td>{student.id}</td>
@@ -28,7 +43,11 @@ function TeacherStudentTable() {
     useEffect(() => {
         fetchLatestStudents();
     }, []);
- 
+
+
+    // change page
+    //const paginate = (pageNumber) => setCurrentPage(pageNumber)
+    
     return(
         <div>
             <ReactHTMLTableToExcel
@@ -52,8 +71,13 @@ function TeacherStudentTable() {
                     { displayData }
                 </tbody>
             </table>
+            <div>
+                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+            </div>
         </div>
     )
 }
+
+
  
  export default TeacherStudentTable;
