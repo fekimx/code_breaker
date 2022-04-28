@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import Navbar from "../components/navbar/Navbar";
+import NavHeader from "../components/navbar/NavHeader";
 import Footer from "../components/Footer";
 
 function Terms() {
   
 return (
-    <div className="h-screen flex bg-gray-bg1"> <Navbar/>
+    <div className="h-screen flex bg-gray-bg1">
+            <NavHeader user="None" title="" />
+
     <div className="pad">
     <div class="container">
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
