@@ -18,7 +18,39 @@ select {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
+h3{
+  padding: 20px;
+}
+input[type="text"],
+select {
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+h4{
+  padding: 20px;
+}
+input[type="text"],
+select {
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+h5{
+  padding: 20px;
+}
+input[type="text"],
+select {
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 button {
   background-color: #0376d8;
   color: whitesmoke;
