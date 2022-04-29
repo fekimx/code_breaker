@@ -3,6 +3,7 @@ import NavHeader from "../components/navbar/NavHeader";
 import "../App.css"
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
+import FavIconImage from './../components/assets/favicon.ico';
 function Homepage() {
 
   return (
