@@ -211,11 +211,12 @@ function CreateQuestion() {
                 value={formik.values.description}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                rows="4" cols="30"
+                rows="4" cols="100"
               />
             {formik.errors.description ? <div>{formik.errors.description} </div> : null}
             <br/>
             <br/>
+             <hr />
             <h5>Function Signature</h5>
             <p><strong>Ex: </strong><code>def isEven(n):</code></p>
             <CodeMirror
@@ -227,12 +228,13 @@ function CreateQuestion() {
               }}
             />
             <br/>
+            <hr />
             {formik.errors.code ? (
               <div>{formik.errors.code} </div>
             ) : null}
             {solutions}
             <div><a href="#" onClick={removeSolution}>Remove Solution</a></div>
-            <div><a href="#" onClick={addSolution}>Add Solution</a></div>
+            <div><a href="#" onClick={addSolution}>Add Solution</a></div> <hr />
             {unitTests}
             <div><a href="#" onClick={removeUnitTest}>Remove Test Case</a></div>
             <div><a href="#" onClick={addUnitTest}>Add Test Case</a></div>
@@ -241,6 +243,7 @@ function CreateQuestion() {
             {message}
           </div>
         </div>
+        <hr />
           <div className="flex justify-center items-center mt-6">
             <button
               type="submit"
