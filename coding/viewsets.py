@@ -919,8 +919,6 @@ class TeacherGradebookViewSet(viewsets.ModelViewSet):
 
         return Response({}, status=status.HTTP_201_CREATED) 
 
-# returns list of assignments with name for assignment
-# each assignment has a list all students in that class and their respective score/progress
     def retrieve(self, request, pk=None):
         logger.warn("Inside retrieve for Gradebook")
         logger.warn(pk)
@@ -928,12 +926,27 @@ class TeacherGradebookViewSet(viewsets.ModelViewSet):
         classObj = Class.objects.get(id=pk)
         assignment_gradebook_list = []
         for assignment in self.queryset:
-            # User.objects.filter(pk__in=studentSet, is_student=True)
             users = User.objects.filter(**{'is_student': True, 'pk__in': classObj.students.all()})
             students = []
             for user in users:
-                logger.warn(user)
-                students.append({'username': user.username, 'progress': 0, 'score': 0})
+                score = 0
+                possibleScore = 0
+                for question in assignment.questions.all():
+                    try:
+                        latest_submission = Submission.objects.filter(learner=user, assignment=assignment, question=question.question).latest('submittedAt')
+                        successfulUnitTests = latest_submission.successfulUnitTests.all()
+                        numSuccessfulUnitTests = len(successfulUnitTests)
+                        numUnitTestsInQuestion = len(question.question.unitTests.all())
+
+                        if numSuccessfulUnitTests == numUnitTestsInQuestion:
+                            score += question.weight
+                    except Exception as e:
+                        pass
+                    possibleScore += question.weight
+
+                score = score
+                possibleScore = possibleScore
+                students.append({'username': user.username, 'score': score, 'possibleScore': possibleScore})
 
             assignment_gradebook_list.append({'name': assignment.name, 'students': students})
         return Response(assignment_gradebook_list)

@@ -4,6 +4,8 @@ import { useSearchParams } from "react-router-dom";
 import '../App.css';
 import NavHeader from "../components/navbar/NavHeader";
 import Footer from "../components/Footer";
+import { useState } from "react";
+import Pagination from '../components/Pagination';
 
 function withMyHook(Component) {
   return function WrappedComponent(props) {
@@ -20,16 +22,67 @@ class TeacherClassDetails extends React.Component {
     this.state = {
       classId: this.props.classId,
       name: "",
-      classKey: ""
+      classKey: "",
+      assignments: [],
+      displayData: undefined,
+      studentsPerPage: 5,
+      totalStudents: 0,
+      currentPage: 1
     }
 
-    const fetchGradebook = function(classId) {
+    const paginate = (pageNumber) => {
+      fetchGradebook(this.state.classId, pageNumber);
+    }
+
+    const renderStudents = (students, pageNumber) => {
+      console.log(pageNumber);
+      const indexOfLastStudent = pageNumber * this.state.studentsPerPage
+      const indexOfFirstStudent = indexOfLastStudent - this.state.studentsPerPage
+      console.log(indexOfFirstStudent, indexOfLastStudent);
+      return students.slice(indexOfFirstStudent, indexOfLastStudent).map((student, idx) => (
+        <tr key={idx}>
+          <td>{student.username}</td>
+          <td>{student.score}</td>
+          <td>{student.possibleScore}</td>
+          <td>{(student.score / student.possibleScore) * 100.0}%</td>
+        </tr>
+      ));
+    }
+
+    const fetchGradebook = (classId, pageNumber) => {
       axiosService.get(`/api/teacher/gradebook/${classId}/`, {})
       .then((res) => {
-        // this.setState({ 
-        //   name: res.data['name'],
-        //   classKey: res.data['secretKey']
-        // });
+        this.setState({ 
+          assignments: res.data,
+          totalStudents: res.data[0].students.length
+        });
+        const updatedDisplayData = this.state.assignments.map((assignment, idx) => {
+          return(
+            <div key={idx}>
+              <strong>Assignment: {assignment.name}</strong>
+              <table className="table-striped">
+              <thead>
+                  <tr>
+                      <th>Student</th>
+                      <th>Current Score</th>
+                      <th>Possible Score</th>
+                      <th>Percent Score</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {renderStudents(assignment.students, pageNumber)}
+              </tbody>
+              </table>
+              <div>
+                <Pagination postsPerPage={this.state.studentsPerPage} totalPosts={this.state.totalStudents} paginate={paginate} />
+              </div>
+            </div>
+
+        )
+        });
+        this.setState({
+          displayData: updatedDisplayData
+        });
         console.log(res);
       })
       .catch((err) => {
@@ -43,7 +96,7 @@ class TeacherClassDetails extends React.Component {
         name: res.data['name'],
         classKey: res.data['secretKey']
       });
-      fetchGradebook(props.classId);
+      fetchGradebook(props.classId, 1);
     })
     .catch((err) => {
       console.log(err);
@@ -58,47 +111,10 @@ class TeacherClassDetails extends React.Component {
         <div className="pad">
         <div className="container">
             <h1>{this.state.name}</h1>
-            <p>Join code: {this.state.classKey}</p>
-            <h2>Gradebook</h2> 
-            <h2>Assignment 1</h2>
-            <table className="table-striped">
-                <thead>
-                    <tr>
-                        <th>Student</th>
-                        <th>Progress</th>
-                        <th>Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* { displayData } */}
-                </tbody>
-            </table>
-            <h2>Assignment 2</h2>
-            <table className="table-striped">
-                <thead>
-                    <tr>
-                        <th>Student</th>
-                        <th>Progress</th>
-                        <th>Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* { displayData } */}
-                </tbody>
-            </table>
-            <h2>Assignment 3</h2>
-            <table className="table-striped">
-                <thead>
-                    <tr>
-                        <th>Student</th>
-                        <th>Progress</th>
-                        <th>Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* { displayData } */}
-                </tbody>
-            </table>
+            <p>Class code: {this.state.classKey}</p>
+            <strong>Gradebook</strong>
+            <hr />
+            {this.state.displayData}
         </div>
         </div>
         <Footer/>  
