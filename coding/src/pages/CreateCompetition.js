@@ -165,7 +165,6 @@ function CreateCompetition(type = "race") {
       if (uiQuestionsData.length == 0) {
         setDangerText("At least one question is required to create an competition");
       }
-      setDangerText("There was an error while creating your competition!");
       console.log("Received an error while creating competition", err);
     });
   };
@@ -194,7 +193,7 @@ function CreateCompetition(type = "race") {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.errors.name ? <div>{formik.errors.name} </div> : null}
+            {formik.errors.name ? <div className="red-warning"><>&#9888;</>{formik.errors.name} </div> : null}
           <div className="space-y-4">
           <br/>
           <h5>Class</h5>
