@@ -11,7 +11,7 @@ function StudentCompetitionQuestionTable(){
     const [displayData, updateDisplayData] = useState([]);
     const history = useNavigate();
     let [searchParams, setSearchParams] = useSearchParams();
-    let assignmentId = searchParams.get("id");
+    let competitionId = searchParams.get("id");
 
     const fetchLatestQuestions = () => {
         axiosService.get(`/api/student/competition/${competitionId}/`)
