@@ -58,12 +58,11 @@ import Pagination from '../components/Pagination';
                  return(
                     <tr key={competition.name}>
                         <td>{competition.name}</td>
-                        <td>{competition.numSubmissions} out of {competition.questions.length}</td>
-                        <td>{competition.score} out of {competition.possibleScore}</td>
+                        <td>3 of 11 questions</td>
                         <td>{competition.active 
                         ? <Link to={link}><b>Start</b></Link>
                         : <i className="inactive">Inactive</i>}
-                        </td>
+                        </td>   
                     </tr>
                 )
              });
@@ -81,34 +80,33 @@ import Pagination from '../components/Pagination';
      }, []);
 
      return(
-         <div>
-             <table className="table-striped">
-                 <thead>
-                     <tr>
-                         <th>Competition Title</th>
-                         <th>Progress</th>
-                         <th>Score</th>
-                         <th>Actions</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     { displayData }
-                     { displayData == "" &&
-                         <tr>
-                             <td colSpan="3">
-                                 <div className="vertical-padding">
-                                 <center><i className="inactive">No Competitions Yet :-(</i></center>
-                                 </div>
-                             </td>
-                         </tr>
-                     }
-                 </tbody>
-             </table>
-             <div>
-                <Pagination currentPage = {currentPage} postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
-            </div>
-         </div>
-     )
+        <div>
+            <table className="table-striped">
+                <thead>
+                    <tr>
+                        <th>Competition Title</th>
+                        <th>Progress</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { displayData }
+                    { displayData == "" &&
+                        <tr>
+                            <td colSpan="3">
+                                <div className="vertical-padding">
+                                <center><i className="inactive">No Competitions Yet :-(</i></center>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>
+               <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+           </div>
+        </div>
+    )
  }
 
   export default StudentCompetitionsTable; 
