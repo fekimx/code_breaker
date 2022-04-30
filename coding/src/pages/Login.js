@@ -62,8 +62,8 @@ function Login() {
 
   return (<div className="h-screen flex bg-gray-bg1">
     <NavHeader user="None" title="Login" />
-  <div className ="pad">
-  <div className="container">
+  <div className ="termspad">
+  <div className="logincontainer">
     <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
       Log in to your account
     </h1>
