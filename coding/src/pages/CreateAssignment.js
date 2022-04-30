@@ -164,7 +164,6 @@ function CreateAssignment() {
       if (uiQuestionsData.length == 0) {
         setDangerText("At least one question is required to create an assignment");
       }
-      setDangerText("There was an error while creating your assignment!");
       console.log("Received an error while creating assignment", err);
     });
   };

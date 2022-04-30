@@ -77,7 +77,7 @@ function Login() {
             </div>
       <div className="form_group">
         
-        {formik.errors.email ? <div>{formik.errors.email} </div> : null}
+        {formik.errors.email ? <div className="red-warning"><>&#9888;</>{formik.errors.email} </div> : null}
         <label>Password</label>
         <input
           className="form-control"
@@ -89,9 +89,7 @@ function Login() {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
-        {formik.errors.password ? (
-          <div>{formik.errors.password} </div>
-        ) : null}
+        {formik.errors.password ? <div className="red-warning"><>&#9888;</>{formik.errors.password} </div> : null}
       </div>
       <div className="text-danger text-center my-2" hidden={false}>
         {message}
