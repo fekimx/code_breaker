@@ -9,7 +9,8 @@ const PageNotFound= () =>{
     const history = useNavigate();
 
 return ( <div className="h-screen flex bg-gray-bg1">
-<NavHeader user="None" title="Register" />
+<NavHeader user="None" title="/"
+ />
 <div className="pad">
 <div class="container">
         <h1>404 Error</h1>

@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import NavHeader from "../components/navbar/NavHeader";
 import { useNavigate } from "react-router-dom";
 import Tabs from "./Tabs";
+import Footer from "../components/Footer";
 
 function CreateCompetition(type = "race") {
   const account = useSelector((state) => state.auth.account);
@@ -235,6 +236,7 @@ function CreateCompetition(type = "race") {
     </div>
     </div>
     </div>
+    <Footer/>  
   </div>
   )
 };
