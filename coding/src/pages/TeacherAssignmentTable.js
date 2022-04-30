@@ -29,11 +29,6 @@ function TeacherAssignmentTable(){
                 return(
                     <tr key={assignment.name}>
                         <td>{assignment.name}</td>
-                        <td>{assignment.active 
-                        ? <Link to={{pathname: link }} replace>Start</Link>
-                        : <i class="inactive">Inactive</i>}
-                        </td>  
-                        <td>Progress</td>  
                     </tr>
                 )
             });
@@ -57,8 +52,6 @@ function TeacherAssignmentTable(){
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Link</th>
-                        <th>Progress</th>
                     </tr>
                 </thead>
                 <tbody>

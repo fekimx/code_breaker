@@ -45,7 +45,7 @@ class Question extends React.Component {
       unitTests: [],
       unitTestData: [],
       solutions: [],
-      showSolutions: false,
+      showSolutions: true,
       showWinner: false
     }
   
@@ -173,8 +173,10 @@ class Question extends React.Component {
         }}
       />
       {this.state.unitTests}
-      {this.state.showSolutions ? this.state.solutions : null }
-      <div><a href="#" onClick={ () => this.setState({showSolutions: !this.state.showSolutions}) }>{this.state.showSolutions ? "Hide Solutions" : "Show Solutions"}</a></div>
+      {/* {this.state.showSolutions ? this.state.solutions : null }
+      <div><a href="#" onClick={ () => 
+        this.setState({showSolutions: !this.state.showSolutions}) }>
+          {this.state.showSolutions ? "Hide Solutions" : "Show Solutions"}</a></div> */}
       <button onClick={ () => this.runCode() }>Run</button>
       <button type="button" className="cancelbutton" onClick={()=>navigation("/studentAssignment?id="+this.props.assignmentId)}>Cancel</button>
       <div style={{backgroundColor: "red"}}>

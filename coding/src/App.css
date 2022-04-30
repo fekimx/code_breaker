@@ -167,4 +167,15 @@ a.small-link {
 
 .add-new-class {
   margin-left: 8px !important;
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #069;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 70%;
+}
+
+.red-warning {
+  color: red;
 }
