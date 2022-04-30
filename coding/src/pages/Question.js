@@ -8,9 +8,11 @@ import NavHeader from "../components/navbar/NavHeader";
 import { useState } from "react";
 import { useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
+import { useNavigate } from "react-router";
+import Tabs from "./Tabs";
 
 function withMyHook(Component) {
-  
+
 
 
   return function WrappedComponent(props) {
@@ -21,10 +23,11 @@ function withMyHook(Component) {
     let assignmentId = searchParams.get("assignmentId");
     let competitionId = searchParams.get("competitionId");
 
-    return <Question {...props} questionId={questionId} assignmentId={assignmentId} competitionId={competitionId} />;
+    const navigation = useNavigate();
+    return <Question {...props} questionId={questionId} assignmentId={assignmentId} competitionId={competitionId} navigation={navigation} />;
   }
-}
 
+}
 
 
 class Question extends React.Component {
@@ -91,6 +94,8 @@ class Question extends React.Component {
 
       let unitTests = [];
 
+      var completedAllTests = true;
+
       for (let i = 0; i < res['data']['unit_test_results'].length; i++) {
         let result = res['data']['unit_test_results'][i];
         let unitTest = this.state.unitTestData[i];
@@ -101,12 +106,16 @@ class Question extends React.Component {
             unitTests.push(<div style={{backgroundColor: "#adff2f"}} key={i}>Hidden Unit Test #{i}</div>);
           }
         } else {
+          completedAllTests = false;
           if (unitTest.visible) {
             unitTests.push(<div style={{backgroundColor: "red"}} key={i}><strong>Input:</strong> {unitTest.input} <strong>Expected Output:</strong> {unitTest.expectedOutput}</div>);
           } else {
             unitTests.push(<div style={{backgroundColor: "red"}} key={i}>Hidden Unit Test #{i}</div>);
           }
         }
+      }
+      if (completedAllTests) {
+        this.state.showWinner = true;
       }
       console.log("Setting state", unitTests);
       this.setState({
@@ -121,19 +130,10 @@ class Question extends React.Component {
 
 
   render() {
-
-  
-  
-    
+    const { navigation } = this.props;
     return (
     <div>
     <NavHeader user="Student" title="" />
-
-
-      <button variant="primary" onClick={() => this.setState({ showWinner: true })}>
-        Launch static backdrop modal
-      </button>
-
 
       <Modal
         show={this.state.showWinner}
@@ -141,18 +141,16 @@ class Question extends React.Component {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+        <Modal.Header>
+          <Modal.Title>Congratulations!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          I will not close if you click outside me. Don't even try to press
-          escape key.
+          You successfully completed all unit tests for this assignment.
         </Modal.Body>
         <Modal.Footer>
-          <button variant="secondary" onClick={() => this.setState({ showWinner: false })}>
-            Close
+          <button variant="secondary" onClick={()=>{this.state.showWinner = false; Tabs.changeTabNumber(1); navigation("/studentAssignment?id="+this.props.assignmentId)}}>
+            Return to Assignment Page
           </button>
-          <button variant="primary">Understood</button>
         </Modal.Footer>
       </Modal>
 
@@ -174,6 +172,7 @@ class Question extends React.Component {
       {this.state.showSolutions ? this.state.solutions : null }
       <div><a href="#" onClick={ () => this.setState({showSolutions: !this.state.showSolutions}) }>{this.state.showSolutions ? "Hide Solutions" : "Show Solutions"}</a></div>
       <button onClick={ () => this.runCode() }>Run</button>
+      <button type="button" className="cancelbutton" onClick={()=>navigation("/studentAssignment?id="+this.props.assignmentId)}>Cancel</button>
       <div style={{backgroundColor: "red"}}>
         {this.state.stderr}
       </div>
