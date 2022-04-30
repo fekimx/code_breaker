@@ -11,7 +11,7 @@ var count = 0;
 function TeacherAssignmentQuestionTable(){
     const data = { classCode: "" };
     const [displayData, updateDisplayData] = useState([]);
-    const [currentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(5);
     const [totalPosts, setTotalPosts] = useState([]);
 
@@ -21,7 +21,17 @@ function TeacherAssignmentQuestionTable(){
 
     // change page
     const paginate = (pageNumber) => {
-        fetchLatestQuestions(pageNumber);
+        console.log("OK", currentPage)
+        if (pageNumber == "back" && currentPage != 1){
+            setCurrentPage(currentPage-1)
+            fetchLatestQuestions(currentPage -1);
+        } else if (pageNumber == "forward" && currentPage != Math.ceil(totalPosts/postsPerPage)){
+            setCurrentPage(currentPage+1)
+            fetchLatestQuestions(currentPage + 1);
+        } else if (pageNumber != "back" && pageNumber != "forward"){
+            setCurrentPage(pageNumber)
+            fetchLatestQuestions(pageNumber);
+        } 
     }
 
     const fetchLatestQuestions = (currentPage) => {
@@ -75,7 +85,7 @@ function TeacherAssignmentQuestionTable(){
                 </tbody>
             </table>
             <div>
-                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+                <Pagination currentPage = {currentPage} postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
             </div>
             <button onClick={()=>{Tabs.changeTabNumber(3); history("/teacherdashboard")}}>Dashboard</button>
         </div>
