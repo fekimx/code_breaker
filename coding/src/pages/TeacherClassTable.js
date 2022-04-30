@@ -11,7 +11,7 @@ import Pagination from '../components/Pagination';
 
 function TeacherClassTable(){
     const [displayData, updateDisplayData] = useState([]);
-    const [currentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(5);
     const [totalPosts, setTotalPosts] = useState([]);
 
@@ -23,8 +23,19 @@ function TeacherClassTable(){
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
     // change page
+
     const paginate = (pageNumber) => {
-        fetchLatestClasses(pageNumber);
+        console.log("OK", currentPage)
+        if (pageNumber == "back" && currentPage != 1){
+            setCurrentPage(currentPage-1)
+            fetchLatestClasses(currentPage -1);
+        } else if (pageNumber == "forward" && currentPage != Math.ceil(totalPosts/postsPerPage)){
+            setCurrentPage(currentPage+1)
+            fetchLatestClasses(currentPage + 1);
+        } else if (pageNumber != "back" && pageNumber != "forward"){
+            setCurrentPage(pageNumber)
+            fetchLatestClasses(pageNumber);
+        } 
     }
 
     const fetchLatestClasses = (currentPage) => {
@@ -63,7 +74,7 @@ function TeacherClassTable(){
 
     return(
         <div>
-            <TeacherClassAddForm data={data} />
+
             <table className="table-striped">
                 <thead>
                     <tr>
@@ -77,8 +88,9 @@ function TeacherClassTable(){
                 </tbody>
             </table>
             <div>
-                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+                <Pagination currentPage = {currentPage} postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
             </div>
+            <TeacherClassAddForm data={data} />
         </div>
     )
 }
