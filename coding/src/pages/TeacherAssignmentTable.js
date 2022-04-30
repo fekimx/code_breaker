@@ -5,11 +5,15 @@ import {useSelector} from "react-redux";
 import { useNavigate } from "react-router";
 import axiosService, {fetcher} from "../utils/axios";
 import { Link } from 'react-router-dom';
+import Pagination from '../components/Pagination';
 
 var count = 0;
 function TeacherAssignmentTable(){
-
     const [displayData, updateDisplayData] = useState([]);
+    const [currentPage] = useState(1);
+    const [postsPerPage] = useState(5);
+    const [totalPosts, setTotalPosts] = useState([]);
+
 
     const account = useSelector((state) => state.auth.account);
     const userId = account?.id;
@@ -17,11 +21,20 @@ function TeacherAssignmentTable(){
 
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
-    const fetchLatestClasses = () => {
+    // change page
+    const paginate = (pageNumber) => {
+        fetchLatestClasses(pageNumber);
+    }
+
+    const fetchLatestClasses = (currentPage) => {
         axiosService.get(`/api/teacher/assignment/`, {})
         .then((response) => {
             count=0
-            const newDisplayData = response.data.map((assignment) => {
+            const indexOfLastPost = currentPage * postsPerPage
+            const indexOfFirstPost = indexOfLastPost - postsPerPage
+            const paginatedDisplayData = response.data.slice(indexOfFirstPost, indexOfLastPost)
+            setTotalPosts(response.data.length)
+            const newDisplayData = paginatedDisplayData.map((assignment) => {
                 count++
                 // Right now this just grabs the ID of the first question and puts that in a link
                 //probably need to change that
@@ -42,7 +55,7 @@ function TeacherAssignmentTable(){
     const data = { classCode: "", teacherId: account?.id, fetchLatestClasses: fetchLatestClasses};
 
     useEffect(() => {
-        fetchLatestClasses();
+        fetchLatestClasses(currentPage);
     }, []);
 
     return(
@@ -58,6 +71,9 @@ function TeacherAssignmentTable(){
                     { displayData }
                 </tbody>
             </table>
+            <div>
+                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+            </div>
         </div>
     )
 }

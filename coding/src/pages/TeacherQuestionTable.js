@@ -2,17 +2,31 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import axiosService from "../utils/axios";
 import { useNavigate } from "react-router";
+import Pagination from '../components/Pagination';
 
 var count = 0;
 function TeacherQuestionTable(){
     const data = { classCode: "" };
     const [displayData, updateDisplayData] = useState([]);
+    const [currentPage] = useState(1);
+    const [postsPerPage] = useState(5);
+    const [totalPosts, setTotalPosts] = useState([]);
+
     const history = useNavigate();
 
-    const fetchLatestQuestions = () => {
+    // change page
+    const paginate = (pageNumber) => {
+        fetchLatestQuestions(pageNumber);
+    }
+
+    const fetchLatestQuestions = (currentPage) => {
         axiosService.get(`/api/teacher/question/`, {})
         .then((response) => {
-            const newDisplayData = response.data.map((question) => {
+            const indexOfLastPost = currentPage * postsPerPage
+            const indexOfFirstPost = indexOfLastPost - postsPerPage
+            const paginatedDisplayData = response.data.slice(indexOfFirstPost, indexOfLastPost)
+            setTotalPosts(response.data.length)
+            const newDisplayData = paginatedDisplayData.map((question) => {
                 count++;
                 return(
                     <tr key={question.id}>
@@ -30,7 +44,7 @@ function TeacherQuestionTable(){
     }
 
     useEffect(() => {
-        fetchLatestQuestions();
+        fetchLatestQuestions(currentPage);
     }, []);
 
     return(
@@ -48,6 +62,9 @@ function TeacherQuestionTable(){
                     { displayData }
                 </tbody>
             </table>
+            <div>
+                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+            </div>
         </div>
     )
  }
