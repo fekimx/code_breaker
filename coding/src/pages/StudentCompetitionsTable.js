@@ -5,28 +5,41 @@ import useSWR from 'swr';
 import {useSelector} from "react-redux";
 import {fetcher} from "../utils/axios";
 import { Link } from 'react-router-dom';
+import Pagination from '../components/Pagination';
 
  var count = 0;
  function StudentCompetitionsTable(){
 
      const [displayData, updateDisplayData] = useState([]);
+     const [currentPage] = useState(1);
+     const [postsPerPage] = useState(3);
+     const [totalPosts, setTotalPosts] = useState([]);
 
      const account = useSelector((state) => state.auth.account);
      const userId = account?.id;
 
      const user = useSWR(`/api/user/${userId}/`, fetcher);
 
-     const fetchLatestClasses = () => {
+    // change page
+    const paginate = (pageNumber) => {
+        fetchLatestActiveCompetitions(pageNumber);
+    }
+
+     const fetchLatestActiveCompetitions = (currentPage) => {
          console.log("--> START");
          axiosService.get(`/api/student/competition/`, {})
          .then((response) => {
-             count=0
-             console.log("--> START2");
+            count=0
+            console.log("--> START2");
 
-             if (response.data.length === 0) {
-                 console.log("EMPTY !");
-             }
-             const newDisplayData = response.data.map((competition) => {
+            if (response.data.length === 0) {
+                console.log("EMPTY !");
+            }
+            const indexOfLastPost = currentPage * postsPerPage
+            const indexOfFirstPost = indexOfLastPost - postsPerPage
+            const paginatedDisplayData = response.data.slice(indexOfFirstPost, indexOfLastPost)
+            setTotalPosts(response.data.length)
+            const newDisplayData = paginatedDisplayData.map((competition) => {
                  console.log("--> MAP "+count);
                  count++
                  // Right now this just grabs the ID of the first question and puts that in a link
@@ -50,10 +63,10 @@ import { Link } from 'react-router-dom';
          });
      }
 
-     const data = { classCode: "", teacherId: account?.id, fetchLatestClasses: fetchLatestClasses};
+     const data = { classCode: "", teacherId: account?.id, fetchLatestActiveCompetitions: fetchLatestActiveCompetitions};
 
      useEffect(() => {
-         fetchLatestClasses();
+        fetchLatestActiveCompetitions(currentPage);
      }, []);
 
      return(
@@ -79,6 +92,9 @@ import { Link } from 'react-router-dom';
                      }
                  </tbody>
              </table>
+             <div>
+                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+            </div>
          </div>
      )
  }

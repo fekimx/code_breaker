@@ -2,16 +2,32 @@ import React, {useRef} from 'react';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import { useState, useEffect } from "react";
 import axiosService from "../utils/axios";
+import Pagination from '../components/Pagination';
+
 
 function TeacherAssignmentStudentTable() {
     const [displayData, updateDisplayData] = useState([]);
+    const [currentPage] = useState(1);
+    const [postsPerPage] = useState(5);
+    const [totalPosts, setTotalPosts] = useState([]);
 
-    const fetchLatestStudents = () => {
+    // change page
+    const paginate = (pageNumber) => {
+        fetchLatestStudents(pageNumber);
+    }
+
+
+    const fetchLatestStudents = (currentPage) => {
 
         axiosService.get(`/api/assignmentStudents/?assignmentId=${window.location.href.charAt( window.location.href.length - 1 )}`, {})
         .then((response) => {
-            const newDisplayData = response.data.map((assignmentStudents) => {
-                console.log('response')
+            // Get current items
+            const indexOfLastPost = currentPage * postsPerPage
+            const indexOfFirstPost = indexOfLastPost - postsPerPage
+            const paginatedDisplayData = response.data.slice(indexOfFirstPost, indexOfLastPost)
+            setTotalPosts(response.data.length)
+            const newDisplayData = paginatedDisplayData.map((assignmentStudents) => {
+
                 return(
                     <tr key={assignmentStudents.id}>
                         <td>{assignmentStudents.id}</td>
@@ -28,7 +44,7 @@ function TeacherAssignmentStudentTable() {
     }
 
     useEffect(() => {
-        fetchLatestStudents();
+        fetchLatestStudents(currentPage);
     }, []);
  
     return(
@@ -54,6 +70,9 @@ function TeacherAssignmentStudentTable() {
                     { displayData }
                 </tbody>
             </table>
+            <div>
+                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+            </div>
         </div>
     )
 }
