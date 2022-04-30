@@ -23,8 +23,6 @@ function StudentAssignmentTable(){
             count=0
             const newDisplayData = response.data.map((assignment) => {
                 count++
-                // Right now this just grabs the ID of the first question and puts that in a link
-                //probably need to change that
                 const link = `/studentAssignment?id=${assignment.id}`;
                 console.log(count);
                 return(

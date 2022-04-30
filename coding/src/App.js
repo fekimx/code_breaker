@@ -28,6 +28,7 @@ import CreateClass from './pages/CreateClass';
 import CreateAssignment from './pages/CreateAssignment';
 import StudentClasses from './pages/StudentClasses';
 import StudentAssignment from './pages/StudentAssignment';
+import StudentCompetition from './pages/StudentCompetition';
 import TeacherAssignment from './pages/TeacherAssignment';
 import TeacherDashboard from './pages/TeacherDashboard';
 import CreateCompetition from './pages/CreateCompetition';
@@ -78,6 +79,7 @@ const App = () => {
                 <Route exact path='/teacherdashboard' element={ <TeacherDashboard /> } />
               </Route>
               <Route path='/studentAssignment' element={<StudentAssignment/>}/>
+              <Route path='/studentCompetition' element={<StudentCompetition/>}/>
               <Route path='/teacherAssignment' element={<ProtectedRoute teacher/>}>
                 <Route exact path='/teacherAssignment' element={ <TeacherAssignment /> } />
               </Route>
