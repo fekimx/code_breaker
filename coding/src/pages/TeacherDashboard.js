@@ -5,6 +5,7 @@ import TeacherStudentTable from './TeacherStudentTable';
 import TeacherQuestionTable from './TeacherQuestionTable';
 import TeacherAssignmentTable from './TeacherAssignmentTable';
 import TeacherCompetitionTable from './TeacherCompetitionTable';
+import TeacherGradebookTable from './TeacherGradebookTable';
 import NavHeader from "../components/navbar/NavHeader";
 import Footer from "../components/Footer";
 
@@ -20,9 +21,6 @@ function TeacherDashboard() {
         <div label="Classes">
           <TeacherClassTable/>
         </div>
-        <div label="Students">
-          <TeacherStudentTable/>
-        </div>
         <div label="Questions">
           <TeacherQuestionTable/>
         </div>
@@ -31,6 +29,9 @@ function TeacherDashboard() {
         </div>
         <div label="Competitions">
           <TeacherCompetitionTable/>
+        </div>
+        <div label="Students">
+          <TeacherStudentTable/>
         </div>
       </Tabs>
       </div>
