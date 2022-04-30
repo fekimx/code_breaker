@@ -20,9 +20,6 @@ function TeacherDashboard() {
         <div label="Classes">
           <TeacherClassTable/>
         </div>
-        <div label="Students">
-          <TeacherStudentTable/>
-        </div>
         <div label="Questions">
           <TeacherQuestionTable/>
         </div>
@@ -31,6 +28,9 @@ function TeacherDashboard() {
         </div>
         <div label="Competitions">
           <TeacherCompetitionTable/>
+        </div>
+        <div label="Students">
+          <TeacherStudentTable/>
         </div>
       </Tabs>
       </div>
