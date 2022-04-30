@@ -5,23 +5,36 @@ import useSWR from 'swr';
 import {useSelector} from "react-redux";
 import {fetcher} from "../utils/axios";
 import { Link } from 'react-router-dom';
+import Pagination from '../components/Pagination';
 
 var count = 0;
 function StudentAssignmentTable(){
 
     const [displayData, updateDisplayData] = useState([]);
+    const [currentPage] = useState(1);
+    const [postsPerPage] = useState(5);
+    const [totalPosts, setTotalPosts] = useState([]);
 
     const account = useSelector((state) => state.auth.account);
     const userId = account?.id;
 
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
-    const fetchLatestClasses = () => {
+    // change page
+    const paginate = (pageNumber) => {
+        fetchLatestAssignments(pageNumber);
+    }
+
+    const fetchLatestAssignments = (currentPage) => {
         axiosService.get(`/api/student/assignment/`, {})
         .then((response) => {
-            console.log(response);
             count=0
-            const newDisplayData = response.data.map((assignment) => {
+            // Get current items
+            const indexOfLastPost = currentPage * postsPerPage
+            const indexOfFirstPost = indexOfLastPost - postsPerPage
+            const paginatedDisplayData = response.data.slice(indexOfFirstPost, indexOfLastPost)
+            setTotalPosts(response.data.length)
+            const newDisplayData = paginatedDisplayData.map((assignment) => {
                 count++
                 // Right now this just grabs the ID of the first question and puts that in a link
                 //probably need to change that
@@ -46,10 +59,10 @@ function StudentAssignmentTable(){
         });
     }
 
-    const data = { classCode: "", teacherId: account?.id, fetchLatestClasses: fetchLatestClasses};
+    const data = { classCode: "", teacherId: account?.id, fetchLatestAssignments: fetchLatestAssignments};
 
     useEffect(() => {
-        fetchLatestClasses();
+        fetchLatestAssignments(currentPage);
     }, []);
 
     return(
@@ -67,6 +80,9 @@ function StudentAssignmentTable(){
                     { displayData }
                 </tbody>
             </table>
+            <div>
+                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+            </div>
         </div>
     )
 }
