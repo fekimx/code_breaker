@@ -61,6 +61,11 @@ export const MenuStudent = [
         class: 'logo'
     },
     {
+        title: 'Dashboard',
+        url: '/studentdashboard',
+        class: 'link'
+    },
+    {
         title: 'Logout',
         url: '#LOGOUT#',
         class: 'link'
@@ -72,6 +77,11 @@ export const MenuTeacher = [
         title: 'Code-Breaker',
         url: '/teacherdashboard',
         class: 'logo'
+    },
+    {
+        title: 'Dashboard',
+        url: '/teacherdashboard',
+        class: 'link'
     },
     {
         title: 'Logout',
