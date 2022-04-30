@@ -77,8 +77,8 @@ const App = () => {
               <Route exact path='/teacherdashboard' element={<ProtectedRoute teacher/>}>
                 <Route exact path='/teacherdashboard' element={ <TeacherDashboard /> } />
               </Route>
-              <Route exact path='/studentAssignment' element={<StudentAssignment/>}/>
-              <Route exact path='/teacherAssignment' element={<ProtectedRoute teacher/>}>
+              <Route path='/studentAssignment' element={<StudentAssignment/>}/>
+              <Route path='/teacherAssignment' element={<ProtectedRoute teacher/>}>
                 <Route exact path='/teacherAssignment' element={ <TeacherAssignment /> } />
               </Route>
               <Route exact path="*" element={ <PageNotFound/> }  />

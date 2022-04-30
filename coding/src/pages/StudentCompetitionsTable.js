@@ -30,7 +30,7 @@ import { Link } from 'react-router-dom';
                  console.log("--> MAP "+count);
                  count++
                  // Right now this just grabs the ID of the first question and puts that in a link
-                 const link = `assignment?id=${count}`;
+                 const link = `/assignment?id=${count}`;
                  console.log(count);
                  return(
                      <tr key={competition.name}>
