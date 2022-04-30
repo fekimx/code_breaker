@@ -12,8 +12,8 @@ import Footer from "../components/Footer";
 function withMyHook(Component) {
   return function WrappedComponent(props) {
     let [searchParams, setSearchParams] = useSearchParams();
-    let assignmentId = searchParams.get("id");
-    return <Assignment {...props} assignmentId={assignmentId} />;
+    let competitionId = searchParams.get("id");
+    return <Competition {...props} competitionId={competitionId} />;
   }
 }
 
@@ -67,7 +67,7 @@ class Competition extends React.Component {
       <NavHeader user="Student" title="" />
         <div className="pad">
         <div className="container">
-        <h1>Assignment: {this.state.name}</h1>
+        <h1>Competition: {this.state.name}</h1>
           <div label="Questions">
             <StudentCompetitionQuestionTable/>
           </div>

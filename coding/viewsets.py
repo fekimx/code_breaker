@@ -55,12 +55,21 @@ class RunViewSet(viewsets.ViewSet):
         assignment = request.data['assignmentId']
         competition = request.data['competitionId']
         question = CodeQuestion(id=request.data['questionId'])
-        assignmentDetails = Assignment.objects.get(pk=assignment)
 
-        if assignmentDetails.active == False:
-            return Response({
-                "stderr": "inactive"
-            }, status=status.HTTP_201_CREATED)
+        if assignment:
+            assignmentDetails = Assignment.objects.get(pk=assignment)
+            if assignmentDetails.active == False:
+                return Response({
+                    "stderr": "inactive"
+                }, status=status.HTTP_201_CREATED)
+        
+        if competition is not None:
+            competitionDetails = Competition.objects.get(pk=competition)
+            if competitionDetails.active == False:
+                return Response({
+                    "stderr": "inactive"
+                }, status=status.HTTP_201_CREATED)
+
 
         unitTests = question.unitTests.all()
         logger.warn(question)
