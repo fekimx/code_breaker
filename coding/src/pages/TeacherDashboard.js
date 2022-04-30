@@ -5,7 +5,6 @@ import TeacherStudentTable from './TeacherStudentTable';
 import TeacherQuestionTable from './TeacherQuestionTable';
 import TeacherAssignmentTable from './TeacherAssignmentTable';
 import TeacherCompetitionTable from './TeacherCompetitionTable';
-import TeacherGradebookTable from './TeacherGradebookTable';
 import NavHeader from "../components/navbar/NavHeader";
 import Footer from "../components/Footer";
 
