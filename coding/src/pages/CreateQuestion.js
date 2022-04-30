@@ -9,15 +9,12 @@ import NavHeader from "../components/navbar/NavHeader";
 import { useNavigate } from "react-router-dom";
 import Tabs from "./Tabs";
 
-var validationFields = []
+var dangerTxt = ""
 function CreateQuestion() {
   const account = useSelector((state) => state.auth.account);
   const userId = account?.id;
   let navigate = useNavigate();
 
-  const addValidations = (val) => {
-    validationFields.push(val)
-  }
   const removeSolution = () => {
     setSolutions(solutions => {
       solutions.pop();
@@ -176,7 +173,16 @@ function CreateQuestion() {
       navigate('/teacherdashboard');
     })
     .catch((err) => {
-      setDangerText("There was an error while creating your question!");
+      if (code == "") {
+        dangerTxt += "Function signature is required to create an assignment";
+      }
+      if (solutionsData.length == 0) {
+        dangerTxt += "At least one solution is required to create an assignment";
+      }
+      if (unitTestsData.length == 0) {
+        dangerTxt += "At least one unit test is required to create an assignment";
+      }
+      setDangerText(dangerTxt);
       console.log("Received an error while creating question", err);
     });
   };
