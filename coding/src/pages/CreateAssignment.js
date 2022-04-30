@@ -191,7 +191,7 @@ function CreateAssignment() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.errors.name ? <div>{formik.errors.name} </div> : null}
+            {formik.errors.name ? <div className="red-warning"><>&#9888;</>{formik.errors.name} </div> : null}
             <div className="space-y-4">
             <br/>
             <h5>Class</h5>

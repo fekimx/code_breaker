@@ -9,11 +9,15 @@ import NavHeader from "../components/navbar/NavHeader";
 import { useNavigate } from "react-router-dom";
 import Tabs from "./Tabs";
 
+var validationFields = []
 function CreateQuestion() {
   const account = useSelector((state) => state.auth.account);
   const userId = account?.id;
   let navigate = useNavigate();
 
+  const addValidations = (val) => {
+    validationFields.push(val)
+  }
   const removeSolution = () => {
     setSolutions(solutions => {
       solutions.pop();
@@ -62,7 +66,7 @@ function CreateQuestion() {
         onChange={(value, viewUpdate) => {
           setSolutionN(num - 1, value);
         }}
-      />      
+      />
     </div>;
   }
 
@@ -199,8 +203,9 @@ function CreateQuestion() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            
-            {formik.errors.name ? <div>{formik.errors.name} </div> : null}
+            {/* {codeBlank ? <div className="red-warning"><>&#9888;</>{formik.errors.code} </div> : null}  */}
+
+            {formik.errors.name ? <div className="red-warning"><>&#9888;</>{formik.errors.name} </div> : null}
             <div className="space-y-4">
               <br/>
               <h5>Description</h5>
@@ -213,7 +218,7 @@ function CreateQuestion() {
                 onBlur={formik.handleBlur}
                 rows="4" cols="100"
               />
-            {formik.errors.description ? <div>{formik.errors.description} </div> : null}
+            {formik.errors.description ? <div className="red-warning"><>&#9888;</>{formik.errors.description} </div> : null}
             <br/>
             <br/>
              <hr />
@@ -228,10 +233,6 @@ function CreateQuestion() {
               }}
             />
             <br/>
-            <hr />
-            {formik.errors.code ? (
-              <div>{formik.errors.code} </div>
-            ) : null}
             {solutions}
             <div><a href="#" onClick={removeSolution}>Remove Solution</a></div>
             <div><a href="#" onClick={addSolution}>Add Solution</a></div> <hr />
@@ -245,12 +246,7 @@ function CreateQuestion() {
         </div>
         <hr />
           <div className="flex justify-center items-center mt-6">
-            <button
-              type="submit"
-              className=""
-            >
-              Create
-            </button>
+            <button type="submit" className="" >Create</button>
             <button type="button" className="cancelbutton" onClick={()=>{Tabs.changeTabNumber(2);  navigate("/teacherdashboard")}}>Cancel</button>
             <div className="text-success">{successText}</div>
             <div className="text-danger">{dangerText}</div>
