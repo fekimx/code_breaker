@@ -89,7 +89,11 @@ class Question extends React.Component {
       this.setState({stderr: ""});
 
       if (res['data']['stderr']) {
-        this.setState({stderr: res['data']['stderr']});
+        if (res['data']['stderr'] == "inactive") {
+          this.setState({stderr: "This assignment is no longer active!"});
+        } else {
+          this.setState({stderr: res['data']['stderr']});
+        }
       }
 
       let unitTests = [];
@@ -135,7 +139,7 @@ class Question extends React.Component {
     <div>
     <NavHeader user="Student" title="" />
 
-      <Modal
+    <Modal
         show={this.state.showWinner}
         onHide={() => this.setState({ showWinner: false })}
         backdrop="static"
