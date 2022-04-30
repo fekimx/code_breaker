@@ -30,18 +30,19 @@ import { Link } from 'react-router-dom';
                  console.log("--> MAP "+count);
                  count++
                  // Right now this just grabs the ID of the first question and puts that in a link
-                 const link = `/assignment?id=${count}`;
+                 const link = `/studentCompetition?id=${competition.id}`;
                  console.log(count);
                  return(
-                     <tr key={competition.name}>
-                         <td>{competition.name}</td>
-                         <td>3 of 11 questions</td>
-                         <td>{competition.active 
-                         ? <Link to={link}><b>Start</b></Link>
-                         : <i className="inactive">Inactive</i>}
-                         </td>   
-                     </tr>
-                 )
+                    <tr key={competition.name}>
+                        <td>{competition.name}</td>
+                        <td>{competition.numSubmissions} out of {competition.questions.length}</td>
+                        <td>{competition.score} out of {competition.possibleScore}</td>
+                        <td>{competition.active 
+                        ? <Link to={link}><b>Start</b></Link>
+                        : <i className="inactive">Inactive</i>}
+                        </td>
+                    </tr>
+                )
              });
              updateDisplayData(newDisplayData);
          })
@@ -63,6 +64,7 @@ import { Link } from 'react-router-dom';
                      <tr>
                          <th>Competition Title</th>
                          <th>Progress</th>
+                         <th>Score</th>
                          <th>Actions</th>
                      </tr>
                  </thead>
