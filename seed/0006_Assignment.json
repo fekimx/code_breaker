@@ -38,16 +38,6 @@
                 "questions": [16, 17, 18, 19, 20],
                 "active": true
             }
-        },
-        {
-            "model": "coding.assignment",
-            "pk": 5,
-            "fields": {
-                "name": "COBOL",
-                "author": 16,
-                "questions": [20],
-                "active": false
-            }
         }
         ]
         
