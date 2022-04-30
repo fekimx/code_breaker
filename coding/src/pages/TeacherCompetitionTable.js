@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 import {fetcher} from "../utils/axios";
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router";
+import Pagination from '../components/Pagination';
 
 var count = 0;
 function TeacherCompetitionTable(){
@@ -13,6 +14,15 @@ function TeacherCompetitionTable(){
     const navigate = useNavigate();
     const [activeData, updateActiveDisplayData] = useState([]);
     const [inactiveData, updateInactiveDisplayData] = useState([]);
+
+    const [currentPage] = useState(1);
+    const [postsPerPage] = useState(3);
+    const [totalPosts, setTotalPosts] = useState([]);
+
+    // change page
+    const paginate = (pageNumber) => {
+        fetchLatestActiveCompetitions(pageNumber);
+    }
 
     const account = useSelector((state) => state.auth.account);
     const userId = account?.id;
@@ -38,12 +48,16 @@ function TeacherCompetitionTable(){
         });
     }
 
-    const fetchLatestActiveCompetitions = () => {
+    const fetchLatestActiveCompetitions = (currentPage) => {
         console.log("==========")
         console.log(activeData)
         axiosService.get(`/api/teacher/competition/`, {})
         .then((response) => {
-            const newDisplayData = response.data.map((competition) => {
+            const indexOfLastPost = currentPage * postsPerPage
+            const indexOfFirstPost = indexOfLastPost - postsPerPage
+            const paginatedDisplayData = response.data.slice(indexOfFirstPost, indexOfLastPost)
+            setTotalPosts(response.data.length)
+            const newDisplayData = paginatedDisplayData.map((competition) => {
                 if (competition.active) {
                     return(
                         <tr key={competition.name}>
@@ -67,7 +81,7 @@ function TeacherCompetitionTable(){
             console.log(error);
         });
     }
-    const fetchLatestInactiveCompetitions = () => {
+    const fetchLatestInactiveCompetitions = (currentPage) => {
         axiosService.get(`/api/teacher/competition/`, {})
         .then((response) => {
             const newDisplayData = response.data.map((competition) => {
@@ -97,8 +111,8 @@ function TeacherCompetitionTable(){
     const data = { classCode: "", teacherId: account?.id, fetchLatestCompetitions: fetchLatestActiveCompetitions};
 
     useEffect(() => {
-        fetchLatestActiveCompetitions();
-        fetchLatestInactiveCompetitions();
+        fetchLatestActiveCompetitions(currentPage);
+        fetchLatestInactiveCompetitions(currentPage);
     }, []);
 
     return(
@@ -116,6 +130,9 @@ function TeacherCompetitionTable(){
                 { activeData }
                     </tbody>
             </table>
+            <div>
+                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+            </div>
             <br />
             <table className="table-striped">
                 <thead>
@@ -129,6 +146,7 @@ function TeacherCompetitionTable(){
 
                    </tbody>
             </table>
+
         </div>
     )
 }
