@@ -30,6 +30,7 @@ import StudentClasses from './pages/StudentClasses';
 import StudentAssignment from './pages/StudentAssignment';
 import StudentCompetition from './pages/StudentCompetition';
 import TeacherAssignment from './pages/TeacherAssignment';
+import TeacherClassDetails from './pages/TeacherClassDetails';
 import TeacherDashboard from './pages/TeacherDashboard';
 import CreateCompetition from './pages/CreateCompetition';
 import Leaderboard from "./pages/Leaderboard";
@@ -55,6 +56,7 @@ const App = () => {
               <Route exact path="/terms" element={ <Terms/> } />
               <Route exact path="/legal" element={ <Legal/> } />
               <Route path="/questions" element={ <Question/> } />
+              <Route exact path="/teacherClassDetails" element={ <TeacherClassDetails/> } />
               <Route exact path="/teacherCreateQuestion" element={ <CreateQuestion/> } />
               <Route exact path="/teacherCreateClass" element={ <CreateClass/> } />
               <Route exact path="/teacherCreateAssignment" element={ <CreateAssignment/> } />

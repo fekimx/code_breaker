@@ -56,7 +56,7 @@ const NavHeader = (params) => {
                         tmpLink = item.url
                     }
                     return (
-                        <a className={tmpActive} href={tmpLink} onClick={tmpClick}>{item.title}</a>
+                        <a key={index} className={tmpActive} href={tmpLink} onClick={tmpClick}>{item.title}</a>
                     )}
                 )}
             </div>

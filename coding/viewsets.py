@@ -866,3 +866,87 @@ class StudentViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(User.objects.filter(pk__in=studentSet, is_student=True), many=True)
         
         return Response(serializer.data)
+
+class TeacherGradebookViewSet(viewsets.ModelViewSet):
+
+    queryset = Assignment.objects.all()
+    serializer_class = AssignmentSerializer
+    http_method_names = ['get']
+    permission_classes = (IsTeacherUser,)
+
+    # Teachers can create assignments
+    def create(self, request, *args, **kwargs):
+        request.data['author'] = request.user.id
+        questionweightpair_fks = []
+
+        for questionWeightPair in request.data['questions']:
+            data = {}
+            data['question'] = questionWeightPair['question']
+            data['weight'] = questionWeightPair['weight']
+            questionweightpair_serializer = QuestionWeightPairSerializer(data = data)
+                
+            try:
+                questionweightpair_serializer.is_valid()
+                questionweightpair_serializer.save()
+                questionweightpair_fks.append(questionweightpair_serializer['id'].value)
+                logger.warn("Valid Serializer- Question Weight Pair")
+                
+            except TokenError as e:
+                raise InvalidToken(e.args[0]) 
+            
+        
+        # done making question weight pairs    
+        request.data['questions'] = questionweightpair_fks
+
+        assignmentData = {}
+        assignmentData['name'] = request.data['name']
+        assignmentData['author'] = request.data['author']
+        assignmentData['questions'] = request.data['questions']
+
+        serializer = self.get_serializer(data=request.data)
+        
+        try:
+            serializer.is_valid(raise_exception=True)
+            assignment = serializer.save()
+            logger.warn("Valid Serializer")
+            
+        except TokenError as e:
+            logger.warn("Token Error")
+            raise InvalidToken(e.args[0])
+
+        assignmentForClass = Class.objects.get(id=request.data['class'])
+        assignmentForClass.assignments.add(assignment)
+
+        return Response({}, status=status.HTTP_201_CREATED) 
+
+    def retrieve(self, request, pk=None):
+        logger.warn("Inside retrieve for Gradebook")
+        logger.warn(pk)
+
+        classObj = Class.objects.get(id=pk)
+        assignment_gradebook_list = []
+        for assignment in self.queryset:
+            users = User.objects.filter(**{'is_student': True, 'pk__in': classObj.students.all()})
+            students = []
+            for user in users:
+                score = 0
+                possibleScore = 0
+                for question in assignment.questions.all():
+                    try:
+                        latest_submission = Submission.objects.filter(learner=user, assignment=assignment, question=question.question).latest('submittedAt')
+                        successfulUnitTests = latest_submission.successfulUnitTests.all()
+                        numSuccessfulUnitTests = len(successfulUnitTests)
+                        numUnitTestsInQuestion = len(question.question.unitTests.all())
+
+                        if numSuccessfulUnitTests == numUnitTestsInQuestion:
+                            score += question.weight
+                    except Exception as e:
+                        pass
+                    possibleScore += question.weight
+
+                score = score
+                possibleScore = possibleScore
+                students.append({'username': user.username, 'score': score, 'possibleScore': possibleScore})
+
+            assignment_gradebook_list.append({'name': assignment.name, 'students': students})
+        return Response(assignment_gradebook_list)
