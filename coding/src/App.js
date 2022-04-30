@@ -33,6 +33,7 @@ import TeacherDashboard from './pages/TeacherDashboard';
 import CreateCompetition from './pages/CreateCompetition';
 import Leaderboard from "./pages/Leaderboard";
 import Legal from "./pages/Legal";
+import PageNotFound from "./pages/PageNotFound";
 
 
 axios.defaults.xsrfCookieName = 'csrftoken'
@@ -79,6 +80,7 @@ const App = () => {
               <Route exact path='/teacherAssignment' element={<ProtectedRoute teacher/>}>
                 <Route exact path='/teacherAssignment' element={ <TeacherAssignment /> } />
               </Route>
+              <Route exact path="*" element={ <PageNotFound/> }  />
             </Routes>
           </div>
         </BrowserRouter>
