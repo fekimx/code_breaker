@@ -11,7 +11,7 @@ import Pagination from '../components/Pagination';
  function StudentCompetitionsTable(){
 
      const [displayData, updateDisplayData] = useState([]);
-     const [currentPage] = useState(1);
+     const [currentPage, setCurrentPage] = useState(1);
      const [postsPerPage] = useState(3);
      const [totalPosts, setTotalPosts] = useState([]);
 
@@ -22,7 +22,17 @@ import Pagination from '../components/Pagination';
 
     // change page
     const paginate = (pageNumber) => {
-        fetchLatestActiveCompetitions(pageNumber);
+        console.log("OK", currentPage)
+        if (pageNumber == "back" && currentPage != 1){
+            setCurrentPage(currentPage-1)
+            fetchLatestActiveCompetitions(currentPage -1);
+        } else if (pageNumber == "forward" && currentPage != Math.ceil(totalPosts/postsPerPage)){
+            setCurrentPage(currentPage+1)
+            fetchLatestActiveCompetitions(currentPage + 1);
+        } else if (pageNumber != "back" && pageNumber != "forward"){
+            setCurrentPage(pageNumber)
+            fetchLatestActiveCompetitions(pageNumber);
+        } 
     }
 
      const fetchLatestActiveCompetitions = (currentPage) => {
@@ -93,7 +103,7 @@ import Pagination from '../components/Pagination';
                  </tbody>
              </table>
              <div>
-                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+                <Pagination currentPage = {currentPage} postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
             </div>
          </div>
      )

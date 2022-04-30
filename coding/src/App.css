@@ -179,3 +179,32 @@ a.small-link {
 .red-warning {
   color: red;
 }
+
+      
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding-top: 10px;
+  display: flex;
+}
+      
+.pagination li {
+  margin: 0 1px;
+}
+.pagination li.active a {
+  background-color: #069;
+  color: white;
+}
+
+.pagination a.active {
+  background-color: #069;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #0376d8;
+  color: white;}
+
+  

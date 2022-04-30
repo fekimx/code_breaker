@@ -14,14 +14,22 @@ function TeacherCompetitionTable(){
     const navigate = useNavigate();
     const [activeData, updateActiveDisplayData] = useState([]);
     const [inactiveData, updateInactiveDisplayData] = useState([]);
-
-    const [currentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(3);
     const [totalPosts, setTotalPosts] = useState([]);
 
     // change page
     const paginate = (pageNumber) => {
-        fetchLatestActiveCompetitions(pageNumber);
+        if (pageNumber == "back" && currentPage != 1){
+            setCurrentPage(currentPage-1)
+            fetchLatestActiveCompetitions(currentPage -1);
+        } else if (pageNumber == "forward" && currentPage != Math.ceil(totalPosts/postsPerPage)){
+            setCurrentPage(currentPage+1)
+            fetchLatestActiveCompetitions(currentPage + 1);
+        } else if (pageNumber != "back" && pageNumber != "forward"){
+            setCurrentPage(pageNumber)
+            fetchLatestActiveCompetitions(pageNumber);
+        } 
     }
 
     const account = useSelector((state) => state.auth.account);
@@ -117,8 +125,7 @@ function TeacherCompetitionTable(){
 
     return(
         <div>
-            <button onClick={()=>navigate("/teacherStartRace")}>Start a Competition</button>
-            <br /><br />
+
             <table className="table-striped">
                 <thead>
                     <tr>
@@ -131,9 +138,11 @@ function TeacherCompetitionTable(){
                     </tbody>
             </table>
             <div>
-                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+                <Pagination currentPage = {currentPage} postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
             </div>
             <br />
+            <button onClick={()=>navigate("/teacherStartRace")}>Start a Competition</button>
+            <br /><br />
             <table className="table-striped">
                 <thead>
                     <tr>
