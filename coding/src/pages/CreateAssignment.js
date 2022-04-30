@@ -146,8 +146,7 @@ function CreateAssignment() {
       );
     },
     validationSchema: Yup.object({
-      name: Yup.string().trim().required("Name is required"),
-      question: Yup.string().trim().required("At least one question is required")
+      name: Yup.string().trim().required("Name is required")
       // creation w/out any questions is blocked later
     }),
   });
@@ -212,7 +211,6 @@ function CreateAssignment() {
             {formik.errors.class ? <div>{formik.errors.class} </div> : null}
             {UIQuestions}
             <div><a href="#" onClick={addUIQuestion}>Add Question</a></div>
-            {formik.errors.question ? <div className="red-warning"><>&#9888;</>{formik.errors.question} </div> : null}
           </div>
           <div className="text-danger text-center my-2" hidden={false}>
             {message}

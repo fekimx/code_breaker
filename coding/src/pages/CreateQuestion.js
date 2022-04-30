@@ -246,7 +246,7 @@ function CreateQuestion() {
         </div>
         <hr />
           <div className="flex justify-center items-center mt-6">
-            <button type="submit" className="" onClick={() => { validations(); }}>Create</button>
+            <button type="submit" className="" >Create</button>
             <button type="button" className="cancelbutton" onClick={()=>{Tabs.changeTabNumber(2);  navigate("/teacherdashboard")}}>Cancel</button>
             <div className="text-success">{successText}</div>
             <div className="text-danger">{dangerText}</div>
