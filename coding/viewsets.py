@@ -55,12 +55,21 @@ class RunViewSet(viewsets.ViewSet):
         assignment = request.data['assignmentId']
         competition = request.data['competitionId']
         question = CodeQuestion(id=request.data['questionId'])
-        assignmentDetails = Assignment.objects.get(pk=assignment)
 
-        if assignmentDetails.active == False:
-            return Response({
-                "stderr": "inactive"
-            }, status=status.HTTP_201_CREATED)
+        if assignment:
+            assignmentDetails = Assignment.objects.get(pk=assignment)
+            if assignmentDetails.active == False:
+                return Response({
+                    "stderr": "inactive"
+                }, status=status.HTTP_201_CREATED)
+        
+        if competition is not None:
+            competitionDetails = Competition.objects.get(pk=competition)
+            if competitionDetails.active == False:
+                return Response({
+                    "stderr": "inactive"
+                }, status=status.HTTP_201_CREATED)
+
 
         unitTests = question.unitTests.all()
         logger.warn(question)
@@ -440,8 +449,37 @@ class StudentCompetitionViewSet(viewsets.ModelViewSet):
             for competition in clazz.competitions.all():
                 competitionSet.add(competition.id)
 
-        serializer = self.get_serializer(Competition.objects.filter(pk__in=competitionSet), many=True)
+        competitions = Competition.objects.filter(pk__in=competitionSet)
+        serializer = self.get_serializer(competitions, many=True)
+        
+        for idx, competition in enumerate(competitions):
+            submissions = Submission.objects.filter(learner=student, competition=competition).values('competition', 'question').distinct()
+            serializer.data[idx]['numSubmissions'] = len(submissions)
+
+            score = 0
+            possibleScore = 0
+            for question in competition.questions.all():
+                try:
+                    latest_submission = Submission.objects.filter(learner=student, competition=competition, question=question.question).latest('submittedAt')
+                    logger.warn("Successful unit tests:")
+                    successfulUnitTests = latest_submission.successfulUnitTests.all()
+                    numSuccessfulUnitTests = len(successfulUnitTests)
+                    numUnitTestsInQuestion = len(question.question.unitTests.all())
+
+                    if numSuccessfulUnitTests == numUnitTestsInQuestion:
+                        score += question.weight
+                except:
+                    logger.warn("Exception encountered")
+                    pass
+                possibleScore += question.weight
+                #logger.warn(latest_submission)
+
+            logger.warn(submissions)
+            serializer.data[idx]['score'] = score
+            serializer.data[idx]['possibleScore'] = possibleScore
+        
         return Response(serializer.data)
+        
 
     def retrieve(self, request, pk=None):
         student = User(id=request.user.id)
