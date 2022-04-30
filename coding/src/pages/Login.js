@@ -29,7 +29,14 @@ function Login() {
       );
       dispatch(authSlice.actions.setAccount(res.data.user));
       setLoading(false);
-      history("/");
+      console.log("Login check");
+      console.log(res.data.user);
+      if (res.data.user.is_staff) {
+        history("/teacherdashboard");
+      } else {
+        history("/studentdashboard");
+      }
+      
     })
     .catch((err) => {
       console.log("Received an error while logging in", err);

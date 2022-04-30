@@ -48,7 +48,7 @@ const App = () => {
             <Routes>
               <Route exact path="/login" element={ <Login/> } />
               <Route exact path="/Leaderboard" element={ <Leaderboard/> } />
-              <Route exact path="/Homepage" element={ <Homepage/> } />
+              {/* <Route exact path="/Homepage" element={ <Homepage/> } /> */}
               <Route exact path="/register" element={ <Register/> } />
               <Route exact path="/contact" element={ <Contact/> } />
               <Route exact path="/terms" element={ <Terms/> } />
@@ -69,9 +69,10 @@ const App = () => {
               <Route exact path='/unittest' element={<ProtectedRoute teacher/>}>
                 <Route exact path='/unittest' element={ <UnitTest /> } />
               </Route>
-              <Route exact path='/' element={<ProtectedRoute/>}>
+              <Route exact path="/" element={ <Homepage/> } />
+              {/* <Route exact path='/' element={<ProtectedRoute/>}>
                 <Route exact path='/' element={<StudentDashboard/>}/>
-              </Route>
+              </Route> */}
               <Route exact path='/studentdashboard' element={<StudentDashboard/>}/>
               <Route exact path='/teacherdashboard' element={<ProtectedRoute teacher/>}>
                 <Route exact path='/teacherdashboard' element={ <TeacherDashboard /> } />

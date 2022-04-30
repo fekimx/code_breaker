@@ -13,22 +13,10 @@ import Footer from "../components/Footer";
 
 const StudentDashboard = () => {
   const account = useSelector((state) => state.auth.account);
-  const dispatch = useDispatch();
-  const history = useNavigate();
 
   const userId = account?.id;
 
   const user = useSWR(`/api/user/${userId}/`, fetcher)
-
-  const data = {
-    classCode: "",
-    userId: userId
-  };
-
-  if (user.data?.is_staff == true) {
-    history("/TeacherDashboard");
-  };
-  
 
   return (
     <div className="w-full h-screen">
