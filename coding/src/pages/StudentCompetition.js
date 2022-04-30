@@ -5,33 +5,33 @@ import {useDispatch, useSelector} from "react-redux";
 import '../App.css';
 import Tabs from './Tabs';
 import TeacherAssignmentStudentTable from './TeacherAssignmentStudentTable';
-import StudentAssignmentQuestionTable from './StudentAssignmentQuestionTable';
+import StudentCompetitionQuestionTable from './StudentCompetitionQuestionTable';
 import NavHeader from "../components/navbar/NavHeader";
 import Footer from "../components/Footer";
 
 function withMyHook(Component) {
   return function WrappedComponent(props) {
     let [searchParams, setSearchParams] = useSearchParams();
-    let assignmentId = searchParams.get("id");
-    return <Assignment {...props} assignmentId={assignmentId} />;
+    let competitionId = searchParams.get("id");
+    return <Competition {...props} competitionId={competitionId} />;
   }
 }
 
 
 
 
-class Assignment extends React.Component {
+class Competition extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      assignmentId: this.props.assignmentId,
+      competitionId: this.props.competitionId,
       name: "",
       author: 1,
       questions: []
     }
 
-    axiosService.get(`/api/student/assignment/${this.props.assignmentId}/`,    {
+    axiosService.get(`/api/student/competition/${this.props.competitionId}/`,    {
 
     })
     .then((res) => {
@@ -48,7 +48,7 @@ class Assignment extends React.Component {
 
   runCode() {
     console.log("Running codes: ", this.state.code);
-    axiosService.post(`/api/run/`, { assignmentId: this.state.assignmentId, code: this.state.code })
+    axiosService.post(`/api/run/`, { competitionId: this.state.competitionId, code: this.state.code })
     .then((res) => {
       this.setState({stderr: ""});
       Question
@@ -67,9 +67,9 @@ class Assignment extends React.Component {
       <NavHeader user="Student" title="" />
         <div className="pad">
         <div className="container">
-        <h1>Assignment: {this.state.name}</h1>
+        <h1>Competition: {this.state.name}</h1>
           <div label="Questions">
-            <StudentAssignmentQuestionTable/>
+            <StudentCompetitionQuestionTable/>
           </div>
         </div>
         </div>
@@ -78,4 +78,4 @@ class Assignment extends React.Component {
     );
     }
   };
-export default withMyHook(Assignment);
+export default withMyHook(Competition);
