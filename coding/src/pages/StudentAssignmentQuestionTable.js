@@ -4,23 +4,37 @@ import axiosService from "../utils/axios";
 import { useNavigate } from "react-router";
 import { Link } from 'react-router-dom';
 import { useSearchParams } from "react-router-dom";
+import Pagination from '../components/Pagination';
+
 
 var count = 0;
 function StudentAssignmentQuestionTable(){
     const data = { classCode: "" };
     const [displayData, updateDisplayData] = useState([]);
+    const [currentPage] = useState(1);
+    const [postsPerPage] = useState(5);
+    const [totalPosts, setTotalPosts] = useState([]);
+
     const history = useNavigate();
     let [searchParams, setSearchParams] = useSearchParams();
     let assignmentId = searchParams.get("id");
 
-    const fetchLatestQuestions = () => {
+    // change page
+    const paginate = (pageNumber) => {
+        fetchLatestQuestions(pageNumber);
+    }
+
+
+    const fetchLatestQuestions = (currentPage) => {
         axiosService.get(`/api/student/assignment/${assignmentId}/`)
         .then((response) => {
-            console.log("The response:");
-            console.log(response);
+            // Get current items
+            const indexOfLastPost = currentPage * postsPerPage
+            const indexOfFirstPost = indexOfLastPost - postsPerPage
             const questionWeightPairs = response.data['questionWeightPairs']
-            console.log(questionWeightPairs);
-            const newDisplayData = questionWeightPairs.map((questionWeightPair) => {
+            const paginatedDisplayData = questionWeightPairs.slice(indexOfFirstPost, indexOfLastPost)
+            setTotalPosts(questionWeightPairs.length)
+            const newDisplayData = paginatedDisplayData.map((questionWeightPair) => {
                 const link = `/questions?id=${questionWeightPair.id}&assignmentId=${assignmentId}`;
                 count++;
                 return(
@@ -41,7 +55,7 @@ function StudentAssignmentQuestionTable(){
     }
 
     useEffect(() => {
-        fetchLatestQuestions();
+        fetchLatestQuestions(currentPage);
     }, []);
 
     return(
@@ -59,6 +73,9 @@ function StudentAssignmentQuestionTable(){
                     { displayData }
                 </tbody>
             </table>
+            <div>
+                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+            </div>
         </div>
     )
  }
