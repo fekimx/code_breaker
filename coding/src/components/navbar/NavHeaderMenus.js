@@ -61,13 +61,13 @@ export const MenuStudent = [
         class: 'logo'
     },
     {
-        title: 'Dashboard',
-        url: '/studentdashboard',
+        title: 'Logout',
+        url: '#LOGOUT#',
         class: 'link'
     },
     {
-        title: 'Logout',
-        url: '#LOGOUT#',
+        title: 'Dashboard',
+        url: '/studentdashboard',
         class: 'link'
     }
 ]
@@ -79,13 +79,13 @@ export const MenuTeacher = [
         class: 'logo'
     },
     {
-        title: 'Dashboard',
-        url: '/teacherdashboard',
+        title: 'Logout',
+        url: '#LOGOUT#',
         class: 'link'
     },
     {
-        title: 'Logout',
-        url: '#LOGOUT#',
+        title: 'Dashboard',
+        url: '/teacherdashboard',
         class: 'link'
     }
 ]
