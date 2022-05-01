@@ -45,6 +45,8 @@ function Register() {
       handleRegister(values.email, values.password, values.username);
     },
     validationSchema: Yup.object({
+      fname: Yup.string().trim().required("First name is required"),
+      lname: Yup.string().trim().required("Last name is required"),
       email: Yup.string().trim().required("Email is required"),
       password: Yup.string().trim().required("Password is required"),
       username: Yup.string().trim().required("Username is required")
@@ -71,25 +73,42 @@ function Register() {
         <form onSubmit={formik.handleSubmit}>
         <div className="form-group">
                     <label>First name</label>
-                    <input type="text" className="form-control" placeholder="First name" />
-                </div>
+                    <input 
+                      id="fname"
+                      type="text" 
+                      name="fname"
+                      className="form-control" 
+                      value={formik.values.fname}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur} 
+                    /></div>
+                {formik.errors.fname ? <div className="red-warning"><>&#9888;</>{formik.errors.fname} </div> : null}
                 <div className="form-group">
                     <label>Last name</label>
-                    <input type="text" className="form-control" placeholder="Last name" />
+                    <input 
+                    id="lname"
+                    type="text" 
+                    name="lname"
+                    className="form-control" 
+                    value={formik.values.lname}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur} 
+                  />
                 </div>
+                {formik.errors.lname ? <div className="red-warning"><>&#9888;</>{formik.errors.lname} </div> : null}
+
           <div className="form-group">
                     <label>Email address</label>
                     <input
-                         className="form-control"
+                        className="form-control"
                         id="email"
                         type="email"
-                        placeholder="Enter Email"
                         name="email"
                         value={formik.values.email}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         /></div>
-            {formik.errors.email ? <div>{formik.errors.email} </div> : null}
+            {formik.errors.email ? <div className="red-warning"><>&#9888;</>{formik.errors.email} </div> : null}
             <div className="form-group">
                  <label>Username</label>
                     <input
@@ -102,7 +121,7 @@ function Register() {
                          onChange={formik.handleChange}
                          onBlur={formik.handleBlur}
             /></div>
-            {formik.errors.username ? <div>{formik.errors.username} </div> : null}
+            {formik.errors.username ? <div className="red-warning"><>&#9888;</>{formik.errors.username} </div> : null}
             <div className="form-group">
             <label>Password</label>
             <input
@@ -115,9 +134,7 @@ function Register() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             /></div>
-            {formik.errors.password ? (
-              <div>{formik.errors.password} </div>
-            ) : null}
+            {formik.errors.password ? <div className="red-warning"><>&#9888;</>{formik.errors.password} </div>: null}
           <div className="form-group" hidden={false}>
             {message}
           </div>

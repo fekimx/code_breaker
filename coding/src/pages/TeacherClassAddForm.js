@@ -97,6 +97,7 @@ class TeacherClassAddForm extends Component {
           <label> Add new class: </label>
           <input
             type="text"
+            className="add-new-class"
             name="className"
             value={className}
             onChange={this.handleOnchage}

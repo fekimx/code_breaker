@@ -2,17 +2,41 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import axiosService from "../utils/axios";
 import { useNavigate } from "react-router";
+import Pagination from '../components/Pagination';
 
 var count = 0;
 function TeacherQuestionTable(){
     const data = { classCode: "" };
     const [displayData, updateDisplayData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(5);
+    const [totalPosts, setTotalPosts] = useState([]);
+
     const history = useNavigate();
 
-    const fetchLatestQuestions = () => {
+    // change page
+    const paginate = (pageNumber) => {
+        console.log("OK", currentPage)
+        if (pageNumber == "back" && currentPage != 1){
+            setCurrentPage(currentPage-1)
+            fetchLatestQuestions(currentPage -1);
+        } else if (pageNumber == "forward" && currentPage != Math.ceil(totalPosts/postsPerPage)){
+            setCurrentPage(currentPage+1)
+            fetchLatestQuestions(currentPage + 1);
+        } else if (pageNumber != "back" && pageNumber != "forward"){
+            setCurrentPage(pageNumber)
+            fetchLatestQuestions(pageNumber);
+        } 
+    }
+
+    const fetchLatestQuestions = (currentPage) => {
         axiosService.get(`/api/teacher/question/`, {})
         .then((response) => {
-            const newDisplayData = response.data.map((question) => {
+            const indexOfLastPost = currentPage * postsPerPage
+            const indexOfFirstPost = indexOfLastPost - postsPerPage
+            const paginatedDisplayData = response.data.slice(indexOfFirstPost, indexOfLastPost)
+            setTotalPosts(response.data.length)
+            const newDisplayData = paginatedDisplayData.map((question) => {
                 count++;
                 return(
                     <tr key={question.id}>
@@ -30,12 +54,12 @@ function TeacherQuestionTable(){
     }
 
     useEffect(() => {
-        fetchLatestQuestions();
+        fetchLatestQuestions(currentPage);
     }, []);
 
     return(
         <div>
-            <button onClick={()=>history("/teacherCreateQuestion")}>Create Question</button>
+
             <table className="table-striped">
                 <thead>
                     <tr>
@@ -48,6 +72,10 @@ function TeacherQuestionTable(){
                     { displayData }
                 </tbody>
             </table>
+            <div>
+                <Pagination currentPage = {currentPage} postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+            </div>
+            <button onClick={()=>history("/teacherCreateQuestion")}>Create Question</button>
         </div>
     )
  }

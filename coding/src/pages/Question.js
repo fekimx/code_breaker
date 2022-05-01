@@ -38,6 +38,8 @@ class Question extends React.Component {
       competitionId: this.props.competitionId,
       assignmentId: this.props.assignmentId,
       questionId: this.props.questionId,
+      parentPageRoute: this.props.assignmentId ? "/studentAssignment?id="+this.props.assignmentId : "/studentCompetition?id="+this.props.competitionId,
+      parentPage: this.props.assignmentId ? "Assignment" : "Competition",
       name: "",
       description: "",
       code: "def divisbleByTwo(n):\n",
@@ -45,7 +47,7 @@ class Question extends React.Component {
       unitTests: [],
       unitTestData: [],
       solutions: [],
-      showSolutions: false,
+      showSolutions: true,
       showWinner: false
     }
   
@@ -144,16 +146,17 @@ class Question extends React.Component {
         onHide={() => this.setState({ showWinner: false })}
         backdrop="static"
         keyboard={false}
+        parent={this.props.assignmentId}
       >
         <Modal.Header>
           <Modal.Title>Congratulations!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          You successfully completed all unit tests for this assignment.
+          You successfully completed all unit tests for this question.
         </Modal.Body>
         <Modal.Footer>
-          <button variant="secondary" onClick={()=>{this.state.showWinner = false; Tabs.changeTabNumber(1); navigation("/studentAssignment?id="+this.props.assignmentId)}}>
-            Return to Assignment Page
+          <button variant="secondary" onClick={()=>{this.state.showWinner = false; Tabs.changeTabNumber(1); navigation(this.state.parentPageRoute)}}>
+            Return to {this.state.parentPage} Page
           </button>
         </Modal.Footer>
       </Modal>
@@ -173,10 +176,12 @@ class Question extends React.Component {
         }}
       />
       {this.state.unitTests}
-      {this.state.showSolutions ? this.state.solutions : null }
-      <div><a href="#" onClick={ () => this.setState({showSolutions: !this.state.showSolutions}) }>{this.state.showSolutions ? "Hide Solutions" : "Show Solutions"}</a></div>
+      {/* {this.state.showSolutions ? this.state.solutions : null }
+      <div><a href="#" onClick={ () => 
+        this.setState({showSolutions: !this.state.showSolutions}) }>
+          {this.state.showSolutions ? "Hide Solutions" : "Show Solutions"}</a></div> */}
       <button onClick={ () => this.runCode() }>Run</button>
-      <button type="button" className="cancelbutton" onClick={()=>navigation("/studentAssignment?id="+this.props.assignmentId)}>Cancel</button>
+      <button type="button" className="cancelbutton" onClick={()=>navigation(this.state.parentPageRoute)}>Cancel</button>
       <div style={{backgroundColor: "red"}}>
         {this.state.stderr}
       </div>
