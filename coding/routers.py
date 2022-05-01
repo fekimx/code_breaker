@@ -44,6 +44,7 @@ routes.register(r'teacher/assignmentStatus', TeacherAssignmentStatusViewSet, bas
 routes.register(r'teacher/competition', TeacherCompetitionViewSet, basename='competition')
 routes.register(r'teacher/competitionStatus', TeacherCompetitionStatusViewSet, basename='competition')
 routes.register(r'student/competition', StudentCompetitionViewSet, basename='competition')
+routes.register(r'teacher/competitionWatch', TeacherCompetitionWatchViewSet, basename='competition')
 
 # STUDENTS
 
