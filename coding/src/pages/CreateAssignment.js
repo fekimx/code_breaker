@@ -157,12 +157,12 @@ function CreateAssignment() {
     .then((res) => {
       console.log(res);
       setSuccessText("Your question was created successfully!");
-      Tabs.changeTabNumber(2);  
+      Tabs.changeTabNumber(3);  
       navigate('/teacherdashboard');
     })
     .catch((err) => {
       if (uiQuestionsData.length == 0) {
-        setDangerText("At least one question is REQUIRED to create an assignment");
+        setDangerText("At least one question is required to create an assignment");
       }
       console.log("Received an error while creating assignment", err);
     });
@@ -223,7 +223,7 @@ function CreateAssignment() {
             >
               Create
             </button>
-            <button type="button" className="cancelbutton" onClick={()=>{Tabs.changeTabNumber(3);  navigate("/teacherdashboard")}}>Cancel</button>
+            <button type="button" className="cancelbutton" onClick={()=>{Tabs.changeTabNumber(2);  navigate("/teacherdashboard")}}>Cancel</button>
             <div className="text-success">{successText}</div>
             <div className="text-danger">{dangerText}</div>
           </div>

@@ -226,7 +226,7 @@ function CreateCompetition(type = "race") {
             >
               Create
             </button>
-            <button type="button" className="cancelbutton" onClick={()=>{Tabs.changeTabNumber(4);  navigate("/teacherdashboard")}}>Cancel</button>
+            <button type="button" className="cancelbutton" onClick={()=>{Tabs.changeTabNumber(3);  navigate("/teacherdashboard")}}>Cancel</button>
             <div className="text-success">{successText}</div>
             <div className="text-danger">{dangerText}</div>
           </div>
