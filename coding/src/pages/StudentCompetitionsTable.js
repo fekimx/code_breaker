@@ -103,8 +103,8 @@ import Pagination from '../components/Pagination';
                 </tbody>
             </table>
             <div>
-               <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
-           </div>
+                <Pagination currentPage = {currentPage} postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+            </div>
         </div>
     )
  }
