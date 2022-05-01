@@ -169,20 +169,20 @@ function CreateQuestion() {
     .then((res) => {
       console.log(res);
       setSuccessText("Your question was created successfully!");
-      Tabs.changeTabNumber(2);  
+      Tabs.changeTabNumber(1);  
       navigate('/teacherdashboard');
     })
     .catch((err) => {
       if (code == "") {
-        dangerTxt += "Function signature is required to create an assignment";
+        dangerTxt += "Function signature ";
       }
       if (solutionsData.length == 0) {
-        dangerTxt += "At least one solution is required to create an assignment";
+        dangerTxt += "At least one solution ";
       }
       if (unitTestsData.length == 0) {
-        dangerTxt += "At least one unit test is required to create an assignment";
+        dangerTxt += "At least one unit test ";
       }
-      setDangerText(dangerTxt);
+      setDangerText(dangerTxt+"REQUIRED to create a question");
       console.log("Received an error while creating question", err);
     });
   };
