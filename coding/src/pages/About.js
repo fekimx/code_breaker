@@ -12,7 +12,7 @@ const About = () => {
     <NavHeader user="None" title="About" />
 
   <div className="h-screen flex bg-gray-bg1">
-  <div class="container">
+  <div className="container">
       <h1>About code-breaker.io</h1>
       <h2>Origin</h2>
       <p>Code-breaker.io began as a capstone project for a group of graduating students pursuing their Software Engineering MS in 2022.  Seeing a need for a turnkey educational aid to teach high school students the basics in computer programming, these six members valiantly charged forward in the creation of code-breaker to fill this need.</p>

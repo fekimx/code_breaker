@@ -150,14 +150,14 @@ const renderPage = (scores) => {
   <div className="h-screen flex bg-gray-bg1">
           <NavHeader user="Student" title="" />
     <div id="canvas"></div>
-      <h1 class="page-header">Leaderboard</h1>
-      <div class="container2">
-        <div class="score-list">
-          <div class="title-box">
-            <h2 class="sub-title">Competitors</h2>
+      <h1 className="page-header">Leaderboard</h1>
+      <div className="container2">
+        <div className="score-list">
+          <div className="title-box">
+            <h2 className="sub-title">Competitors</h2>
           </div>
-          <div class="score-list-box"></div>
-          <p class="fetch-error"></p>
+          <div className="score-list-box"></div>
+          <p className="fetch-error"></p>
         </div>
       </div>
     <Footer/>  

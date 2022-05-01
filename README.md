@@ -2,34 +2,33 @@
  
 ## Prerequisites 
 
-Python 3.10.2
-Node JS
+Python 3.10
+Node JS 16
 On Mac OS X: brew install postgresql
 
-pip install pipenv  
-pipenv shell
-pip install -r requirements.txt
-./migrate_and_seed.sh 
-
-npm install
+Install pipenv  
 
 Docker and Docker Compose Installed (if you want to use Docker)
 
-## Docker
+## 2 Ways To Run The Application Locally
+
+### w/ Docker
 
 docker-compose up
 http://localhost:8000/login
 
-## Django Local Development
+### w/out Docker
+
+#### Django Local Development
 
 pipenv shell
 python manage.py runserver --settings=code_breaker.local_settings
 
-## React Local Development
+#### React Local Development
 
 npm run dev
 
-## How to Deploy to Heroku (while automatic deployments are not working)
+## Production: How to Deploy to Heroku (while automatic deployments are not working)
 
 Heroku had a security issue with GitHub and has turned off GitHub integrations.
 
@@ -84,7 +83,11 @@ Then, Ctrl+Click on the link to make a merge request.
 
 ## Process for seeding data/removing seeded data 
 
-(non windows only so far) - migrate and seed all data
+You may need to edit the shell scripts to change the executable from python3 to python, depending on your environment
+
+### Prod
+
+run migrations and seed data
 
 ./migrate_and_seed.sh 
 
@@ -95,6 +98,20 @@ python manage.py shell < revert_seed.py
 Seeding data 1 file at a time
 
 python manage.py loaddata seed/0001_User.json
+
+### Local
+
+run migrations and seed data
+
+./migrate_and_seed_local.sh 
+
+remove seeded data
+
+python manage.py --settings=code_breaker.local_settings shell < revert_seed.py
+
+Seeding data 1 file at a time
+
+python manage.py --settings=code_breaker.local_settings loaddata seed/0001_User.json
 
 ## Running Linters locally
 
