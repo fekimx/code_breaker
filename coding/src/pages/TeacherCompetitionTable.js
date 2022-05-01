@@ -55,7 +55,6 @@ function TeacherCompetitionTable(){
                         <td>{row[1]}</td>
                         <td>{row[3]} <span className="small-link" onClick={()=>updateStatus(row[2], 'False')}>disable</span></td>
                         <td><a href={tmpLink}>Watch Live</a> - ({row[6]} of {row[5]} finished)</td>  
-                        <td>{row[6]} of {row[5]} students finished</td>  
                     </tr>
                 )
             });
