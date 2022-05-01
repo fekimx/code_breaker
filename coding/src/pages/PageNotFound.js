@@ -1,7 +1,6 @@
 import '../App.css';
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import Navbar from "../components/navbar/Navbar";
 import NavHeader from "../components/navbar/NavHeader";
 import Footer from "../components/Footer";
 
