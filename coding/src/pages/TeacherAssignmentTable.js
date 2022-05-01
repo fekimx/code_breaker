@@ -79,7 +79,7 @@ function TeacherAssignmentTable(){
     const data = { classCode: "", teacherId: account?.id, fetchLatestClasses: fetchLatestClasses};
 
     useEffect(() => {
-        fetchLatestClasses(currentPage);
+        fetchLatestClasses();
     }, []);
 
     return(
