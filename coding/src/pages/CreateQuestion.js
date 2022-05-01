@@ -68,26 +68,30 @@ function CreateQuestion() {
   }
 
   const styleLeft = {
-    float: "left"
+    display: "inline-block"
   }
   const stylePadding = {
     paddingLeft: "30px"
+  }
+  const stylePaddingOutput = {
+    paddingLeft: "110px"
   }
   const unitTestHTMLByNum = (num) => {
     return <div key={num.toString()}>
       <br/> 
       <h5>Test Case #{num.toString()}</h5>
       {num.toString() == 1 &&
-      <center>
+      <>
         <div style={{...styleLeft, ...stylePadding}}>
           <label>Input</label>
           <p><strong>Ex: </strong><code>isEven(4)</code></p>
         </div>
-        <div>
+        <div style={{...styleLeft, ...stylePaddingOutput}}>
           <label>Output</label>
           <p><strong>Ex: </strong><code>True</code></p>
         </div>
-      </center>
+      <br/>
+      </>
       }
       <input
         style={{marginRight:"35px"}}
