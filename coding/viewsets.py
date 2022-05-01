@@ -866,3 +866,80 @@ class StudentViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(User.objects.filter(pk__in=studentSet, is_student=True), many=True)
         
         return Response(serializer.data)
+
+class TeacherScoreViewSet(viewsets.ModelViewSet):
+
+    queryset = Competition.objects.all()
+    serializer_class = CompetitionSerializer
+    http_method_names = ['get']
+    permission_classes = (IsTeacherUser,)
+
+    # may just remove list. 
+    def list(self, request):
+        logger.warn("list from Competition")
+        student = User(id=request.user.id)
+        classes = Class.objects.filter(students=student)
+        competitionSet = set()
+        for clazz in classes:
+            for competition in clazz.competitions.all():
+                competitionSet.add(competition.id)
+
+        competitions = Competition.objects.filter(pk__in=competitionSet)
+        serializer = self.get_serializer(competitions, many=True)
+        
+        for idx, competition in enumerate(competitions):
+            submissions = Submission.objects.filter(learner=student, competition=competition).values('competition', 'question').distinct()
+            serializer.data[idx]['numSubmissions'] = len(submissions)
+
+            score = 0
+            possibleScore = 0
+            for question in competition.questions.all():
+                try:
+                    latest_submission = Submission.objects.filter(learner=student, competition=competition, question=question.question).latest('submittedAt')
+                    logger.warn("Successful unit tests:")
+                    successfulUnitTests = latest_submission.successfulUnitTests.all()
+                    numSuccessfulUnitTests = len(successfulUnitTests)
+                    numUnitTestsInQuestion = len(question.question.unitTests.all())
+
+                    if numSuccessfulUnitTests == numUnitTestsInQuestion:
+                        score += question.weight
+                except:
+                    logger.warn("Exception encountered")
+                    pass
+                possibleScore += question.weight
+                #logger.warn(latest_submission)
+
+            logger.warn(submissions)
+            serializer.data[idx]['score'] = score
+            serializer.data[idx]['possibleScore'] = possibleScore
+        
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        logger.warn("----- >> RETRIEVE FROM Competition Scores!")
+        competitionObj = get_object_or_404(self.queryset, pk=pk)
+
+        studentScoreList = {}
+        # this is all users in total, it could be better
+        allStudents = User.objects.all()
+        for student in allStudents:
+
+            score = 0
+            serializer = self.get_serializer(competitionObj)
+            for questionWeightPair in competitionObj.questions.all():
+                try:
+                    #print(questionWeightPair.question.name)
+                    latest_submission = Submission.objects.filter(learner=student, competition=competitionObj, question=questionWeightPair.question).latest('submittedAt')
+                    successfulUnitTests = latest_submission.successfulUnitTests.all()
+                    numSuccessfulUnitTests = len(successfulUnitTests)
+                    numUnitTestsInQuestion = len(questionWeightPair.question.unitTests.all())
+
+                    if numSuccessfulUnitTests == numUnitTestsInQuestion:
+                        score += questionWeightPair.weight
+                except:
+                    logger.warn("Exception encountered")
+                    pass
+            studentScoreList[student.username] = score 
+        sorted_studentList = sorted(studentScoreList.items(), key=lambda item: item[1])
+        return Response(sorted_studentList[-3:])
+
