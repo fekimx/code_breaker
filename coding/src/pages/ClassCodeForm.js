@@ -93,18 +93,12 @@ class ClassCodeForm extends Component {
       </button>
     );
 
-    // const fullName = (
-    //   <p className="showData">
-    //     {classCode} 
-    //   </p>
-    // );
-
-    // const displayClassCode = showData ? fullName : null;
     return (
       <div>
         <form>
           <label> Class Code : </label>
           <input
+            className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
             type="text"
             name="classCode"
             value={classCode}
