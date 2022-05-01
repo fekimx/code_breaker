@@ -157,12 +157,12 @@ function CreateAssignment() {
     .then((res) => {
       console.log(res);
       setSuccessText("Your question was created successfully!");
-      Tabs.changeTabNumber(3);  
+      Tabs.changeTabNumber(2);  
       navigate('/teacherdashboard');
     })
     .catch((err) => {
       if (uiQuestionsData.length == 0) {
-        setDangerText("At least one question is required to create an assignment");
+        setDangerText("At least one question is REQUIRED to create an assignment");
       }
       console.log("Received an error while creating assignment", err);
     });

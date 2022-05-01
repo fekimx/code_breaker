@@ -158,12 +158,12 @@ function CreateCompetition(type = "race") {
     .then((res) => {
       console.log(res);
       setSuccessText("Your competition was created successfully!");
-      Tabs.changeTabNumber(4);  
+      Tabs.changeTabNumber(3);  
       navigate('/teacherdashboard');
     })
     .catch((err) => {
       if (uiQuestionsData.length == 0) {
-        setDangerText("At least one question is required to create an competition");
+        setDangerText("At least one question is REQUIRED to create a competition");
       }
       console.log("Received an error while creating competition", err);
     });
