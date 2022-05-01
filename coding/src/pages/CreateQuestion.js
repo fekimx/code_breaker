@@ -145,6 +145,7 @@ function CreateQuestion() {
   const clearTexts = () => {
     setSuccessText("");
     setDangerText("");
+    dangerTxt = "";
   }
 
   const formik = useFormik({
