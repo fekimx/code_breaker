@@ -36,7 +36,7 @@ routes.register(r'student/assignment', StudentAssignmentViewSet, basename='stude
 
 # Competition
 
-routes.register(r'teacher/competition', TeacherCompetitionViewSet, basename='teacherompetition')
+routes.register(r'teacher/competition', TeacherCompetitionViewSet, basename='teachercompetition')
 routes.register(r'teacher/competitionStatus', TeacherCompetitionStatusViewSet, basename='competitionStatus')
 routes.register(r'student/competition', StudentCompetitionViewSet, basename='studentcompetition')
 routes.register(r'competition/score', TeacherScoreViewSet, basename='competitionscore')
