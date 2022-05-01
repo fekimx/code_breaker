@@ -350,36 +350,22 @@ class StudentAssignmentViewSet(viewsets.ModelViewSet):
 
 class TeacherCompetitionStatusViewSet(viewsets.ModelViewSet):
     queryset = Competition.objects.all()
-    serializer_class = CompetitionSerializer
     http_method_names = ['get', 'post']
     permission_classes = (IsTeacherUser,)
  
     def create(self, request):
-        logger.warn("----- >> UPDATE STATUS")
+        logger.warn("// ---------- > TeacherAssignmentStatusViewSet / Create")
         tmpID = request.data['id']
         newActive = request.data['active']
-        logger.warn(tmpID)
-        logger.warn(newActive)
-
         oldCompetition = Competition.objects.get(pk=tmpID)
-
-        logger.warn("----- >> OLD PRE-")
-        logger.warn(oldCompetition.name)
-        logger.warn(oldCompetition.active)
         oldCompetition.active = False
         if newActive == "True":
             oldCompetition.active = True
         oldCompetition.save()
-
-        logger.warn("----- >> OLD POST-")
-        logger.warn(oldCompetition.active)
-
-        return Response({}, status=status.HTTP_201_CREATED)  
-
+        return Response({}, status=status.HTTP_201_CREATED) 
 
 class TeacherAssignmentStatusViewSet(viewsets.ModelViewSet):
     queryset = Assignment.objects.all()
-    serializer_class = CompetitionSerializer
     http_method_names = ['get', 'post']
     permission_classes = (IsTeacherUser,)
  
@@ -446,23 +432,26 @@ class TeacherCompetitionViewSet(viewsets.ModelViewSet):
         return Response({}, status=status.HTTP_201_CREATED)  
 
     def list(self, request):
-        logger.warn("list from Competition")
-        logger.warn("----- >> LIST FROM COMPETITION!")
-        competitions = Competition.objects.filter(author=request.user.id)
-        serializer = self.get_serializer(competitions, many=True)
-        
-        logger.warn("------- >> 1")
-        for compz in competitions:
-            logger.warn("-------- >> 2")
-            subz = Submission.objects.filter(competition=compz)
-            for itemz in subz:
-                logger.warn("--------- >> 3")
-                logger.warn(itemz.assignment)
-                logger.warn(itemz.learner)
-
-
-
-        return Response(serializer.data)
+        logger.warn("// ---------- > TeacherCompetitionViewSet / List")
+        myAssignments = Competition.objects.filter(author=request.user.id)
+        returnList = []
+        for tmpAssignment in myAssignments:
+            tmpClass = Class.objects.filter(competitions=tmpAssignment)
+            countCompleted = 0
+            countTotal = 0
+            qCount = tmpAssignment.questions.all()
+            questionsInSet = qCount.count()
+            for tmpStudent in tmpClass[0].students.all():
+                logger.warn("student: " + tmpStudent.username)
+                subCount = 0
+                for theirSubmissions in Submission.objects.filter(competition=tmpAssignment, learner=tmpStudent):
+                    subCount = subCount + 1
+                if subCount == questionsInSet:
+                    countCompleted = countCompleted + 1
+                countTotal = countTotal + 1
+            returnList.append((tmpClass[0].id, tmpClass[0].name, tmpAssignment.id, tmpAssignment.name, tmpAssignment.active, countTotal, countCompleted))
+        logger.warn(returnList)
+        return Response(returnList)
 
     def retrieve(self, request, pk=None):
         logger.warn("----- >> RETRIEVE FROM COMPETITION!")
