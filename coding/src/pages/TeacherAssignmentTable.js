@@ -9,11 +9,9 @@ import Pagination from '../components/Pagination';
 
 var count = 0;
 function TeacherAssignmentTable(){
-    const [displayData, updateDisplayData] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(5);
-    const [totalPosts, setTotalPosts] = useState([]);
 
+    const [activeDisplayData, updateDisplayDataActive] = useState([]);
+    const [inactiveDisplayData, updateDisplayDataInactive] = useState([]);
 
     const account = useSelector((state) => state.auth.account);
     const userId = account?.id;
@@ -21,45 +19,57 @@ function TeacherAssignmentTable(){
 
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
-    // change page
-    const paginate = (pageNumber) => {
-        if (pageNumber == "back" && currentPage != 1){
-            setCurrentPage(currentPage-1)
-            fetchLatestClasses(currentPage -1);
-        } else if (pageNumber == "forward" && currentPage != Math.ceil(totalPosts/postsPerPage)){
-            setCurrentPage(currentPage+1)
-            fetchLatestClasses(currentPage + 1);
-        } else if (pageNumber != "back" && pageNumber != "forward"){
-            setCurrentPage(pageNumber)
-            fetchLatestClasses(pageNumber);
-        } 
+    const updateStatus = (tmpPK, tmpActive) => {
+        axiosService.post(`/api/teacher/assignmentStatus/`, {
+            id: tmpPK,
+            active: tmpActive
+        })
+        .then(function (response) {
+            fetchLatestClasses()
+        })
+        .catch(function (error) {
+            fetchLatestClasses()
+        });
     }
 
-    const fetchLatestClasses = (currentPage) => {
+    const fetchLatestClasses = () => {
         axiosService.get(`/api/teacher/assignment/`, {})
         .then((response) => {
-            count=0
-            const indexOfLastPost = currentPage * postsPerPage
-            const indexOfFirstPost = indexOfLastPost - postsPerPage
-            const paginatedDisplayData = response.data.slice(indexOfFirstPost, indexOfLastPost)
-            setTotalPosts(response.data.length)
-            const newDisplayData = paginatedDisplayData.map((assignment) => {
-                count++
-                // Right now this just grabs the ID of the first question and puts that in a link
-                //probably need to change that
-                const link = `/assignment?id=${assignment.id}`;
+            var newActive = 0;
+            var newInactive = 0;
+            const displayBlank = () => {
+                return (
+                    <tr>
+                        <td colSpan="3" className="blank">
+                            Nothing here
+                        </td>
+                    </tr>
+                )
+            }
+
+            const newDisplayDataActive = response.data.filter(item => item[4] == true).map((row) => {
+                newActive++;
                 return(
-                    <tr key={assignment.name}>
-                        <td>{assignment.name}</td>
-                        <td>{assignment.active 
-                        ? <Link to={{pathname: link }} replace>Start</Link>
-                        : <i class="inactive">Inactive</i>}
-                        </td>  
-                        <td>Progress</td>  
+                    <tr className="datatable" key={row.name}>
+                        <td>{row[1]}</td>
+                        <td>{row[3]} <span className="small-link" onClick={()=>updateStatus(row[2], 'False')}>disable</span></td>
+                        <td>{row[6]} of {row[5]} students finished</td>  
                     </tr>
                 )
             });
-            updateDisplayData(newDisplayData);
+            const newDisplayDataInactive = response.data.filter(item => item[4] == false).map((row) => {
+                newInactive++;
+                return(
+                    <tr className="datatable" key={row.name}>
+                        <td>{row[1]}</td>
+                        <td>{row[3]} <span className="small-link" onClick={()=>updateStatus(row[2], 'True')}>enable</span></td>
+                        <td>{row[6]} of {row[5]} students finished</td>  
+                    </tr>
+                )
+            });
+            
+            updateDisplayDataActive((newActive > 0) ? newDisplayDataActive : displayBlank);
+            updateDisplayDataInactive((newInactive > 0) ? newDisplayDataInactive : displayBlank);
         })
         .catch(function (error) {
             console.log(error);
@@ -69,28 +79,40 @@ function TeacherAssignmentTable(){
     const data = { classCode: "", teacherId: account?.id, fetchLatestClasses: fetchLatestClasses};
 
     useEffect(() => {
-        fetchLatestClasses(currentPage);
+        fetchLatestClasses();
     }, []);
 
     return(
         <div>
-
+            <button className="float-right" onClick={()=>history("/teacherCreateAssignment")}>Create an Assignment</button>
+            <h3>Active Assignments</h3>
             <table className="table-striped">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Link</th>
+                        <th>Class</th>
+                        <th>Assignment</th>
                         <th>Progress</th>
                     </tr>
                 </thead>
                 <tbody>
-                    { displayData }
+                    { activeDisplayData }
+                </tbody>
+            </table>
+            <h3>Inactive Assignments</h3>
+            <table className="table-striped">
+                <thead>
+                    <tr>
+                        <th>Class</th>
+                        <th>Assignment</th>
+                        <th>Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { inactiveDisplayData }
                 </tbody>
             </table>
             <div>
-                <Pagination currentPage = {currentPage} postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
             </div>
-            <button onClick={()=>history("/teacherCreateAssignment")}>Create an Assignment</button>
         </div>
     )
 }

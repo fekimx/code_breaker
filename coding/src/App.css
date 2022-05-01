@@ -142,17 +142,29 @@ p.showdata {
   color: #00f;
 }
 
-i.inactive {
+.inactive {
   font-size: 80%;
   color: #888;
 }
 
-a.small-link {
+.small-link {
   font-size: 80%;
+  color: #6c5ce7;
 } 
 
 .vertical-padding {
   padding: 30px 0 30px 0;
+}
+
+td.blank {
+  font-size: 80%;
+  color: #888;
+  padding: 30px;
+  text-align: center;
+}
+
+.float-right {
+  float: right;
 }
 
 .text-button {
@@ -164,6 +176,7 @@ a.small-link {
     cursor: pointer;
     font-size: 70%;
 }
+
 
 .add-new-class {
   margin-left: 8px !important;
@@ -205,6 +218,6 @@ a.small-link {
 
 .pagination a:hover:not(.active) {
   background-color: #0376d8;
-  color: white;}
+  color: white;
+}
 
-  
