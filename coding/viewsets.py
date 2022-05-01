@@ -443,6 +443,7 @@ class TeacherCompetitionViewSet(viewsets.ModelViewSet):
             qCount = tmpAssignment.questions.all()
             questionsInSet = qCount.count()
             for tmpStudent in tmpClass[0].students.all():
+                logger.warn("student: " + tmpStudent.username)
                 subCount = 0
                 for theirSubmissions in Submission.objects.filter(competition=tmpAssignment, learner=tmpStudent):
                     subCount = subCount + 1
