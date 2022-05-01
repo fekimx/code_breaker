@@ -9,7 +9,7 @@ return (
             <NavHeader user="None" title="" />
 
     <div className="pad">
-    <div class="container">
+    <div className="container">
 
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
           Terms and Conditions

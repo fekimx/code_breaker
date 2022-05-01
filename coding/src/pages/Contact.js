@@ -11,7 +11,7 @@ const Contact = () => {
     <div className="single-column">
     <NavHeader user="None" title="Contact" />
 
-    <div class="container">
+    <div className="container">
 
       <h1>Contact Us</h1>
 
