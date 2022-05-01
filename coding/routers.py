@@ -21,6 +21,10 @@ routes.register(r'class', ClassViewSet, basename='class')
 routes.register(r'joinClass', JoinClassViewSet, basename='joinClass')
 routes.register(r'studentClass', StudentClassViewset, basename='studentClass')
 
+# GRADEBOOK
+
+routes.register(r'teacher/gradebook', TeacherGradebookViewSet, basename='teacherGradebook')
+
 # QUESTION
 
 routes.register(r'teacher/question', TeacherQuestionViewSet, basename='teacherQuestion')

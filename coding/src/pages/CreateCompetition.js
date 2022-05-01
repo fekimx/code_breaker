@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import NavHeader from "../components/navbar/NavHeader";
 import { useNavigate } from "react-router-dom";
 import Tabs from "./Tabs";
+import Footer from "../components/Footer";
 
 function CreateCompetition(type = "race") {
   const account = useSelector((state) => state.auth.account);
@@ -164,7 +165,6 @@ function CreateCompetition(type = "race") {
       if (uiQuestionsData.length == 0) {
         setDangerText("At least one question is required to create an competition");
       }
-      setDangerText("There was an error while creating your competition!");
       console.log("Received an error while creating competition", err);
     });
   };
@@ -193,7 +193,7 @@ function CreateCompetition(type = "race") {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.errors.name ? <div>{formik.errors.name} </div> : null}
+            {formik.errors.name ? <div className="red-warning"><>&#9888;</>{formik.errors.name} </div> : null}
           <div className="space-y-4">
           <br/>
           <h5>Class</h5>
@@ -235,6 +235,7 @@ function CreateCompetition(type = "race") {
     </div>
     </div>
     </div>
+    <Footer/>  
   </div>
   )
 };

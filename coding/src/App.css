@@ -177,6 +177,47 @@ td.blank {
     font-size: 70%;
 }
 
-tr.datatable td {
-  vertical-align: top;
+
+.add-new-class {
+  margin-left: 8px !important;
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #069;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 70%;
 }
+
+.red-warning {
+  color: red;
+}
+
+      
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding-top: 10px;
+  display: flex;
+}
+      
+.pagination li {
+  margin: 0 1px;
+}
+.pagination li.active a {
+  background-color: #069;
+  color: white;
+}
+
+.pagination a.active {
+  background-color: #069;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #0376d8;
+  color: white;
+}
+

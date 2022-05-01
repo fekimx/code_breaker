@@ -2,16 +2,42 @@ import React, {useRef} from 'react';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import { useState, useEffect } from "react";
 import axiosService from "../utils/axios";
+import Pagination from '../components/Pagination';
+
 
 function TeacherAssignmentStudentTable() {
     const [displayData, updateDisplayData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(5);
+    const [totalPosts, setTotalPosts] = useState([]);
 
-    const fetchLatestStudents = () => {
+    // change page
+    const paginate = (pageNumber) => {
+        console.log("OK", currentPage)
+        if (pageNumber == "back" && currentPage != 1){
+            setCurrentPage(currentPage-1)
+            fetchLatestStudents(currentPage -1);
+        } else if (pageNumber == "forward" && currentPage != Math.ceil(totalPosts/postsPerPage)){
+            setCurrentPage(currentPage+1)
+            fetchLatestStudents(currentPage + 1);
+        } else if (pageNumber != "back" && pageNumber != "forward"){
+            setCurrentPage(pageNumber)
+            fetchLatestStudents(pageNumber);
+        } 
+    }
+
+
+    const fetchLatestStudents = (currentPage) => {
 
         axiosService.get(`/api/assignmentStudents/?assignmentId=${window.location.href.charAt( window.location.href.length - 1 )}`, {})
         .then((response) => {
-            const newDisplayData = response.data.map((assignmentStudents) => {
-                console.log('response')
+            // Get current items
+            const indexOfLastPost = currentPage * postsPerPage
+            const indexOfFirstPost = indexOfLastPost - postsPerPage
+            const paginatedDisplayData = response.data.slice(indexOfFirstPost, indexOfLastPost)
+            setTotalPosts(response.data.length)
+            const newDisplayData = paginatedDisplayData.map((assignmentStudents) => {
+
                 return(
                     <tr key={assignmentStudents.id}>
                         <td>{assignmentStudents.id}</td>
@@ -28,19 +54,12 @@ function TeacherAssignmentStudentTable() {
     }
 
     useEffect(() => {
-        fetchLatestStudents();
+        fetchLatestStudents(currentPage);
     }, []);
  
     return(
         <div>
-            <ReactHTMLTableToExcel
-                id="test-table-xls-button"
-                className="download-table-xls-button"
-                table="student_table"
-                filename="Students list"
-                sheet="Students"
-                buttonText="Export as XLS"
-            />
+
             
             <table className="table-striped" id="student_table">
                 <thead>
@@ -54,6 +73,17 @@ function TeacherAssignmentStudentTable() {
                     { displayData }
                 </tbody>
             </table>
+            <div>
+                <Pagination currentPage = {currentPage} postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+            </div>
+            <ReactHTMLTableToExcel
+                id="test-table-xls-button"
+                className="download-table-xls-button"
+                table="student_table"
+                filename="Students list"
+                sheet="Students"
+                buttonText="Export as XLS"
+            />
         </div>
     )
 }

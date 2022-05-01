@@ -29,7 +29,14 @@ function Login() {
       );
       dispatch(authSlice.actions.setAccount(res.data.user));
       setLoading(false);
-      history("/");
+      console.log("Login check");
+      console.log(res.data.user);
+      if (res.data.user.is_staff) {
+        history("/teacherdashboard");
+      } else {
+        history("/studentdashboard");
+      }
+      
     })
     .catch((err) => {
       console.log("Received an error while logging in", err);
@@ -55,8 +62,8 @@ function Login() {
 
   return (<div className="h-screen flex bg-gray-bg1">
     <NavHeader user="None" title="Login" />
-  <div className ="pad">
-  <div className="container">
+  <div className ="termspad">
+  <div className="logincontainer">
     <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
       Log in to your account
     </h1>
@@ -70,7 +77,7 @@ function Login() {
             </div>
       <div className="form_group">
         
-        {formik.errors.email ? <div>{formik.errors.email} </div> : null}
+        {formik.errors.email ? <div className="red-warning"><>&#9888;</>{formik.errors.email} </div> : null}
         <label>Password</label>
         <input
           className="form-control"
@@ -82,9 +89,7 @@ function Login() {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
-        {formik.errors.password ? (
-          <div>{formik.errors.password} </div>
-        ) : null}
+        {formik.errors.password ? <div className="red-warning"><>&#9888;</>{formik.errors.password} </div> : null}
       </div>
       <div className="text-danger text-center my-2" hidden={false}>
         {message}

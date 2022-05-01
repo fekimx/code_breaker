@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 import { useNavigate } from "react-router";
 import axiosService, {fetcher} from "../utils/axios";
 import { Link } from 'react-router-dom';
+import Pagination from '../components/Pagination';
 
 var count = 0;
 function TeacherAssignmentTable(){
@@ -19,19 +20,14 @@ function TeacherAssignmentTable(){
     const user = useSWR(`/api/user/${userId}/`, fetcher);
 
     const updateStatus = (tmpPK, tmpActive) => {
-        console.warn("HI1")
         axiosService.post(`/api/teacher/assignmentStatus/`, {
             id: tmpPK,
             active: tmpActive
         })
         .then(function (response) {
-            console.warn("HI2")
             fetchLatestClasses()
         })
         .catch(function (error) {
-            console.warn("HI3")
-            console.warn(" err - ")
-            console.warn(error)
             fetchLatestClasses()
         });
     }
@@ -45,18 +41,11 @@ function TeacherAssignmentTable(){
                 return (
                     <tr>
                         <td colSpan="3" className="blank">
-                            Nothing here yet
+                            Nothing here
                         </td>
                     </tr>
                 )
             }
-            console.log("---------------")
-            console.log("---------------")
-            console.log("---------------")
-            console.log("---------------")
-            console.log(response.data)
-            console.log("---------------")
-            console.log("---------------")
 
             const newDisplayDataActive = response.data.filter(item => item[4] == true).map((row) => {
                 newActive++;
@@ -90,7 +79,7 @@ function TeacherAssignmentTable(){
     const data = { classCode: "", teacherId: account?.id, fetchLatestClasses: fetchLatestClasses};
 
     useEffect(() => {
-        fetchLatestClasses();
+        fetchLatestClasses(currentPage);
     }, []);
 
     return(
@@ -122,6 +111,8 @@ function TeacherAssignmentTable(){
                     { inactiveDisplayData }
                 </tbody>
             </table>
+            <div>
+            </div>
         </div>
     )
 }

@@ -7,6 +7,8 @@ const ProtectedRoute = (props) => {
 
   console.log("auth");
   console.log(auth);
+  console.log("props");
+  console.log(props);
   if (auth.account) {
     if (props && props["teacher"]) {
       if (auth.account.is_staff) {
@@ -26,7 +28,7 @@ const ProtectedRoute = (props) => {
 
     return <Outlet {...props} />;
   } else if (!auth.account) {
-    return <Navigate to={"/Homepage"} />;
+    return <Navigate to={"/"} />;
   } else {
     return <div>Not found</div>;
   }

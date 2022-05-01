@@ -1,7 +1,7 @@
 export const MenuNoUserOld = [
     {
         title: 'Code-Breaker',
-        url: '/homepage',
+        url: '/',
         class: 'logo'
     },
     {
@@ -57,8 +57,13 @@ export const MenuNoUser = [
 export const MenuStudent = [
     {
         title: 'Code-Breaker',
-        url: '/',
+        url: '/studentdashboard',
         class: 'logo'
+    },
+    {
+        title: 'Dashboard',
+        url: '/studentdashboard',
+        class: 'link'
     },
     {
         title: 'Logout',
@@ -70,8 +75,13 @@ export const MenuStudent = [
 export const MenuTeacher = [
     {
         title: 'Code-Breaker',
-        url: '/',
+        url: '/teacherdashboard',
         class: 'logo'
+    },
+    {
+        title: 'Dashboard',
+        url: '/teacherdashboard',
+        class: 'link'
     },
     {
         title: 'Logout',

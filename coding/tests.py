@@ -25,7 +25,7 @@ class Hosttest(unittest.TestCase):
     def test_register(self):   
         driver = self.driver
         try: 
-            driver.get('http://127.0.0.1:8000/Homepage')
+            driver.get('http://127.0.0.1:8000/')
             driver.maximize_window()
         except Exception as ex:
             print(ex)

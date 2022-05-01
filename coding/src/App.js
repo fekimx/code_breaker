@@ -28,11 +28,14 @@ import CreateClass from './pages/CreateClass';
 import CreateAssignment from './pages/CreateAssignment';
 import StudentClasses from './pages/StudentClasses';
 import StudentAssignment from './pages/StudentAssignment';
+import StudentCompetition from './pages/StudentCompetition';
 import TeacherAssignment from './pages/TeacherAssignment';
+import TeacherClassDetails from './pages/TeacherClassDetails';
 import TeacherDashboard from './pages/TeacherDashboard';
 import CreateCompetition from './pages/CreateCompetition';
 import Leaderboard from "./pages/Leaderboard";
 import Legal from "./pages/Legal";
+import PageNotFound from "./pages/PageNotFound";
 
 
 axios.defaults.xsrfCookieName = 'csrftoken'
@@ -47,12 +50,13 @@ const App = () => {
             <Routes>
               <Route exact path="/login" element={ <Login/> } />
               <Route exact path="/Leaderboard" element={ <Leaderboard/> } />
-              <Route exact path="/Homepage" element={ <Homepage/> } />
+              {/* <Route exact path="/Homepage" element={ <Homepage/> } /> */}
               <Route exact path="/register" element={ <Register/> } />
               <Route exact path="/contact" element={ <Contact/> } />
               <Route exact path="/terms" element={ <Terms/> } />
               <Route exact path="/legal" element={ <Legal/> } />
               <Route path="/questions" element={ <Question/> } />
+              <Route exact path="/teacherClassDetails" element={ <TeacherClassDetails/> } />
               <Route exact path="/teacherCreateQuestion" element={ <CreateQuestion/> } />
               <Route exact path="/teacherCreateClass" element={ <CreateClass/> } />
               <Route exact path="/teacherCreateAssignment" element={ <CreateAssignment/> } />
@@ -68,17 +72,20 @@ const App = () => {
               <Route exact path='/unittest' element={<ProtectedRoute teacher/>}>
                 <Route exact path='/unittest' element={ <UnitTest /> } />
               </Route>
-              <Route exact path='/' element={<ProtectedRoute/>}>
+              <Route exact path="/" element={ <Homepage/> } />
+              {/* <Route exact path='/' element={<ProtectedRoute/>}>
                 <Route exact path='/' element={<StudentDashboard/>}/>
-              </Route>
+              </Route> */}
               <Route exact path='/studentdashboard' element={<StudentDashboard/>}/>
               <Route exact path='/teacherdashboard' element={<ProtectedRoute teacher/>}>
                 <Route exact path='/teacherdashboard' element={ <TeacherDashboard /> } />
               </Route>
-              <Route exact path='/studentAssignment' element={<StudentAssignment/>}/>
-              <Route exact path='/teacherAssignment' element={<ProtectedRoute teacher/>}>
+              <Route path='/studentAssignment' element={<StudentAssignment/>}/>
+              <Route path='/studentCompetition' element={<StudentCompetition/>}/>
+              <Route path='/teacherAssignment' element={<ProtectedRoute teacher/>}>
                 <Route exact path='/teacherAssignment' element={ <TeacherAssignment /> } />
               </Route>
+              <Route exact path="*" element={ <PageNotFound/> }  />
             </Routes>
           </div>
         </BrowserRouter>
