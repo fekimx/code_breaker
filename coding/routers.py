@@ -41,9 +41,10 @@ routes.register(r'teacher/assignmentStatus', TeacherAssignmentStatusViewSet, bas
 
 # Competition
 
-routes.register(r'teacher/competition', TeacherCompetitionViewSet, basename='competition')
-routes.register(r'teacher/competitionStatus', TeacherCompetitionStatusViewSet, basename='competition')
-routes.register(r'student/competition', StudentCompetitionViewSet, basename='competition')
+routes.register(r'teacher/competition', TeacherCompetitionViewSet, basename='teachercompetition')
+routes.register(r'teacher/competitionStatus', TeacherCompetitionStatusViewSet, basename='competitionStatus')
+routes.register(r'student/competition', StudentCompetitionViewSet, basename='studentcompetition')
+routes.register(r'competition/score', TeacherScoreViewSet, basename='competitionscore')
 routes.register(r'teacher/competitionWatch', TeacherCompetitionWatchViewSet, basename='competition')
 
 # STUDENTS
