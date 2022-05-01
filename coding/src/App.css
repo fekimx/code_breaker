@@ -221,3 +221,15 @@ td.blank {
   color: white;
 }
 
+.progress-line {
+  padding: 20px 0 0 0;
+}
+
+.progress-line span b {
+  padding-right: 15px;
+  font-size: 20px;
+}
+
+.progress-line span span {
+  opacity: 35%;
+}

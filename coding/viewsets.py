@@ -1,5 +1,6 @@
 from ast import Assign
 from cmath import log
+from curses import raw
 from email.mime import audio
 from urllib import response
 from code_breaker.settings import JUDGE_ZERO_ENDPOINT
@@ -442,7 +443,6 @@ class TeacherCompetitionViewSet(viewsets.ModelViewSet):
             qCount = tmpAssignment.questions.all()
             questionsInSet = qCount.count()
             for tmpStudent in tmpClass[0].students.all():
-                logger.warn("student: " + tmpStudent.username)
                 subCount = 0
                 for theirSubmissions in Submission.objects.filter(competition=tmpAssignment, learner=tmpStudent):
                     subCount = subCount + 1
@@ -454,7 +454,6 @@ class TeacherCompetitionViewSet(viewsets.ModelViewSet):
         return Response(returnList)
 
     def retrieve(self, request, pk=None):
-        logger.warn("----- >> RETRIEVE FROM COMPETITION!")
         competitionObj = get_object_or_404(self.queryset, pk=pk)
         serializer = self.get_serializer(competitionObj)
 
@@ -511,7 +510,6 @@ class StudentCompetitionViewSet(viewsets.ModelViewSet):
                     logger.warn("Exception encountered")
                     pass
                 possibleScore += question.weight
-                #logger.warn(latest_submission)
 
             logger.warn(submissions)
             serializer.data[idx]['score'] = score
@@ -989,3 +987,51 @@ class TeacherGradebookViewSet(viewsets.ModelViewSet):
 
             assignment_gradebook_list.append({'name': assignment.name, 'students': students})
         return Response(assignment_gradebook_list)
+
+
+class TeacherCompetitionWatchViewSet(viewsets.ModelViewSet):
+    http_method_names = ['get']
+    permission_classes = (IsTeacherUser,)
+
+    def retrieve(self, request, pk=None):
+        logger.warn("// ---------- > TeacherCompetitionWatchViewSet / List")
+        thisCompetitionList = Competition.objects.filter(pk=pk)
+        if len(thisCompetitionList) == 0:
+            return Response("Could not find competition")
+        thisCompetition = thisCompetitionList[0]
+        owningClassList = Class.objects.filter(competitions=thisCompetition)
+        if len(owningClassList) == 0:
+            return Response("Could not find owning class")
+        owningClass = owningClassList[0]
+        totalUnitTests = 0
+        studentDetails = []
+        for tmpQ in thisCompetition.questions.all():
+            totalUnitTests = totalUnitTests + len(tmpQ.question.unitTests.all())
+        for student in owningClass.students.all():
+            logger.warn("student: " + student.username + " = " + student.email)
+            tmpAnswers = {}
+            tmpCorrectUnitTests = 0
+            for theirSubmission in Submission.objects.filter(competition=thisCompetition, learner=student):
+                tmpAnswers[theirSubmission.question_id] = len(theirSubmission.successfulUnitTests.all())
+            for item in tmpAnswers:
+                tmpCorrectUnitTests = tmpCorrectUnitTests + tmpAnswers[item]
+            logger.warn("               succecss: " + str(tmpCorrectUnitTests))
+            studentDetails.append((student.username, student.email, str(tmpCorrectUnitTests)))
+        return Response((
+            thisCompetition.name,
+            str(len(thisCompetition.questions.all())),
+            str(totalUnitTests),
+            owningClass.name,
+            studentDetails
+        ))
+        # return tuple
+                # competition name
+                # total competition questions
+                # total competition unit tests
+                # class name
+                # array of:
+                    # student username
+                    # student email
+                    # corrent unit tests
+
+

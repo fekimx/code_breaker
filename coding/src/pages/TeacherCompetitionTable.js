@@ -49,11 +49,12 @@ function TeacherCompetitionTable(){
 
             const newDisplayDataActive = response.data.filter(item => item[4] == true).map((row) => {
                 newActive++;
+                const tmpLink = `/watchCompetition?id=${row[2]}`;
                 return(
                     <tr className="datatable" key={row.name}>
                         <td>{row[1]}</td>
                         <td>{row[3]} <span className="small-link" onClick={()=>updateStatus(row[2], 'False')}>disable</span></td>
-                        <td>{row[6]} of {row[5]} students finished</td>  
+                        <td><a href={tmpLink}>Watch Live</a> - ({row[6]} of {row[5]} finished)</td>  
                     </tr>
                 )
             });
