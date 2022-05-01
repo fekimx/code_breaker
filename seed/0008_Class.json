@@ -9,7 +9,7 @@
             "teacher": 16,
             "TAs": [21, 22],
             "students": [1, 3, 5, 7, 9, 11, 13, 14, 15], 
-            "assignments": [1, 4],
+            "assignments": [1, 4, 6],
             "competitions": [1, 4]
         }
     },
@@ -23,7 +23,7 @@
             "teacher": 16,
             "TAs": [23, 25],
             "students": [2, 4, 6, 8, 10, 12],
-            "assignments": [2, 3],
+            "assignments": [2, 3, 5],
             "competitions": [2, 3]
         }
     } 

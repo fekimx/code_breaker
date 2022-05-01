@@ -129,6 +129,7 @@ function CreateAssignment() {
   const clearTexts = () => {
     setSuccessText("");
     setDangerText("");
+    dangerTxt = "";
   }
 
   const formik = useFormik({
@@ -223,7 +224,7 @@ function CreateAssignment() {
             >
               Create
             </button>
-            <button type="button" className="cancelbutton" onClick={()=>{Tabs.changeTabNumber(3);  navigate("/teacherdashboard")}}>Cancel</button>
+            <button type="button" className="cancelbutton" onClick={()=>{Tabs.changeTabNumber(2);  navigate("/teacherdashboard")}}>Cancel</button>
             <div className="text-success">{successText}</div>
             <div className="text-danger">{dangerText}</div>
           </div>

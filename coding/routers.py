@@ -21,6 +21,10 @@ routes.register(r'class', ClassViewSet, basename='class')
 routes.register(r'joinClass', JoinClassViewSet, basename='joinClass')
 routes.register(r'studentClass', StudentClassViewset, basename='studentClass')
 
+# GRADEBOOK
+
+routes.register(r'teacher/gradebook', TeacherGradebookViewSet, basename='teacherGradebook')
+
 # QUESTION
 
 routes.register(r'teacher/question', TeacherQuestionViewSet, basename='teacherQuestion')
@@ -33,6 +37,7 @@ routes.register(r'assignmentQuestions', AssignmentQuestionViewSet, basename='ass
 
 routes.register(r'teacher/assignment', TeacherAssignmentViewSet, basename='teacherAssignment')
 routes.register(r'student/assignment', StudentAssignmentViewSet, basename='studentAssignment')
+routes.register(r'teacher/assignmentStatus', TeacherAssignmentStatusViewSet, basename='teacherAssignment')
 
 # Competition
 

@@ -14,14 +14,22 @@ function TeacherCompetitionTable(){
     const navigate = useNavigate();
     const [activeData, updateActiveDisplayData] = useState([]);
     const [inactiveData, updateInactiveDisplayData] = useState([]);
-
-    const [currentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(3);
     const [totalPosts, setTotalPosts] = useState([]);
 
     // change page
     const paginate = (pageNumber) => {
-        fetchLatestActiveCompetitions(pageNumber);
+        if (pageNumber == "back" && currentPage != 1){
+            setCurrentPage(currentPage-1)
+            fetchLatestActiveCompetitions(currentPage -1);
+        } else if (pageNumber == "forward" && currentPage != Math.ceil(totalPosts/postsPerPage)){
+            setCurrentPage(currentPage+1)
+            fetchLatestActiveCompetitions(currentPage + 1);
+        } else if (pageNumber != "back" && pageNumber != "forward"){
+            setCurrentPage(pageNumber)
+            fetchLatestActiveCompetitions(pageNumber);
+        } 
     }
 
     const account = useSelector((state) => state.auth.account);
@@ -63,7 +71,7 @@ function TeacherCompetitionTable(){
                         <tr key={competition.name}>
                             <td>{competition.name}
                             <br />
-                            <button class="text-button" onClick={()=>updateStatus(competition.id, 'False')}>End Competition</button>
+                            <span className="small-link" onClick={()=>updateStatus(competition.id, 'False')}>End</span>
                             </td>
                             <td>
                             <b>8</b> <i className="inactive">total students</i><br />
@@ -93,7 +101,7 @@ function TeacherCompetitionTable(){
                          <tr key={competition.name}>
                              <td>{competition.name}
                              <br />
-                            <button class="text-button" onClick={()=>updateStatus(competition.id, 'True')}>Re-enable Competition</button>
+                            <span className="small-link" onClick={()=>updateStatus(competition.id, 'True')}>Start</span>
                            </td>    
                          </tr>
                      )
@@ -117,8 +125,7 @@ function TeacherCompetitionTable(){
 
     return(
         <div>
-            <button onClick={()=>navigate("/teacherStartRace")}>Start a Competition</button>
-            <br /><br />
+
             <table className="table-striped">
                 <thead>
                     <tr>
@@ -131,9 +138,11 @@ function TeacherCompetitionTable(){
                     </tbody>
             </table>
             <div>
-                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+                <Pagination currentPage = {currentPage} postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
             </div>
             <br />
+            <button onClick={()=>navigate("/teacherStartRace")}>Start a Competition</button>
+            <br /><br />
             <table className="table-striped">
                 <thead>
                     <tr>

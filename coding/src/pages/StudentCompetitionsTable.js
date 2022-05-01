@@ -11,7 +11,7 @@ import Pagination from '../components/Pagination';
  function StudentCompetitionsTable(){
 
      const [displayData, updateDisplayData] = useState([]);
-     const [currentPage] = useState(1);
+     const [currentPage, setCurrentPage] = useState(1);
      const [postsPerPage] = useState(3);
      const [totalPosts, setTotalPosts] = useState([]);
 
@@ -22,7 +22,17 @@ import Pagination from '../components/Pagination';
 
     // change page
     const paginate = (pageNumber) => {
-        fetchLatestActiveCompetitions(pageNumber);
+        console.log("OK", currentPage)
+        if (pageNumber == "back" && currentPage != 1){
+            setCurrentPage(currentPage-1)
+            fetchLatestActiveCompetitions(currentPage -1);
+        } else if (pageNumber == "forward" && currentPage != Math.ceil(totalPosts/postsPerPage)){
+            setCurrentPage(currentPage+1)
+            fetchLatestActiveCompetitions(currentPage + 1);
+        } else if (pageNumber != "back" && pageNumber != "forward"){
+            setCurrentPage(pageNumber)
+            fetchLatestActiveCompetitions(pageNumber);
+        } 
     }
 
      const fetchLatestActiveCompetitions = (currentPage) => {
@@ -48,12 +58,11 @@ import Pagination from '../components/Pagination';
                  return(
                     <tr key={competition.name}>
                         <td>{competition.name}</td>
-                        <td>{competition.numSubmissions} out of {competition.questions.length}</td>
-                        <td>{competition.score} out of {competition.possibleScore}</td>
+                        <td>3 of 11 questions</td>
                         <td>{competition.active 
                         ? <Link to={link}><b>Start</b></Link>
                         : <i className="inactive">Inactive</i>}
-                        </td>
+                        </td>   
                     </tr>
                 )
              });
@@ -71,34 +80,33 @@ import Pagination from '../components/Pagination';
      }, []);
 
      return(
-         <div>
-             <table className="table-striped">
-                 <thead>
-                     <tr>
-                         <th>Competition Title</th>
-                         <th>Progress</th>
-                         <th>Score</th>
-                         <th>Actions</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     { displayData }
-                     { displayData == "" &&
-                         <tr>
-                             <td colSpan="3">
-                                 <div className="vertical-padding">
-                                 <center><i className="inactive">No Competitions Yet :-(</i></center>
-                                 </div>
-                             </td>
-                         </tr>
-                     }
-                 </tbody>
-             </table>
-             <div>
-                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+        <div>
+            <table className="table-striped">
+                <thead>
+                    <tr>
+                        <th>Competition Title</th>
+                        <th>Progress</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { displayData }
+                    { displayData == "" &&
+                        <tr>
+                            <td colSpan="3">
+                                <div className="vertical-padding">
+                                <center><i className="inactive">No Competitions Yet :-(</i></center>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>
+                <Pagination currentPage = {currentPage} postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
             </div>
-         </div>
-     )
+        </div>
+    )
  }
 
   export default StudentCompetitionsTable; 

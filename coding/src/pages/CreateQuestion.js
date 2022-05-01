@@ -68,26 +68,30 @@ function CreateQuestion() {
   }
 
   const styleLeft = {
-    float: "left"
+    display: "inline-block"
   }
   const stylePadding = {
     paddingLeft: "30px"
+  }
+  const stylePaddingOutput = {
+    paddingLeft: "110px"
   }
   const unitTestHTMLByNum = (num) => {
     return <div key={num.toString()}>
       <br/> 
       <h5>Test Case #{num.toString()}</h5>
       {num.toString() == 1 &&
-      <center>
+      <>
         <div style={{...styleLeft, ...stylePadding}}>
           <label>Input</label>
           <p><strong>Ex: </strong><code>isEven(4)</code></p>
         </div>
-        <div>
+        <div style={{...styleLeft, ...stylePaddingOutput}}>
           <label>Output</label>
           <p><strong>Ex: </strong><code>True</code></p>
         </div>
-      </center>
+      <br/>
+      </>
       }
       <input
         style={{marginRight:"35px"}}
@@ -141,6 +145,7 @@ function CreateQuestion() {
   const clearTexts = () => {
     setSuccessText("");
     setDangerText("");
+    dangerTxt = "";
   }
 
   const formik = useFormik({
@@ -169,20 +174,20 @@ function CreateQuestion() {
     .then((res) => {
       console.log(res);
       setSuccessText("Your question was created successfully!");
-      Tabs.changeTabNumber(2);  
+      Tabs.changeTabNumber(1);  
       navigate('/teacherdashboard');
     })
     .catch((err) => {
       if (code == "") {
-        dangerTxt += "Function signature is required to create an assignment";
+        dangerTxt += "Function signature ";
       }
       if (solutionsData.length == 0) {
-        dangerTxt += "At least one solution is required to create an assignment";
+        dangerTxt += "At least one solution ";
       }
       if (unitTestsData.length == 0) {
-        dangerTxt += "At least one unit test is required to create an assignment";
+        dangerTxt += "At least one unit test ";
       }
-      setDangerText(dangerTxt);
+      setDangerText(dangerTxt+"REQUIRED to create a question");
       console.log("Received an error while creating question", err);
     });
   };
@@ -253,7 +258,7 @@ function CreateQuestion() {
         <hr />
           <div className="flex justify-center items-center mt-6">
             <button type="submit" className="" >Create</button>
-            <button type="button" className="cancelbutton" onClick={()=>{Tabs.changeTabNumber(2);  navigate("/teacherdashboard")}}>Cancel</button>
+            <button type="button" className="cancelbutton" onClick={()=>{Tabs.changeTabNumber(1);  navigate("/teacherdashboard")}}>Cancel</button>
             <div className="text-success">{successText}</div>
             <div className="text-danger">{dangerText}</div>
           </div>
