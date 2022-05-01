@@ -71,7 +71,7 @@ function TeacherCompetitionTable(){
                         <tr key={competition.name}>
                             <td>{competition.name}
                             <br />
-                            <button className="text-button" onClick={()=>updateStatus(competition.id, 'False')}>End Competition</button>
+                            <span className="small-link" onClick={()=>updateStatus(competition.id, 'False')}>End</span>
                             </td>
                             <td>
                             <b>8</b> <i className="inactive">total students</i><br />
@@ -101,7 +101,7 @@ function TeacherCompetitionTable(){
                          <tr key={competition.name}>
                              <td>{competition.name}
                              <br />
-                            <button className="text-button" onClick={()=>updateStatus(competition.id, 'True')}>Re-enable Competition</button>
+                            <span className="small-link" onClick={()=>updateStatus(competition.id, 'True')}>Start</span>
                            </td>    
                          </tr>
                      )
