@@ -39,7 +39,7 @@ function TeacherAssignmentTable(){
             var newInactive = 0;
             const displayBlank = () => {
                 return (
-                    <tr>
+                    <tr key="1">
                         <td colSpan="3" className="blank">
                             Nothing here
                         </td>
@@ -88,7 +88,7 @@ function TeacherAssignmentTable(){
             <h3>Active Assignments</h3>
             <table className="table-striped">
                 <thead>
-                    <tr>
+                    <tr key="1">
                         <th>Class</th>
                         <th>Assignment</th>
                         <th>Progress</th>
@@ -101,7 +101,7 @@ function TeacherAssignmentTable(){
             <h3>Inactive Assignments</h3>
             <table className="table-striped">
                 <thead>
-                    <tr>
+                    <tr key="1">
                         <th>Class</th>
                         <th>Assignment</th>
                         <th>Progress</th>

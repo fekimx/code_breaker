@@ -83,6 +83,8 @@ Then, Ctrl+Click on the link to make a merge request.
 
 ## Process for seeding data/removing seeded data 
 
+You may need to edit the shell scripts to change the executable from python3 to python, depending on your environment
+
 ### Prod
 
 run migrations and seed data
