@@ -25,7 +25,11 @@ function Register() {
       );
       dispatch(authSlice.actions.setAccount(res.data.user));
       setLoading(false);
-      history("/");
+      if (res.data.user.is_staff) {
+        history("/teacherdashboard");
+      } else {
+        history("/studentdashboard");
+      }
     })
     .catch((err) => {
       console.log("Received an error while registering", err);
@@ -66,7 +70,7 @@ function Register() {
     <div className="h-screen flex bg-gray-bg1">
       <NavHeader user="None" title="Register" />
     <div className="pad">
-    <div class="container">
+    <div className="container">
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
           Register an account
         </h1>

@@ -1,4 +1,7 @@
+from ast import Assign
 from cmath import log
+from email.mime import audio
+from urllib import response
 from code_breaker.settings import JUDGE_ZERO_ENDPOINT
 from coding.serializers import *
 from coding.models import Submission, User, Class
@@ -224,11 +227,30 @@ class TeacherAssignmentViewSet(viewsets.ModelViewSet):
         return Response({}, status=status.HTTP_201_CREATED)  
 
     # Teachers can list assignments they created
+    # returns array of:
+    #   class id, class name, assignment id, assignment name, assignment active
     def list(self, request):
-        logger.warn("list from Assignment")
-
-        serializer = self.get_serializer(Assignment.objects.filter(author=request.user.id), many=True)
-        return Response(serializer.data)
+        logger.warn("// ---------- > TeacherAssignmentViewSet / List")
+        myAssignments = Assignment.objects.filter(author=request.user.id)
+        returnList = []
+        for tmpAssignment in myAssignments:
+            tmpClass = Class.objects.filter(assignments=tmpAssignment)
+            logger.warn("------ assignment: " + tmpAssignment.name)
+            countCompleted = 0
+            countTotal = 0
+            qCount = tmpAssignment.questions.all()
+            questionsInSet = qCount.count()
+            for tmpStudent in tmpClass[0].students.all():
+                logger.warn("student: " + tmpStudent.username)
+                subCount = 0
+                for theirSubmissions in Submission.objects.filter(assignment=tmpAssignment, learner=tmpStudent):
+                    subCount = subCount + 1
+                if subCount == questionsInSet:
+                    countCompleted = countCompleted + 1
+                countTotal = countTotal + 1
+            returnList.append((tmpClass[0].id, tmpClass[0].name, tmpAssignment.id, tmpAssignment.name, tmpAssignment.active, countTotal, countCompleted))
+        logger.warn(returnList)
+        return Response(returnList)
 
     # Teachers can retrieve an assignment they created
     def retrieve(self, request, pk=None):
@@ -285,11 +307,11 @@ class StudentAssignmentViewSet(viewsets.ModelViewSet):
 
                     if numSuccessfulUnitTests == numUnitTestsInQuestion:
                         score += question.weight
+                    logger.warn(latest_submission)
                 except:
                     logger.warn("Exception encountered")
                     pass
                 possibleScore += question.weight
-                logger.warn(latest_submission)
 
             logger.warn(submissions)
             serializer.data[idx]['score'] = score
@@ -354,6 +376,24 @@ class TeacherCompetitionStatusViewSet(viewsets.ModelViewSet):
 
         return Response({}, status=status.HTTP_201_CREATED)  
 
+
+class TeacherAssignmentStatusViewSet(viewsets.ModelViewSet):
+    queryset = Assignment.objects.all()
+    serializer_class = CompetitionSerializer
+    http_method_names = ['get', 'post']
+    permission_classes = (IsTeacherUser,)
+ 
+    def create(self, request):
+        logger.warn("// ---------- > TeacherAssignmentStatusViewSet / Create")
+        tmpID = request.data['id']
+        newActive = request.data['active']
+        oldCompetition = Assignment.objects.get(pk=tmpID)
+        oldCompetition.active = False
+        if newActive == "True":
+            oldCompetition.active = True
+        oldCompetition.save()
+        return Response({}, status=status.HTTP_201_CREATED)  
+
     
 class TeacherCompetitionViewSet(viewsets.ModelViewSet):
 
@@ -408,10 +448,20 @@ class TeacherCompetitionViewSet(viewsets.ModelViewSet):
     def list(self, request):
         logger.warn("list from Competition")
         logger.warn("----- >> LIST FROM COMPETITION!")
-        logger.warn(request)
-        logger.warn("-------------------")
+        competitions = Competition.objects.filter(author=request.user.id)
+        serializer = self.get_serializer(competitions, many=True)
+        
+        logger.warn("------- >> 1")
+        for compz in competitions:
+            logger.warn("-------- >> 2")
+            subz = Submission.objects.filter(competition=compz)
+            for itemz in subz:
+                logger.warn("--------- >> 3")
+                logger.warn(itemz.assignment)
+                logger.warn(itemz.learner)
 
-        serializer = self.get_serializer(Competition.objects.filter(author=request.user.id), many=True)
+
+
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
@@ -867,6 +917,7 @@ class StudentViewSet(viewsets.ModelViewSet):
         
         return Response(serializer.data)
 
+
 class TeacherScoreViewSet(viewsets.ModelViewSet):
 
     queryset = Competition.objects.all()
@@ -943,3 +994,87 @@ class TeacherScoreViewSet(viewsets.ModelViewSet):
         sorted_studentList = sorted(studentScoreList.items(), key=lambda item: item[1])
         return Response(sorted_studentList[-3:])
 
+
+class TeacherGradebookViewSet(viewsets.ModelViewSet):
+
+    queryset = Assignment.objects.all()
+    serializer_class = AssignmentSerializer
+    http_method_names = ['get']
+    permission_classes = (IsTeacherUser,)
+
+    # Teachers can create assignments
+    def create(self, request, *args, **kwargs):
+        request.data['author'] = request.user.id
+        questionweightpair_fks = []
+
+        for questionWeightPair in request.data['questions']:
+            data = {}
+            data['question'] = questionWeightPair['question']
+            data['weight'] = questionWeightPair['weight']
+            questionweightpair_serializer = QuestionWeightPairSerializer(data = data)
+                
+            try:
+                questionweightpair_serializer.is_valid()
+                questionweightpair_serializer.save()
+                questionweightpair_fks.append(questionweightpair_serializer['id'].value)
+                logger.warn("Valid Serializer- Question Weight Pair")
+                
+            except TokenError as e:
+                raise InvalidToken(e.args[0]) 
+            
+        
+        # done making question weight pairs    
+        request.data['questions'] = questionweightpair_fks
+
+        assignmentData = {}
+        assignmentData['name'] = request.data['name']
+        assignmentData['author'] = request.data['author']
+        assignmentData['questions'] = request.data['questions']
+
+        serializer = self.get_serializer(data=request.data)
+        
+        try:
+            serializer.is_valid(raise_exception=True)
+            assignment = serializer.save()
+            logger.warn("Valid Serializer")
+            
+        except TokenError as e:
+            logger.warn("Token Error")
+            raise InvalidToken(e.args[0])
+
+        assignmentForClass = Class.objects.get(id=request.data['class'])
+        assignmentForClass.assignments.add(assignment)
+
+        return Response({}, status=status.HTTP_201_CREATED) 
+
+    def retrieve(self, request, pk=None):
+        logger.warn("Inside retrieve for Gradebook")
+        logger.warn(pk)
+
+        classObj = Class.objects.get(id=pk)
+        assignment_gradebook_list = []
+        for assignment in self.queryset:
+            users = User.objects.filter(**{'is_student': True, 'pk__in': classObj.students.all()})
+            students = []
+            for user in users:
+                score = 0
+                possibleScore = 0
+                for question in assignment.questions.all():
+                    try:
+                        latest_submission = Submission.objects.filter(learner=user, assignment=assignment, question=question.question).latest('submittedAt')
+                        successfulUnitTests = latest_submission.successfulUnitTests.all()
+                        numSuccessfulUnitTests = len(successfulUnitTests)
+                        numUnitTestsInQuestion = len(question.question.unitTests.all())
+
+                        if numSuccessfulUnitTests == numUnitTestsInQuestion:
+                            score += question.weight
+                    except Exception as e:
+                        pass
+                    possibleScore += question.weight
+
+                score = score
+                possibleScore = possibleScore
+                students.append({'username': user.username, 'score': score, 'possibleScore': possibleScore})
+
+            assignment_gradebook_list.append({'name': assignment.name, 'students': students})
+        return Response(assignment_gradebook_list)

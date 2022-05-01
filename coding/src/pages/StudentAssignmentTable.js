@@ -11,7 +11,7 @@ var count = 0;
 function StudentAssignmentTable(){
 
     const [displayData, updateDisplayData] = useState([]);
-    const [currentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(5);
     const [totalPosts, setTotalPosts] = useState([]);
 
@@ -22,7 +22,17 @@ function StudentAssignmentTable(){
 
     // change page
     const paginate = (pageNumber) => {
-        fetchLatestAssignments(pageNumber);
+        console.log("OK", currentPage)
+        if (pageNumber == "back" && currentPage != 1){
+            setCurrentPage(currentPage-1)
+            fetchLatestAssignments(currentPage -1);
+        } else if (pageNumber == "forward" && currentPage != Math.ceil(totalPosts/postsPerPage)){
+            setCurrentPage(currentPage+1)
+            fetchLatestAssignments(currentPage + 1);
+        } else if (pageNumber != "back" && pageNumber != "forward"){
+            setCurrentPage(pageNumber)
+            fetchLatestAssignments(pageNumber);
+        } 
     }
 
     const fetchLatestAssignments = (currentPage) => {
@@ -79,7 +89,7 @@ function StudentAssignmentTable(){
                 </tbody>
             </table>
             <div>
-                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+                <Pagination currentPage = {currentPage} postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
             </div>
         </div>
     )

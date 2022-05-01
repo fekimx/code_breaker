@@ -56,7 +56,17 @@ code {
   overflow: hidden;
   margin: 30 20px;
 }
-
+.logincontainer{
+  position: relative;
+  padding: 50px;
+  max-width: 700px;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 30 20px;
+}
 .termscontainer{
   position: relative;
   max-width: 1400px;
@@ -108,3 +118,4 @@ code {
 .forgot-password a {
   color: #167bff;
 }
+

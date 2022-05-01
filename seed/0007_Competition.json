@@ -46,18 +46,6 @@
                 "type": "R",
                  "created": "2020-01-08T18:52:50.637635"
                 }
-        },
-        {
-            "model": "coding.competition",
-            "pk": 5,
-            "fields": {
-                "name": "COBOL Competition",
-                "author": 16,
-                "questions": [20],
-                "active": false,
-                "type": "R",
-                 "created": "2020-01-08T18:52:50.637635"
-                }
         }
         ]
         

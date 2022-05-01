@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
+import NavHeader from "../components/navbar/NavHeader";
 
 function Legal() {
   
 return (
-    <div className="h-screen flex bg-gray-bg1"> <Navbar/>
+    <div className="h-screen flex bg-gray-bg1"> <NavHeader user="None" title="" />
     <div className="termspad">
-    <div class="termscontainer" >
+    <div className="termscontainer" >
     <h1  className="text-2xl font-medium text-primary mt-4 mb-12 text-left">
            Privacy Policy
           <p className="text-2xl font-medium text-secondary mt-4 mb-12 text-left">

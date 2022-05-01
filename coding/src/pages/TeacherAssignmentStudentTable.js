@@ -7,13 +7,23 @@ import Pagination from '../components/Pagination';
 
 function TeacherAssignmentStudentTable() {
     const [displayData, updateDisplayData] = useState([]);
-    const [currentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(5);
     const [totalPosts, setTotalPosts] = useState([]);
 
     // change page
     const paginate = (pageNumber) => {
-        fetchLatestStudents(pageNumber);
+        console.log("OK", currentPage)
+        if (pageNumber == "back" && currentPage != 1){
+            setCurrentPage(currentPage-1)
+            fetchLatestStudents(currentPage -1);
+        } else if (pageNumber == "forward" && currentPage != Math.ceil(totalPosts/postsPerPage)){
+            setCurrentPage(currentPage+1)
+            fetchLatestStudents(currentPage + 1);
+        } else if (pageNumber != "back" && pageNumber != "forward"){
+            setCurrentPage(pageNumber)
+            fetchLatestStudents(pageNumber);
+        } 
     }
 
 
@@ -49,14 +59,7 @@ function TeacherAssignmentStudentTable() {
  
     return(
         <div>
-            <ReactHTMLTableToExcel
-                id="test-table-xls-button"
-                className="download-table-xls-button"
-                table="student_table"
-                filename="Students list"
-                sheet="Students"
-                buttonText="Export as XLS"
-            />
+
             
             <table className="table-striped" id="student_table">
                 <thead>
@@ -71,8 +74,16 @@ function TeacherAssignmentStudentTable() {
                 </tbody>
             </table>
             <div>
-                <Pagination postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
+                <Pagination currentPage = {currentPage} postsPerPage={postsPerPage} totalPosts={totalPosts} paginate={paginate} />
             </div>
+            <ReactHTMLTableToExcel
+                id="test-table-xls-button"
+                className="download-table-xls-button"
+                table="student_table"
+                filename="Students list"
+                sheet="Students"
+                buttonText="Export as XLS"
+            />
         </div>
     )
 }

@@ -181,7 +181,7 @@ class Question extends React.Component {
         this.setState({showSolutions: !this.state.showSolutions}) }>
           {this.state.showSolutions ? "Hide Solutions" : "Show Solutions"}</a></div> */}
       <button onClick={ () => this.runCode() }>Run</button>
-      <button type="button" className="cancelbutton" onClick={()=>navigation(this.state.parentPageRoute)}>Cancel</button>
+      <button type="button" className="cancelbutton" onClick={()=>navigation(this.state.parentPageRoute)}>Back</button>
       <div style={{backgroundColor: "red"}}>
         {this.state.stderr}
       </div>
