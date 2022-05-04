@@ -39,8 +39,8 @@
         "model": "coding.unittest",
         "pk": 5,
         "fields": {
-            "input": "printHelloWorld()",
-            "expectedOutput": "Hello World",
+            "input": "subtract(2, 7)",
+            "expectedOutput": "5",
             "visible": true
         }
     },
@@ -48,8 +48,8 @@
         "model": "coding.unittest",
         "pk": 6,
         "fields": {
-            "input": "printHelloWorld()",
-            "expectedOutput": "Hello World",
+            "input": "subtract(1, 3)",
+            "expectedOutput": "2",
             "visible": true
         }
     },
@@ -345,7 +345,7 @@
         "model": "coding.unittest",
         "pk": 39,
         "fields": {
-            "input": "containsE('unittest')",
+            "input": "containsE('unittest)",
             "expectedOutput": "False",
             "visible": true
         }
