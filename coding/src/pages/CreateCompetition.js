@@ -130,7 +130,6 @@ function CreateCompetition(type = "race") {
   const clearTexts = () => {
     setSuccessText("");
     setDangerText("");
-    dangerTxt = "";
   }
 
   const formik = useFormik({
