@@ -17,7 +17,7 @@
         "model": "coding.solution",
         "pk": 3,
         "fields": {
-            "code": "def printHelloWorld():\n    print('Hello World')"
+            "code": "def subtract(x, y):\n    dif = y - x\n    return(dif)"
         }
     },
     {
