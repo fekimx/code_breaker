@@ -129,7 +129,6 @@ function CreateAssignment() {
   const clearTexts = () => {
     setSuccessText("");
     setDangerText("");
-    dangerTxt = "";
   }
 
   const formik = useFormik({
