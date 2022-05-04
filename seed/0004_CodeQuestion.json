@@ -32,8 +32,8 @@
         "pk": 3,
         "fields": {
             "name": "Question 3",
-            "description": "Print Hello World",
-            "code": "def printHelloWorld():\n",
+            "description": "Subtract x from y",
+            "code": "def subtract(x, y):\n",
             "author": 16,
             "practice": false,
             "version": 1,
