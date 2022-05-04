@@ -58,7 +58,8 @@ import Pagination from '../components/Pagination';
                  return(
                     <tr key={competition.name}>
                         <td>{competition.name}</td>
-                        <td>3 of 11 questions</td>
+                        <td>{competition.numSubmissions} out of {competition.questions.length}</td>
+                        <td>{competition.score} out of {competition.possibleScore}</td>
                         <td>{competition.active 
                         ? <Link to={link}><b>Start</b></Link>
                         : <i className="inactive">Inactive</i>}
@@ -86,6 +87,7 @@ import Pagination from '../components/Pagination';
                     <tr>
                         <th>Competition Title</th>
                         <th>Progress</th>
+                        <th>Score</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
