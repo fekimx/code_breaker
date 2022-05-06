@@ -20,7 +20,8 @@ class ClassCodeForm extends Component {
       showData: false,
       showButton: false,
       showButtonName: "Add Class",
-      fetchLatestClasses: fetchLatestClasses
+      fetchLatestClasses: fetchLatestClasses, 
+      updateList: props.data.paginate
     };
 
     this.handleOnchage = this.handleOnchage.bind(this);
@@ -67,7 +68,7 @@ class ClassCodeForm extends Component {
         showData: !prevState.showData,
         showButtonName: "SAVE"
       }));
-      this.state.fetchLatestClasses();
+      this.state.updateList;
     })
     .catch(function (error) {
       console.log(error);
@@ -96,7 +97,7 @@ class ClassCodeForm extends Component {
     return (
       <div>
         <form>
-          <label> Class Code : </label>
+          <label className="pad-right"> Class Code : </label>
           <input
             className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
             type="text"
