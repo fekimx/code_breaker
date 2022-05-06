@@ -233,3 +233,7 @@ td.blank {
 .progress-line span span {
   opacity: 35%;
 }
+
+.pad-right {
+  margin-right: 10px;
+}
