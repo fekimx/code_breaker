@@ -64,7 +64,7 @@ function StudentClassTable(){
         });
     }
 
-    const data = { classCode: "", userId: account?.id, fetchLatestClasses: fetchLatestClasses};
+    const data = { classCode: "", userId: account?.id, fetchLatestClasses: fetchLatestClasses, paginate: paginate };
 
     useEffect(() => {
         fetchLatestClasses(currentPage);
