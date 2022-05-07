@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import '../App.css';
 import Tabs from './Tabs';
-import TeacherAssignmentStudentTable from './TeacherAssignmentStudentTable';
+import StudentWatchCompetition from './StudentWatchCompetition';
 import StudentCompetitionQuestionTable from './StudentCompetitionQuestionTable';
 import NavHeader from "../components/navbar/NavHeader";
 import Footer from "../components/Footer";
@@ -66,12 +66,15 @@ class Competition extends React.Component {
       <div>
       <NavHeader user="Student" title="" />
         <div className="pad">
-        <div className="container">
-        <h1>Competition: {this.state.name}</h1>
-          <div label="Questions">
-            <StudentCompetitionQuestionTable/>
+          <div className="container">
+            <h1>Competition: {this.state.name}</h1>
+              <div>
+                <StudentWatchCompetition/>
+              </div>
+              <div label="Questions">
+                <StudentCompetitionQuestionTable/>
+              </div>
           </div>
-        </div>
         </div>
         <Footer/>  
       </div>
