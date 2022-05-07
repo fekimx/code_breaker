@@ -114,9 +114,9 @@ class Question extends React.Component {
         } else {
           completedAllTests = false;
           if (unitTest.visible) {
-            unitTests.push(<div style={{backgroundColor: "red"}} key={i}><strong>Input:</strong> {unitTest.input} <strong>Expected Output:</strong> {unitTest.expectedOutput}</div>);
+            unitTests.push(<div style={{backgroundColor: "#FB636A"}} key={i}><strong>Input:</strong> {unitTest.input} <strong>Expected Output:</strong> {unitTest.expectedOutput}</div>);
           } else {
-            unitTests.push(<div style={{backgroundColor: "red"}} key={i}>Hidden Unit Test #{i}</div>);
+            unitTests.push(<div style={{backgroundColor: "#FB636A"}} key={i}>Hidden Unit Test #{i}</div>);
           }
         }
       }
@@ -182,7 +182,7 @@ class Question extends React.Component {
           {this.state.showSolutions ? "Hide Solutions" : "Show Solutions"}</a></div> */}
       <button onClick={ () => this.runCode() }>Run</button>
       <button type="button" className="cancelbutton" onClick={()=>navigation(this.state.parentPageRoute)}>Back</button>
-      <div style={{backgroundColor: "red"}}>
+      <div style={{backgroundColor: "#FB636A"}}>
         {this.state.stderr}
       </div>
       </div>
