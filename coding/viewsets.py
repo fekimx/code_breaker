@@ -1103,6 +1103,43 @@ class TeacherCompetitionWatchViewSet(viewsets.ModelViewSet):
             owningClass.name,
             studentDetails
         ))
+
+class StudentCompetitionWatchViewSet(viewsets.ModelViewSet):
+    http_method_names = ['get']
+    permission_classes = (IsStudentUser,)
+
+    def retrieve(self, request, pk=None):
+        logger.warn("// ---------- > TeacherCompetitionWatchViewSet / List")
+        thisCompetitionList = Competition.objects.filter(pk=pk)
+        if len(thisCompetitionList) == 0:
+            return Response("Could not find competition")
+        thisCompetition = thisCompetitionList[0]
+        owningClassList = Class.objects.filter(competitions=thisCompetition)
+        if len(owningClassList) == 0:
+            return Response("Could not find owning class")
+        owningClass = owningClassList[0]
+        totalUnitTests = 0
+        studentDetails = []
+        for tmpQ in thisCompetition.questions.all():
+            totalUnitTests = totalUnitTests + len(tmpQ.question.unitTests.all())
+        for student in owningClass.students.all():
+            logger.warn("student: " + student.username + " = " + student.email)
+            tmpAnswers = {}
+            tmpCorrectUnitTests = 0
+            for theirSubmission in Submission.objects.filter(competition=thisCompetition, learner=student):
+                tmpAnswers[theirSubmission.question_id] = len(theirSubmission.successfulUnitTests.all())
+            for item in tmpAnswers:
+                tmpCorrectUnitTests = tmpCorrectUnitTests + tmpAnswers[item]
+            logger.warn("               succecss: " + str(tmpCorrectUnitTests))
+            studentDetails.append((student.username, student.email, str(tmpCorrectUnitTests)))
+        return Response((
+            thisCompetition.name,
+            str(len(thisCompetition.questions.all())),
+            str(totalUnitTests),
+            owningClass.name,
+            studentDetails
+        ))
+
         # return tuple
                 # competition name
                 # total competition questions
