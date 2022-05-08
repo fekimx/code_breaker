@@ -191,4 +191,4 @@ SIMPLE_JWT = {
 }
 
 # Ends with a /
-JUDGE_ZERO_ENDPOINT = 'http://159.89.85.94:2358/submissions/'
+JUDGE_ZERO_ENDPOINT = os.environ['JUDGE_ZERO_ENDPOINT']
