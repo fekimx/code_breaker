@@ -80,7 +80,7 @@ function CreateCompetition(type = "race") {
   const addUIQuestion = () => {
     setUIQuestions(UIQuestions => {
       const numUIQuestions = UIQuestions.length + 1;
-      setUIQuestionFieldN(UIQuestions.length, "question", 1);
+      setUIQuestionFieldN(UIQuestions.length, "question", questions[0].props.value);
       setUIQuestionFieldN(UIQuestions.length, "weight", 1);
       return [...UIQuestions, uiQuestionHTMLByNum(numUIQuestions)];
     });
@@ -138,9 +138,12 @@ function CreateCompetition(type = "race") {
       description: "",
       code: "",
       classes: classes,
-      myclass: 1
+      myclass: 0
     },
     onSubmit: (values) => {
+      if (values.myclass == 0) {
+        values.myclass = classes[0].props.value;
+      }
       handleCreateQuestion(
         values.name, 
         values.myclass

@@ -1,0 +1,1294 @@
+[
+    {
+        "model": "coding.competition",
+        "pk": 1,
+        "fields": {
+            "name": "Basic Operators",
+            "author": 16,
+            "questions": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                241,
+                242,
+                243,
+                244,
+                245,
+                246,
+                247,
+                248,
+                249,
+                250
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 2,
+        "fields": {
+            "name": "Conditions",
+            "author": 16,
+            "questions": [
+                6,
+                7,
+                8,
+                9,
+                10,
+                251,
+                252,
+                253,
+                254,
+                255,
+                256,
+                257,
+                258,
+                259,
+                260
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 3,
+        "fields": {
+            "name": "For Loops",
+            "author": 16,
+            "questions": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                261,
+                262,
+                263,
+                264,
+                265,
+                266,
+                267,
+                268,
+                269,
+                270
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 4,
+        "fields": {
+            "name": "Strings",
+            "author": 16,
+            "questions": [
+                16,
+                17,
+                18,
+                19,
+                20,
+                271,
+                272,
+                273,
+                274,
+                275,
+                276,
+                277,
+                278,
+                279,
+                280
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 5,
+        "fields": {
+            "name": "COBOL",
+            "author": 16,
+            "questions": [
+                20
+            ],
+            "active": false,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 6,
+        "fields": {
+            "name": "Basic Operators 2",
+            "author": 16,
+            "questions": [
+                21,
+                22,
+                23,
+                24,
+                25,
+                281,
+                282,
+                283,
+                284,
+                285,
+                286,
+                287,
+                288,
+                289,
+                290,
+                291,
+                292,
+                293,
+                294,
+                295,
+                296,
+                297,
+                298,
+                299,
+                300
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 7,
+        "fields": {
+            "name": "Conditions 2",
+            "author": 16,
+            "questions": [
+                26,
+                27,
+                28,
+                29,
+                30,
+                301,
+                302,
+                303,
+                304,
+                305,
+                306,
+                307,
+                308,
+                309,
+                310,
+                311,
+                312,
+                313,
+                314,
+                315,
+                316,
+                317,
+                318,
+                319,
+                320
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 8,
+        "fields": {
+            "name": "For Loops 2",
+            "author": 16,
+            "questions": [
+                31,
+                32,
+                33,
+                34,
+                35,
+                321,
+                322,
+                323,
+                324,
+                325,
+                326,
+                327,
+                328,
+                329,
+                330,
+                331,
+                332,
+                333,
+                334,
+                335,
+                336,
+                337,
+                338,
+                339,
+                340
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 9,
+        "fields": {
+            "name": "Strings 2",
+            "author": 16,
+            "questions": [
+                36,
+                37,
+                38,
+                39,
+                40,
+                341,
+                342,
+                343,
+                344,
+                345,
+                346,
+                347,
+                348,
+                349,
+                350,
+                351,
+                352,
+                353,
+                354,
+                355,
+                356,
+                357,
+                358,
+                359,
+                360
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 10,
+        "fields": {
+            "name": "COBOL 2",
+            "author": 16,
+            "questions": [
+                40
+            ],
+            "active": false,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 11,
+        "fields": {
+            "name": "Basic Operators 3",
+            "author": 16,
+            "questions": [
+                41,
+                42,
+                43,
+                44,
+                45,
+                361,
+                362,
+                363,
+                364,
+                365,
+                366,
+                367,
+                368,
+                369,
+                370,
+                371,
+                372,
+                373,
+                374,
+                375,
+                376,
+                377,
+                378,
+                379,
+                380
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 12,
+        "fields": {
+            "name": "Conditions 3",
+            "author": 16,
+            "questions": [
+                46,
+                47,
+                48,
+                49,
+                50,
+                381,
+                382,
+                383,
+                384,
+                385,
+                386,
+                387,
+                388,
+                389,
+                390,
+                391,
+                392,
+                393,
+                394,
+                395,
+                396,
+                397,
+                398,
+                399,
+                400
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 13,
+        "fields": {
+            "name": "For Loops 3",
+            "author": 16,
+            "questions": [
+                51,
+                52,
+                53,
+                54,
+                55,
+                401,
+                402,
+                403,
+                404,
+                405,
+                406,
+                407,
+                408,
+                409,
+                410,
+                411,
+                412,
+                413,
+                414,
+                415,
+                416,
+                417,
+                418,
+                419,
+                420
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 14,
+        "fields": {
+            "name": "Strings 3",
+            "author": 16,
+            "questions": [
+                56,
+                57,
+                58,
+                59,
+                60,
+                421,
+                422,
+                423,
+                424,
+                425,
+                426,
+                427,
+                428,
+                429,
+                430,
+                431,
+                432,
+                433,
+                434,
+                435,
+                436,
+                437,
+                438,
+                439,
+                440
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 15,
+        "fields": {
+            "name": "COBOL 3",
+            "author": 16,
+            "questions": [
+                60
+            ],
+            "active": false,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 16,
+        "fields": {
+            "name": "Basic Operators 4",
+            "author": 16,
+            "questions": [
+                61,
+                62,
+                63,
+                64,
+                65,
+                441,
+                442,
+                443,
+                444,
+                445,
+                446,
+                447,
+                448,
+                449,
+                450,
+                451,
+                452,
+                453,
+                454,
+                455,
+                456,
+                457,
+                458,
+                459,
+                460
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 17,
+        "fields": {
+            "name": "Conditions 4",
+            "author": 16,
+            "questions": [
+                66,
+                67,
+                68,
+                69,
+                70,
+                461,
+                462,
+                463,
+                464,
+                465,
+                466,
+                467,
+                468,
+                469,
+                470,
+                471,
+                472,
+                473,
+                474,
+                475,
+                476,
+                477,
+                478,
+                479,
+                480
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 18,
+        "fields": {
+            "name": "For Loops 4",
+            "author": 16,
+            "questions": [
+                71,
+                72,
+                73,
+                74,
+                75,
+                481,
+                482,
+                483,
+                484,
+                485,
+                486,
+                487,
+                488,
+                489,
+                490,
+                491,
+                492,
+                493,
+                494,
+                495,
+                496,
+                497,
+                498,
+                499,
+                500
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 19,
+        "fields": {
+            "name": "Strings 4",
+            "author": 16,
+            "questions": [
+                76,
+                77,
+                78,
+                79,
+                80
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 20,
+        "fields": {
+            "name": "COBOL 4",
+            "author": 16,
+            "questions": [
+                80
+            ],
+            "active": false,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 21,
+        "fields": {
+            "name": "Basic Operators 5",
+            "author": 16,
+            "questions": [
+                81,
+                82,
+                83,
+                84,
+                85
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 22,
+        "fields": {
+            "name": "Conditions 5",
+            "author": 16,
+            "questions": [
+                86,
+                87,
+                88,
+                89,
+                90
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 23,
+        "fields": {
+            "name": "For Loops 5",
+            "author": 16,
+            "questions": [
+                91,
+                92,
+                93,
+                94,
+                95
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 24,
+        "fields": {
+            "name": "Strings 5",
+            "author": 16,
+            "questions": [
+                96,
+                97,
+                98,
+                99,
+                100
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 25,
+        "fields": {
+            "name": "COBOL 5",
+            "author": 16,
+            "questions": [
+                100
+            ],
+            "active": false,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 26,
+        "fields": {
+            "name": "Basic Operators 6",
+            "author": 16,
+            "questions": [
+                101,
+                102,
+                103,
+                104,
+                105
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 27,
+        "fields": {
+            "name": "Conditions 6",
+            "author": 16,
+            "questions": [
+                106,
+                107,
+                108,
+                109,
+                110
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 28,
+        "fields": {
+            "name": "For Loops 6",
+            "author": 16,
+            "questions": [
+                111,
+                112,
+                113,
+                114,
+                115
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 29,
+        "fields": {
+            "name": "Strings, 6",
+            "author": 16,
+            "questions": [
+                116,
+                117,
+                118,
+                119,
+                120
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 30,
+        "fields": {
+            "name": "COBOL, 6",
+            "author": 16,
+            "questions": [
+                120
+            ],
+            "active": false,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 31,
+        "fields": {
+            "name": "Basic Operators 7",
+            "author": 16,
+            "questions": [
+                121,
+                122,
+                123,
+                124,
+                125
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 32,
+        "fields": {
+            "name": "Conditions 7",
+            "author": 16,
+            "questions": [
+                126,
+                127,
+                128,
+                129,
+                130
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 33,
+        "fields": {
+            "name": "For Loops 7",
+            "author": 16,
+            "questions": [
+                131,
+                132,
+                133,
+                134,
+                135
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 34,
+        "fields": {
+            "name": "Strings 7",
+            "author": 16,
+            "questions": [
+                136,
+                137,
+                138,
+                139,
+                140
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 35,
+        "fields": {
+            "name": "COBOL 7",
+            "author": 16,
+            "questions": [
+                140
+            ],
+            "active": false,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 36,
+        "fields": {
+            "name": "Basic Operators 8",
+            "author": 16,
+            "questions": [
+                141,
+                142,
+                143,
+                144,
+                145
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 37,
+        "fields": {
+            "name": "Conditions 8",
+            "author": 16,
+            "questions": [
+                146,
+                147,
+                148,
+                149,
+                150
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 38,
+        "fields": {
+            "name": "For Loops 8",
+            "author": 16,
+            "questions": [
+                151,
+                152,
+                153,
+                154,
+                155
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 39,
+        "fields": {
+            "name": "Strings 8",
+            "author": 16,
+            "questions": [
+                156,
+                157,
+                158,
+                159,
+                160
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 40,
+        "fields": {
+            "name": "COBOL 8",
+            "author": 16,
+            "questions": [
+                160
+            ],
+            "active": false,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 41,
+        "fields": {
+            "name": "Basic Operators 9",
+            "author": 16,
+            "questions": [
+                161,
+                162,
+                163,
+                164,
+                165
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 42,
+        "fields": {
+            "name": "Conditions 9",
+            "author": 16,
+            "questions": [
+                166,
+                167,
+                168,
+                169,
+                170
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 43,
+        "fields": {
+            "name": "For Loops 9",
+            "author": 16,
+            "questions": [
+                171,
+                172,
+                173,
+                174,
+                175
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 44,
+        "fields": {
+            "name": "Strings 9",
+            "author": 16,
+            "questions": [
+                176,
+                177,
+                178,
+                179,
+                180
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 45,
+        "fields": {
+            "name": "COBOL 9",
+            "author": 16,
+            "questions": [
+                180
+            ],
+            "active": false,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 46,
+        "fields": {
+            "name": "Basic Operators 10",
+            "author": 16,
+            "questions": [
+                181,
+                182,
+                183,
+                184,
+                185
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 47,
+        "fields": {
+            "name": "Conditions 10",
+            "author": 16,
+            "questions": [
+                186,
+                187,
+                188,
+                189,
+                190
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 48,
+        "fields": {
+            "name": "For Loops 10",
+            "author": 16,
+            "questions": [
+                191,
+                192,
+                193,
+                194,
+                195
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 49,
+        "fields": {
+            "name": "Strings 10",
+            "author": 16,
+            "questions": [
+                196,
+                197,
+                198,
+                199,
+                200
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 50,
+        "fields": {
+            "name": "COBOL 10",
+            "author": 16,
+            "questions": [
+                200
+            ],
+            "active": false,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 51,
+        "fields": {
+            "name": "Basic Operators 11",
+            "author": 16,
+            "questions": [
+                201,
+                202,
+                203,
+                204,
+                205
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 52,
+        "fields": {
+            "name": "Conditions 11",
+            "author": 16,
+            "questions": [
+                206,
+                207,
+                208,
+                209,
+                210
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 53,
+        "fields": {
+            "name": "For Loops 11",
+            "author": 16,
+            "questions": [
+                211,
+                212,
+                213,
+                214,
+                215
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 54,
+        "fields": {
+            "name": "Strings 11",
+            "author": 16,
+            "questions": [
+                216,
+                217,
+                218,
+                219,
+                220
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 55,
+        "fields": {
+            "name": "COBOL 11",
+            "author": 16,
+            "questions": [
+                220
+            ],
+            "active": false,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 56,
+        "fields": {
+            "name": "Basic Operators 12",
+            "author": 16,
+            "questions": [
+                221,
+                222,
+                223,
+                224,
+                225
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 57,
+        "fields": {
+            "name": "Conditions 12",
+            "author": 16,
+            "questions": [
+                226,
+                227,
+                228,
+                229,
+                230
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 58,
+        "fields": {
+            "name": "For Loops 12",
+            "author": 16,
+            "questions": [
+                231,
+                232,
+                233,
+                234,
+                235
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 59,
+        "fields": {
+            "name": "Strings 12",
+            "author": 16,
+            "questions": [
+                236,
+                237,
+                238,
+                239,
+                240
+            ],
+            "active": true,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    },
+    {
+        "model": "coding.competition",
+        "pk": 60,
+        "fields": {
+            "name": "COBOL 12",
+            "author": 16,
+            "questions": [
+                240
+            ],
+            "active": false,
+            "type": "R",
+            "created": "2020-01-08T18:52:50.637635"
+        }
+    }
+]
