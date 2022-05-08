@@ -79,7 +79,7 @@ function CreateAssignment() {
   const addUIQuestion = () => {
     setUIQuestions(UIQuestions => {
       const numUIQuestions = UIQuestions.length + 1;
-      setUIQuestionFieldN(UIQuestions.length, "question", 1);
+      setUIQuestionFieldN(UIQuestions.length, "question", questions[0].props.value);
       setUIQuestionFieldN(UIQuestions.length, "weight", 1);
       return [...UIQuestions, uiQuestionHTMLByNum(numUIQuestions)];
     });
@@ -118,7 +118,7 @@ function CreateAssignment() {
           <option key={questionFromApi.id} value={questionFromApi.id}>{questionFromApi.name} </option>
         );
       }
-      updateQuestions(questionOptions);    
+      updateQuestions(questionOptions);   
       removeUIQuestion();
     })
     .catch((err) => {
@@ -137,9 +137,12 @@ function CreateAssignment() {
       description: "",
       code: "",
       classes: classes,
-      myclass: 1
+      myclass: 0
     },
     onSubmit: (values) => {
+      if (values.myclass == 0) {
+        values.myclass = classes[0].props.value;
+      }
       handleCreateAssignment(
         values.name, 
         values.myclass
@@ -151,13 +154,13 @@ function CreateAssignment() {
     }),
   });
 
-  const handleCreateAssignment = (name, myclass) => {
+  const handleCreateAssignment = (name, classToAdd) => {
     clearTexts();
-    axiosService.post(`/api/teacher/assignment/`, { name: name, class: myclass, questions: uiQuestionsData })
+    axiosService.post(`/api/teacher/assignment/`, { name: name, class: classToAdd, questions: uiQuestionsData })
     .then((res) => {
       console.log(res);
       setSuccessText("Your question was created successfully!");
-      Tabs.changeTabNumber(3);  
+      Tabs.changeTabNumber(2);  
       navigate('/teacherdashboard');
     })
     .catch((err) => {
