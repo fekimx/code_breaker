@@ -47,7 +47,7 @@ function TeacherClassTable(){
             const paginatedDisplayData = response.data.slice(indexOfFirstPost, indexOfLastPost)
             setTotalPosts(response.data.length)
     
-            const newDisplayData = response.data.map((teacherClass) => {
+            const newDisplayData = paginatedDisplayData.map((teacherClass) => {
                 const link = `/teacherClassDetails?id=${teacherClass.id}`;
                 return(
                     <tr key={teacherClass.secretKey}>

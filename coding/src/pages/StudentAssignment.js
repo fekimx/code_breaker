@@ -36,9 +36,9 @@ class Assignment extends React.Component {
     })
     .then((res) => {
       this.setState({ 
-        name: res.data['name'],
-        author: res.data['author'],
-        questions: res.data['questions']
+        name: res.data[0]['name'],
+        author: res.data[0]['author'],
+        questions: res.data[0]['questions']
       });
     })
     .catch((err) => {

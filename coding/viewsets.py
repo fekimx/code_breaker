@@ -323,6 +323,8 @@ class StudentAssignmentViewSet(viewsets.ModelViewSet):
     def retrieve(self, request, pk=None):
         student = User(id=request.user.id)
         classes = Class.objects.filter(students=student)
+        # mark a question completed or not
+        arrayOfCompletedQuestions = []
         assignmentSet = set()
         for clazz in classes:
             for assignment in clazz.assignments.all():
@@ -338,17 +340,28 @@ class StudentAssignmentViewSet(viewsets.ModelViewSet):
         questionweightpair_fks = []
 
         for questionWeightPair in assignmentObj.questions.all():
+            tmpTotalUnitTests = len(questionWeightPair.question.unitTests.all())
+            completedUnitTests = 0
             localQuestionWeightPair = {}
             localQuestionWeightPair['name'] = questionWeightPair.question.name
             localQuestionWeightPair['id'] = questionWeightPair.question.id
             localQuestionWeightPair['description'] = questionWeightPair.question.description
             localQuestionWeightPair['weight'] = questionWeightPair.weight
+            tmpStudentSubmission = Submission.objects.filter(learner=student, question=questionWeightPair.question)
+            # get the latest submission
+            if (len(tmpStudentSubmission.all()) != 0):
+                completedUnitTests = len(tmpStudentSubmission.latest('submittedAt').successfulUnitTests.all())
+            if tmpTotalUnitTests == completedUnitTests:
+                arrayOfCompletedQuestions.append(questionWeightPair.question.id)
+            
             questionweightpair_fks.append(localQuestionWeightPair)
 
         response = serializer.data
         response["questionWeightPairs"] = questionweightpair_fks
-        return Response(response)
 
+        return Response((response, arrayOfCompletedQuestions))
+
+        
 class TeacherCompetitionStatusViewSet(viewsets.ModelViewSet):
     queryset = Competition.objects.all()
     http_method_names = ['get', 'post']
@@ -522,6 +535,8 @@ class StudentCompetitionViewSet(viewsets.ModelViewSet):
     def retrieve(self, request, pk=None):
         student = User(id=request.user.id)
         classes = Class.objects.filter(students=student)
+        # mark a question completed or not
+        arrayOfCompletedQuestions = []
         competitionSet = set()
         for clazz in classes:
             for competition in clazz.competitions.all():
@@ -536,16 +551,26 @@ class StudentCompetitionViewSet(viewsets.ModelViewSet):
         questionweightpair_fks = []
 
         for questionWeightPair in competitionObj.questions.all():
+            tmpTotalUnitTests = len(questionWeightPair.question.unitTests.all())
+            completedUnitTests = 0
             localQuestionWeightPair = {}
             localQuestionWeightPair['name'] = questionWeightPair.question.name
             localQuestionWeightPair['id'] = questionWeightPair.question.id
             localQuestionWeightPair['description'] = questionWeightPair.question.description
             localQuestionWeightPair['weight'] = questionWeightPair.weight
+            tmpStudentSubmission = Submission.objects.filter(learner=student, question=questionWeightPair.question)
+            # get the latest submission
+            if (len(tmpStudentSubmission.all()) != 0):
+                completedUnitTests = len(tmpStudentSubmission.latest('submittedAt').successfulUnitTests.all())
+            if tmpTotalUnitTests == completedUnitTests:
+                arrayOfCompletedQuestions.append(questionWeightPair.question.id)
+            
             questionweightpair_fks.append(localQuestionWeightPair)
 
         response = serializer.data
         response["questionWeightPairs"] = questionweightpair_fks
-        return Response(response)
+
+        return Response((response, arrayOfCompletedQuestions))
 
 class LoginViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
@@ -1109,7 +1134,7 @@ class StudentCompetitionWatchViewSet(viewsets.ModelViewSet):
     permission_classes = (IsStudentUser,)
 
     def retrieve(self, request, pk=None):
-        logger.warn("// ---------- > TeacherCompetitionWatchViewSet / List")
+        logger.warn("// ---------- > StudentCompetitionWatchViewSet / List")
         thisCompetitionList = Competition.objects.filter(pk=pk)
         if len(thisCompetitionList) == 0:
             return Response("Could not find competition")
@@ -1130,7 +1155,7 @@ class StudentCompetitionWatchViewSet(viewsets.ModelViewSet):
                 tmpAnswers[theirSubmission.question_id] = len(theirSubmission.successfulUnitTests.all())
             for item in tmpAnswers:
                 tmpCorrectUnitTests = tmpCorrectUnitTests + tmpAnswers[item]
-            logger.warn("               succecss: " + str(tmpCorrectUnitTests))
+            logger.warn("               success: " + str(tmpCorrectUnitTests))
             studentDetails.append((student.username, student.email, str(tmpCorrectUnitTests)))
         return Response((
             thisCompetition.name,
@@ -1148,6 +1173,6 @@ class StudentCompetitionWatchViewSet(viewsets.ModelViewSet):
                 # array of:
                     # student username
                     # student email
-                    # corrent unit tests
+                    # correct unit tests
 
 
