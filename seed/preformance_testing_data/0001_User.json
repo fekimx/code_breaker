@@ -1,0 +1,2050 @@
+[
+    {
+        "model": "coding.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "jalexander",
+            "email": "student1@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "bjefferson",
+            "email": "bjefferson@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "qbollin",
+            "email": "qbollin@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "fkorte",
+            "email": "fkorte@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "klowe",
+            "email": "klowe@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 6,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "xfernandez",
+            "email": "xfernandez@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 7,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "mmaddison",
+            "email": "mmaddison@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 8,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "aball",
+            "email": "aball@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 9,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "elitherland",
+            "email": "elitherland@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 10,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "nblackburn",
+            "email": "nblackburn@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 11,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "jobrien",
+            "email": "jobrien@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 12,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "bwilliams",
+            "email": "bwilliams@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 13,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "tliotta",
+            "email": "tliotta@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 14,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "vdavis",
+            "email": "vdavis@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 15,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "bmayfield",
+            "email": "bmayfield@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 16,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "aturing",
+            "email": "teacher1@test.com",
+            "is_active": true,
+            "is_student": false,
+            "is_staff": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 17,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "agibson",
+            "email": "agibson@test.com",
+            "is_active": true,
+            "is_student": false,
+            "is_staff": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 18,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "rgronkowski",
+            "email": "rgronkowski@test.com",
+            "is_active": true,
+            "is_student": false,
+            "is_staff": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 19,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "jchan",
+            "email": "jchan@test.com",
+            "is_active": true,
+            "is_student": false,
+            "is_staff": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 20,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "nofferman",
+            "email": "nofferman@test.com",
+            "is_active": true,
+            "is_student": false,
+            "is_staff": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 21,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "scarrell",
+            "email": "scarrell@test.com",
+            "is_active": true,
+            "is_student": false,
+            "is_staff": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 22,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "tdanson",
+            "email": "tdanson@test.com",
+            "is_active": true,
+            "is_student": false,
+            "is_staff": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 23,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "ldavid",
+            "email": "ldavid@test.com",
+            "is_active": true,
+            "is_student": false,
+            "is_staff": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 24,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "ggarcia",
+            "email": "ggarcia@test.com",
+            "is_active": true,
+            "is_student": false,
+            "is_staff": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 25,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "somoto",
+            "email": "somoto@test.com",
+            "is_active": true,
+            "is_student": false,
+            "is_staff": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 26,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "jkusumoto",
+            "email": "jkusumoto@test.com",
+            "is_active": true,
+            "is_student": false,
+            "is_staff": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 27,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "jgaffigan",
+            "email": "jgaffigan@test.com",
+            "is_active": true,
+            "is_student": false,
+            "is_staff": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 28,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student28",
+            "email": "student28@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 29,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student29",
+            "email": "student29@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 30,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student30",
+            "email": "student30@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 31,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student31",
+            "email": "student31@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 32,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student32",
+            "email": "student32@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 33,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student33",
+            "email": "student33@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 34,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student34",
+            "email": "student34@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 35,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student35",
+            "email": "student35@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 36,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student36",
+            "email": "student36@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 37,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student37",
+            "email": "student37@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 38,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student38",
+            "email": "student38@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 39,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student39",
+            "email": "student39@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 40,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student40",
+            "email": "student40@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 41,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student41",
+            "email": "student41@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 42,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student42",
+            "email": "student42@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 43,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student43",
+            "email": "student43@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 44,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student44",
+            "email": "student44@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 45,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student45",
+            "email": "student45@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 46,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student46",
+            "email": "student46@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 47,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student47",
+            "email": "student47@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 48,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student48",
+            "email": "student48@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 49,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student49",
+            "email": "student49@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 50,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student50",
+            "email": "student50@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 51,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student51",
+            "email": "student51@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 52,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student52",
+            "email": "student52@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 53,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student53",
+            "email": "student53@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 54,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student54",
+            "email": "student54@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 55,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student55",
+            "email": "student55@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 56,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student56",
+            "email": "student56@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 57,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student57",
+            "email": "student57@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 58,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student58",
+            "email": "student58@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 59,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student59",
+            "email": "student59@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 60,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student60",
+            "email": "student60@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 61,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student61",
+            "email": "student61@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 62,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student62",
+            "email": "student62@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 63,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student63",
+            "email": "student63@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 64,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student64",
+            "email": "student64@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 65,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student65",
+            "email": "student65@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 66,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student66",
+            "email": "student66@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 67,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student67",
+            "email": "student67@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 68,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student68",
+            "email": "student68@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 69,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student69",
+            "email": "student69@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 70,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student70",
+            "email": "student70@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 71,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student71",
+            "email": "student71@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 72,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student72",
+            "email": "student72@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 73,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student73",
+            "email": "student73@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 74,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student74",
+            "email": "student74@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 75,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student75",
+            "email": "student75@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 76,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student76",
+            "email": "student76@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 77,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student77",
+            "email": "student77@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 78,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student78",
+            "email": "student78@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 79,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student79",
+            "email": "student79@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 80,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student80",
+            "email": "student80@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 81,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student81",
+            "email": "student81@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 82,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student82",
+            "email": "student82@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 83,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student83",
+            "email": "student83@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 84,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student84",
+            "email": "student84@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 85,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student85",
+            "email": "student85@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 86,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student86",
+            "email": "student86@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 87,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student87",
+            "email": "student87@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 88,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student88",
+            "email": "student88@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 89,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student89",
+            "email": "student89@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 90,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student90",
+            "email": "student90@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 91,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student91",
+            "email": "student91@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 92,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student92",
+            "email": "student92@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 93,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student93",
+            "email": "student93@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 94,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student94",
+            "email": "student94@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 95,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student95",
+            "email": "student95@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 96,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student96",
+            "email": "student96@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 97,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student97",
+            "email": "student97@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 98,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student98",
+            "email": "student98@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 99,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student99",
+            "email": "student99@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 100,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student100",
+            "email": "student100@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 101,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student101",
+            "email": "student101@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 102,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student102",
+            "email": "student102@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 103,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student103",
+            "email": "student103@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 104,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student104",
+            "email": "student104@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 105,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student105",
+            "email": "student105@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 106,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student106",
+            "email": "student106@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 107,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student107",
+            "email": "student107@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 108,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student108",
+            "email": "student108@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 109,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student109",
+            "email": "student109@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 110,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student110",
+            "email": "student110@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 111,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student111",
+            "email": "student111@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 112,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student112",
+            "email": "student112@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 113,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student113",
+            "email": "student113@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 114,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student114",
+            "email": "student114@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 115,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student115",
+            "email": "student115@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 116,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student116",
+            "email": "student116@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 117,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "john117",
+            "email": "student117@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 118,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student118",
+            "email": "student118@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 119,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student119",
+            "email": "student119@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 120,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student120",
+            "email": "student120@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 121,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student121",
+            "email": "student121@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 122,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student122",
+            "email": "student122@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 123,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student123",
+            "email": "student123@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 124,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student124",
+            "email": "student124@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 125,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student125",
+            "email": "student125@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 126,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student126",
+            "email": "student126@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 127,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student127",
+            "email": "student127@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "coding.user",
+        "pk": 128,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$X4x8mFIXcEZIxH3SqhCVi7$Z5PDQ0UjNMUZdcxjJ/m2UPDcmkm50ukBHZ1GxnS7n+Y=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "student128",
+            "email": "student128@test.com",
+            "is_active": true,
+            "is_student": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+    ]
