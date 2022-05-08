@@ -7,7 +7,7 @@ import Pagination from '../components/Pagination';
 function TeacherStudentTable() {
     const [displayData, updateDisplayData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(5);
+    const [postsPerPage] = useState(10);
     const [totalPosts, setTotalPosts] = useState([]);
 
 
