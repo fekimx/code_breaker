@@ -1065,7 +1065,9 @@ class TeacherGradebookViewSet(viewsets.ModelViewSet):
 
         classObj = Class.objects.get(id=pk)
         assignment_gradebook_list = []
-        for assignment in self.queryset:
+        assignment_filter = {'author': request.user.id, 'class': pk}
+        assignment_queryset = Assignment.objects.filter(**assignment_filter)
+        for assignment in assignment_queryset:
             users = User.objects.filter(**{'is_student': True, 'pk__in': classObj.students.all()})
             students = []
             for user in users:
