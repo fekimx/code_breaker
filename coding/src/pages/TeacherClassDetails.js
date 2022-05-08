@@ -25,7 +25,7 @@ class TeacherClassDetails extends React.Component {
       classKey: "",
       assignments: [],
       displayData: undefined,
-      studentsPerPage: 5,
+      studentsPerPage: 10,
       totalStudents: 0,
       currentPage: 1
     }
