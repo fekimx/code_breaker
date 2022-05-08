@@ -1,6 +1,5 @@
 from ast import Assign
 from cmath import log
-from curses import raw
 from email.mime import audio
 from urllib import response
 from code_breaker.settings import JUDGE_ZERO_ENDPOINT

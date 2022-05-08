@@ -10,6 +10,18 @@ Install pipenv
 
 Docker and Docker Compose Installed (if you want to use Docker)
 
+Create an .env file in the root directory with the following contents
+
+```
+SECRET_KEY = <any secret key, used to hash>
+DATABASE_NAME = <database name>
+DATABASE_USER = <database user>
+DATABASE_PASSWORD = <database password>
+DATABASE_HOST = <database host>
+DATABASE_PORT = <database port>
+JUDGE_ZERO_ENDPOINT = <Judge 0 server path, e.g. http://xxx.xx.xx.xx:xxxx/submissions/>
+```
+
 ## 2 Ways To Run The Application Locally
 
 ### w/ Docker
@@ -36,6 +48,8 @@ Install the Heroku CLI: https://devcenter.heroku.com/articles/heroku-cli#install
 
 heroku git:remote -a code-breaker-proj
 git push heroku main
+
+If you want to run on Heroku, you need to set all environment variables documented in the Environment Variables section using "heroku config:set ENVIRONMENT_VARIABLE_NAME=value"
 
 ## Judge 0 Deployment
 
