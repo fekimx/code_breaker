@@ -55,7 +55,7 @@ class TeacherClassAddForm extends Component {
     e.preventDefault();
     axiosService.post(`/api/class/`, { teacher: this.state.teacherId, name: this.state.className, assignments: [], active: true, TAs: [], students: [] })
     .then((res) => {
-      this.state.fetchLatestClasses();
+      this.state.fetchLatestClasses(1);
       this.setState({
         className: ""
       })
