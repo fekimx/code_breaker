@@ -16,10 +16,8 @@ function StudentCompetitionQuestionTable(){
     const fetchLatestQuestions = () => {
         axiosService.get(`/api/student/competition/${competitionId}/`)
         .then((response) => {
-            console.log("The response:");
-            console.log(response);
-            const questionWeightPairs = response.data['questionWeightPairs']
-            console.log(questionWeightPairs);
+            const questionWeightPairs = response.data[0]['questionWeightPairs']
+            const completedQuestions = response.data[1]
             const newDisplayData = questionWeightPairs.map((questionWeightPair) => {
                 const link = `/questions?id=${questionWeightPair.id}&competitionId=${competitionId}`;
                 count++;
@@ -28,7 +26,10 @@ function StudentCompetitionQuestionTable(){
                         <td>{count}</td>
                         <td>{questionWeightPair.weight}</td>
                         <td><Link to={{pathname: link }} replace>{questionWeightPair.name}</Link></td>
-                        <td>{questionWeightPair.description} </td>
+                        <td>{questionWeightPair.description}</td>
+                        <td>
+                        { completedQuestions.includes(questionWeightPair.id) ? "✓" : "x" }
+                        </td>
                     </tr>
                 )
             });
@@ -53,6 +54,7 @@ function StudentCompetitionQuestionTable(){
                         <th>Weight</th>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Completed</th>
                     </tr>
                 </thead>
                 <tbody>

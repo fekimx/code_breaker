@@ -41,7 +41,8 @@ function StudentAssignmentQuestionTable(){
             // Get current items
             const indexOfLastPost = currentPage * postsPerPage
             const indexOfFirstPost = indexOfLastPost - postsPerPage
-            const questionWeightPairs = response.data['questionWeightPairs']
+            const questionWeightPairs = response.data[0]['questionWeightPairs']
+            const completedQuestions = response.data[1]
             const paginatedDisplayData = questionWeightPairs.slice(indexOfFirstPost, indexOfLastPost)
             setTotalPosts(questionWeightPairs.length)
             const newDisplayData = paginatedDisplayData.map((questionWeightPair) => {
@@ -53,6 +54,9 @@ function StudentAssignmentQuestionTable(){
                         <td>{questionWeightPair.weight}</td>
                         <td><Link to={{pathname: link }} replace>{questionWeightPair.name}</Link></td>
                         <td>{questionWeightPair.description} </td>
+                        <td>
+                        { completedQuestions.includes(questionWeightPair.id) ? "✓" : "x" }
+                        </td>
                     </tr>
                 )
             });
@@ -77,6 +81,7 @@ function StudentAssignmentQuestionTable(){
                         <th>Weight</th>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Completed</th>
                     </tr>
                 </thead>
                 <tbody>
