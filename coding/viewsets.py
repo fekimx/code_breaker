@@ -308,8 +308,8 @@ class StudentAssignmentViewSet(viewsets.ModelViewSet):
                     if numSuccessfulUnitTests == numUnitTestsInQuestion:
                         score += question.weight
                     logger.warn(latest_submission)
-                except:
-                    logger.warn("Exception encountered")
+                except Exception:
+                    logger.exception("Exception encountered")
                     pass
                 possibleScore += question.weight
 
@@ -519,8 +519,8 @@ class StudentCompetitionViewSet(viewsets.ModelViewSet):
 
                     if numSuccessfulUnitTests == numUnitTestsInQuestion:
                         score += question.weight
-                except:
-                    logger.warn("Exception encountered")
+                except Exception:
+                    logger.exception("Exception encountered")
                     pass
                 possibleScore += question.weight
 
