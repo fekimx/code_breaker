@@ -79,16 +79,16 @@ class StudentWatchCompetition extends React.Component {
           });
       }
   
-      updateUI()
+      //updateUI()
     }
 
       render() {
         return (
       <div>
-            <h5>Leaderboard:</h5>
+            {/* <h5>Leaderboard:</h5>
                 <div>{this.state.top3}</div>
             <br/>
-            <h5>Questions:</h5> 
+            <h5>Questions:</h5>  */}
       </div>
     
     )}
