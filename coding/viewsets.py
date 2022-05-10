@@ -818,15 +818,23 @@ class StudentQuestionViewSet(viewsets.ModelViewSet):
         student = User(id=request.user.id)
         classes = Class.objects.filter(students=student)
         assignmentSet = set()
+        competitionSet = set()
         for clazz in classes:
             for assignment in clazz.assignments.all():
                 assignmentSet.add(assignment.id)
+            for competition in clazz.competitions.all():
+                competitionSet.add(competition.id)
 
         questionSet = set()
         assignments = Assignment.objects.filter(pk__in=assignmentSet)
         for assign in assignments:
-            for question in assign.questions.all():
-                questionSet.add(question.id)
+            for questionWeightPair in assign.questions.all():
+                questionSet.add(questionWeightPair.question.id)
+
+        competitions = Competition.objects.filter(pk__in=competitionSet)
+        for comp in competitions:
+            for questionWeightPair in comp.questions.all():
+                questionSet.add(questionWeightPair.question.id)        
 
         queryset = CodeQuestion.objects.filter(pk__in=questionSet)
 
@@ -840,15 +848,24 @@ class StudentQuestionViewSet(viewsets.ModelViewSet):
         classes = Class.objects.filter(students=student)
         
         assignmentSet = set()
+        competitionSet = set()
+
         for clazz in classes:
             for assignment in clazz.assignments.all():
                 assignmentSet.add(assignment.id)
+            for competition in clazz.competitions.all():
+                competitionSet.add(competition.id)
 
         questionSet = set()
         assignments = Assignment.objects.filter(pk__in=assignmentSet)
         for assign in assignments:
-            for question in assign.questions.all():
-                questionSet.add(question.id)
+            for questionWeightPair in assign.questions.all():
+                questionSet.add(questionWeightPair.question.id)
+
+        competitions = Competition.objects.filter(pk__in=competitionSet)
+        for comp in competitions:
+            for questionWeightPair in comp.questions.all():
+                questionSet.add(questionWeightPair.question.id) 
 
         if int(pk) not in questionSet:
             logger.warn("Got here!")

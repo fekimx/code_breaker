@@ -42,7 +42,7 @@ class Question extends React.Component {
       parentPage: this.props.assignmentId ? "Assignment" : "Competition",
       name: "",
       description: "",
-      code: "def divisbleByTwo(n):\n",
+      code: "def defaultQuestion - loading(n):\n",
       stderr: "",
       unitTests: [],
       unitTestData: [],
