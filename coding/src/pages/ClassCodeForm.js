@@ -66,9 +66,11 @@ class ClassCodeForm extends Component {
       console.log(response);
       this.setState(prevState => ({
         showData: !prevState.showData,
-        showButtonName: "SAVE"
+        showButton: !prevState.showButton,
+        showButtonName: "Add Class",
+        classCode: ""
       }));
-      this.state.updateList;
+      this.state.fetchLatestClasses(1);
     })
     .catch(function (error) {
       console.log(error);

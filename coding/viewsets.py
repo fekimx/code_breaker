@@ -100,7 +100,7 @@ class RunViewSet(viewsets.ViewSet):
         evaluation = {}
 
         while True:
-            time.sleep(1)
+            time.sleep(3)
             evaluation = requests.get(JUDGE_ZERO_ENDPOINT + token)
             logger.warn("Polling ...")
             logger.warn(evaluation.json())
